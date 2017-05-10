@@ -1,0 +1,13 @@
+# -*- Makefile -*-
+
+directories := $(dir $(shell ls */Makefile))
+
+.PHONY: $(directories)
+default: $(directories)
+$(directories):
+	$(MAKE) -C $@ $(MAKEFLAGS) $(MAKECMDGOALS)
+
+clean: default
+	$(RM) *~
+distclean: clean
+wrappers: default
