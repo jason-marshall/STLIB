@@ -1,0 +1,63 @@
+<html>
+<head>
+<title>Programming Best Practices</title>
+<link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+
+<body>
+<h1 align=center>Programming Best Practices</h1>
+
+<a href="index.html">Back</a>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h2>Documentation</h2>
+
+<p>
+Document your code! Write the documentation before, during, and immediately
+after you write the source code: Write some documentation for each function
+and class before you write the code.  This will help you understand its
+purpose and clarify its functionality.  Finish the documentation while the
+code is still fresh in your mind.  Otherwise you will have to study the code
+again when (if) you come back to write the documentation.
+</p>
+
+<p>
+Place the documentation (including performance results, links to graphics,
+etc.) with the source code.  The quality of the documentation is inversely
+proportional to its distance from the source code.  I recommend using
+<a href="http://www.stack.nl/~dimitri/doxygen/">Doxygen</a>
+to build reference manuals in HTML or PDF format.
+</p>
+
+<p>
+If you have multiple packages in a project it may be best to have separate
+Doxygen configuration files for each package and generate the documentation
+for each package separately. This provides a logical grouping of the
+items. You can get cross-links between the packages by using tag files.
+The list of tag files should include the packages that are used by the
+target. Typically do not include packages that use the target in the list;
+doing so may inject distracting template specializations into the inheritance
+graphs and collaboration graphs.
+</p>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h2>Unit Tests</h2>
+
+<p>
+Use unit tests to improve the reliability of your code.  For each source
+file, have a unit test file.  Test each non-trivial piece of functionality.
+Be sure to consider special cases like negative values or null pointers.
+It is important to be able to easily use your unit tests.  You should be able
+to compile and/or run all of your unit tests with a single command.  This
+makes it easy to tell if an improvement in one package breaks functionality
+in another.
+</p>
+
+</body>
+<hr>
+<address>
+<a href="https://bitbucket.org/seanmauch/stlib">https://bitbucket.org/seanmauch/stlib</a>
+/ at(seanmauch, dot(me, com))
+</address>
+</html>
+

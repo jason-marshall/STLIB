@@ -1,0 +1,501 @@
+(************** Content-type: application/mathematica **************
+                     CreatedBy='Mathematica 5.2'
+
+                    Mathematica-Compatible Notebook
+
+This notebook can be used with any Mathematica-compatible
+application, such as Mathematica, MathReader or Publicon. The data
+for the notebook starts with the line containing stars above.
+
+To get the notebook into a Mathematica-compatible application, do
+one of the following:
+
+* Save the data starting with the line of stars above into a file
+  with a name ending in .nb, then open the file inside the
+  application;
+
+* Copy the data starting with the line of stars above to the
+  clipboard, then use the Paste menu command inside the application.
+
+Data for notebooks contains only printable 7-bit ASCII and can be
+sent directly in email or through ftp in text mode.  Newlines can be
+CR, LF or CRLF (Unix, Macintosh or MS-DOS style).
+
+NOTE: If you modify the data for this notebook not in a Mathematica-
+compatible application, you must delete the line below containing
+the word CacheID, otherwise Mathematica-compatible applications may
+try to use invalid cache data.
+
+For more information on notebooks and Mathematica-compatible 
+applications, contact Wolfram Research:
+  web: http://www.wolfram.com
+  email: info@wolfram.com
+  phone: +1-217-398-0700 (U.S.)
+
+Notebook reader applications are available free of charge from 
+Wolfram Research.
+*******************************************************************)
+
+(*CacheID: 232*)
+
+
+(*NotebookFileLineBreakTest
+NotebookFileLineBreakTest*)
+(*NotebookOptionsPosition[     17918,        452]*)
+(*NotebookOutlinePosition[     18602,        476]*)
+(*  CellTagsIndexPosition[     18558,        472]*)
+(*WindowFrame->Normal*)
+
+
+
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["PoissonPdf", "Title"],
+
+Cell[BoxData[
+    \(pdf[m_, n_] := 
+      If[m \[Equal] 0, If[n \[Equal] 0, 1, Indeterminate], 
+        Exp[\(-m\)] m\^n/\(n!\)]\)], "Input"],
+
+Cell[BoxData[
+    \(\(means = {0, \[IndentingNewLine]10\^\(-8\), 10\^\(-8\), 
+          10\^\(-8\), \[IndentingNewLine]10\^\(-7\), 10\^\(-7\), 
+          10\^\(-7\), \[IndentingNewLine]10\^\(-6\), 10\^\(-6\), 
+          10\^\(-6\), \[IndentingNewLine]10\^\(-5\), 10\^\(-5\), 
+          10\^\(-5\), \[IndentingNewLine]10\^\(-4\), 10\^\(-4\), 
+          10\^\(-4\), \[IndentingNewLine]10\^\(-3\), 10\^\(-3\), 
+          10\^\(-3\), \[IndentingNewLine]10\^\(-2\), 10\^\(-2\), 
+          10\^\(-2\), \[IndentingNewLine]10\^\(-1\), 10\^\(-1\), 
+          10\^\(-1\), \[IndentingNewLine]10\^0, 10\^0, 
+          10\^0, \[IndentingNewLine]10\^1, 10\^1, 
+          10\^1, \[IndentingNewLine]10\^2, 10\^2, 
+          10\^2, \[IndentingNewLine]10\^3, 10\^3, 
+          10\^3, \[IndentingNewLine]10\^4, 10\^4, 
+          10\^4, \[IndentingNewLine]10\^5, 10\^5, 
+          10\^5, \[IndentingNewLine]10\^6, 10\^6, 
+          10\^6, \[IndentingNewLine]10\^7, 10\^7, 
+          10\^7, \[IndentingNewLine]10\^8, 10\^8, 10\^8};\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(indices = {0, \ \[IndentingNewLine]0, 1, 2, \[IndentingNewLine]0, 1, 
+          2, \[IndentingNewLine]0, 1, 2, \[IndentingNewLine]0, 1, 
+          2, \[IndentingNewLine]0, 1, 2, \[IndentingNewLine]0, 1, 
+          2, \[IndentingNewLine]0, 1, 2, \[IndentingNewLine]0, 1, 
+          2, \[IndentingNewLine]0, 1, 2, \[IndentingNewLine]0, 1*^1, 
+          2*^1, \[IndentingNewLine]0, 1*^2, 2*^2, \[IndentingNewLine]0, 1*^3, 
+          2*^3, \[IndentingNewLine]0, 1*^4, 2*^4, \[IndentingNewLine]0, 1*^5, 
+          2*^5, \[IndentingNewLine]0, 1*^6, 2*^6, \[IndentingNewLine]0, 1*^7, 
+          2*^7, \[IndentingNewLine]0, 1*^8, 2*^8};\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(means = {0, \[IndentingNewLine]10\^\(-8\), 10\^\(-8\), 
+          10\^\(-8\), \[IndentingNewLine]10\^\(-7\), 10\^\(-7\), 
+          10\^\(-7\), \[IndentingNewLine]10\^\(-6\), 10\^\(-6\), 
+          10\^\(-6\), \[IndentingNewLine]10\^\(-5\), 10\^\(-5\), 
+          10\^\(-5\), \[IndentingNewLine]10\^\(-4\), 10\^\(-4\), 
+          10\^\(-4\), \[IndentingNewLine]10\^\(-3\), 10\^\(-3\), 
+          10\^\(-3\), \[IndentingNewLine]10\^\(-2\), 10\^\(-2\), 
+          10\^\(-2\), \[IndentingNewLine]10\^\(-1\), 10\^\(-1\), 
+          10\^\(-1\), \[IndentingNewLine]10\^0, 10\^0, 
+          10\^0, \[IndentingNewLine]10\^1, 10\^1, 
+          10\^1, \[IndentingNewLine]10\^2, 10\^2, 
+          10\^2, \[IndentingNewLine]10\^3, 10\^3, 
+          10\^3, \[IndentingNewLine]10\^4, 10\^4, 
+          10\^4, \[IndentingNewLine]10\^5, 10\^5, 
+          10\^5, \[IndentingNewLine]10\^6, 10\^6, 10\^6};\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(indices = {0, \ \[IndentingNewLine]0, 1, 2, \[IndentingNewLine]0, 1, 
+          2, \[IndentingNewLine]0, 1, 2, \[IndentingNewLine]0, 1, 
+          2, \[IndentingNewLine]0, 1, 2, \[IndentingNewLine]0, 1, 
+          2, \[IndentingNewLine]0, 1, 2, \[IndentingNewLine]0, 1, 
+          2, \[IndentingNewLine]0, 1, 2, \[IndentingNewLine]0, 1*^1, 
+          2*^1, \[IndentingNewLine]0, 1*^2, 2*^2, \[IndentingNewLine]0, 1*^3, 
+          2*^3, \[IndentingNewLine]0, 1*^4, 2*^4, \[IndentingNewLine]0, 1*^5, 
+          2*^5, \[IndentingNewLine]0, 1*^6, 2*^6};\)\)], "Input"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(values = 
+      Table[CForm[N[pdf[means[\([i]\)], indices[\([i]\)]], 20]], {i, 1, 
+          Length[means]}]\)], "Input"],
+
+Cell[BoxData[
+    RowBox[{"{", 
+      RowBox[{
+        InterpretationBox[
+          StyleBox["1.",
+            ShowStringCharacters->True,
+            NumberMarks->True],
+          CForm[ 1.`20.],
+          Editable->True,
+          AutoDelete->True], ",", 
+        InterpretationBox[
+          StyleBox["0.99999999000000005",
+            ShowStringCharacters->True,
+            NumberMarks->True],
+          CForm[ 0.99999999000000004999999983333333375`20.],
+          Editable->True,
+          AutoDelete->True], ",", 
+        InterpretationBox[
+          StyleBox[\(9.9999999000000005  e - 9\),
+            ShowStringCharacters->True,
+            NumberMarks->True],
+          CForm[ 9.99999990000000049999999833333`20.*^-9],
+          Editable->True,
+          AutoDelete->True], ",", 
+        InterpretationBox[
+          StyleBox[\(4.99999995000000025  e - 17\),
+            ShowStringCharacters->True,
+            NumberMarks->True],
+          CForm[ 4.9999999500000002499999991666667`20.*^-17],
+          Editable->True,
+          AutoDelete->True], ",", 
+        InterpretationBox[
+          StyleBox["0.999999900000005",
+            ShowStringCharacters->True,
+            NumberMarks->True],
+          CForm[ 0.99999990000000499999983333333749999992`20.],
+          Editable->True,
+          AutoDelete->True], ",", 
+        InterpretationBox[
+          StyleBox[\(9.99999900000005  e - 8\),
+            ShowStringCharacters->True,
+            NumberMarks->True],
+          CForm[ 9.999999000000049999998333333375`20.*^-8],
+          Editable->True,
+          AutoDelete->True], ",", 
+        InterpretationBox[
+          StyleBox[\(4.999999500000025  e - 15\),
+            ShowStringCharacters->True,
+            NumberMarks->True],
+          CForm[ 4.9999995000000249999991666666875`20.*^-15],
+          Editable->True,
+          AutoDelete->True], ",", 
+        InterpretationBox[
+          StyleBox["0.99999900000049999983",
+            ShowStringCharacters->True,
+            NumberMarks->True],
+          CForm[ 0.99999900000049999983333337499999166667`20.],
+          Editable->True,
+          AutoDelete->True], ",", 
+        InterpretationBox[
+          StyleBox[\(9.9999900000049999983  e - 7\),
+            ShowStringCharacters->True,
+            NumberMarks->True],
+          CForm[ 9.9999900000049999983333337499999`20.*^-7],
+          Editable->True,
+          AutoDelete->True], ",", 
+        InterpretationBox[
+          StyleBox[\(4.9999950000024999992  e - 13\),
+            ShowStringCharacters->True,
+            NumberMarks->True],
+          CForm[ 4.99999500000249999916666687499995834`20.*^-13],
+          Editable->True,
+          AutoDelete->True], ",", 
+        InterpretationBox[
+          StyleBox["0.99999000004999983333",
+            ShowStringCharacters->True,
+            NumberMarks->True],
+          CForm[ 0.99999000004999983333374999916666805555`20.],
+          Editable->True,
+          AutoDelete->True], ",", 
+        InterpretationBox[
+          StyleBox[\(9.9999000004999983333  e - 6\),
+            ShowStringCharacters->True,
+            NumberMarks->True],
+          CForm[ 9.99990000049999833333749999166668`20.*^-6],
+          Editable->True,
+          AutoDelete->True], ",", 
+        InterpretationBox[
+          StyleBox[\(4.9999500002499991667  e - 11\),
+            ShowStringCharacters->True,
+            NumberMarks->True],
+          CForm[ 4.9999500002499991666687499958333402778`20.*^-11],
+          Editable->True,
+          AutoDelete->True], ",", 
+        InterpretationBox[
+          StyleBox["0.9999000049998333375",
+            ShowStringCharacters->True,
+            NumberMarks->True],
+          CForm[ 0.99990000499983333749991666805553571454`20.],
+          Editable->True,
+          AutoDelete->True], ",", 
+        InterpretationBox[
+          StyleBox["0.00009999000049998333375",
+            ShowStringCharacters->True,
+            NumberMarks->True],
+          CForm[ 0.00009999000049998333374999166680555357`20.],
+          Editable->True,
+          AutoDelete->True], ",", 
+        InterpretationBox[
+          StyleBox[\(4.9995000249991666875  e - 9\),
+            ShowStringCharacters->True,
+            NumberMarks->True],
+          CForm[ 4.99950002499916668749958334028`20.*^-9],
+          Editable->True,
+          AutoDelete->True], ",", 
+        InterpretationBox[
+          StyleBox["0.99900049983337499167",
+            ShowStringCharacters->True,
+            NumberMarks->True],
+          CForm[ 0.9990004998333749916680553571676559747`20.],
+          Editable->True,
+          AutoDelete->True], ",", 
+        InterpretationBox[
+          StyleBox["0.00099900049983337499167",
+            ShowStringCharacters->True,
+            NumberMarks->True],
+          CForm[ 0.00099900049983337499166805535716765597`20.],
+          Editable->True,
+          AutoDelete->True], ",", 
+        InterpretationBox[
+          StyleBox[\(4.9950024991668749583  e - 7\),
+            ShowStringCharacters->True,
+            NumberMarks->True],
+          CForm[ 4.9950024991668749583402767858383`20.*^-7],
+          Editable->True,
+          AutoDelete->True], ",", 
+        InterpretationBox[
+          StyleBox["0.99004983374916805357",
+            ShowStringCharacters->True,
+            NumberMarks->True],
+          CForm[ 0.99004983374916805357390597718003655777`20.],
+          Editable->True,
+          AutoDelete->True], ",", 
+        InterpretationBox[
+          StyleBox["0.0099004983374916805357",
+            ShowStringCharacters->True,
+            NumberMarks->True],
+          CForm[ 0.00990049833749168053573905977180036558`20.],
+          Editable->True,
+          AutoDelete->True], ",", 
+        InterpretationBox[
+          StyleBox["0.000049502491687458402679",
+            ShowStringCharacters->True,
+            NumberMarks->True],
+          CForm[ 0.00004950249168745840267869529885900183`20.],
+          Editable->True,
+          AutoDelete->True], ",", 
+        InterpretationBox[
+          StyleBox["0.90483741803595957316",
+            ShowStringCharacters->True,
+            NumberMarks->True],
+          CForm[ 0.90483741803595957316424905944643662121`20.],
+          Editable->True,
+          AutoDelete->True], ",", 
+        InterpretationBox[
+          StyleBox["0.090483741803595957316",
+            ShowStringCharacters->True,
+            NumberMarks->True],
+          CForm[ 0.09048374180359595731642490594464366212`20.],
+          Editable->True,
+          AutoDelete->True], ",", 
+        InterpretationBox[
+          StyleBox["0.0045241870901797978658",
+            ShowStringCharacters->True,
+            NumberMarks->True],
+          CForm[ 0.00452418709017979786582124529723218311`20.],
+          Editable->True,
+          AutoDelete->True], ",", 
+        InterpretationBox[
+          StyleBox["0.3678794411714423216",
+            ShowStringCharacters->True,
+            NumberMarks->True],
+          CForm[ 0.36787944117144232159552377016146086745`20.],
+          Editable->True,
+          AutoDelete->True], ",", 
+        InterpretationBox[
+          StyleBox["0.3678794411714423216",
+            ShowStringCharacters->True,
+            NumberMarks->True],
+          CForm[ 0.36787944117144232159552377016146086745`20.],
+          Editable->True,
+          AutoDelete->True], ",", 
+        InterpretationBox[
+          StyleBox["0.1839397205857211608",
+            ShowStringCharacters->True,
+            NumberMarks->True],
+          CForm[ 0.18393972058572116079776188508073043372`20.],
+          Editable->True,
+          AutoDelete->True], ",", 
+        InterpretationBox[
+          StyleBox["0.000045399929762484851536",
+            ShowStringCharacters->True,
+            NumberMarks->True],
+          CForm[ 0.00004539992976248485153559151556055061`20.],
+          Editable->True,
+          AutoDelete->True], ",", 
+        InterpretationBox[
+          StyleBox["0.12511003572113329898",
+            ShowStringCharacters->True,
+            NumberMarks->True],
+          CForm[ 0.12511003572113329898476497894772572846`20.],
+          Editable->True,
+          AutoDelete->True], ",", 
+        InterpretationBox[
+          StyleBox["0.0018660813139987595219",
+            ShowStringCharacters->True,
+            NumberMarks->True],
+          CForm[ 0.00186608131399875952186497216048696375`20.],
+          Editable->True,
+          AutoDelete->True], ",", 
+        InterpretationBox[
+          StyleBox[\(3.720075976020835963  e - 44\),
+            ShowStringCharacters->True,
+            NumberMarks->True],
+          CForm[ 3.720075976020835962959695803863118`20.*^-44],
+          Editable->True,
+          AutoDelete->True], ",", 
+        InterpretationBox[
+          StyleBox["0.039860996809147135234",
+            ShowStringCharacters->True,
+            NumberMarks->True],
+          CForm[ 0.03986099680914713523392064945913867356`20.],
+          Editable->True,
+          AutoDelete->True], ",", 
+        InterpretationBox[
+          StyleBox[\(4.7169706027926173994  e - 19\),
+            ShowStringCharacters->True,
+            NumberMarks->True],
+          CForm[ 4.71697060279261739935865326996`20.*^-19],
+          Editable->True,
+          AutoDelete->True], ",", 
+        InterpretationBox[
+          StyleBox[\(5.0759588975494567653  e - 435\),
+            ShowStringCharacters->True,
+            NumberMarks->True],
+          CForm[ 5.0759588975494567652918094795743369193`20.*^-435],
+          Editable->True,
+          AutoDelete->True], ",", 
+        InterpretationBox[
+          StyleBox["0.012614611348721499718",
+            ShowStringCharacters->True,
+            NumberMarks->True],
+          CForm[ 0.01261461134872149971803693647457870252`20.],
+          Editable->True,
+          AutoDelete->True], ",", 
+        InterpretationBox[
+          StyleBox[\(1.5306205776187484791  e - 170\),
+            ShowStringCharacters->True,
+            NumberMarks->True],
+          CForm[ 1.53062057761874847908115581401651`20.*^-170],
+          Editable->True,
+          AutoDelete->True], ",", 
+        InterpretationBox[
+          StyleBox[\(1.1354838653147360985  e - 4343\),
+            ShowStringCharacters->True,
+            NumberMarks->True],
+          CForm[ 1.135483865314736098540938875066`20.*^-4343],
+          Editable->True,
+          AutoDelete->True], ",", 
+        InterpretationBox[
+          StyleBox["0.0039893895589628256487",
+            ShowStringCharacters->True,
+            NumberMarks->True],
+          CForm[ 0.00398938955896282564867182698205693677`20.],
+          Editable->True,
+          AutoDelete->True], ",", 
+        InterpretationBox[
+          StyleBox[\(6.2416442417095541978  e - 1681\),
+            ShowStringCharacters->True,
+            NumberMarks->True],
+          CForm[ 6.241644241709554197792489910626526`20.*^-1681],
+          Editable->True,
+          AutoDelete->True], ",", 
+        InterpretationBox[
+          StyleBox[\(3.5629495653093731211  e - 43430\),
+            ShowStringCharacters->True,
+            NumberMarks->True],
+          CForm[ 3.562949565309373121071174418748652`20.*^-43430],
+          Editable->True,
+          AutoDelete->True], ",", 
+        InterpretationBox[
+          StyleBox["0.0012615652097053005629",
+            ShowStringCharacters->True,
+            NumberMarks->True],
+          CForm[ 0.00126156520970530056294685214357980037`20.],
+          Editable->True,
+          AutoDelete->True], ",", 
+        InterpretationBox[
+          StyleBox[\(2.508721293189909492  e - 16780\),
+            ShowStringCharacters->True,
+            NumberMarks->True],
+          CForm[ 2.50872129318990949202969900563`20.*^-16780],
+          Editable->True,
+          AutoDelete->True], ",", 
+        InterpretationBox[
+          StyleBox[\(3.296831478088558579  e - 434295\),
+            ShowStringCharacters->True,
+            NumberMarks->True],
+          CForm[ 3.29683147808855857896890796910772421`20.*^-434295],
+          Editable->True,
+          AutoDelete->True], ",", 
+        InterpretationBox[
+          StyleBox["0.0003989422471562440297",
+            ShowStringCharacters->True,
+            NumberMarks->True],
+          CForm[ 0.00039894224715624402970454398681603855`20.],
+          Editable->True,
+          AutoDelete->True], ",", 
+        InterpretationBox[
+          StyleBox[\(8.7291174978349480594  e - 167770\),
+            ShowStringCharacters->True,
+            NumberMarks->True],
+          CForm[ 8.729117497834948059444474047619532842`20.*^-167770],
+          Editable->True,
+          AutoDelete->True]}], "}"}]], "Output"]
+}, Open  ]]
+}, Open  ]]
+},
+FrontEndVersion->"5.2 for Microsoft Windows",
+ScreenRectangle->{{0, 1680}, {0, 963}},
+WindowSize->{820, 929},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+ShowSelection->True,
+Magnification->1.5
+]
+
+(*******************************************************************
+Cached data follows.  If you edit this Notebook file directly, not
+using Mathematica, you must remove the line containing CacheID at
+the top of  the file.  The cache data will then be recreated when
+you save this file from within Mathematica.
+*******************************************************************)
+
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+
+(*NotebookFileOutline
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[1776, 53, 27, 0, 141, "Title"],
+Cell[1806, 55, 141, 3, 68, "Input"],
+Cell[1950, 60, 1025, 17, 484, "Input"],
+Cell[2978, 79, 665, 9, 484, "Input"],
+Cell[3646, 90, 923, 15, 432, "Input"],
+Cell[4572, 107, 586, 8, 432, "Input"],
+
+Cell[CellGroupData[{
+Cell[5183, 119, 141, 3, 68, "Input"],
+Cell[5327, 124, 12563, 324, 616, "Output"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+
+
+(*******************************************************************
+End of Mathematica Notebook file.
+*******************************************************************)
+

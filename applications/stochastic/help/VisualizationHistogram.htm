@@ -1,0 +1,62 @@
+
+<html>
+<head>
+<title>Histogram Distance</title>
+</head>
+<body>
+<h1>Histogram Distance</h1>
+
+<p>
+In the <a href="VisualizationTables.htm">previous section</a> we
+studied the transient behavior of the Schlogl model by recording the
+populations in a series of histograms. We saw that the populations
+settled into a bi-modal distribution. The plot showing the probability
+distributions for the species population is reproduced below.
+</p>
+
+<p align="center">
+<!--Saved as PNG. Reduced from 8 to 6 inches and saved as JPG.-->
+<img src="VisualizationPlottingHistogramsSchloglNonzero.jpg">
+</p>
+
+<p>
+The total variation metric may be used to measure the distance between
+two probability distributions. For two histograms (with the same lower
+bound and bin width) having bin values of <i>x<sub>i</sub></i>
+and <i>y<sub>i</sub></i>, this metric is half the sum of the absolute
+values of the bin differences.
+</p>
+
+<p>
+<i>D</i> = &Sigma;|<i>x<sub>i</sub></i> - <i>y<sub>i</sub></i>| / 2
+</p>
+
+<p>
+Because the histogram represents a probability distribution, the sum
+of the bins is unity, &Sigma; <i>x<sub>i</sub></i> = 1. The factor of
+1/2 in the distance metric normalizes the distance to be between 0
+and 1.
+</p>
+
+<p>
+Hitting the histogram distance button
+<img src="HistogramDistance.png">&nbsp; in the simulation output panel
+will bring up a window that allows us to select a pair of histograms.
+(One may also select a set of histograms, in which case the average
+distance will be computed. In this way one may, for instance,
+determine the average distance for a set of species.)
+Below we see that as time advances the distance beween successive
+frames decreases.
+</p>
+
+<p align="center">
+<img src="VisualizationHistogramSchloglDistance_0_2.jpg"><br>
+<img src="VisualizationHistogramSchloglDistance_2_4.jpg"><br>
+<img src="VisualizationHistogramSchloglDistance_4_6.jpg"><br>
+<img src="VisualizationHistogramSchloglDistance_6_8.jpg"><br>
+<img src="VisualizationHistogramSchloglDistance_8_10.jpg">
+</p>
+
+
+</body>
+</html>

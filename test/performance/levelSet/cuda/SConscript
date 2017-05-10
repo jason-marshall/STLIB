@@ -1,0 +1,58 @@
+# -*- python -*-
+
+import os.path
+
+import sys
+sys.path.append('../..')
+from env import cudart, cuda
+
+Import('sourceDirectory')
+# CONTINUE: Dependencies are not correctly calculated for CUDA files, so we
+# have to rebuild them every time.
+powerDistanceCuda =\
+cuda.CudaObject('powerDistanceCuda.o',
+                os.path.join(sourceDirectory,
+                           'levelSet/powerDistanceCuda.cu'))
+AlwaysBuild(powerDistanceCuda)
+
+positiveDistanceCudaObject =\
+cuda.CudaObject('positiveDistanceCuda.o',
+                os.path.join(sourceDirectory,
+                           'levelSet/positiveDistanceCuda.cu'))
+AlwaysBuild(positiveDistanceCudaObject)
+
+outsideCuda =\
+cuda.CudaObject('outsideCuda.o',
+                os.path.join(sourceDirectory,
+                           'levelSet/outsideCuda.cu'))
+AlwaysBuild(outsideCuda)
+
+exteriorVolumeCuda =\
+cuda.CudaObject('exteriorVolumeCuda.o',
+                os.path.join(sourceDirectory,
+                           'levelSet/exteriorVolumeCuda.cu'))
+AlwaysBuild(exteriorVolumeCuda)
+
+solventExcludedCavitiesPosCuda =\
+cuda.CudaObject('solventExcludedCavitiesPosCuda.o',
+                os.path.join(sourceDirectory,
+                           'levelSet/solventExcludedCavitiesPosCuda.cu'))
+AlwaysBuild(solventExcludedCavitiesPosCuda)
+
+vanDerWaalsCuda =\
+cuda.CudaObject('vanDerWaalsCuda.o',
+                os.path.join(sourceDirectory,
+                           'levelSet/vanDerWaalsCuda.cu'))
+AlwaysBuild(vanDerWaalsCuda)
+
+cudart.Program(['powerDistance.cc', powerDistanceCuda])
+cudart.Program(['negativePowerDistance.cc', powerDistanceCuda])
+cudart.Program(['positiveDistance.cc', positiveDistanceCudaObject])
+cudart.Program(['solventAccessibleCavities.cc',
+                positiveDistanceCudaObject, powerDistanceCuda, outsideCuda])
+cudart.Program(['solventExcludedCavities.cc', powerDistanceCuda,
+                positiveDistanceCudaObject])
+cudart.Program(['solventExcludedCavitiesVolume.cc', exteriorVolumeCuda,
+                solventExcludedCavitiesPosCuda])
+cudart.Program(['vanDerWaalsVolume.cc', vanDerWaalsCuda])
+

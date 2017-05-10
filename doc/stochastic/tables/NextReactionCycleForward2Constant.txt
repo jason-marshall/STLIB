@@ -1,0 +1,214 @@
+<table border = "1" rules = "rows">
+<tr> <th> Species <th> <th> 4 <th> 8 <th> 16 <th> 32 <th> 64 <th> 128 <th> 256 <th> 512 <th> 1024 <th> 2048 <th> 4096 <th> 8192 <th> 16384
+<tr> <th> Reactions <th> <th> 8 <th> 16 <th> 32 <th> 64 <th> 128 <th> 256 <th> 512 <th> 1024 <th> 2048 <th> 4096 <th> 8192 <th> 16384 <th> 32768 
+<tr> <th rowspan="3"> Linear search
+<td> Simple
+<td> 131
+<td> 161
+<td> 217
+<td> 334
+<td> 580
+<td> 1050
+<td> 1960
+<td> 3790
+<td> 7400
+<td> 15000
+<td> 30000
+<td> 60000
+<td> 118000
+<tr>
+<td> Unrolled
+<td> 132
+<td> 143
+<td> 169
+<td> 214
+<td> 310
+<td> 470
+<td> 770
+<td> 1390
+<td> 2500
+<td> 5000
+<td> 10000
+<td> 20000
+<td> 40000
+<tr>
+<td> Pointer
+<td> 151
+<td> 165
+<td> 194
+<td> 232
+<td> 330
+<td> 500
+<td> 820
+<td> 1440
+<td> 2900
+<td> 6200
+<td> 13000
+<td> 24000
+<td> 48000
+<tr> <th rowspan="4"> Partition
+<td> Fixed Size
+<td> 208
+<td> 220
+<td> 262
+<td> 300
+<td> 360
+<td> 420
+<td> 510
+<td> 620
+<td> 780
+<td> 1030
+<td> 1470
+<td> 2300
+<td> 3400
+<tr>
+<td> Size Adaptive
+<td> 220
+<td> 221
+<td> 211
+<td> 216
+<td> 240
+<td> 250
+<td> 270
+<td> 300
+<td> 320
+<td> 380
+<td> 500
+<td> 960
+<td> 1360
+<tr>
+<td> Cost Adaptive
+<td> 202
+<td> 222
+<td> 222
+<td> 231
+<td> 260
+<td> 270
+<td> 300
+<td> 330
+<td> 370
+<td> 450
+<td> 620
+<td> 1100
+<td> 1560
+<tr>
+<td> Propensities
+<td> 223
+<td> 211
+<td> 215
+<td> 226
+<td> 260
+<td> 270
+<td> 300
+<td> 320
+<td> 360
+<td> 430
+<td> 570
+<td> 1020
+<td> 1480
+<tr> <th rowspan="3"> Binary Heap
+<td> Pointer
+<td> 208
+<td> 209
+<td> 223
+<td> 227
+<td> 260
+<td> 290
+<td> 310
+<td> 340
+<td> 370
+<td> 420
+<td> 570
+<td> 1020
+<td> 1480
+<tr>
+<td> Pair
+<td> 213
+<td> 209
+<td> 224
+<td> 230
+<td> 260
+<td> 290
+<td> 310
+<td> 330
+<td> 360
+<td> 410
+<td> 550
+<td> 1000
+<td> 1440
+<tr>
+<td> Gibson Bruck
+<td> 224
+<td> 233
+<td> 245
+<td> 262
+<td> 290
+<td> 330
+<td> 340
+<td> 370
+<td> 400
+<td> 440
+<td> 550
+<td> 1000
+<td> 1480
+<tr> <th rowspan="4"> Hashing
+<td> Chaining
+<td> 201
+<td> 209
+<td> 237
+<td> 252
+<td> 280
+<td> 300
+<td> 320
+<td> 320
+<td> 330
+<td> 360
+<td> 610
+<td> 1140
+<td> 1640
+<tr>
+<td> Chaning Vector
+<td> 196
+<td> 202
+<td> 220
+<td> 250
+<td> 270
+<td> 300
+<td> 310
+<td> 320
+<td> 330
+<td> 370
+<td> 610
+<td> 1120
+<td> 1640
+<tr>
+<td> Chaining Generic Vector
+<td> 210
+<td> 220
+<td> 252
+<td> 269
+<td> 300
+<td> 330
+<td> 350
+<td> 350
+<td> 370
+<td> 400
+<td> 640
+<td> 1200
+<td> 1720
+<tr>
+<td> Chaining Generic List
+<td> 277
+<td> 293
+<td> 339
+<td> 404
+<td> 460
+<td> 530
+<td> 570
+<td> 590
+<td> 610
+<td> 630
+<td> 790
+<td> 1340
+<td> 1840
+</table>

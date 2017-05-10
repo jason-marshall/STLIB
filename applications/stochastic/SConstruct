@@ -1,0 +1,11 @@
+# -*- python -*-
+
+import os.path
+from env import serial
+
+if COMMAND_LINE_TARGETS:
+    for x in COMMAND_LINE_TARGETS:
+        SConscript(os.path.join(x, 'SConscript'))
+else:
+    SConscript([str(x) for x in Glob('*/SConscript')])
+

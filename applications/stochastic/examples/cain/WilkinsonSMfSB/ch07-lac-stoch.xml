@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cain version="1.5">
+  <listOfModels>
+    <model id="lacOperon" name="lac-Operon model">
+      <listOfCompartments>
+        <compartment expression="1" id="Cell"/>
+      </listOfCompartments>
+      <listOfSpecies>
+        <species compartment="Cell" initialAmount="1" id="Idna"/>
+        <species compartment="Cell" initialAmount="0" id="Irna"/>
+        <species compartment="Cell" initialAmount="50" id="I"/>
+        <species compartment="Cell" initialAmount="1" id="Op"/>
+        <species compartment="Cell" initialAmount="100" id="Rnap"/>
+        <species compartment="Cell" initialAmount="0" id="Rna"/>
+        <species compartment="Cell" initialAmount="0" id="Z"/>
+        <species compartment="Cell" initialAmount="20" id="Lactose"/>
+        <species compartment="Cell" initialAmount="0" id="ILactose"/>
+        <species compartment="Cell" initialAmount="0" id="IOp"/>
+        <species compartment="Cell" initialAmount="0" id="RnapOp"/>
+      </listOfSpecies>
+      <listOfReactions>
+        <reaction propensity="0.02" massAction="true" id="InhibitorTranscription">
+          <listOfReactants>
+            <speciesReference species="Idna"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="Idna"/>
+            <speciesReference species="Irna"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="0.1" massAction="true" id="InhibitorTranslation">
+          <listOfReactants>
+            <speciesReference species="Irna"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="Irna"/>
+            <speciesReference species="I"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="0.005" massAction="true" id="LactoseInhibitorBinding">
+          <listOfReactants>
+            <speciesReference species="I"/>
+            <speciesReference species="Lactose"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="ILactose"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="0.1" massAction="true" id="LactoseInhibitorDissociation">
+          <listOfReactants>
+            <speciesReference species="ILactose"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="I"/>
+            <speciesReference species="Lactose"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="1" massAction="true" id="InhibitorBinding">
+          <listOfReactants>
+            <speciesReference species="I"/>
+            <speciesReference species="Op"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="IOp"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="0.01" massAction="true" id="InhibitorDissociation">
+          <listOfReactants>
+            <speciesReference species="IOp"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="I"/>
+            <speciesReference species="Op"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="0.1" massAction="true" id="RnapBinding">
+          <listOfReactants>
+            <speciesReference species="Op"/>
+            <speciesReference species="Rnap"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="RnapOp"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="0.01" massAction="true" id="RnapDissociation">
+          <listOfReactants>
+            <speciesReference species="RnapOp"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="Op"/>
+            <speciesReference species="Rnap"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="0.03" massAction="true" id="Transcription">
+          <listOfReactants>
+            <speciesReference species="RnapOp"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="Op"/>
+            <speciesReference species="Rnap"/>
+            <speciesReference species="Rna"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="0.1" massAction="true" id="Translation">
+          <listOfReactants>
+            <speciesReference species="Rna"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="Rna"/>
+            <speciesReference species="Z"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="1e-05" massAction="true" id="Conversion">
+          <listOfReactants>
+            <speciesReference species="Lactose"/>
+            <speciesReference species="Z"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="Z"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="0.01" massAction="true" id="InhibitorRnaDegradation">
+          <listOfReactants>
+            <speciesReference species="Irna"/>
+          </listOfReactants>
+        </reaction>
+        <reaction propensity="0.002" massAction="true" id="InhibitorDegradation">
+          <listOfReactants>
+            <speciesReference species="I"/>
+          </listOfReactants>
+        </reaction>
+        <reaction propensity="0.002" massAction="true" id="LactoseInhibitorDegradation">
+          <listOfReactants>
+            <speciesReference species="ILactose"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="Lactose"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="0.01" massAction="true" id="RnaDegradation">
+          <listOfReactants>
+            <speciesReference species="Rna"/>
+          </listOfReactants>
+        </reaction>
+        <reaction propensity="0.001" massAction="true" id="ZDegradation">
+          <listOfReactants>
+            <speciesReference species="Z"/>
+          </listOfReactants>
+        </reaction>
+      </listOfReactions>
+      <listOfTimeEvents>
+        <timeEvent assignments="Lactose=Lactose+10000" id="Intervention" times="[20000]"/>
+      </listOfTimeEvents>
+    </model>
+  </listOfModels>
+  <listOfMethods>
+    <method equilibrationTime="0.0" startTime="0.0" recordingTime="50000.0" id="FirstReaction" category="0" numberOfBins="32" multiplicity="4" method="0" timeDependence="2" numberOfFrames="501" options="0"/>
+  </listOfMethods>
+  <random seed="2147483648">
+  </random>
+</cain>

@@ -1,0 +1,118 @@
+
+<html>
+<head>
+<title>Models</title>
+</head>
+<body>
+<h1>Models</h1>
+
+<p>
+The model element is just a simplified version of its SBML counterpart.
+However, in an SBML file there is a single model element. Cain files can
+have any number of models. Below is the top-level structure.
+</p>
+
+<pre>  &lt;model id=&quot;Identifier&quot; <font color="#777777">name=&quot;String&quot;</font>&gt;
+    <font color="#777777">&lt;listOfParameters&gt;
+      <em>One or more</em> &lt;parameter&gt; <em>elements.</em>
+    &lt;/listOfParameters&gt;
+    &lt;listOfCompartments&gt;
+      <em>One or more</em> &lt;compartment&gt; <em>elements.</em>
+    &lt;/listOfCompartments&gt;</font>
+    &lt;listOfSpecies&gt;
+      <em>One or more</em> &lt;species&gt; <em>elements.</em>
+    &lt;/listOfSpecies&gt;
+    <font color="#777777">&lt;listOfReactions&gt;
+      <em>One or more</em> &lt;reaction&gt; <em>elements.</em>
+    &lt;/listOfReactions&gt;
+    &lt;listOfTimeEvents&gt;
+      <em>One or more</em> &lt;timeEvent&gt; <em>elements.</em>
+    &lt;/listOfTimeEvents&gt;
+    &lt;listOfTriggerEvents&gt;
+      <em>One or more</em> &lt;triggerEvent&gt; <em>elements.</em>
+    &lt;/listOfTriggerEvents&gt;</font>
+  &lt;/model&gt;</pre>
+
+<p>
+<a href="UserParameter.htm">Parameters</a> are Python expressions which may use mathematical functions and
+other parameter identifiers. Parameters must evaluate to a numerical
+value; functions of time are not allowed.
+</p>
+
+<pre>  &lt;parameter id=&quot;Identifier&quot; expression=&quot;PythonExpression&quot; <font color="#777777">name=&quot;String&quot;</font>/&gt;</pre>
+
+<p>
+<a href="UserCompartment.htm">Compartments</a> are only used for information. They do not affect simulation
+output.
+</p>
+
+<pre>  &lt;compartment id=&quot;Identifier&quot; <font color="#777777">name=&quot;String&quot; spatialDimensions=&quot;Dimension&quot;
+   size=&quot;Number&quot; constant=&quot;Boolean&quot; outside=&quot;Identifier&quot;</font>/&gt;</pre>
+
+<p>
+The initial amount of a <a href="UserSpecies.htm">species</a> must evaluate to a non-negative integer.
+</p>
+
+<pre>  &lt;species id=&quot;Identifier&quot; initialAmount=&quot;PythonExpression&quot; <font color="#777777">name=&quot;String&quot; compartment=&quot;Identifier&quot;</font>/&gt;</pre>
+
+<p>
+The <a href="UserReaction.htm">reaction</a>
+element is simpler than its SBML counterpart. There is no
+reversible attribute. In stochastic simulation one represents a
+reversible reaction by specifying both the forward and backward
+reactions along with their kinetic laws. Note that while the
+listOfReactants and listOfProducts elements are optional, at least one
+of the two must be present.  Instead of containing a kineticLaw
+element, the reaction element has the propensity attribute. For
+mass-action kinetics, the propensity is a python expression.
+</p>
+
+<pre>  &lt;reaction id=&quot;Identifier&quot; massAction=&quot;true&quot; propensity=&quot;PythonExpression&quot; <font color="#777777">name=&quot;String&quot;</font>&gt;
+    <font color="#777777">&lt;listOfReactants&gt;
+      <em>One or more</em> &lt;speciesReference&gt; <em>elements.</em>
+    &lt;/listOfReactants&gt;
+    &lt;listOfProducts&gt;
+      <em>One or more</em> &lt;speciesReference&gt; <em>elements.</em>
+    &lt;/listOfProducts&gt;</font>
+  &lt;/reaction&gt;</pre>
+
+<p>
+If the reaction does not use a mass-action kinetics law, the propensity
+is a C++ expression. (See the
+<a href="UserReactions.htm">Reaction Editor</a> section.)
+</p>
+
+<pre>  &lt;reaction id=&quot;Identifier&quot; massAction=&quot;false&quot; propensity=&quot;C++Expression&quot; <font color="#777777">name=&quot;String&quot;</font>&gt;
+    <font color="#777777">...</font>
+  &lt;/reaction&gt;</pre>
+
+<p>
+The speciesReference element is used to represent reactants and products.
+The stoichiometry attribute must be a positive integer. Omitting it indicates
+that the stoichiometry is one.
+</p>
+
+<pre>  &lt;speciesReference species=&quot;Identifier&quot; <font color="#777777">stoichiometry=&quot;Integer&quot;</font>/&gt;</pre>
+
+
+<p>
+<a href="UserTimeEvents.htm">Time events</a>
+execute assignments at a specified list of times.
+</p>
+
+<pre>  &lt;timeEvent id=&quot;Identifier&quot; times=&quot;PythonExpression&quot; assignments=&quot;PythonExpression&quot; <font color="#777777">name=&quot;String&quot;</font>/&gt;</pre>
+
+
+<p>
+<a href="UserTriggerEvents.htm">Trigger events</a>
+execute assignments when the trigger condition becomes true. If the
+delay is omitted, it has the value zero. That is, there is no delay
+between triggering the event and executing the event. If the
+useValuesFromTriggerTime attribute is omitted, it is false.
+</p>
+
+<pre>  &lt;triggerEvent id=&quot;Identifier&quot; trigger=&quot;PythonExpression&quot; assignments=&quot;PythonExpression&quot; <font color="#777777">delay=&quot;Number&quot; useValuesFromTriggerTime=&quot;Boolean&quot; name=&quot;String&quot;</font>/&gt;</pre>
+
+
+</body>
+</html>

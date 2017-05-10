@@ -1,0 +1,11 @@
+# -*- python -*-
+
+from env import serial
+
+# Compile.
+if COMMAND_LINE_TARGETS:
+    sources = [x + '.cc' for x in COMMAND_LINE_TARGETS]
+else:
+    sources = Glob('Homogeneous*.cc')
+for source in sources:
+    serial.Program(source)

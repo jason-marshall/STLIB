@@ -1,0 +1,123 @@
+(************** Content-type: application/mathematica **************
+
+                    Mathematica-Compatible Notebook
+
+This notebook can be used with any Mathematica-compatible
+application, such as Mathematica, MathReader or Publicon. The data
+for the notebook starts with the line containing stars above.
+
+To get the notebook into a Mathematica-compatible application, do
+one of the following:
+
+* Save the data starting with the line of stars above into a file
+  with a name ending in .nb, then open the file inside the
+  application;
+
+* Copy the data starting with the line of stars above to the
+  clipboard, then use the Paste menu command inside the application.
+
+Data for notebooks contains only printable 7-bit ASCII and can be
+sent directly in email or through ftp in text mode.  Newlines can be
+CR, LF or CRLF (Unix, Macintosh or MS-DOS style).
+
+NOTE: If you modify the data for this notebook not in a Mathematica-
+compatible application, you must delete the line below containing
+the word CacheID, otherwise Mathematica-compatible applications may
+try to use invalid cache data.
+
+For more information on notebooks and Mathematica-compatible 
+applications, contact Wolfram Research:
+  web: http://www.wolfram.com
+  email: info@wolfram.com
+  phone: +1-217-398-0700 (U.S.)
+
+Notebook reader applications are available free of charge from 
+Wolfram Research.
+*******************************************************************)
+
+(*CacheID: 232*)
+
+
+(*NotebookFileLineBreakTest
+NotebookFileLineBreakTest*)
+(*NotebookOptionsPosition[      2715,         81]*)
+(*NotebookOutlinePosition[      3363,        104]*)
+(*  CellTagsIndexPosition[      3319,        100]*)
+(*WindowFrame->Normal*)
+
+
+
+Notebook[{
+Cell["SphereQuerySize", "Text"],
+
+Cell[BoxData[
+    \(<< Graphics`Graphics`\)], "Input"],
+
+Cell[BoxData[
+    \(\(querySize = 
+        Table[\@\(1/2\^n\), {n, 19, \(-2\), \(-1\)}];\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(numRecords = {1.26, 1.52, 1.92, 2.58, 4.23, 7.13, 12.6, 24.32, 46.42, 
+          92.57, 185.25, 372.33, 741.45, 1484.82, 2972.63, 5959.47, 11928.4, 
+          23863.3, 47614.6, 94708.7, 188024, 376226};\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(recordData = Transpose[{querySize, numRecords}];\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(\(recordData // N\) // TableForm\) // TextForm\)], "Input"],
+
+Cell["Save as SphereQuerySize.eps", "Text"],
+
+Cell[BoxData[
+    \(\(LogLogListPlot[
+        recordData, \[IndentingNewLine]PlotStyle \[Rule] 
+          PointSize[
+            0.02], \[IndentingNewLine]Ticks \[Rule] {{0.01, 0.1, 1}, {1, 10, 
+              100, 1000, 10000, 100000}}, 
+        TextStyle \[Rule] {FontSize \[Rule] 12}, 
+        PlotLabel -> "\<Records per Query\>"];\)\)], "Input"]
+},
+FrontEndVersion->"4.1 for X",
+ScreenRectangle->{{0, 1280}, {0, 1024}},
+WindowSize->{673, 943},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+Magnification->1.5
+]
+
+(*******************************************************************
+Cached data follows.  If you edit this Notebook file directly, not
+using Mathematica, you must remove the line containing CacheID at
+the top of  the file.  The cache data will then be recreated when
+you save this file from within Mathematica.
+*******************************************************************)
+
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+
+(*NotebookFileOutline
+Notebook[{
+Cell[1705, 50, 31, 0, 46, "Text"],
+Cell[1739, 52, 54, 1, 39, "Input"],
+Cell[1796, 55, 103, 2, 54, "Input"],
+Cell[1902, 59, 239, 3, 131, "Input"],
+Cell[2144, 64, 85, 1, 39, "Input"],
+Cell[2232, 67, 81, 1, 39, "Input"],
+Cell[2316, 70, 43, 0, 46, "Text"],
+Cell[2362, 72, 349, 7, 154, "Input"]
+}
+]
+*)
+
+
+
+(*******************************************************************
+End of Mathematica Notebook file.
+*******************************************************************)
+

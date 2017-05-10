@@ -1,0 +1,89 @@
+<html>
+<head>
+<title>Links</title>
+</head>
+<body>
+<h1>Links</h1>
+
+<b>Stochastic Simulations.</b><br>
+<ul>
+  <li>
+  The <a href="http://sbml.org/">SBML</a> (Systems Biology Markup Language)
+  homepage has links to many software projects.
+  <li> 
+  <a href="http://www.me.ucsb.edu/dept_site/people/new_faculty_pages/petzold_page.html">Linda Petzold</a> and her research group at
+  <a href="http://www.ucsb.edu/">UCSB</a>
+  (including <a href="http://www.cs.ucsb.edu/~hongli/">Hong Li</a>,
+  <a href="http://www.kevinsanft.com/">Kevin Sanft</a>,
+  <a href="http://www.cse.ucsb.edu/IGERT/students/IGERT_roh.html">Min Roh</a>,
+  and
+  <a href="http://www.cse.ucsb.edu/IGERT/students/IGERT_drawert.html">Brian Drawert</a>)
+  study stochastic simulation methods and have developed 
+  <a href="http://www.engineering.ucsb.edu/~cse/StochKit/">StochKit</a>.
+  <li>
+  <a href="http://www.staff.ncl.ac.uk/d.j.wilkinson/">Darren Wilkinson</a>,
+  provides software and test models at his web site.
+  <li>
+  <a href="http://dsmts.googlecode.com/">DSMTS</a>
+  (Discrete Stochastic Models Test Suite) is a test suite in SBML format.
+  <li>
+  <a href="http://magnet.systemsbiology.net/software/Dizzy/">Dizzy</a>
+  is a chemical kinetics stochastic simulation software package written in
+  Java.
+  <li>
+  <a href="http://www.copasi.org/">COPASI</a>
+  is a software application for simulation and analysis of biochemical networks.
+  <li>
+  <a href="http://www.bio.ifi.lmu.de/FERN/">FERN</a>
+  (Framework for Evaluation of Reaction Networks) is an extensible and
+  comprehensive framework for efficient simulations and analysis of chemical
+  reaction networks written in Java.
+  <li>
+  <a href="http://www.cellmc.org/">CellMC</a>
+  is an open source program generator that compiles a mesoscopic model of a
+  biochemical reaction network, expressed as SBML, into an executable program
+  that realizes SSA for that model; the program can then be run for any final
+  simulation time and number of realizations.
+ <li>
+  <a href="http://www.sysbio.pl/stocks/">STOCKS</a>
+  is public domain (GNU GPL) software for stochastic simulations of
+  biochemical processes. 
+  <li>
+  <a href="http://www.mathworks.com/products/simbiology/">SimBiology</a>
+  provides graphical and programmatic tools for modeling, simulating, and
+  analyzing biological systems.
+</ul>
+
+<b>Open-source software resources.</b><br>
+<ul>
+  <li>
+  <a href="http://sourceforge.net/">SourceForge</a> hosts a wealth of
+  software projects.
+  <li>
+  <a href="http://freshmeat.net/">freshmeat</a> maintains the Web's largest
+  index of Unix and cross-platform software.
+</ul>
+
+<b>Software.</b><br>
+<ul>
+  <li>
+  <a href="http://www.python.org/">Python</a> is a simple, powerful, and
+  extensible object-oriented programming language.
+  <li>
+  The <a href="http://www.enthought.com/products/epd.php">
+  Enthought Python Distribution</a> is a kitchen-sink-included distribution
+  of Python.
+  <li>
+  <a href="http://www.wxpython.org/">wxPython</a> is a cross-platform GUI
+  toolkit.
+  <li>
+  Cain uses <a href="http://matplotlib.sourceforge.net/">matplotlib</a>, a
+  2D plotting library.
+  <li>
+  Cain uses some icons from the 
+  <a href="http://tango.freedesktop.org/Tango_Desktop_Project">
+  Tango Desktop Project</a>.
+</ul>
+
+</body>
+</html>

@@ -1,0 +1,53 @@
+<html>
+<head>
+<title>Discrete Stochastic Simulations</title>
+</head>
+<body>
+<h1>Discrete Stochastic Simulations</h1>
+
+<p>
+We consider discrete stochastic simulations that are modelled with a set
+of species and a set of reactions that transform the species' amounts.
+Instead of using a
+continuum approximation and dealing with species mass or concentration, 
+the amount of each species is a non-negative integer which is the population.
+Depending on the species, this could be the number of molecules or the
+number of organisms, etc. Reactions transform a set reactants into a set of
+products, each being a linear combination of species with integer coefficients.
+</p>
+
+<p>
+Consider a system of <em>N</em> species represented by the state vector 
+<em>X(t) = (X<sub>1</sub>(t), ... X<sub>N</sub>(t))</em>.
+<em>X<sub>n</sub>(t)</em> is the population of the 
+<em>n<sup>th</sup></em> species at time <em>t</em>.
+There are <em>M</em> reaction channels
+which change the state of the system.  Each reaction is characterized by 
+a propensity function <em>a<sub>m</sub></em> and a state change vector
+<em>V<sub>m</sub> = (V<sub>m1</sub>, ..., V<sub>mN</sub>)</em>.
+<em>a<sub>m</sub> dt</em> is the 
+probability that the <em>m<sup>th</sup></em> reaction will occur in the 
+infinitesimal time interval <em>[t .. t + dt)</em>.  The state 
+change vector is the difference between the state after the reaction and 
+before the reaction.
+</p>
+
+<p>
+To generate a trajectory (a possible realization of the evolution of the
+system) one starts with an initial state and then repeatedly fires reactions.
+To fire a reaction, one must answer the two questions:
+<ol>
+  <li> When will the next reaction fire?
+  <li> Which reaction will fire next?
+</ol>
+Let the next reaction have index &mu; and fire at time <em>t + &tau;</em>.
+Let &alpha; be the sum of the propensities.  The time to the
+next reaction is an exponentially distributed random variable with mean
+1 / &alpha; ; the probability density function is 
+<em>P(&tau; = x) = &alpha; e<sup>- &alpha; x</sup></em>.
+The index of the next reaction to fire is a discrete random variable
+with probability mass function <em>P(&mu; = m) = a<sub>m</sub> / &alpha;</em>.
+</p>
+
+</body>
+</html>

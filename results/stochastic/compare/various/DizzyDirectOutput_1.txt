@@ -1,0 +1,10 @@
+warning:  there is a problem with class file "apple.applescript.AppleScriptEngine"
+warning:  there is a problem with class file "apple.applescript.AppleScriptEngineFactory$1"
+warning:  there is a problem with class file "apple.applescript.AppleScriptEngineFactory"
+# time, X
+0, 250.0000
+1000.0000, 136.0000
+
+real 2.16
+user 1.96
+sys 0.12

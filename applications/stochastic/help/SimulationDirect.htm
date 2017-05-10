@@ -1,0 +1,179 @@
+
+<html>
+<head>
+<title>Direct Method</title>
+</head>
+<body>
+<h1>Direct Method</h1>
+
+<p>
+Once the state vector <em>X</em> has been initialized, Gillespie's direct 
+method proceeds by 
+repeatedly stepping forward in time until a termination condition is reached
+[<a href="Bibliography.htm#gillespie1977">Gillespie 1977</a>].
+At each step, one generates two uniform random deviates in the interval
+(0..1).  The first deviate, along with the sum of the propensities,
+is used to generate an exponential deviate which
+is the time to the first reaction to fire.  The second deviate is used to
+determine which reaction will fire.
+Below is the algorithm for a single step.
+<ol>
+<li> for <em>m</em> in <em>[1..M]</em>:
+  Compute <em>a<sub>m</sub></em> from <em>X</em>.
+<li> <em>&alpha; = &Sigma;<sub>m = 1</sub><sup>M</sup> a<sub>m</sub>(X)</em>
+<li> Generate two unit, uniform random numbers <em>r<sub>1</sub></em>
+  and <em>r<sub>2</sub></em>.
+<li> <em>&tau; = -</em>ln<em>(r<sub>1</sub>) / &alpha;</em>
+<li> Set &mu; to the minimum index such that 
+<em> &Sigma;<sub>m = 1</sub><sup>&mu;</sup> a<sub>m</sub> &gt;
+  r<sub>2</sub> &alpha;</em>
+<li> <em>t = t + &tau;</em>
+<li> <em>X = X + V<sub>&mu;</sub></em>
+</ol>
+</p>
+
+<p>
+Consider the computational complexity of the direct method.
+We assume that the reactions are loosely coupled and hence 
+computing a propensity <em>a<sub>m</sub></em> is O(1).
+Thus the cost of computing the propensities
+is O(<em>M</em>). Determining &mu; requires iterating over
+the array of propensities and thus has cost O(<em>M</em>). 
+With our loosely coupled assumption, updating the state has unit cost.
+Therefore the computational complexity of a step with the direct method is 
+O(<em>M</em>). 
+</p>
+
+<p>
+To improve the computational complexity of the direct method, we first write 
+it in a more generic way. A time step consists of the following:
+<ol>
+<li> &tau; = exponentialDeviate() / &alpha;
+<li> &mu; = discreteFiniteDeviate()
+<li> <em>t = t + &tau;</em>
+<li> <em>X = X + V<sub>&mu;</sub></em>
+<li> Update the discrete deviate generator.
+<li> Update the sum of the propensities &alpha;.
+</ol>
+</p>
+
+<p>
+There are several ways of improving the performance of the direct method:
+<ul>
+<li> Use faster algorithms to generate exponential deviates and discrete 
+  deviates.
+<li> Use sparse arrays for the state change vectors.
+<li> Continuously update &alpha; instead of recomputing it at each time step.
+</ul>
+</p>
+
+<p>
+The original formulation of the direct method uses the inversion method to
+generate an exponential deviate. This is easy to program, but is 
+computationally expensive due to the evaluation of the logarithm. There are
+a couple of recent algorithms
+(<a href="http://www.jstatsoft.org/v05/i08/">ziggurat</a> and
+<a href="http://www.umanitoba.ca/statistics/faculty/johnson/Preprints/rng-preprint.pdf">acceptance complement</a>)
+that have much better performance.
+</p>
+
+<p>
+There are many algorithms for generating discrete
+deviates. The static case (fixed probability mass function) is well
+studied. The simplest approach is CDF inversion with a linear
+search. One can implement this with a build-up or chop-down search on
+the PMF. The method is easy to code and does not require storing the
+CDF. However, it has linear complexity in the number of events, so it
+is quite slow.  A better approach is CDF inversion with a binary
+search. For this method, one needs to store the CDF.  The binary
+search results in logarithmic computational complexity.  A better
+approach still is Walker's algorithm, which has constant complexity.
+Walker's algorithm is a binning approach in which each bin represents
+either one or two events.
+</p>
+
+<p>
+Generating discrete deviates with a dynamically changing PMF
+is significantly trickier than in the static case. CDF inversion with
+a linear search adapts well to the dynamic case; it does not have any
+auxiliary data structures. The faster methods have significant
+preprocessing costs.  In the dynamic case these costs are incurred in
+updating the PMF. The binary search and Walker's algorithm both have
+linear preprocessing costs.  Thus all three considered algorithms have
+the same complexity for the combined task of generating a deviate and
+modifying the PMF. There are algorithms that can both efficiently generate
+deviates and modify the PMF.  In fact, there is a method that has constant
+complexity. See the documentation of the source code for details.
+</p>
+
+<p>
+The original formulation of the direct method uses CDF inversion with a
+linear search. Subsequent versions have stored the PMF in sorted order or 
+used CDF inversion with a binary search. These modifications have yielded 
+better performance, but have not changed the worst-case computational
+complexity of the algorithm. Using a more sophisticated discrete
+deviate generator will improve the performance of the direct method, 
+particularly for large problems.
+</p>
+
+<p>
+For representing reactions and the state change vectors, one can use either 
+dense or sparse arrays. Using dense 
+arrays is more efficient for small or tightly coupled problems. Otherwise 
+sparse arrays will yield better performance. Consider loosely coupled problems.
+For small problems one can expect modest performance benefits (10 %) 
+in using dense arrays. For more than about 30 species, it is better to use 
+sparse arrays. 
+</p>
+
+<p>
+For loosely coupled problems, it is better to continuously update the
+sum of the propensities &alpha; instead of recomputing it at each
+time step.  Note that this requires some care. One must account for
+round-off error and periodically recompute the sum.
+</p>
+
+<p>
+The following options are available with the
+direct method. Inversion with a 2-D search is the default; it is an efficient
+method for most problems. If performance is important (i.e. if it will take
+a long time to generate the desired number of trajectories) it may be
+worthwhile to try each method with a small number of trajectories and then
+select the best method for the problem.
+<ul>
+  <li>
+  <tt>Inversion with a 2-D search.</tt> O(<em>M<sup>1/2</sup></em>).
+  The discrete deviate is generated with
+  a 2-D search on the PMF. This method often has the best performance for
+  small and medium problems. Its simplicity and predictable branches make it
+  well-suited for super-scalar (standard) processors.
+  <li>
+  <tt>Composition rejection.</tt> O(1). This method has excellent
+  scalability in the number of reactions so it is efficient for large
+  problems. However, because of its sophistication, it is slow for small
+  problems. 
+  <li>
+  <tt>Inversion with recursive CDF.</tt> O(log <em>M</em>).
+  This is a fairly fast method for any problem. However, despite the lower
+  computational complexity, it usually does not perform as well as the
+  2-D search. This is partially due to the fact that branches is a binary
+  search are not predictable. Unpredictable branches are expensive on
+  super-scalar processors.
+  <li>
+  <tt>Inversion with PMF.</tt> O(<em>M</em>). The discrete deviate is
+  generated with a linear, chop-down search on the PMF. This method is
+  efficient for small problems.
+  <li>
+  <tt>Inversion with sorted PMF.</tt> O(<em>M</em>). The discrete deviate is
+  generated with a linear, chop-down search on the sorted PMF. This method is
+  efficient for problems in which a small number of reactions account for
+  most of the firing events.
+  <li>
+  <tt>Inversion with CDF.</tt> O(<em>M</em>). The discrete deviate is
+  generated with a binary search on the CDF. The method has linear complexity
+  because the CDF must be regenerated after each reaction event.
+</ul>
+</p>
+
+</body>
+</html>

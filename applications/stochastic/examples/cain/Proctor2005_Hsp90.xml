@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cain version="1.2">
+  <listOfModels>
+    <model id="Proctor2005_Hsp90" name="Hsp90model_basis510">
+      <listOfParameters>
+        <parameter expression="0.5" id="k13"/>
+        <parameter expression="0.5" id="k12"/>
+        <parameter expression="100" id="k11"/>
+        <parameter expression="0.01" id="k10"/>
+        <parameter expression="8.02e-009" id="k17"/>
+        <parameter expression="1000" id="k16"/>
+        <parameter expression="0.08" id="k15"/>
+        <parameter expression="0.05" id="k14"/>
+        <parameter expression="0.02" id="k19"/>
+        <parameter expression="12" id="k18"/>
+        <parameter expression="50" id="k3"/>
+        <parameter expression="2e-005" id="k2"/>
+        <parameter expression="10" id="k1"/>
+        <parameter expression="1e-007" id="k7"/>
+        <parameter expression="6e-007" id="k6"/>
+        <parameter expression="4e-006" id="k5"/>
+        <parameter expression="1e-005" id="k4"/>
+        <parameter expression="1" id="k9"/>
+        <parameter expression="500" id="k8"/>
+        <parameter expression="0.1" id="k20"/>
+        <parameter expression="0.001" id="k21"/>
+      </listOfParameters>
+      <listOfSpecies>
+        <species initialAmount="300000" id="Hsp90"/>
+        <species initialAmount="5900" id="HCom"/>
+        <species initialAmount="100" id="HSF1"/>
+        <species initialAmount="0" id="MisP"/>
+        <species initialAmount="0" id="MCom"/>
+        <species initialAmount="0" id="TriH"/>
+        <species initialAmount="0" id="DiH"/>
+        <species initialAmount="6000000" id="NatP"/>
+        <species initialAmount="0" id="AggP"/>
+        <species initialAmount="1" id="HSE"/>
+        <species initialAmount="0" id="HSETriH"/>
+        <species initialAmount="0" id="X"/>
+        <species initialAmount="100" id="ROS"/>
+        <species initialAmount="10000" id="ATP"/>
+        <species initialAmount="1000" id="ADP"/>
+        <species initialAmount="0" id="source"/>
+      </listOfSpecies>
+      <listOfReactions>
+        <reaction propensity="k1" massAction="true" id="proteinSynthesis">
+          <listOfProducts>
+            <speciesReference species="NatP"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k2" massAction="true" id="misfolding">
+          <listOfReactants>
+            <speciesReference species="NatP"/>
+            <speciesReference species="ROS"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="MisP"/>
+            <speciesReference species="ROS"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k3" massAction="true" id="Hsp90MisPBinding">
+          <listOfReactants>
+            <speciesReference species="MisP"/>
+            <speciesReference species="Hsp90"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="MCom"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k4" massAction="true" id="unsuccessulRefolding">
+          <listOfReactants>
+            <speciesReference species="MCom"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="MisP"/>
+            <speciesReference species="Hsp90"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k5" massAction="true" id="refolding">
+          <listOfReactants>
+            <speciesReference species="MCom"/>
+            <speciesReference species="ATP"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="Hsp90"/>
+            <speciesReference species="NatP"/>
+            <speciesReference species="ADP"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k6" massAction="true" id="proteinDegradation">
+          <listOfReactants>
+            <speciesReference species="MisP"/>
+            <speciesReference species="ATP"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="ADP"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k7" massAction="true" id="proteinAggregation1">
+          <listOfReactants>
+            <speciesReference stoichiometry="2" species="MisP"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="AggP"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k7" massAction="true" id="proteinAggregation2">
+          <listOfReactants>
+            <speciesReference species="MisP"/>
+            <speciesReference species="AggP"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference stoichiometry="2" species="AggP"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k8" massAction="true" id="Hsp90HSF1Binding">
+          <listOfReactants>
+            <speciesReference species="Hsp90"/>
+            <speciesReference species="HSF1"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="HCom"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k9" massAction="true" id="Hsp90HSF1Release">
+          <listOfReactants>
+            <speciesReference species="HCom"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="Hsp90"/>
+            <speciesReference species="HSF1"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k10" massAction="true" id="dimerisation">
+          <listOfReactants>
+            <speciesReference stoichiometry="2" species="HSF1"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="DiH"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k11" massAction="true" id="trimerisation">
+          <listOfReactants>
+            <speciesReference species="HSF1"/>
+            <speciesReference species="DiH"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="TriH"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k12" massAction="true" id="deTrimerisation">
+          <listOfReactants>
+            <speciesReference species="TriH"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="HSF1"/>
+            <speciesReference species="DiH"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k13" massAction="true" id="deDimerisation">
+          <listOfReactants>
+            <speciesReference species="DiH"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference stoichiometry="2" species="HSF1"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k14" massAction="true" id="HSETriHBinding">
+          <listOfReactants>
+            <speciesReference species="TriH"/>
+            <speciesReference species="HSE"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="HSETriH"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k15" massAction="true" id="HSETriHRelease">
+          <listOfReactants>
+            <speciesReference species="HSETriH"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="HSE"/>
+            <speciesReference species="TriH"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k16" massAction="true" id="Hsp90Transcription">
+          <listOfReactants>
+            <speciesReference species="HSETriH"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="HSETriH"/>
+            <speciesReference species="Hsp90"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k17" massAction="true" id="Hsp90Degradation">
+          <listOfReactants>
+            <speciesReference species="Hsp90"/>
+            <speciesReference species="ATP"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="ADP"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="1" massAction="true" id="countTime">
+          <listOfProducts>
+            <speciesReference species="X"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k18" massAction="true" id="ATPformation">
+          <listOfReactants>
+            <speciesReference species="ADP"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="ATP"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k19" massAction="true" id="ATPconsumption">
+          <listOfReactants>
+            <speciesReference species="ATP"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="ADP"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k20" massAction="true" id="radicalFormation">
+          <listOfProducts>
+            <speciesReference species="ROS"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k21" massAction="true" id="radicalScavenging">
+          <listOfReactants>
+            <speciesReference species="ROS"/>
+          </listOfReactants>
+        </reaction>
+      </listOfReactions>
+    </model>
+  </listOfModels>
+  <listOfMethods>
+    <method category="0" numberOfBins="32" multiplicity="4" equilibrationTime="0.0" id="Direct" method="0" timeDependence="0" startTime="0.0" recordingTime="1000.0" numberOfFrames="11" options="0"/>
+  </listOfMethods>
+  <random seed="2147483648">
+  </random>
+</cain>

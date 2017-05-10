@@ -1,0 +1,68 @@
+<table border = "1" rules = "all">
+<tr> <th> Species <th>  <th> 3 <th> 30 <th> 300 <th> 3,000 <th> 30,000 
+<tr> <th> Reactions <th>  <th> 4 <th> 40 <th> 400 <th> 4,000 <th> 40,000 
+<tr> <th> Algorithm <th> Option <th> <th> <th> <th> <th>
+<tr bgcolor="#CFFFFF"> <th rowspan="2"> Linear Search
+<td> Simple
+<td> 184
+<td> 307
+<td> 1597
+<td> 14542
+<td> 144151
+<tr bgcolor="#CFFFFF">
+<td> Unrolled
+<td> 115
+<td> 179
+<td> 605
+<td> 4666
+<td> 45117
+<tr bgcolor="#CFCFFF"> <th rowspan="4"> Partition
+<td> Fixed size
+<td> 204
+<td> 379
+<td> 509
+<td> 1036
+<td> 3211
+<tr bgcolor="#CFCFFF">
+<td> Size adaptive
+<td> 254
+<td> 271
+<td> 337
+<td> 489
+<td> 1377
+<tr bgcolor="#CFCFFF">
+<td> Cost adaptive
+<td> 195
+<td> 242
+<td> 305
+<td> 466
+<td> 1399
+<tr bgcolor="#CFCFFF">
+<td> Propensities
+<td> 210
+<td> 227
+<td> 316
+<td> 572
+<td> 1780
+<tr bgcolor="#FFCFFF"> <th rowspan="2"> Binary Heap
+<td> Pointer
+<td> 244
+<td> 275
+<td> 311
+<td> 380
+<td> 950
+<tr bgcolor="#FFCFFF">
+<td> Pair
+<td> 153
+<td> 185
+<td> 207
+<td> 271
+<td> 857
+<tr bgcolor="#FFCFCF"> <th rowspan="4"> Hashing
+<td> Chaining
+<td> 178
+<td> 192
+<td> 213
+<td> 235
+<td> 682
+</table>

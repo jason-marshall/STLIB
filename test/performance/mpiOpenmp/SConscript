@@ -1,0 +1,13 @@
+# -*- python -*-
+
+import os.path
+
+import sys
+sys.path.append('..')
+from env import mpi
+
+if mpi:
+    # Compile.
+    sources = Glob('*.cc')
+    for source in sources:
+        mpi.Program(source)

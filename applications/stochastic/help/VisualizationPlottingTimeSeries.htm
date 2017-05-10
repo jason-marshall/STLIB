@@ -1,0 +1,154 @@
+
+<html>
+<head>
+<title>Plotting Time Series Data</title>
+</head>
+<body>
+<h1>Plotting Time Series Data</h1>
+
+<p>
+Open the file <tt>examples/cain/WilkinsonSMfSB/autoreg-2-1.xml</tt>.
+Then select all of the species and reactions in the recorder panel.
+(All of the species are selected by default. Switch to the Reactions
+tab and then hit the <img src="add.png">&nbsp;
+button to add all of the reactions.)
+Next generate 10 trajectories using the defined model and method
+by entering 10 in the Trajectories field and hitting the launch
+button <img src="launch.png">.
+Then click the plotting button <img src="plot.png">&nbsp;
+in the simulation output panel. This will bring up the plot
+configuration window shown below.
+</p>
+
+<p align="center">
+<!--Resize to fit the window contents before capturing.-->
+<img src="VisualizationPlottingWindowAutoregSpecies.jpg">
+</p>
+
+<p>
+The plot configuration window consists of two tabs, one for time
+series output and one for histogram output. Since we just generated
+10 trajectories recorded with time series data we will work with the
+former. At the top of the window is a drop-down box for choosing
+the simulation output to plot. The output is described by the
+model and method that was used to generate it.
+</p>
+
+<p>
+Below the output selection are two rows
+of radio buttons. In the first row one selects whether to plot species
+populations, cumulative reaction counts, or binned reaction counts.
+The binned reactions counts are the number of reaction events that
+occur between the time frames. Note that only the species and
+reactions that were selected in the recorder panel when the simulation
+was run are available for plotting. By default all of the species are
+selected and the reactions are not. In the second row of radio buttons,
+one selects whether to plot trajectories, the mean (and optionally
+the standard deviation shown as an error bar), or the standard
+deviation.
+</p>
+
+<p>
+Note that for simulation output that records all of the reaction
+events the Binned Reactions radio button is disabled as there are
+no fixed time frames. Also the statistics radio button is disabled;
+one may only plot the trajectories.
+</p>
+
+<p>
+Next is a grid which lists either the species or reactions in the
+column headers. The row headers describe configuration options for the
+lines which plot either the trajectories or statistics. One may edit
+the grid cells individually or click on the column headers to modify
+values for all rows. The columns have the following behavior:
+<ul>
+  <li> <b>Show</b> - If the check box is selected, then the item will
+  be plotted. Clicking on a cell will toggle the state. Left/right clicking
+  on the column header will select/deselect all of the items.
+  <li> <b>Std Dev</b> - This column is only visible when plotting
+  statistics. If selected, a standard deviation bar will be shown at
+  each frame. Left/right clicking on the column header will
+  select/deselect all of the items.
+  <li> <b>Line Color</b> - Clicking on a cell will bring up a color
+  palette dialog. Left clicking on the column header with assign a
+  different color to each selected item using a range of hues. Right
+  clicking on the header will set all of the line colors to black.
+  <li> <b>Style</b> - The line style may be solid, dashed, dash-dot,
+  or dot. Clicking on cell will activate a drop-down box. Left
+  clicking on the column header will cycle between the styles for the
+  selected items. Right clicking will reset all of the line styles to
+  solid.
+  <li> <b>Width</b> - The line width is a positive integer. Clicking
+  on a cell will activate a spinner editor. Left/right clicking on the
+  column header will increment/decrement each of the widths.
+  <li> <b>Marker Style</b> - A variety of marker styles are available.
+  By default no marker is plotted. If a marker style is selected it
+  will appear at each frame. Click on a cell to activate a drop-down
+  box of styles. Left click on the column header to cycle between the
+  styles for the selected items. Right click to turn off markers for
+  all items.
+  <li> <b>Size</b> - The marker size is a positive integer, which may
+  be edited for each item. Left/right clicking on the
+  column header will increment/decrement each of the sizes.
+  <li> <b>Face Color</b> - The face color is the color of the interior
+  portion of the marker. Clicking on a cell will bring up a color
+  palette dialog. Left clicking on the column header will color the
+  selected items by hue. Right clicking will set all of the colors to
+  black.
+  <li> <b>Edge Color</b> - The edge color is the color of the boundary
+  of the marker. It may be edited in the same manner as the face color.
+  <li> <b>Edge Width</b> - The edge width is positive integer that may
+  be edited like the line width and marker size.
+  <li> <b>Legend Label</b> - Left clicking on the column header will
+  set these labels to the row labels, which are either the species
+  or reaction identifiers. Right clicking on the column header will
+  clear the labels. By clicking on a cell one may edit a single label.
+</ul>
+</p>
+
+<p>
+At the bottom of the plot configuration window one may select whether
+the legend will be displayed. For this legend one may also choose the
+font size and location. Next one may customize the size of the tick
+labels on the axes. One may enter the title and
+axes labels if desired. For these one may select the text color by
+clicking the color button or change the text size by choosing from the
+pull-down menu.
+</p>
+
+<p>
+When data is plotted, a domain will be chosen that contains all of the
+data points. You may change this behavior by explicitly setting the
+lower and upper limits of the X and Y axes. Note that you may enter
+any subset of these four limits. Any omitted limits will be
+automatically calculated. Finally, one may specify the size of the
+plotting window.
+</p>
+
+<p>
+Below is a plotting window for the
+auto-regulatory system. The legend has been placed in the upper left
+corner. We have added a title and axes labels.
+</p>
+
+<p align="center">
+<img src="VisualizationPlottingAutoregSpeciesFigure.jpg">
+</p>
+
+<p>
+Note that there is a toolbar at the top of the plotting
+window. Positioning the mouse pointer over these will bring up tool
+tips which describe their functionality. The most important feature is
+the last button, which is used to save the figure to a file.
+Depending on the version of the matplotlib library installed, not all
+file formats may be supported.
+</p>
+<!--CONTINUE: Verify that saving plots works on Windows.-->
+
+<p>
+See the <a href="Examples.htm">Examples</a> chapter for a variety of
+sample plots.
+</p>
+
+</body>
+</html>

@@ -1,0 +1,452 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbml xmlns="http://www.sbml.org/sbml/level2" metaid="metaid_0000001" level="2" version="1">
+  <model metaid="metaid_0000002" id="Model_0" name="Goldbeter2006_weightCycling">
+    <notes>
+      <p xmlns="http://www.w3.org/1999/xhtml">This model is according to the paper of <i>A model for the dynamics of human weight cycling</i> by A. Goldbeter 2006.The figure3 (A) and (B) have been reproduced by Copasi 4.0.19(development) and SBMLodeSolver.The writer of the paper did not specify any units for the metabolites, so the creator of the model did not define the units as well.Both Q and R are normalized to vary between 0 and 1.</p><p xmlns="http://www.w3.org/1999/xhtml">This model originates from BioModels Database: A Database of Annotated Published Models. It is copyright (c) 2005-2007 The BioModels Team.<br /> For more information see the <a href="http://www.ebi.ac.uk/biomodels/legal.html">terms of use</a>.</p>
+    </notes>
+    <annotation>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" >
+<rdf:Description rdf:about="#metaid_0000002">
+<dc:creator rdf:parseType="Resource">
+<rdf:Bag>
+<rdf:li rdf:parseType="Resource">
+<vCard:N rdf:parseType="Resource">
+<vCard:Family>He</vCard:Family>
+<vCard:Given>Enuo</vCard:Given>
+</vCard:N>
+<vCard:EMAIL>enuo@ebi.ac.uk</vCard:EMAIL>
+<vCard:ORG>
+<vCard:Orgname>EMBL-EBI</vCard:Orgname>
+</vCard:ORG>
+</rdf:li>
+</rdf:Bag>
+</dc:creator>
+<dcterms:created rdf:parseType="Resource">
+<dcterms:W3CDTF>2006-11-24T10:19:23</dcterms:W3CDTF>
+</dcterms:created>
+<dcterms:modified rdf:parseType="Resource">
+<dcterms:W3CDTF>2006-12-15T17:01:24</dcterms:W3CDTF>
+</dcterms:modified>
+<bqmodel:is>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.ebi.ac.uk/biomodels/#BIOMD0000000079"/>
+</rdf:Bag>
+</bqmodel:is>
+<bqmodel:isDescribedBy>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.pubmed.gov/#16595882"/>
+</rdf:Bag>
+</bqmodel:isDescribedBy>
+<bqbiol:isVersionOf>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.geneontology.org/#GO:0040014"/>
+</rdf:Bag>
+</bqbiol:isVersionOf>
+<bqbiol:isVersionOf>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.geneontology.org/#GO:0048511"/>
+</rdf:Bag>
+</bqbiol:isVersionOf>
+</rdf:Description>
+</rdf:RDF>
+</annotation>
+
+    <listOfFunctionDefinitions>
+      <functionDefinition metaid="metaid_0000003" id="function_4">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> P </ci>
+            </bvar>
+            <bvar>
+              <ci> V3 </ci>
+            </bvar>
+            <bvar>
+              <ci> R </ci>
+            </bvar>
+            <bvar>
+              <ci> k3 </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> P </ci>
+                <ci> V3 </ci>
+                <apply>
+                  <minus/>
+                  <cn> 1 </cn>
+                  <ci> R </ci>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> k3 </ci>
+                <apply>
+                  <minus/>
+                  <cn> 1 </cn>
+                  <ci> R </ci>
+                </apply>
+              </apply>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition metaid="metaid_0000004" id="function_3">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> V2 </ci>
+            </bvar>
+            <bvar>
+              <ci> R </ci>
+            </bvar>
+            <bvar>
+              <ci> Q </ci>
+            </bvar>
+            <bvar>
+              <ci> K2 </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> V2 </ci>
+                <ci> R </ci>
+                <ci> Q </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> K2 </ci>
+                <ci> Q </ci>
+              </apply>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition metaid="metaid_0000005" id="function_2">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> V1 </ci>
+            </bvar>
+            <bvar>
+              <ci> Q </ci>
+            </bvar>
+            <bvar>
+              <ci> K1 </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> V1 </ci>
+                <apply>
+                  <minus/>
+                  <cn> 1 </cn>
+                  <ci> Q </ci>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> K1 </ci>
+                <apply>
+                  <minus/>
+                  <cn> 1 </cn>
+                  <ci> Q </ci>
+                </apply>
+              </apply>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition metaid="metaid_0000006" id="function_1">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> V </ci>
+            </bvar>
+            <bvar>
+              <ci> substrate </ci>
+            </bvar>
+            <bvar>
+              <ci> Km </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> V </ci>
+                <ci> substrate </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> Km </ci>
+                <ci> substrate </ci>
+              </apply>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition metaid="metaid_0000007" id="function_0">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> a </ci>
+            </bvar>
+            <bvar>
+              <ci> Q </ci>
+            </bvar>
+            <apply>
+              <times/>
+              <ci> a </ci>
+              <ci> Q </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+    </listOfFunctionDefinitions>
+    <listOfCompartments>
+      <compartment metaid="metaid_0000011" id="compartment_0" name="body" size="1"/>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species metaid="metaid_0000012" id="species_0" name="P" compartment="compartment_0" initialConcentration="0.43">
+        <notes>
+          <p xmlns="http://www.w3.org/1999/xhtml">body weight</p>
+        </notes>
+      </species>
+      <species metaid="metaid_0000013" id="species_1" name="Q" compartment="compartment_0" initialConcentration="0.8">
+        <notes>
+          <p xmlns="http://www.w3.org/1999/xhtml">dietary intake</p>
+        </notes>
+      </species>
+      <species metaid="metaid_0000014" id="species_2" name="R" compartment="compartment_0" initialConcentration="0.55">
+        <notes>
+          <p xmlns="http://www.w3.org/1999/xhtml">degree of resolution measuring cognitive restraint</p>
+        </notes>
+      </species>
+    </listOfSpecies>
+    <listOfReactions>
+      <reaction metaid="metaid_0000015" id="reaction_0" name="Increase of  P" reversible="false">
+        <annotation>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" >
+<rdf:Description rdf:about="#metaid_0000015">
+<bqbiol:isVersionOf>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.geneontology.org/#GO:0040018"/>
+<rdf:li rdf:resource="http://www.geneontology.org/#GO:0035264"/>
+</rdf:Bag>
+</bqbiol:isVersionOf>
+</rdf:Description>
+</rdf:RDF>
+</annotation>
+
+        <listOfProducts>
+          <speciesReference species="species_0"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="species_1"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> compartment_0 </ci>
+              <apply>
+                <ci> function_0 </ci>
+                <ci> a </ci>
+                <ci> species_1 </ci>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="a" value="0.1"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="metaid_0000016" id="reaction_1" name="Decrease of P" reversible="false">
+        <annotation>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" >
+<rdf:Description rdf:about="#metaid_0000016">
+<bqbiol:isVersionOf>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.geneontology.org/#GO:0040015"/>
+</rdf:Bag>
+</bqbiol:isVersionOf>
+</rdf:Description>
+</rdf:RDF>
+</annotation>
+
+        <listOfReactants>
+          <speciesReference species="species_0"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> compartment_0 </ci>
+              <apply>
+                <ci> function_1 </ci>
+                <ci> V </ci>
+                <ci> species_0 </ci>
+                <ci> Km </ci>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="V" value="0.1"/>
+            <parameter id="Km" value="0.2"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="metaid_0000017" id="reaction_2" name="Increase of Q" reversible="false">
+        <annotation>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" >
+<rdf:Description rdf:about="#metaid_0000017">
+<bqbiol:isVersionOf>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.geneontology.org/#GO:0007631"/>
+</rdf:Bag>
+</bqbiol:isVersionOf>
+</rdf:Description>
+</rdf:RDF>
+</annotation>
+
+        <listOfProducts>
+          <speciesReference species="species_1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> compartment_0 </ci>
+              <apply>
+                <ci> function_2 </ci>
+                <ci> V1 </ci>
+                <ci> species_1 </ci>
+                <ci> K1 </ci>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="V1" value="1"/>
+            <parameter id="K1" value="0.01"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="metaid_0000018" id="reaction_3" name="Decrease of Q" reversible="false">
+        <annotation>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" >
+<rdf:Description rdf:about="#metaid_0000018">
+<bqbiol:isVersionOf>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.geneontology.org/#GO:0002023"/>
+</rdf:Bag>
+</bqbiol:isVersionOf>
+</rdf:Description>
+</rdf:RDF>
+</annotation>
+
+        <listOfReactants>
+          <speciesReference species="species_1"/>
+        </listOfReactants>
+        <listOfModifiers>
+          <modifierSpeciesReference species="species_2"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> compartment_0 </ci>
+              <apply>
+                <ci> function_3 </ci>
+                <ci> V2 </ci>
+                <ci> species_2 </ci>
+                <ci> species_1 </ci>
+                <ci> K2 </ci>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="V2" value="1.5"/>
+            <parameter id="K2" value="0.01"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="metaid_0000019" id="reaction_4" name="Increase of R" reversible="false">
+        <annotation>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" >
+<rdf:Description rdf:about="#metaid_0000019">
+<bqbiol:isVersionOf>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.geneontology.org/#GO:0048520"/>
+</rdf:Bag>
+</bqbiol:isVersionOf>
+</rdf:Description>
+</rdf:RDF>
+</annotation>
+
+        <listOfProducts>
+          <speciesReference species="species_2"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="species_0"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> compartment_0 </ci>
+              <apply>
+                <ci> function_4 </ci>
+                <ci> species_0 </ci>
+                <ci> V3 </ci>
+                <ci> species_2 </ci>
+                <ci> k3 </ci>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="V3" value="6"/>
+            <parameter id="k3" value="0.01"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="metaid_0000020" id="reaction_5" name="Decrease of R" reversible="false">
+        <annotation>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" >
+<rdf:Description rdf:about="#metaid_0000020">
+<bqbiol:isVersionOf>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.geneontology.org/#GO:0048521"/>
+</rdf:Bag>
+</bqbiol:isVersionOf>
+</rdf:Description>
+</rdf:RDF>
+</annotation>
+
+        <listOfReactants>
+          <speciesReference species="species_2"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> compartment_0 </ci>
+              <apply>
+                <ci> function_1 </ci>
+                <ci> V </ci>
+                <ci> species_2 </ci>
+                <ci> Km </ci>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="V" value="2.5"/>
+            <parameter id="Km" value="0.01"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+    </listOfReactions>
+  </model>
+</sbml>

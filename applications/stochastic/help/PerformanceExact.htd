@@ -1,0 +1,528 @@
+<html>
+<head>
+<title>Exact Methods</title>
+</head>
+<body>
+<h1>Exact Methods</h1>
+
+<p>
+For a test problem we consider the auto-regulatory network
+presented in
+<a href="http://www.staff.ncl.ac.uk/d.j.wilkinson/smfsb/">Stochastic
+Modelling for Systems Biology</a>.
+There are five species: Gene, P2Gene, Rna, P, and P2,
+with initial amounts 10, 0, 1, 0, and 0,
+respectively. There are eight reactions which have mass-action kinetic
+laws. The table below shows the reactions and
+propensity factors.
+</p>
+
+<!--CONTINUE: Tables are not currently rendered correctly.
+<p align=center>
+<table border = "1" rules = "all">
+  <tr> <th> Reaction <th> Rate constant
+  <tr> <td> Gene + P2 &rarr; P2Gene <td> 1
+  <tr> <td> P2Gene &rarr; Gene + P2 <td> 10
+  <tr> <td> Gene &rarr; Gene + Rna <td> 0.01
+  <tr> <td> Rna &rarr; Rna + P <td> 10
+  <tr> <td> 2 P &rarr; P2 <td> 1
+  <tr> <td> P2 &rarr; 2 P <td> 1
+  <tr> <td> Rna &rarr; 0 <td> 0.1
+  <tr> <td> P &rarr; 0 <td> 0.01
+</table>
+Reactions for the auto-regulatory network.
+</p>
+-->
+
+<pre><b>
+Reaction              Rate constant</b>
+----------------------------------------
+Gene + P2 &rarr; P2Gene    1
+P2Gene &rarr; Gene + P2    10
+Gene &rarr; Gene + Rna     0.01
+Rna &rarr; Rna + P         10
+2 P &rarr; P2              1
+P2 &rarr; 2 P              1
+Rna &rarr; 0               0.1
+P &rarr; 0                 0.01
+</pre>
+<p align="center">
+Reactions for the auto-regulatory network.
+</p>
+
+<p>
+The first figures below  shows a single trajectory. 
+A close-up is shown in the next figure.
+We can see that the system is fairly noisy.
+</p>
+
+
+<p align=center>
+<img src="AutoRegulatory50.jpg"><br>
+Auto-regulatory system on the time interval [0..50].
+</p>
+
+<p align=center>
+<img src="AutoRegulatory5.jpg"><br>
+Auto-regulatory system on the time interval [0..5].
+</p>
+
+<p>
+In order to present a range of problem sizes, we duplicate the 
+species and reactions. For a test problem with 50 species and 80
+reactions we have 10 auto-regulatory groups. The reaction propensity
+factors in each group are scaled by a unit, uniform random deviate. We
+study systems ranging from 5 to 50,000 species.
+</p>
+
+<p>
+The table below shows the performance for
+various formulations of the direct method. Using a linear search is
+efficient for a small number of reactions, but does not scale well to
+larger problems. In the first row we recompute the sum of the 
+propensities at each time step. (This is the original formulation of
+the direct method.) In the next row we see that immediately updating
+the sum significantly improves the performance. The following two rows
+show the effect of ordering the reactions. In the former we
+periodically sort the reactions and in the latter we swap reactions
+when modifying the propensities. Ordering the reactions pays off for
+the largest problem size, but for the rest the overhead outweighs the
+benefits.
+</p>
+
+<p>
+The 2-D search method has the best overall performance. It is fast for
+small problems and scales well enough to best the more sophisticated
+methods. Because the auto-regulatory network is so noisy, ordering the
+reactions hurts the performance of the method.
+</p>
+
+<p>
+The binary search on a complete CDF has good performance for the
+smallest problem size, but has poor scalability. Ordering the
+reactions is a significant help, but the method is still very slow for
+large problems. The binary search on a partial, recursive CDF is
+fairly slow for the smallest problem, but has good scalability. The
+method is in the running for the second best overall performance.
+</p>
+
+<p>
+Because of its complexity, the composition rejection method has poor
+performance for small problems. However, it has excellent scalability.
+It edges out the 2-D search method for the test with 80,000 reactions.
+Although its complexity is independent of the number of reactions, the
+execution time rises with problem size largely because of caching effects. As
+with all of the other methods, larger problems and increased storage 
+requirements lead to cache misses. The composition rejection method is
+tied with the binary search on a partial CDF for the second best
+overall performance.
+</p>
+
+<!--CONTINUE: Tables are not currently rendered correctly.
+<p align=center>
+<table border = "1" rules = "all">
+<tr> <th> Species <th>  <th> 5 <th> 50 <th> 500 <th> 5,000 <th> 50,000 
+<tr> <th> Reactions <th>  <th> 8 <th> 80 <th> 800 <th> 8,000 <th> 80,000 
+<tr> <th> Algorithm <th> Option <th> <th> <th> <th> <th>
+<tr bgcolor="#CFFFFF"> <th rowspan="4"> Linear Search
+<td> Delayed update
+<td> 101
+<td> 264
+<td> 1859
+<td> 17145
+<td> 168455
+<tr bgcolor="#CFFFFF">
+<td> Immediate update
+<td> 109
+<td> 163
+<td> 780
+<td> 6572
+<td> 63113
+<tr bgcolor="#CFFFFF">
+<td> Complete sort
+<td> 107
+<td> 197
+<td> 976
+<td> 7443
+<td> 22862
+<tr bgcolor="#CFFFFF">
+<td> Bubble sort
+<td> 110
+<td> 205
+<td> 1001
+<td> 7420
+<td> 25872
+<tr bgcolor="#CFCFFF"> <th rowspan="3"> 2-D Search
+<td> Default
+<td> 109
+<td> 130
+<td> 218
+<td> 347
+<td> 1262
+<tr bgcolor="#CFCFFF">
+<td> Complete sort
+<td> 115
+<td> 148
+<td> 247
+<td> 402
+<td> 1566
+<tr bgcolor="#CFCFFF">
+<td> Bubble sort
+<td> 124
+<td> 149
+<td> 220
+<td> 328
+<td> 1674
+<tr bgcolor="#FFCFFF"> <th rowspan="3"> Binary Search
+<td> Complete CDF
+<td> 105
+<td> 219
+<td> 1196
+<td> 10378
+<td> 103209
+<tr bgcolor="#FFCFFF">
+<td> Complete CDF, sorted
+<td> 114
+<td> 202
+<td> 835
+<td> 3825
+<td> 30273
+<tr bgcolor="#FFCFFF">
+<td> Partial, recursive CDF
+<td> 232
+<td> 328
+<td> 433
+<td> 552
+<td> 1314
+<tr bgcolor="#FFCFCF"> <th rowspan="1"> Rejection
+<td> Composition
+<td> 341
+<td> 365
+<td> 437
+<td> 482
+<td> 1189
+</table>
+Auto-Regulatory. Direct method. Average time per reaction in nanoseconds.
+</p>
+-->
+
+<pre><b>
+Species                                  5   50    500  5,000  50,000 
+Reactions                                8   80    800  8,000  80,000</b>
+---------------------------------------------------------------------
+Linear Search  Delayed update          101  264  1,859 17,145 168,455
+Linear Search  Immediate update        109  163    780  6,572  63,113
+Linear Search  Complete sort           107  197    976  7,443  22,862
+Linear Search  Bubble sort             110  205  1,001  7,420  25,872
+2-D Search     Default                 109  130    218    347   1,262
+2-D Search     Complete sort           115  148    247    402   1,566
+2-D Search     Bubble sort             124  149    220    328   1,674
+Binary Search  Complete CDF            105  219  1,196 10,378 103,209
+Binary Search  Complete CDF, sorted    114  202    835  3,825  30,273
+Binary Search  Partial, recursive CDF  232  328    433    552   1,314
+Rejection      Composition             341  365    437    482   1,189
+</pre>
+<p align="center">
+Auto-Regulatory. Direct method. Average time per reaction in nanoseconds.
+</p>
+
+<p>
+In the next table we show the performance of the first reaction
+method. We consider a simple implementation and two implementations
+that take innovations from the next reaction method. Because a
+step in the first reaction method has linear computational complexity
+in the number of reactions, all of the formulations have poor
+scalability. The simple formulation is fairly slow for small problem
+sizes. Even for small problems, there is a heavy price
+for computing the propensity function and an exponential deviate for
+each reaction. Using the reaction influence graph to reduce
+recomputing the propensity functions is a moderate help. Storing
+absolute times instead of the waiting times greatly improves
+performance. By storing the absolute times, one avoids computing
+the propensity functions and an exponential deviate for all of the
+reactions at each time step. Only the reactions influenced by the
+fired reaction need to be recomputed. However, this formulation is
+still not competitive with the direct method.
+</p>
+
+<!--CONTINUE: Tables are not currently rendered correctly.
+<p align=center>
+<table border = "1" rules = "all">
+<tr> <th> Species <th> 5 <th> 50 <th> 500 <th> 5,000 <th> 50,000 
+<tr> <th> Reactions <th> 8 <th> 80 <th> 800 <th> 8,000 <th> 80,000 
+<tr> <th> Option <th> <th> <th> <th> <th>
+<tr bgcolor="#CFFFFF">
+<td> Simple
+<td> 201
+<td> 1968
+<td> 19843
+<td> 159133
+<td> 1789500
+<tr bgcolor="#CFCFFF">
+<td> Reaction influence
+<td> 194
+<td> 1510
+<td> 13324
+<td> 110828
+<td> 890948
+<tr bgcolor="#FFCFFF">
+<td> Absolute time
+<td> 133
+<td> 249
+<td> 1211
+<td> 10368
+<td> 102316
+</table>
+Auto-Regulatory. First reaction method. Average time per reaction in nanoseconds.
+</p>
+-->
+
+<pre><b>
+Species               5     50     500    5,000     50,000 
+Reactions             8     80     800    8,000     80,000</b>
+----------------------------------------------------------
+Simple              201  1,968  19,843  159,133  1,789,500
+Reaction influence  194  1,510  13,324  110,828    890,948
+Absolute time       133    249   1,211   10,368    102,316
+</pre>
+<p align="center">
+Auto-Regulatory. First reaction method. Average time per reaction in nanoseconds.
+</p>
+
+<p>
+In the table below we show the performance for
+various formulations of the next reaction method. Using a linear search is
+only efficient for a small number of reactions. Manual loop unrolling
+improves its performance, but it is still not practical for large
+problems.
+</p>
+
+<p>
+The size adaptive and cost adaptive versions of the partition method
+have pretty good performance. They are competitive with more
+sophisticated methods up to the test with 800 reactions, but the
+square root complexity shows in the larger tests.
+</p>
+
+<p>
+The binary heap methods have good performance. On 64-bit processors
+the pair formulation is typically better than the pointer
+formulation. (Vice-versa for 32-bit processors.)
+</p>
+
+<p>
+Using hashing for the priority queue yields the best overall
+performance for the next reaction method. It is efficient for small
+problems and has good scalability.
+</p>
+
+
+<!--CONTINUE: Tables are not currently rendered correctly.
+<p align=center>
+<table border = "1" rules = "all">
+<tr> <th> Species <th>  <th> 5 <th> 50 <th> 500 <th> 5,000 <th> 50,000 
+<tr> <th> Reactions <th>  <th> 8 <th> 80 <th> 800 <th> 8,000 <th> 80,000 
+<tr> <th> Algorithm <th> Option <th> <th> <th> <th> <th>
+<tr bgcolor="#CFFFFF"> <th rowspan="2"> Linear Search
+<td> Simple
+<td> 124
+<td> 386
+<td> 2990
+<td> 28902
+<td> 287909
+<tr bgcolor="#CFFFFF">
+<td> Unrolled
+<td> 120
+<td> 228
+<td> 1116
+<td> 9557
+<td> 94156
+<tr bgcolor="#CFCFFF"> <th rowspan="4"> Partition
+<td> Fixed size
+<td> 139
+<td> 381
+<td> 582
+<td> 1455
+<td> 5175
+<tr bgcolor="#CFCFFF">
+<td> Size adaptive
+<td> 163
+<td> 193
+<td> 285
+<td> 500
+<td> 1735
+<tr bgcolor="#CFCFFF">
+<td> Cost adaptive
+<td> 124
+<td> 196
+<td> 303
+<td> 537
+<td> 1828
+<tr bgcolor="#CFCFFF">
+<td> Propensities
+<td> 146
+<td> 191
+<td> 333
+<td> 723
+<td> 2515
+<tr bgcolor="#FFCFFF"> <th rowspan="2"> Binary Heap
+<td> Pointer
+<td> 166
+<td> 199
+<td> 290
+<td> 413
+<td> 1448
+<tr bgcolor="#FFCFFF">
+<td> Pair
+<td> 154
+<td> 192
+<td> 272
+<td> 374
+<td> 1304
+<tr bgcolor="#FFCFCF"> <th rowspan="1"> Hashing
+<td> Chaining
+<td> 151
+<td> 187
+<td> 307
+<td> 320
+<td> 964
+</table>
+Auto-Regulatory. Next reaction method. Average time per reaction in nanoseconds.
+</p>
+-->
+
+<pre><b>
+Species                         5   50    500   5,000   50,000 
+Reactions                       8   80    800   8,000   80,000</b>
+--------------------------------------------------------------
+Linear Search  Simple         124  386  2,990  28,902  287,909
+Linear Search  Unrolled       120  228  1,116   9,557   94,156
+Partition      Fixed size     139  381    582   1,455    5,175
+Partition      Size adaptive  163  193    285     500    1,735
+Partition      Cost adaptive  124  196    303     537    1,828
+Partition      Propensities   146  191    333     723    2,515
+Binary Heap    Pointer        166  199    290     413    1,448
+Binary Heap    Pair           154  192    272     374    1,304
+Hashing        Chaining       151  187    307     320      964
+</pre>
+<p align="center">
+Auto-Regulatory. Next reaction method. Average time per reaction in
+nanoseconds.
+</p>
+
+<p>
+The table below shows the best performing 
+formulation in each category. Only the methods based on a linear
+search perform poorly. The rest at least offer reasonable performance.
+The direct method with a 2-D search and the next reaction method that
+uses a hash table offer the best overall performance. The former is
+faster up to the test with 800 reactions; the latter has better
+performance for the large problems. 
+</p>
+
+<!--CONTINUE: Tables are not currently rendered correctly.
+<p align=center>
+<table border = "1" rules = "all">
+<tr> <th> <th> <th> Species <th> 5 <th> 50 <th> 500 <th> 5,000 <th> 50,000
+<tr> <th> <th> <th> Reactions <th> 8 <th> 80 <th> 800 <th> 8,000 <th> 80,000
+<tr> <th> Method <th> Algorithm <th> Option <th> <th> <th> <th> <th>
+<tr bgcolor="#CFFFFF"> <td> Direct <td> Linear search
+<td> Complete sort
+<td> 107
+<td> 197
+<td> 976
+<td> 7443
+<td> 22862
+<tr bgcolor="#CFFFFF"> <td> Direct <td> 2-D search
+<td> Default
+<td> 109
+<td> 130
+<td> 218
+<td> 347
+<td> 1262
+<tr bgcolor="#CFFFFF"> <td> Direct <td> Binary search
+<td> Partial, recursive CDF
+<td> 232
+<td> 328
+<td> 433
+<td> 552
+<td> 1314
+<tr bgcolor="#CFFFFF"> <td> Direct <td> Rejection
+<td> Composition
+<td> 341
+<td> 365
+<td> 437
+<td> 482
+<td> 1189
+<tr bgcolor="#CFCFFF"> <td> First reaction <td> Linear search
+<td> Absolute time
+<td> 133
+<td> 249
+<td> 1211
+<td> 10368
+<td> 102316
+<tr bgcolor="#FFCFFF"> <td> Next reaction <td> Linear search
+<td> Unrolled
+<td> 120
+<td> 228
+<td> 1116
+<td> 9557
+<td> 94156
+<tr bgcolor="#FFCFFF"> <td> Next reaction <td> Partition
+<td> Cost adaptive
+<td> 124
+<td> 196
+<td> 303
+<td> 537
+<td> 1828
+<tr bgcolor="#FFCFFF"> <td> Next reaction <td> Binary heap
+<td> Pair
+<td> 154
+<td> 192
+<td> 272
+<td> 374
+<td> 1304
+<tr bgcolor="#FFCFFF"> <td> Next reaction <td> Hashing
+<td> Chaining
+<td> 151
+<td> 187
+<td> 307
+<td> 320
+<td> 964
+</table>
+Auto-Regulatory. Average time per reaction in nanoseconds.
+</p>
+-->
+
+<pre><b>
+Species                                         5   50    500  5,000  50,000
+Reactions                                       8   80    800  8,000  80,000</b>
+----------------------------------------------------------------------------
+Direct          Linear search  Complete sort  107  197    976  7,443  22,862
+Direct          2-D search     Default        109  130    218    347   1,262
+Direct          Binary search  Partial CDF    232  328    433    552   1,314
+Direct          Rejection      Composition    341  365    437    482   1,189
+First reaction  Linear search  Absolute time  133  249  1,211 10,368 102,316
+Next reaction   Linear search  Unrolled       120  228  1,116  9,557  94,156
+Next reaction   Partition      Cost adaptive  124  196    303    537   1,828
+Next reaction   Binary heap    Pair           154  192    272    374   1,304
+Next reaction   Hashing        Chaining       151  187    307    320     964
+</pre>
+<p align="center">
+Auto-Regulatory. Average time per reaction in nanoseconds.
+</p>
+
+<p>
+Of course the performance of the various formulations depends upon the
+problem. The species populations could be highly variable, or fairly
+stable. The range of propensities could large or small. However, the
+performance results for the auto-regulatory network are very
+typical. Most problems give similar results. The biggest difference is
+that for some systems ordering the reactions is useful when using the
+direct method. The auto-regulatory system is too noisy for this to
+improve performance.
+</p>
+
+</body>
+</html>
+

@@ -1,0 +1,13 @@
+KDTree.mesh ../data/uniform_random.5.ascii 4 0.01 >> KDTree.random.best_leaf_size.timings
+KDTree.mesh ../data/uniform_random.5.ascii 4 0.012599 >> KDTree.random.best_leaf_size.timings
+KDTree.mesh ../data/uniform_random.5.ascii 4 0.01587 >> KDTree.random.best_leaf_size.timings
+KDTree.mesh ../data/uniform_random.5.ascii 4 0.02 >> KDTree.random.best_leaf_size.timings
+KDTree.mesh ../data/uniform_random.5.ascii 4 0.025198>> KDTree.random.best_leaf_size.timings
+KDTree.mesh ../data/uniform_random.5.ascii 4 0.031748 >> KDTree.random.best_leaf_size.timings
+KDTree.mesh ../data/uniform_random.5.ascii 8 0.04 >> KDTree.random.best_leaf_size.timings
+KDTree.mesh ../data/uniform_random.5.ascii 8 0.0503968 >> KDTree.random.best_leaf_size.timings
+KDTree.mesh ../data/uniform_random.5.ascii 8 0.063496 >> KDTree.random.best_leaf_size.timings
+KDTree.mesh ../data/uniform_random.5.ascii 8 0.08 >> KDTree.random.best_leaf_size.timings
+KDTree.mesh ../data/uniform_random.5.ascii 8 0.10079 >> KDTree.random.best_leaf_size.timings
+KDTree.mesh ../data/uniform_random.5.ascii 16 0.12699 >> KDTree.random.best_leaf_size.timings
+KDTree.mesh ../data/uniform_random.5.ascii 32 0.16 >> KDTree.random.best_leaf_size.timings

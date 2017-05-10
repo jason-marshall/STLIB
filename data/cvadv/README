@@ -1,0 +1,18 @@
+Do one of the following to generate data.
+
+../../../cpt/driver/driver -bl -o sphere sphere.geom1 sphere.brep 
+mv sphere.dist sphere.dist1
+../advection -bo sphere.geom1 sphere.dist1
+
+../../../cpt/driver/driver -bl -o sphere sphere.geom2 sphere.brep 
+mv sphere.dist sphere.dist2
+../advection -bo sphere.geom2 sphere.dist2
+
+../../../cpt/driver/driver -bl -o sphere sphere.geom3 sphere.brep 
+mv sphere.dist sphere.dist3
+../advection -bo sphere.geom3 sphere.dist3
+
+../../../cpt/driver/driver -bl -o sphere sphere.geom4 sphere.brep 
+mv sphere.dist sphere.dist4
+../advection -bo sphere.geom4 sphere.dist4
+

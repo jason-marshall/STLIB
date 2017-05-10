@@ -1,0 +1,30 @@
+<html>
+<head>
+<title>Installation on Ubuntu 10</title>
+</head>
+<body>
+<h1>Installation on Ubuntu 10</h1>
+
+<!--
+Update packages with Update Manager.
+sudo apt-get install dkms
+cd /media/VBOX...
+sudo sh ./VBoxLinuxAdditions-x86.run
+-->
+
+<p>
+Select Applications&rarr;Ubuntu Software Center.
+<ul>
+  <li> g++: The GNU C++ compiler.
+  <li> python-wxversion: wxWidgets cross-platform C++ GUI toolkit.
+  <li> python-matplotlib: Python based plotting system in style
+  similar to Matlab.
+  <li> python-scipy: Scientific Tools for Python.
+  <li> python-sympy: Computer Algebra System (CAS) in Python.
+</ul>
+Then follow the <a href="InstallationLinux.htm">installation instructions</a>
+to compile the solvers and launch the application.
+</p>
+
+</body>
+</html>

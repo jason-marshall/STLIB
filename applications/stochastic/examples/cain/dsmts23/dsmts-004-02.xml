@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cain version="1.2">
+  <listOfModels>
+    <model id="BatchImmigrationDeath01" name="Batch Immigration-Death (004), variant 01">
+      <listOfSpecies>
+        <species initialAmount="0" id="X"/>
+      </listOfSpecies>
+      <listOfReactions>
+        <reaction propensity="1.0" massAction="true" id="Immigration">
+          <listOfProducts>
+            <speciesReference stoichiometry="10" species="X"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="0.4" massAction="true" id="Death">
+          <listOfReactants>
+            <speciesReference species="X"/>
+          </listOfReactants>
+        </reaction>
+      </listOfReactions>
+    </model>
+  </listOfModels>
+  <listOfMethods>
+    <method category="0" numberOfBins="32" multiplicity="4" equilibrationTime="0.0" id="Direct" method="0" timeDependence="0" startTime="0.0" recordingTime="50.0" numberOfFrames="51" options="0"/>
+  </listOfMethods>
+  <random seed="2147483648">
+  </random>
+</cain>

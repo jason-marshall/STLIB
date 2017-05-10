@@ -1,0 +1,27 @@
+<html>
+<head>
+<title>Command Line Solvers</title>
+</head>
+<body>
+<h1>Command Line Solvers</h1>
+
+<p>
+Cain uses command line executables to carry out the simulations. The
+executables are in the <tt>solvers</tt> directory.
+</p>
+
+<p>
+It is easy to add a new simulation method to Cain if it is similar to
+one of the built-in methods. Just write a
+program that reads the same input format and generates the same output
+format as one of the other solvers. You can write your program in any
+language and use any software or hardware resources that you have on
+your machine.  Although it is not required, it is a good idea to make
+your program serial.  Cain utilizes concurrency by running multiple
+instances of a solver.  Place your program in the <tt>solvers</tt>
+directory. Then edit the data in the file
+<tt>state/simulationMethods.py</tt>.
+</p>
+
+</body>
+</html>

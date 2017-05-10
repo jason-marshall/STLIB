@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cain version="1.5">
+  <listOfModels>
+    <model id="ImmigrationDeath01" name="Immigration-Death (002), variant 01">
+      <listOfParameters>
+        <parameter expression="0.1" id="Mu"/>
+        <parameter expression="1" id="Alpha"/>
+      </listOfParameters>
+      <listOfCompartments>
+        <compartment expression="1" id="Cell"/>
+      </listOfCompartments>
+      <listOfSpecies>
+        <species compartment="Cell" initialAmount="0" id="X"/>
+      </listOfSpecies>
+      <listOfReactions>
+        <reaction propensity="Alpha" massAction="true" id="Immigration">
+          <listOfProducts>
+            <speciesReference species="X"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="Mu" massAction="true" id="Death">
+          <listOfReactants>
+            <speciesReference species="X"/>
+          </listOfReactants>
+        </reaction>
+      </listOfReactions>
+    </model>
+  </listOfModels>
+  <listOfMethods>
+    <method equilibrationTime="100.0" startTime="0.0" recordingTime="100000.0" id="SteadyState" category="4" numberOfBins="32" multiplicity="4" method="0" timeDependence="0" numberOfFrames="51" options="0"/>
+    <method equilibrationTime="0.0" startTime="0.0" recordingTime="50.0" id="TimeSeries" category="0" numberOfBins="32" multiplicity="4" method="0" timeDependence="0" numberOfFrames="51" options="0"/>
+    <method equilibrationTime="0.0" startTime="0.0" recordingTime="50.0" id="Reference" category="5" numberOfBins="32" multiplicity="4" method="0" timeDependence="0" numberOfFrames="51" options="0"/>
+  </listOfMethods>
+  <listOfOutput>
+    <statisticsFrames model="ImmigrationDeath01" method="Reference">
+      <frameTimes>
+        0.0 1.0 2.0 3.0 4.0 5.0 6.0 7.0 8.0 9.0 10.0 11.0 12.0 13.0 14.0 15.0 16.0 17.0 18.0 19.0 20.0 21.0 22.0 23.0 24.0 25.0 26.0 27.0 28.0 29.0 30.0 31.0 32.0 33.0 34.0 35.0 36.0 37.0 38.0 39.0 40.0 41.0 42.0 43.0 44.0 45.0 46.0 47.0 48.0 49.0 50.0
+      </frameTimes>
+      <recordedSpecies>
+        0
+      </recordedSpecies>
+      <statistics>
+        0.0 0.0 0.95162579999999997 0.97551309600000002 1.812692 1.346362507 2.591818 1.6099124199999999 3.2968000000000002 1.815709228 3.9346930000000002 1.9836060600000001 4.5118840000000002 2.1241195820000001 5.0341469999999999 2.2436904869999998 5.50671 2.346638021 5.9343029999999999 2.4360424869999999 6.3212060000000001 2.514200867 6.6712889999999998 2.5828838529999998 6.9880579999999997 2.643493522 7.2746820000000003 2.6971618419999999 7.5340299999999996 2.7448187549999998 7.7686979999999997 2.7872384179999998 7.9810350000000003 2.8250725650000001 8.1731649999999991 2.8588747790000002 8.3470110000000002 2.8891194160000002 8.5043140000000008 2.9162156979999998 8.6466469999999997 2.9405181520000001 8.7754359999999991 2.96233624 8.8919680000000003 2.981940308 8.9974120000000006 2.9995686359999998 9.0928199999999997 3.0154303179999999 9.1791499999999999 3.0297112070000001 9.2572639999999993 3.0425752250000002 9.3279449999999997 3.0541684629999999 9.3918999999999997 3.0646206939999998 9.4497680000000006 3.0740474949999999 9.5021299999999993 3.0825525140000001 9.5495079999999994 3.0902278230000002 9.5923780000000001 3.0971564379999998 9.6311680000000006 3.103412316 9.6662669999999995 3.1090620769999999 9.6980260000000005 3.114165378 9.726763 3.118775882 9.7527650000000001 3.1229417220000002 9.7762919999999998 3.1267062540000001 9.79758 3.130108624 9.8168439999999997 3.133184323 9.8342729999999996 3.1359644449999999 9.8500440000000005 3.1384779749999998 9.8643140000000002 3.1407505470000001 9.8772269999999995 3.1428055939999999 9.8889099999999992 3.1446637339999999 9.8994820000000008 3.1463442279999998 9.9090469999999993 3.147863879 9.9177029999999995 3.1492384790000001 9.9255340000000007 3.1504815499999999 9.93262 3.1516059400000001
+      </statistics>
+    </statisticsFrames>
+  </listOfOutput>
+  <random seed="2147483648">
+  </random>
+</cain>

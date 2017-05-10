@@ -1,0 +1,57 @@
+Testing for ideal and actual determined fraction of vertices.
+Using the simple correctness criterion.
+
+Ratio of largest to smallest edge weight = infinity.
+
+GRID GRAPHS:
+
+For the 20 x 20 rectangular grid graph: 400 vertices, 1520 edges.
+ideal fraction =  0.680887372014  actual fraction =  0.280985915493
+
+For the 40 x 40 rectangular grid graph: 1600 vertices, 6240 edges.
+ideal fraction =  0.738909426987  actual fraction =  0.231537793223
+
+For the 60 x 60 rectangular grid graph: 3600 vertices, 14160 edges.
+ideal fraction =  0.721965897693  actual fraction =  0.174700257269
+
+For the 80 x 80 rectangular grid graph: 6400 vertices, 25280 edges.
+ideal fraction =  0.715051961113  actual fraction =  0.150394848171
+
+For the 100 x 100 rectangular grid graph: 10000 vertices, 39600 edges.
+ideal fraction =  0.691685113448  actual fraction =  0.134639466774
+
+
+SPARSE GRAPHS:
+
+For the sparse graph: 200 vertices, 800 edges.
+ideal fraction =  0.748120300752  actual fraction =  0.260812581913
+
+For the sparse graph: 400 vertices, 1600 edges.
+ideal fraction =  0.668341708543  actual fraction =  0.175230566535
+
+For the sparse graph: 600 vertices, 2400 edges.
+ideal fraction =  0.658241758242  actual fraction =  0.149824912456
+
+For the sparse graph: 800 vertices, 3200 edges.
+ideal fraction =  0.472781065089  actual fraction =  0.138956521739
+
+For the sparse graph: 1000 vertices, 4000 edges.
+ideal fraction =  0.450202794051  actual fraction =  0.143555108493
+
+
+COMPLETE GRAPHS:
+
+For the complete graph: 50 vertices, 2450 edges.
+ideal fraction =  0.376923076923  actual fraction =  0.180147058824
+
+For the complete graph: 100 vertices, 9900 edges.
+ideal fraction =  0.327814569536  actual fraction =  0.147540983607
+
+For the complete graph: 150 vertices, 22350 edges.
+ideal fraction =  0.377215189873  actual fraction =  0.0899215449608
+
+For the complete graph: 200 vertices, 39800 edges.
+ideal fraction =  0.305683563748  actual fraction =  0.108802624385
+
+For the complete graph: 250 vertices, 62250 edges.
+ideal fraction =  0.293978748524  actual fraction =  0.0954754601227

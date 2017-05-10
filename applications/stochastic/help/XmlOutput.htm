@@ -1,0 +1,187 @@
+
+<html>
+<head>
+<title>Output</title>
+</head>
+<body>
+<h1>Output</h1>
+
+<p>
+There are six simulation output elements corresponding to the six kinds
+of data a simulation may produce:
+<ul>
+ <li> <code>timeSeriesFrames</code> - Record the species populations and
+  reactions counts at specified frames. In this way one can plot the
+  realizations as a function of time.
+  <li> <code>timeSeriesAllReactions</code> - Record every reaction event for
+  each trajectory.
+  <li> <code>histogramFrames</code> - Record histograms of species populations
+  at specified frames.
+  <li> <code>histogramAverage</code> - Record histograms of average species
+  populations.
+  <li> <code>statisticsFrames</code> - Record the mean and standard
+  deviation of species populations at specified frames.
+  <li> <code>statisticsAverage</code> - Record the time-averaged mean
+  and standard deviation of species populations.
+</ul>
+Each of the simulation output elements store the identifiers for the model
+and method used to produce the output.
+</p>
+
+<p>
+<b>Trajectories recorded at frames.</b><br>
+In a timeSeriesFrames element one records the list of frame times, the indices
+of the recorded species and the indices of the recorded reactions.
+For each trajectory generated, there is a list of populations and a list
+of reactions counts. The number of populations in each list is the
+product of the number of frames and the number of recorded species. The
+populations at a given frame are contiguous. Likewise for the recorded species.
+</p>
+
+<pre>  &lt;timeSeriesFrames model=&quot;Identifier&quot; method=&quot;Identifier&quot;&gt;
+    &lt;frameTimes&gt;
+      <em>List of numbers.</em>
+    &lt;/frameTimes&gt;
+    &lt;recordedSpecies&gt;
+      <em>List of indices.</em>
+    &lt;/recordedSpecies&gt;
+    &lt;recordedReactions&gt;
+      <em>List of indices.</em>
+    &lt;/recordedReactions&gt;
+    <em>For each trajectory:</em>
+      &lt;populations&gt;
+        <em>List of numbers.</em>
+      &lt;/populations&gt;
+      &lt;reactionCounts&gt;
+        <em>List of numbers.</em>
+      &lt;/reactionCounts&gt;
+  &lt;/timeSeriesFrames&gt;</pre>
+
+<p>
+<b>Trajectories with all reaction events.</b><br>
+In a timeSeriesAllReactions element one stores the simulation initial
+time and final time as attributes. These quantities can't be deduced
+from a list of frame times. For each trajectory generated one records
+the initial populations, a list of reaction indices, and a list of
+reaction times. The initial populations are needed because there may be
+a nonzero equilibration time. Each index/time pair specifies a reaction event.
+</p>
+
+<pre>  &lt;timeSeriesAllReactions model=&quot;Identifier&quot; method=&quot;Identifier&quot;
+   initialTime=&quot;Number&quot; finalTime=&quot;Number&quot;&gt;
+    <em>For each trajectory:</em>
+      &lt;initialPopulations&gt;
+        <em>List of numbers.</em>
+      &lt;/initialPopulations&gt;
+      &lt;indices&gt;
+        <em>List of indices.</em>
+      &lt;/indices&gt;
+      &lt;times&gt;
+        <em>List of numbers.</em>
+      &lt;/times&gt;
+  &lt;/timeSeriesAllReactions&gt;</pre>
+
+<p>
+<b>Histograms for transient behavior.</b><br>
+Below is the histogramFrames element. The histogram multiplicity and
+the number of trajectories generated
+are stored as attributes. The top level elements are the list of
+frame times, the list of recorded species, and a histogram for each combination
+of frame and recorded species.
+</p>
+
+<pre>  &lt;histogramFrames model=&quot;Identifier&quot; method=&quot;Identifier&quot;
+   multiplicity=&quot;Integer&quot; numberOfTrajectories=&quot;Integer&quot;&gt;
+    &lt;frameTimes&gt;
+      <em>List of numbers.</em>
+    &lt;/frameTimes&gt;
+    &lt;recordedSpecies&gt;
+      <em>List of indices.</em>
+    &lt;/recordedSpecies&gt;
+    <em>One</em> &lt;histogram&gt;<em> element for each frame and each recorded species.</em>
+  &lt;/histogramFrames&gt;</pre>
+
+<p>
+In addition to storing the actual histogram data, the histogram element
+stores statistics on the species populations. The following statistical
+fields are attributes: cardinality, sum of the weights, mean, and
+summed second centered moment. The cardinality is the number of samples.
+Samples from trajectory tree methods use non-uniform weights thus one needs to
+store the sum of the weights as well. Next is the mean. Instead of storing
+the variance or standard deviation, we store equivalent information in the
+summed second centered moment
+&Sigma;(<em>x</em> - &mu;)<sup>2</sup>.
+When merging statistics from
+multiple histograms this quantity can be computed more accurately than the
+variance.
+</p>
+
+<p>
+For a histogram one stores the lower bound and bin width as attributes.
+The number of bins can be deduced from the lists of bin values. One also
+stores the frame index and recorded species index as attributes.
+The histogram bin values are stored across a number of lists (the
+number is the multiplicity). By computing the histogram
+distance between each of the parts and the combined distribution,
+one can estimate the error in the combined histogram.
+</p>
+
+<pre>  &lt;histogram cardinality=&quot;Number&quot; sumOfWeights=&quot;Number&quot;
+   mean=&quot;Number&quot; summedSecondCenteredMoment=&quot;Number&quot; lowerBound=&quot;Number&quot;
+   width=&quot;Number&quot; frame=&quot;Integer&quot; species=&quot;Integer&quot;&gt;
+    <em>For i in 1..multiplicty:</em>
+      &lt;histogramElement&gt;
+        <em>List of numbers.</em>
+      &lt;/histogramElement &gt;
+ &lt;/histogram&gt;</pre>
+
+<p>
+<b>Histograms for steady state solutions.</b><br>
+The histogramAverage element is used for recording steady state solutions.
+</p>
+
+<pre>  &lt;histogramAverage model=&quot;Identifier&quot; method=&quot;Identifier&quot;
+   multiplicity=&quot;Integer&quot; numberOfTrajectories=&quot;Integer&quot;&gt;
+   &lt;recordedSpecies&gt;
+      <em>List of indices.</em>
+    &lt;/recordedSpecies&gt;
+    <em>One</em> &lt;histogram&gt;<em> element for each recorded species.</em>
+  &lt;/histogramAverage&gt;</pre>
+
+<p>
+<b>Statistics for transient behavior.</b><br>
+Next we consider the statisticsFrames element. 
+The top level elements are the list of
+frame times, the list of recorded species, and the packed list of
+means and standard deviations.
+</p>
+
+<pre>  &lt;statisticsFrames model=&quot;Identifier&quot; method=&quot;Identifier&quot;&gt;
+    &lt;frameTimes&gt;
+      <em>List of numbers.</em>
+    &lt;/frameTimes&gt;
+    &lt;recordedSpecies&gt;
+      <em>List of indices.</em>
+    &lt;/recordedSpecies&gt;
+    &lt;statistics&gt;
+      <em>Packed list of the mean and standard deviations.</em>
+    &lt;/statistics&gt;
+ &lt;/statisticsFrames&gt;</pre>
+
+<p>
+<b>Statistics for steady state solutions.</b><br>
+The statisticsAverage element is used for recording
+externally-generated steady state solutions
+</p>
+
+<pre>  &lt;statisticsAverage model=&quot;Identifier&quot; method=&quot;Identifier&quot;&gt;
+   &lt;recordedSpecies&gt;
+      <em>List of indices.</em>
+    &lt;/recordedSpecies&gt;
+    &lt;statistics&gt;
+      <em>Packed list of the mean and standard deviations.</em>
+    &lt;/statistics&gt;
+ &lt;/statisticsAverage&gt;</pre>
+
+</body>
+</html>

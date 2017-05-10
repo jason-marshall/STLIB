@@ -1,0 +1,55 @@
+# -*- Makefile -*-
+
+# This makefile contains definitions and rules that are common to all 
+# makefiles in the performance/numerical/random/uniform directory.  
+# This file is included in makefiles
+# in these directories.  The variable RELATIVE_PATH should be 
+# defined before inclusion, this is the path relative to this location.  
+
+# Add the location of the stlib.
+CXXINCLUDE += -I$(RELATIVE_PATH)/../../../../src
+
+SOURCES = $(wildcard *.cc)
+IPP = $(SOURCES:.cc=.ipp)
+DEPENDENCIES = $(SOURCES:.cc=.d)
+TARGETS = $(SOURCES:.cc=.exe)
+
+.SUFFIXES:
+.SUFFIXES: .cc .d .o .exe
+
+# The default target.  Compile the timing code.
+all:
+	ln -fs $(RELATIVE_PATH)/*.cc .
+	$(MAKE) $(TARGETS)
+
+clean: 
+	$(RM) *.o *.d *~ core* *.stackdump .DS_Store
+
+distclean: 
+	$(MAKE) clean 
+	$(RM) $(SOURCES) $(IPP) $(TARGETS) $(DEPENDENCIES)
+
+again: 
+	$(MAKE) distclean 
+	$(MAKE) 
+
+# Implicit rules.
+
+.cc.d: 
+	$(CXX) -MM $(CXXINCLUDE) $< > $@.$$$$; \
+  sed 's,\($*\)\.o[ :]*,\1.o $@ : ,g' < $@.$$$$ > $@; \
+  $(RM) $@.$$$$
+
+ifneq ($(MAKECMDGOALS),)
+ifneq ($(MAKECMDGOALS),clean)
+ifneq ($(MAKECMDGOALS),distclean)
+-include $(DEPENDENCIES)
+endif
+endif
+endif
+
+.cc.o: 
+	$(CXX) $(CXXFLAGS) -c $< 
+
+.o.exe:
+	$(CXX) $(LINKERFLAGS) -o $@ $<

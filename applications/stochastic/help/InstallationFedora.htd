@@ -1,0 +1,36 @@
+<html>
+<head>
+<title>Installation on Fedora 14</title>
+</head>
+<body>
+<h1>Installation on Fedora 14</h1>
+
+<!--
+Follow the instructions in the User Manual.
+Install the kernel development packages.
+Reboot.
+cd /media/VBOX...
+su
+sh ./VBoxLinuxAdditions-x86.run
+Building the kernel modules fails.
+-->
+
+
+<p>
+Select System&rarr;Administration&rarr;Add/Remove Software. Install the following packages:
+<ul>
+  <li> gcc-c++: C++ support for GCC.
+  <li> wxPython: GUI toolkit for the Python programming language.
+  <li> python-matplotlib: Python plotting library.
+  <li> Scipy: Scientific Tools for Python
+  <li> sympy: A Python library for symbolic mathematics.
+  <!--
+  <li> python-matplotlib-tk: Tk backend for python-matplotlib.
+  -->
+</ul>
+Then follow the <a href="InstallationLinux.htm">installation instructions</a>
+to compile the solvers and launch the application.
+</p>
+
+</body>
+</html>

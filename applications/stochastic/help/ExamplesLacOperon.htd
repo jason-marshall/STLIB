@@ -1,0 +1,58 @@
+<html>
+<head>
+<title>Lac Operon</title>
+</head>
+<body>
+<h1>Lac Operon</h1>
+
+<p>
+Consider the lac operon model presented in Section 7.5 of
+<a href="http://www.staff.ncl.ac.uk/d.j.wilkinson/smfsb/">Stochastic
+Modelling for Systems Biology</a>. 
+Open the file <tt>examples/cain/WilkinsonSMfSB/ch07-lac-stoch.xml</tt> 
+and generate a trajectory. Note that the method uses the a Python solver 
+that is capable of simulating events. As this is not a high performance 
+solver, generating a trajectory will take a couple of minutes. So launch
+the simulation now and then continue reading.
+</p>
+
+<p>
+When the trajectory has been generated, open the plot configuration
+window by clicking the plot button <img src="plot.png">&nbsp; in the
+output panel.  First unselect all of the species by right-clicking on
+the &quot;Show&quot; column header. Then select the Rna, Z, and
+Lactose species. Next left-click on the &quot;Line Color&quot; header
+to color these three species with different hues. Unselect the
+&quot;Legend&quot; toggle, we will enter the species names in the Y
+axis label. Select a custom figure size of 8 by 2 inches. Now we are
+prepared to plot each of the three species in a separate window by
+selecting each in turn. The resulting plot configuration window is
+shown below.
+</p>
+
+<p align="center">
+<img src="ExamplesLacOperonPlotWindow.png">
+</p>
+
+<p>
+This model has a time event: at time <i>t</i> = 20,000, the amount of Lactose 
+is increased by 10,000. The interesting feature of this model is how the
+system responds to the influx of Lactose. The plots below reproduce the
+results in the text.
+</p>
+
+<p align="center">
+<img src="LacOperonLactose.jpg">
+</p>
+
+<p align="center">
+<img src="LacOperonRna.jpg">
+</p>
+
+<p align="center">
+<img src="LacOperonZ.jpg">
+</p>
+
+
+</body>
+</html>

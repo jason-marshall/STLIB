@@ -1,0 +1,236 @@
+<html>
+<head>
+<title>Number Types</title>
+<link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+
+<body>
+<h1 align=center>Number Types</h1>
+
+<a href="index.html">Back</a>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h2>Integer Types</h2>
+
+<p>
+Many hackers use <code>int</code> whenever an integer type is needed.
+They have various reasons for doing so:
+<ul>
+  <li> The Goldilocks principle: <code>short</code> is too small, and
+  <code>long</code> is too big, but <code>int</code> is just right.
+  <li> <code>int</code> is easy to type and using it makes code look
+  &quot;clean.&quot;
+  <li> <code>int</code> is The One true integer type. You can use even
+  use it for Boolean values; zero is false and nonzero is true.
+</ul>
+</p>
+
+<p>
+In spite of these excellent reasons, using <code>int</code> is actually a bad
+idea. It can obfuscate the purpose of your code and introduce wicked bugs.
+Let's consider a typical code snippet:
+</p>
+<pre>
+std::vector&lt;double&gt; x;
+...
+for (int i = 0; i != x.size(); ++i) {
+...
+</pre>
+
+<p>
+Compiling such code with warning enabled will give you an annoying message
+like &quot;<tt>warning: comparison between signed and unsigned integer
+expressions</tt>.&quot; The problem is that the <code>size()</code> member
+function returns a <code>std::size_t</code>, which is either a 32-bit
+or a 64-bit unsigned integer, depending on whether you are making a 32-bit
+or a 64-bit executable. The compiler issues a warning because comparing
+signed and unsigned integers is a bad idea. To rid oneself of this
+annoyance, the typical solution is to either disable warnings or to
+truncate the size type, i.e.
+<pre>
+for (int i = 0; i != int(x.size()); ++i) {
+</pre>
+However, the correct solution is to use the size type for the iteration
+variable.
+<pre>
+for (std::size_t i = 0; i != x.size(); ++i) {
+</pre>
+</p>
+
+<p>
+Why are the first two loops incorrect? Because they give erroneous results
+whenever the number of elements in the vector exceeds 2<sup>31</sup>.
+In the first example we compare a signed integer to a size type. If the vector
+is too large then this loop will never terminate. When the integer index
+reaches
+2,147,483,647, incrementing it results in an overflow and it takes the value
+-2,147,483,648. Of course you would notice if your program entered
+an infinite loop. The second version has an error that may be more difficult
+to detect. The problem is in casting the size type to an <code>int</code>.
+If the size type has 32 bits then sizes greater that 2<sup>31</sup>
+will be converted to a negative integer. For 64-bit applications
+the truncation may result in an incorrect value that is either positive or
+negative. Depending on the circumstances you may encounter an infinite loop,
+a segmentation fault, or your program may complete and just give incorrect
+results.
+</p>
+
+<p>
+Of course you are probably thinking &quot;Yeah, but I would never create
+a vector with 2 billion elements.&quot; That may be true, but the fact that
+using <code>int</code> usually works is part of what makes the resulting
+errors so insidious. If they do appear, you will have no idea what is
+causing your code to crash or give incorrect results.
+</p>
+
+<p>
+I think that most people use <code>int</code> because they don't know what type
+they <it>should</it> be using. Maybe they think that using the
+&quot;right&quot; approach would complicate their lives. If you are such
+an unfortunate soul, then rejoice and prepare to be enlightened! The
+rules for properly using integer types are really simple. Following them
+will improve the robustness and readability of your code.
+<ul>
+  <li> Use <code>std::size_t</code> for loops, array indexing, and quantities
+  that are sizes or counts.
+  <li> Use <code>bool</code> for Boolean values.
+  <li> Use <code>std::ptrdiff_t</code> for distances between pointers.
+  <li> For any other scenarios, think for a moment about what is 
+  appropriate.
+</ul>
+See, that wasn't so bad. The first two cases are applicable 99% of the
+time. Thinking is rarely necessary. Below are some examples.
+</p>
+
+<pre>
+const std::size_t Dimension = 3;
+typedef std::tr1::array&lt;double, Dimension&gt; Point;
+std::vector&lt;Point&gt; centers;
+...
+// Initialize each coordinate to zero.
+const Point origin = {{}};
+bool hasPointAtOrigin = std::find(centers.begin(), centers.end(), origin) != centers.end();
+...
+// The return type of count() is an iterator difference type (for a good reason).
+// Here it is sensible to assign that to a size type.
+const std::size_t numberAtOrigin = std::count(centers.begin(), centers.end(), origin);
+for (std::size_t i = 0; i != centers.size(); ++i) {
+    centers[i] = ...
+}
+...
+class Matrix {
+...
+    Matrix(const std::size_t numRows, const std::size_t numCols);
+...
+    std::size_t size() const;
+    bool empty() const;
+};
+</pre>
+
+<!--CONTINUE Cite pessimism in C++ Coding Standards.-->
+
+<p>
+Now it's time for a quiz. What is troubling about the following code?
+</p>
+<pre>
+class Foo {
+    ...
+    int id() const {
+        return int(this);
+    }
+    ...
+};
+</pre>
+<p>
+If you said that you may lose precision in casting a pointer to an integer,
+then good for you! That was a lucky guess. In a 64-bit executable, casting
+a pointer to an integer truncates a 64-bit pointer to a 32-bit
+<code>int</code>. That means the identifiers may not be unique.
+Depending on your compiler, the
+above may or may not compile. Switching to <code>std::size_t</code>
+will get rid of the truncation problem and the compiler error.
+</p>
+<pre>
+    std::size_t id() const {
+        return std::size_t(this);
+    }
+</pre>
+
+<p>
+If at this point you are dissatisfied then you get a gold star! The
+deeply disturbing thing about the above example is that 
+the address of the object is being used as its identifier. Switching
+from <code>int</code> to <code>std::size_t</code> makes the code
+syntactically correct, but it is not semantically correct. That is,
+the identifier produced above does not behave like an identifier
+should. I have no idea what a Foo is, but I would expect that if I
+copied one the identifier in the original and the copy would be the
+same. Consider the following uses of Foo.
+</p>
+<pre>
+Foo a;
+...
+Foo b = a; // Uh-oh. b.id() != a.id()
+...
+std::swap(a, b); // Uh-oh. The identifiers are not swapped.
+...
+std::vector&lt;Foo&gt; output;
+for (std::size_t i = 0; i != 10; ++i) {
+     Foo x;
+     output.push_back(x); // Uh-oh. The identifiers get changed whenever the vector is resized.
+}
+std::map<std::size_t, Foo> dict;
+dict[a.id()] = a; // Uh-oh. Inserting the object changes its identifier.
+</pre>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h2>Floating-Point Types</h2>
+
+<p>
+If you want to understand floating-point arithmetic read
+<a href="What Every Computer Scientist Should Know About Floating-Point Arithmetic"></a>
+by David Goldberg. If you don't have the time to read that article or
+just prefer ignorance then read the rest of this section
+(or at least skim it). If you don't have the time to do that
+then just use <tt>double</tt>. And get back to work!
+</p>
+
+<p>
+Use <tt>float</tt> in the following circumstances:
+<ul>
+  <li>
+  Storage optimization. You have large arrays of numbers and you only
+  need single precision accuracy. Using <tt>float</tt> instead of double
+  will allow you to double the problem size.
+  <li>
+  Performance optimization. You are running on the GPU (or other specialized
+  hardware) or are using SSE intrinsics in which case single precision
+  arithmetic is much faster than double precision arithmetic.
+</ul>
+</p>
+
+<p>
+Otherwise use <tt>double</tt>. On modern super scalar processors there is
+no performance difference between using single and double precision.
+The floating point unit performs calculations using 80-bit registers and
+truncates the result when storing values in single precision (32-bit)
+and double precision (64-bit) variables. In this respect the extra
+precision in <tt>double</tt> comes for free. There is usually little
+performance difference between algorithms that use single or double
+precision numbers. In some cases using <tt>float</tt> will boost
+performance because the decreased storage requirements lead to
+better cache utilization, but this is not typical. When doing numerical
+calculations you probably assume that the number type you are
+using has ample precision. Verifying that truncation errors are acceptable
+takes a lot of work. If you use double precision numbers your
+assumption of having plenty of precision is more likely to be correct.
+</p>
+
+</body>
+<hr>
+<address>
+<a href="https://bitbucket.org/seanmauch/stlib">https://bitbucket.org/seanmauch/stlib</a>
+/ at(seanmauch, dot(me, com))
+</address>
+</html>
+

@@ -1,0 +1,9 @@
+# -*- python -*-
+
+import sys
+sys.path.append('..')
+from env import serial
+
+# Run.
+for file in Glob('*.py'):
+    serial.Run(source=str(file))

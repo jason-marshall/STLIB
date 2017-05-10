@@ -1,0 +1,8 @@
+# -*- python -*-
+
+Import('useCuda')
+if useCuda:
+    SConscript([str(x) for x in Glob('*/SConscript')])
+else:
+    SConscript('std/SConscript')
+    SConscript('simd/SConscript')

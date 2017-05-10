@@ -1,0 +1,20 @@
+1000 vertices, 0 faces.
+Search_Radius = 0.232079
+memory usage = 9168
+time = 0.057877
+count = 70586
+10000 vertices, 0 faces.
+Search_Radius = 0.107722
+memory usage = 121968
+time = 0.832498
+count = 862588
+100000 vertices, 0 faces.
+Search_Radius = 0.05
+memory usage = 1055408
+time = 14.1466
+count = 9358294
+1000000 vertices, 0 faces.
+Search_Radius = 0.0232079
+memory usage = 9242928
+time = 170.357
+count = 97550516

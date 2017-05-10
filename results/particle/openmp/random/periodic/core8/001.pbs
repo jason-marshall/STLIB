@@ -1,0 +1,10 @@
+#!/bin/csh -f
+#PBS -l nodes=1:core8
+#PBS -l walltime=00:40:00
+#
+# Direct stdout/err as desired.
+#PBS -o 001.out
+#PBS -e 001.err
+#
+cd $HOME/Development/stlib/test/performance/release/particle/openmp
+time ./random -p=1000000 -s=1000 -m=periodic -t=1 >$HOME/001.txt

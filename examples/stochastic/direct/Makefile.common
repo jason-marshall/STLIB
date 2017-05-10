@@ -1,0 +1,10 @@
+# -*- Makefile -*-
+
+RELATIVE_PATH = ../../../../..
+include $(RELATIVE_PATH)/Makefile.master
+
+setup:
+	ln -sf ../../../*.cc .
+
+teardown: distclean
+	rm *.cc 

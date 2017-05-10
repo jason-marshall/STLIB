@@ -1,0 +1,507 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbml xmlns="http://www.sbml.org/sbml/level2" level="2" version="1">
+  <model metaid="_857121" id="Li2006_QuorumSensing">
+    <notes>
+      <body xmlns="http://www.w3.org/1999/xhtml"><p>This model originates from BioModels Database: A Database of Annotated Published Models. It is copyright (c) 2005-2007 The BioModels Team.<br></br> For more information see the <a href="http://www.ebi.ac.uk/biomodels/legal.html">terms of use</a>.</p></body>
+    </notes>
+    <annotation>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" >
+<rdf:Description rdf:about="#_857121">
+<dcterms:created rdf:parseType="Resource">
+<dcterms:W3CDTF>2007-03-12T21:27:38</dcterms:W3CDTF>
+</dcterms:created>
+<dcterms:modified rdf:parseType="Resource">
+<dcterms:W3CDTF>2007-07-15T15:45:53</dcterms:W3CDTF>
+</dcterms:modified>
+<bqmodel:is>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.ebi.ac.uk/biomodels/#MODEL8262229752"/>
+</rdf:Bag>
+</bqmodel:is>
+<bqmodel:isDescribedBy>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.pubmed.gov/#17170762"/>
+</rdf:Bag>
+</bqmodel:isDescribedBy>
+</rdf:Description>
+</rdf:RDF>
+</annotation>
+
+    <listOfUnitDefinitions>
+      <unitDefinition id="volume">
+        <listOfUnits>
+          <unit kind="liter" multiplier="1" offset="0"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="substance">
+        <listOfUnits>
+          <unit kind="item" multiplier="1" offset="0"/>
+        </listOfUnits>
+      </unitDefinition>
+    </listOfUnitDefinitions>
+    <listOfCompartments>
+      <compartment metaid="_857135" id="compartment" size="1"/>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species metaid="_857155" id="Nutrients" compartment="compartment" initialAmount="28350"/>
+      <species metaid="_857175" id="Met" compartment="compartment" initialAmount="2248"/>
+      <species metaid="_857195" id="SAM" compartment="compartment" initialAmount="10000"/>
+      <species metaid="_857215" id="SAH" compartment="compartment" initialAmount="320"/>
+      <species metaid="_857235" id="Decarb_SAM" compartment="compartment" initialAmount="220"/>
+      <species metaid="_857255" id="Putrescine" compartment="compartment" initialAmount="4400"/>
+      <species metaid="_857275" id="Pfs_mRNA" compartment="compartment" initialAmount="32"/>
+      <species metaid="_857295" id="pfs_gene" compartment="compartment" initialAmount="1"/>
+      <species metaid="_857315" id="Pfs_prot" compartment="compartment" initialAmount="800"/>
+      <species metaid="_857335" id="Adenine" compartment="compartment" initialAmount="596"/>
+      <species metaid="_857355" id="SRH" compartment="compartment" initialAmount="300"/>
+      <species metaid="_857375" id="LuxS_gene" compartment="compartment" initialAmount="1"/>
+      <species metaid="_857395" id="LuxS_mRNA" compartment="compartment" initialAmount="16"/>
+      <species metaid="_857396" id="LuxS_prot" compartment="compartment" initialAmount="400"/>
+      <species metaid="_857415" id="DPD" compartment="compartment" initialAmount="300"/>
+      <species metaid="_857435" id="Homocys" compartment="compartment" initialAmount="300"/>
+      <species metaid="_857455" id="MTA" compartment="compartment" initialAmount="296"/>
+      <species metaid="_857475" id="Spermidine" compartment="compartment" initialAmount="940"/>
+      <species metaid="_857495" id="MTR" compartment="compartment" initialAmount="180"/>
+      <species metaid="_857515" id="AI2_intra" compartment="compartment" initialAmount="60"/>
+      <species metaid="_857535" id="AI2_extra" compartment="compartment" initialAmount="60"/>
+    </listOfSpecies>
+    <listOfParameters>
+      <parameter id="AI2_trans_r" value="0"/>
+      <parameter id="AI2_phos_r" value="0"/>
+      <parameter id="AI2_excret_r" value="0.25"/>
+      <parameter id="AI2_syn_r" value="0.00067"/>
+      <parameter id="AdoMet_r" value="0.962"/>
+      <parameter id="DPD_deg_r" value="0.005"/>
+      <parameter id="LuxS_mRNA_d" value="0.03"/>
+      <parameter id="LuxS_prot_d" value="0.012"/>
+      <parameter id="LuxS_transc" value="1.25"/>
+      <parameter id="LuxS_transl" value="0.74"/>
+      <parameter id="MTR_e" value="0.02"/>
+      <parameter id="MTR_syn_r" value="2.21e-05"/>
+      <parameter id="Met_recov" value="0.35"/>
+      <parameter id="Methy_trans" value="0.15"/>
+      <parameter id="Pfs_prot_d" value="0.003"/>
+      <parameter id="Polyamine_uti" value="0.15"/>
+      <parameter id="SAH_Hydro_r" value="0.00055"/>
+      <parameter id="SAM_Dec" value="0.055"/>
+      <parameter id="SRH_cleav" value="0.00224"/>
+      <parameter id="SpeE_syn_r" value="4.03e-06"/>
+      <parameter id="Spermi_uti" value="0.0208"/>
+      <parameter id="b_reac_r" value="0.01"/>
+      <parameter id="pfs_mRNA_d" value="0.022"/>
+      <parameter id="pfs_transc" value="2.1"/>
+      <parameter id="pfs_transl" value="0.54"/>
+    </listOfParameters>
+    <listOfReactions>
+      <reaction metaid="_857555" id="bio_reac" reversible="false">
+        <listOfReactants>
+          <speciesReference species="Nutrients"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Met"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> b_reac_r </ci>
+              <ci> Nutrients </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="_857575" id="AdoMet" reversible="false">
+        <listOfReactants>
+          <speciesReference species="Met"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="SAM"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> AdoMet_r </ci>
+              <ci> Met </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="_857595" id="MethyTrans" reversible="false">
+        <listOfReactants>
+          <speciesReference species="SAM"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="SAH"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> Methy_trans </ci>
+              <ci> SAM </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="_857615" id="SAM_Decarb" reversible="false">
+        <listOfReactants>
+          <speciesReference species="SAM"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Decarb_SAM"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> SAM_Dec </ci>
+              <ci> SAM </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="_857635" id="SpeE_syn" reversible="false">
+        <listOfReactants>
+          <speciesReference species="Decarb_SAM"/>
+          <speciesReference species="Putrescine"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="MTA"/>
+          <speciesReference species="Spermidine"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> SpeE_syn_r </ci>
+              <ci> Decarb_SAM </ci>
+              <ci> Putrescine </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="_857655" id="Spermi_util" reversible="false">
+        <listOfReactants>
+          <speciesReference species="Spermidine"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> Spermi_uti </ci>
+              <ci> Spermidine </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="_857675" id="MTR_syn" reversible="false">
+        <listOfReactants>
+          <speciesReference species="MTA"/>
+          <speciesReference species="Pfs_prot"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="MTR"/>
+          <speciesReference species="Adenine"/>
+          <speciesReference species="Pfs_prot"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> MTR_syn_r </ci>
+              <ci> Pfs_prot </ci>
+              <ci> MTA </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="_857695" id="MTR_excret" reversible="false">
+        <listOfReactants>
+          <speciesReference species="MTR"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> MTR_e </ci>
+              <ci> MTR </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="_857715" id="Polyamine_util" reversible="false">
+        <listOfReactants>
+          <speciesReference species="Adenine"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> Polyamine_uti </ci>
+              <ci> Adenine </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="_857735" id="Pfs_prot_deg" reversible="false">
+        <listOfReactants>
+          <speciesReference species="Pfs_prot"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> Pfs_prot_d </ci>
+              <ci> Pfs_prot </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="_857755" id="pfs_translation" reversible="false">
+        <listOfReactants>
+          <speciesReference species="Pfs_mRNA"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Pfs_prot"/>
+          <speciesReference species="Pfs_mRNA"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> pfs_transl </ci>
+              <ci> Pfs_mRNA </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="_857775" id="Pfs_mRNA_deg" reversible="false">
+        <listOfReactants>
+          <speciesReference species="Pfs_mRNA"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> pfs_mRNA_d </ci>
+              <ci> Pfs_mRNA </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="_857795" id="pfs_transcription" reversible="false">
+        <listOfReactants>
+          <speciesReference species="pfs_gene"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Pfs_mRNA"/>
+          <speciesReference species="pfs_gene"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <ci> pfs_transc </ci>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="_857815" id="SAH_Hydro" reversible="false">
+        <listOfReactants>
+          <speciesReference species="SAH"/>
+          <speciesReference species="Pfs_prot"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="SRH"/>
+          <speciesReference species="Adenine"/>
+          <speciesReference species="Pfs_prot"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> SAH_Hydro_r </ci>
+              <ci> SAH </ci>
+              <ci> Pfs_prot </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="_857835" id="SRH_cleave" reversible="false">
+        <listOfReactants>
+          <speciesReference species="LuxS_prot"/>
+          <speciesReference species="SRH"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="LuxS_prot"/>
+          <speciesReference species="Homocys"/>
+          <speciesReference species="DPD"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> SRH_cleav </ci>
+              <ci> LuxS_prot </ci>
+              <ci> SRH </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="_857855" id="Met_recover" reversible="false">
+        <listOfReactants>
+          <speciesReference species="Homocys"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Met"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> Met_recov </ci>
+              <ci> Homocys </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="_857875" id="DPD_deg" reversible="false">
+        <listOfReactants>
+          <speciesReference species="DPD"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> DPD_deg_r </ci>
+              <ci> DPD </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="_857895" id="LuxS_prot_deg" reversible="false">
+        <listOfReactants>
+          <speciesReference species="LuxS_prot"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> LuxS_prot_d </ci>
+              <ci> LuxS_prot </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="_857915" id="LuxS_translation" reversible="false">
+        <listOfReactants>
+          <speciesReference species="LuxS_mRNA"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="LuxS_prot"/>
+          <speciesReference species="LuxS_mRNA"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> LuxS_transl </ci>
+              <ci> LuxS_mRNA </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="_857935" id="LuxS_mRNA_deg" reversible="false">
+        <listOfReactants>
+          <speciesReference species="LuxS_mRNA"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> LuxS_mRNA_d </ci>
+              <ci> LuxS_mRNA </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="_857955" id="LuxS_transcription" reversible="false">
+        <listOfReactants>
+          <speciesReference species="LuxS_gene"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="LuxS_gene"/>
+          <speciesReference species="LuxS_mRNA"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <ci> LuxS_transc </ci>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="_857975" id="AI2_syn" reversible="false">
+        <listOfReactants>
+          <speciesReference species="DPD"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="AI2_intra"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> AI2_syn_r </ci>
+              <ci> DPD </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="_857995" id="AI2_excret" reversible="false">
+        <listOfReactants>
+          <speciesReference species="AI2_intra"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="AI2_extra"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> AI2_excret_r </ci>
+              <ci> AI2_intra </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="_858015" id="AI2_trans" reversible="false">
+        <listOfReactants>
+          <speciesReference species="AI2_extra"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="AI2_intra"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> AI2_trans_r </ci>
+              <ci> AI2_extra </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="_858035" id="AI2_phos" reversible="false">
+        <listOfReactants>
+          <speciesReference species="AI2_intra"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> AI2_phos_r </ci>
+              <ci> AI2_intra </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+    </listOfReactions>
+  </model>
+</sbml>

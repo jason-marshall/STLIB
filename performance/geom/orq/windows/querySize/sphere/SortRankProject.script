@@ -1,0 +1,1 @@
+SortRankProject.orq ../data/sphere.6.ascii ../data/sphere.queries > SortRankProject.sphere.query_size.timings

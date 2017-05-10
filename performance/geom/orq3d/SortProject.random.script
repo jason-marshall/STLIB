@@ -1,0 +1,6 @@
+SortProject.mesh ../data/uniform_random.2.ascii 0.232079 >> SortProject.random.timings
+SortProject.mesh ../data/uniform_random.3.ascii 0.107722 >> SortProject.random.timings
+SortProject.mesh ../data/uniform_random.4.ascii 0.05 >> SortProject.random.timings
+SortProject.mesh ../data/uniform_random.5.ascii 0.0232079 >> SortProject.random.timings
+#SortProject.mesh ../data/uniform_random.6.ascii 0.0107722 >> SortProject.random.timings
+#SortProject.mesh ../data/uniform_random.7.ascii 0.005 >> SortProject.random.timings

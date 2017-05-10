@@ -1,0 +1,318 @@
+(************** Content-type: application/mathematica **************
+
+                    Mathematica-Compatible Notebook
+
+This notebook can be used with any Mathematica-compatible
+application, such as Mathematica, MathReader or Publicon. The data
+for the notebook starts with the line containing stars above.
+
+To get the notebook into a Mathematica-compatible application, do
+one of the following:
+
+* Save the data starting with the line of stars above into a file
+  with a name ending in .nb, then open the file inside the
+  application;
+
+* Copy the data starting with the line of stars above to the
+  clipboard, then use the Paste menu command inside the application.
+
+Data for notebooks contains only printable 7-bit ASCII and can be
+sent directly in email or through ftp in text mode.  Newlines can be
+CR, LF or CRLF (Unix, Macintosh or MS-DOS style).
+
+NOTE: If you modify the data for this notebook not in a Mathematica-
+compatible application, you must delete the line below containing
+the word CacheID, otherwise Mathematica-compatible applications may
+try to use invalid cache data.
+
+For more information on notebooks and Mathematica-compatible 
+applications, contact Wolfram Research:
+  web: http://www.wolfram.com
+  email: info@wolfram.com
+  phone: +1-217-398-0700 (U.S.)
+
+Notebook reader applications are available free of charge from 
+Wolfram Research.
+*******************************************************************)
+
+(*CacheID: 232*)
+
+
+(*NotebookFileLineBreakTest
+NotebookFileLineBreakTest*)
+(*NotebookOptionsPosition[      8304,        237]*)
+(*NotebookOutlinePosition[      8953,        260]*)
+(*  CellTagsIndexPosition[      8909,        256]*)
+(*WindowFrame->Normal*)
+
+
+
+Notebook[{
+Cell["CellRandomQuerySize", "Text"],
+
+Cell[BoxData[
+    \(<< Graphics`Graphics`\)], "Input"],
+
+Cell[CellGroupData[{
+
+Cell["Data", "Section"],
+
+Cell[BoxData[
+    \(\(querySize = 
+        Table[\((1/2^n)\)^\((1/3)\), {n, 20, 1, \(-1\)}];\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(numRecords = 
+        Table[\((1/2^n)\) 10^6, {n, 20, 1, \(-1\)}];\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(sequentialScanTime = {0.121554, 0.121727, 0.12192, 0.122153, 
+          0.122506, 0.122906, 0.123479, 0.124272, 0.125274, 0.126746, 
+          0.128736, 0.13156, 0.135796, 0.142136, 0.15153, 0.165195, 0.183973, 
+          0.207252, 0.231349, 0.250511};\)\)], "Input"],
+
+Cell["cell array, cell size 0.02.", "Text"],
+
+Cell[BoxData[
+    \(\(time[1] = {1.27*^-05, 1.234*^-05, 1.576*^-05, 1.874*^-05, 2.542*^-05, 
+          3.468*^-05, 5.563*^-05, 8.363*^-05, 0.0001323, 0.00022089, 
+          0.00037579, 0.00067647, 0.00120841, 0.00215004, 0.00382413, 
+          0.00680603, 0.0122362, 0.0214848, 0.0384901, 
+          0.0694118};\)\)], "Input"],
+
+Cell["sparse cell array, cell size 0.02.", "Text"],
+
+Cell[BoxData[
+    \(\(time[2] = {1.458*^-05, 1.42*^-05, 1.808*^-05, 2.097*^-05, 2.759*^-05, 
+          3.879*^-05, 6.103*^-05, 9.68*^-05, 0.00015727, 0.00028132, 
+          0.0005124, 0.00100842, 0.00201789, 0.00415712, 0.00796647, 
+          0.0154001, 0.0296335, 0.0577786, 0.113014, 0.220792};\)\)], "Input"],
+
+Cell["cell array with binary search, cell size 0.01414.", "Text"],
+
+Cell[BoxData[
+    \(\(time[3] = {1.24*^-05, 1.285*^-05, 1.633*^-05, 2.078*^-05, 2.896*^-05, 
+          4.049*^-05, 5.771*^-05, 9.344*^-05, 0.00014247, 0.00024491, 
+          0.00043033, 0.00081964, 0.0016272, 0.00319296, 0.00631171, 
+          0.012034, 0.0231121, 0.0446165, 0.0863867, 0.167646};\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(\(\(Transpose[{querySize, numRecords, time[1], time[2], time[3], 
+                sequentialScanTime}] // N\) // TableForm\) // 
+        AccountingForm\) // TextForm\)], "Input"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["FullRange", "Section"],
+
+Cell[BoxData[
+    \(\(sequentialScanData = 
+        Transpose[{querySize, sequentialScanTime}];\)\)], "Input"],
+
+Cell[BoxData[
+    \(For[i = 1, 
+      i \[LessEqual] 
+        3, \(i++\), \[IndentingNewLine]\(data[i] = 
+          Transpose[{querySize, time[i]}];\)\[IndentingNewLine]]\)], "Input"],
+
+Cell[BoxData[
+    \(\(pointPlot = 
+        LogLogListPlot[
+          Join[data[1], data[2], 
+            data[3]], \[IndentingNewLine]PlotStyle \[Rule] 
+            PointSize[
+              0.02], \[IndentingNewLine]Ticks \[Rule] {{0.01, 0.04, 0.16\ , 
+                0.64}, {0.0001, 0.001, 0.01, 0.1}}, 
+          TextStyle \[Rule] {FontSize \[Rule] 12}, 
+          PlotLabel -> "\<Execution Time\>"];\)\)], "Input"],
+
+Cell[BoxData[
+    \(For[i = 1, 
+      i \[LessEqual] 
+        3, \(i++\), \[IndentingNewLine]\(plot[i] = 
+          LogLogListPlot[data[i], PlotJoined \[Rule] True, 
+            PlotStyle \[Rule] Hue[i/3]];\)\[IndentingNewLine]]\)], "Input"],
+
+Cell[BoxData[
+    \(\(sequentialScanPlot = 
+        LogLogListPlot[sequentialScanData, PlotJoined \[Rule] True, 
+          PlotStyle \[Rule] Dashing[{0.02, 0.02}]];\)\)], "Input"],
+
+Cell["Save as CellRandomQuerySize.eps", "Text"],
+
+Cell[BoxData[
+    \(\(Show[pointPlot, plot[1], plot[2], plot[3], 
+        sequentialScanPlot];\)\)], "Input"],
+
+Cell["Save as CellRandomQuerySizeLegend.eps", "Text"],
+
+Cell[BoxData[
+    \(\(Show[
+        Graphics[{\[IndentingNewLine]Thickness[0.08], \[IndentingNewLine]Hue[
+              3/3], \[IndentingNewLine]Line[{{0, 0}, {1, 
+                  0}}], \[IndentingNewLine]GrayLevel[
+              0], \[IndentingNewLine]Text["\<binary search\>", {1.5, 
+                0}, {\(-1\), 0}], \[IndentingNewLine]Hue[
+              2/3], \[IndentingNewLine]Line[{{0, 1}, {1, 
+                  1}}], \[IndentingNewLine]GrayLevel[
+              0], \[IndentingNewLine]Text["\<sparse cell\>", {1.5, 
+                1}, {\(-1\), 0}], \[IndentingNewLine]Hue[
+              1/3], \[IndentingNewLine]Line[{{0, 2}, {1, 
+                  2}}], \[IndentingNewLine]GrayLevel[
+              0], \[IndentingNewLine]Text["\<cell array\>", {1.5, 
+                2}, {\(-1\), 0}]\[IndentingNewLine]}], ImageSize \[Rule] 150, 
+        AspectRatio \[Rule] 0.4, 
+        PlotRange \[Rule] {{\(-1\), 12}, {\(-0.5\), 2.5}}, 
+        TextStyle \[Rule] {FontSize \[Rule] 12}];\)\)], "Input"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Lower Range", "Section"],
+
+Cell[BoxData[
+    \(For[i = 1, 
+      i \[LessEqual] 
+        3, \(i++\), \[IndentingNewLine]\(data[i] = 
+          Transpose[{querySize[\([Range[1, 10]]\)], \(time[
+                  i]\)[\([Range[1, 
+                    10]]\)]}];\)\[IndentingNewLine]]\)], "Input"],
+
+Cell[BoxData[
+    \(\(pointPlot = 
+        LogLogListPlot[
+          Join[data[1], data[2], 
+            data[3]], \[IndentingNewLine]PlotStyle \[Rule] PointSize[0.02], 
+          Ticks \[Rule] {{0.01, 0.02, 0.04\ , 0.08}, {0.00002, 0.00004, 
+                0.00008, 0.00016}}, TextStyle \[Rule] {FontSize \[Rule] 12}, 
+          PlotLabel -> "\<Execution Time\>"];\)\)], "Input"],
+
+Cell[BoxData[
+    \(For[i = 1, 
+      i \[LessEqual] 
+        3, \(i++\), \[IndentingNewLine]\(plot[i] = 
+          LogLogListPlot[data[i], PlotJoined \[Rule] True, 
+            PlotStyle \[Rule] Hue[i/3]];\)\[IndentingNewLine]]\)], "Input"],
+
+Cell["Save as CellRandomQuerySizeSmall.eps", "Text"],
+
+Cell[BoxData[
+    \(\(Show[pointPlot, plot[1], plot[2], plot[3]];\)\)], "Input"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["High Range", "Section"],
+
+Cell[BoxData[
+    \(For[i = 1, 
+      i \[LessEqual] 
+        3, \(i++\), \[IndentingNewLine]\(data[i] = 
+          Transpose[{querySize[\([Range[11, 20]]\)], \(time[
+                  i]\)[\([Range[11, 
+                    20]]\)]}];\)\[IndentingNewLine]]\)], "Input"],
+
+Cell[BoxData[
+    \(\(pointPlot = 
+        LogLogListPlot[
+          Join[data[1], data[2], 
+            data[3]], \[IndentingNewLine]PlotStyle \[Rule] PointSize[0.02], 
+          Ticks \[Rule] {{0.16, 0.32, 0.64}, {0.001, 0.01, 0.1}}, 
+          TextStyle \[Rule] {FontSize \[Rule] 12}, 
+          PlotLabel -> "\<Execution Time\>"];\)\)], "Input"],
+
+Cell[BoxData[
+    \(For[i = 1, 
+      i \[LessEqual] 
+        3, \(i++\), \[IndentingNewLine]\(plot[i] = 
+          LogLogListPlot[data[i], PlotJoined \[Rule] True, 
+            PlotStyle \[Rule] Hue[i/3]];\)\[IndentingNewLine]]\)], "Input"],
+
+Cell["Save as CellRandomQuerySizeLarge.eps", "Text"],
+
+Cell[BoxData[
+    \(\(Show[pointPlot, plot[1], plot[2], plot[3]];\)\)], "Input"]
+}, Open  ]]
+},
+FrontEndVersion->"4.1 for X",
+ScreenRectangle->{{0, 1280}, {0, 1024}},
+WindowSize->{673, 943},
+WindowMargins->{{Automatic, 72}, {Automatic, 0}},
+Magnification->1.5
+]
+
+(*******************************************************************
+Cached data follows.  If you edit this Notebook file directly, not
+using Mathematica, you must remove the line containing CacheID at
+the top of  the file.  The cache data will then be recreated when
+you save this file from within Mathematica.
+*******************************************************************)
+
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+
+(*NotebookFileOutline
+Notebook[{
+Cell[1705, 50, 35, 0, 47, "Text"],
+Cell[1743, 52, 54, 1, 44, "Input"],
+
+Cell[CellGroupData[{
+Cell[1822, 57, 23, 0, 88, "Section"],
+Cell[1848, 59, 107, 2, 44, "Input"],
+Cell[1958, 63, 103, 2, 44, "Input"],
+Cell[2064, 67, 289, 4, 100, "Input"],
+Cell[2356, 73, 43, 0, 47, "Text"],
+Cell[2402, 75, 326, 5, 100, "Input"],
+Cell[2731, 82, 50, 0, 47, "Text"],
+Cell[2784, 84, 311, 4, 154, "Input"],
+Cell[3098, 90, 65, 0, 46, "Text"],
+Cell[3166, 92, 312, 4, 154, "Input"],
+Cell[3481, 98, 200, 3, 85, "Input"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[3718, 106, 28, 0, 87, "Section"],
+Cell[3749, 108, 110, 2, 62, "Input"],
+Cell[3862, 112, 183, 4, 85, "Input"],
+Cell[4048, 118, 418, 9, 177, "Input"],
+Cell[4469, 129, 241, 5, 108, "Input"],
+Cell[4713, 136, 179, 3, 108, "Input"],
+Cell[4895, 141, 47, 0, 47, "Text"],
+Cell[4945, 143, 109, 2, 44, "Input"],
+Cell[5057, 147, 53, 0, 47, "Text"],
+Cell[5113, 149, 1000, 17, 464, "Input"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[6150, 171, 30, 0, 88, "Section"],
+Cell[6183, 173, 267, 6, 100, "Input"],
+Cell[6453, 181, 381, 7, 100, "Input"],
+Cell[6837, 190, 241, 5, 100, "Input"],
+Cell[7081, 197, 52, 0, 47, "Text"],
+Cell[7136, 199, 80, 1, 39, "Input"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[7253, 205, 29, 0, 87, "Section"],
+Cell[7285, 207, 269, 6, 131, "Input"],
+Cell[7557, 215, 349, 7, 154, "Input"],
+Cell[7909, 224, 241, 5, 108, "Input"],
+Cell[8153, 231, 52, 0, 46, "Text"],
+Cell[8208, 233, 80, 1, 39, "Input"]
+}, Open  ]]
+}
+]
+*)
+
+
+
+(*******************************************************************
+End of Mathematica Notebook file.
+*******************************************************************)
+

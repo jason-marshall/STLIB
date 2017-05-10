@@ -1,0 +1,12 @@
+# -*- python -*-
+
+import sys
+sys.path.append('..')
+from doxygen import doxygen
+
+doxygen.Doxyfile('Doxyfile', ['../main.cfg', 'local.cfg'])
+target = '../html/ext/index.html'
+Default([target])
+sources = Glob('../../stlib/ext/*.h')
+doxygen.Doxygen([target, 'ext.tag'], ['Doxyfile'] + sources)
+Clean(target, ['../html/ext', 'ext.tag'])

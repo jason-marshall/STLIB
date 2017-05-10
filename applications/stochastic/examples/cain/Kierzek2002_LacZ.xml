@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cain version="1.2">
+  <listOfModels>
+    <model id="LacZ">
+      <listOfSpecies>
+        <species initialAmount="1" id="PLac"/>
+        <species initialAmount="35" id="RNAP"/>
+        <species initialAmount="350" id="Ribosome"/>
+        <species initialAmount="0" id="RbsRibosome"/>
+        <species initialAmount="0" id="PLacRNAP"/>
+        <species initialAmount="0" id="LacZ"/>
+        <species initialAmount="0" id="dgrLacZ"/>
+        <species initialAmount="0" id="TrLacZ1"/>
+        <species initialAmount="0" id="TrLacZ2"/>
+        <species initialAmount="0" id="RbsLacZ"/>
+        <species initialAmount="0" id="dgrRbsLacZ"/>
+        <species initialAmount="0" id="TrRbsLacZ"/>
+      </listOfSpecies>
+      <listOfReactions>
+        <reaction propensity="0.17" massAction="true" id="RNA_polymerase_binding">
+          <listOfReactants>
+            <speciesReference species="PLac"/>
+            <speciesReference species="RNAP"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="PLacRNAP"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="10" massAction="true" id="RNA_polymerase_dissociation">
+          <listOfReactants>
+            <speciesReference species="PLacRNAP"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="PLac"/>
+            <speciesReference species="RNAP"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="1" massAction="true" id="Closed_complex_isomerization">
+          <listOfReactants>
+            <speciesReference species="PLacRNAP"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="TrLacZ1"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="1" massAction="true" id="Prometer_clearance">
+          <listOfReactants>
+            <speciesReference species="TrLacZ1"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="RbsLacZ"/>
+            <speciesReference species="PLac"/>
+            <speciesReference species="TrLacZ2"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="0.015" massAction="true" id="mRNA_chain_elongation_and_RNAP_release">
+          <listOfReactants>
+            <speciesReference species="TrLacZ2"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="RNAP"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="0.17" massAction="true" id="Ribosome_binding">
+          <listOfReactants>
+            <speciesReference species="Ribosome"/>
+            <speciesReference species="RbsLacZ"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="RbsRibosome"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="0.45" massAction="true" id="Ribosome_dissociation">
+          <listOfReactants>
+            <speciesReference species="RbsRibosome"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="Ribosome"/>
+            <speciesReference species="RbsLacZ"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="0.4" massAction="true" id="RBS_clearance">
+          <listOfReactants>
+            <speciesReference species="RbsRibosome"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="TrRbsLacZ"/>
+            <speciesReference species="RbsLacZ"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="0.015" massAction="true" id="LacZ_protein_synthesis">
+          <listOfReactants>
+            <speciesReference species="TrRbsLacZ"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="LacZ"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="6.42e-5" massAction="true" id="Protein_degradation">
+          <listOfReactants>
+            <speciesReference species="LacZ"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="dgrLacZ"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="0.3" massAction="true" id="Functional_mRNA_degradation">
+          <listOfReactants>
+            <speciesReference species="RbsLacZ"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="dgrRbsLacZ"/>
+          </listOfProducts>
+        </reaction>
+      </listOfReactions>
+    </model>
+  </listOfModels>
+  <listOfMethods>
+    <method category="0" numberOfBins="32" multiplicity="4" equilibrationTime="0.0" id="Direct" method="0" timeDependence="0" startTime="0.0" recordingTime="2500.0" numberOfFrames="101" options="0"/>
+  </listOfMethods>
+  <random seed="2147483648">
+  </random>
+</cain>

@@ -1,0 +1,36 @@
+1782 vertices, 0 faces.
+Search_Radius = 2
+Cell size = 2 x 2 x 2
+memory usage = 8836
+time = 0.028414
+count = 65412
+7200 vertices, 0 faces.
+Search_Radius = 2
+Cell size = 2.5 x 2.5 x 2.5
+memory usage = 32508
+time = 0.120665
+count = 265104
+28968 vertices, 0 faces.
+Search_Radius = 2
+Cell size = 2 x 2 x 2
+memory usage = 137884
+time = 0.489013
+count = 864296
+116232 vertices, 0 faces.
+Search_Radius = 2
+Cell size = 3 x 3 x 3
+memory usage = 503452
+time = 1.89148
+count = 3192056
+465672 vertices, 0 faces.
+Search_Radius = 2
+Cell size = 3 x 3 x 3
+memory usage = 2013340
+time = 8.13195
+count = 12220376
+1864200 vertices, 0 faces.
+Search_Radius = 2
+Cell size = 3 x 3 x 3
+memory usage = 8052892
+time = 33.5398
+count = 47768216

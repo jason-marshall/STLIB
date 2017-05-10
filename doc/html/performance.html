@@ -1,0 +1,414 @@
+<html>
+<head>
+<title>Performance Optimization</title>
+<link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+
+<body>
+<h1 align=center>Performance Optimization</h1>
+
+<a href="index.html">Back</a>
+
+<!---------------------------------------------------------------------------->
+<h2>The rules of the game.</h2>
+
+<p>
+The two rules of optimization:
+<ol>
+  <li>Don't do it.</li>
+  <li>(For experts only!) Don't do it yet.</li>
+</ol>
+- Michael A. Jackson
+</p>
+
+
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h2>Avoid premature optimization.</h2>
+
+<p>
+Before you attempt performance optimization for a project:
+<ul>
+  <li>Have a fully functioning application.</li>
+  <li>Ask yourself how much you are willing to pay to make the application
+  run faster.</li>
+  <li>Profile the performance of the application using gprof or the like.</li>
+  <li>Identify the expensive parts.</li>
+  <li>Determine why those parts are expensive.</li>
+</ul>
+</p>
+
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h2>Avoid pessimism.</h2>
+
+<p>
+Don't write code that is obviously inefficient.
+<ul>
+  <li>Dont use an O(n<sup>2</sup>) algorithm if an O(n log n) one is
+  available.</li>
+  <li>Pass by constant reference to avoid unnecessary constructor calls.</li>
+  <li>Use the initializer list in constructors.</li>
+  <li>Use data structures with good data-locality.  Cache misses are
+  expensive.</li>
+</ul>
+</p>
+
+<p>
+Suppose that you use an O(n<sup>2</sup>) algorithm when an
+O(n log n) one is available, because the former has acceptable
+performance. This may be pessimistic because in the future your
+code may be used on larger problems (larger n). Then your choice of
+the slower algorithm may become a significant or dominant cost.
+</p>
+
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h2>False Optimizations</h2>
+
+There are many coding practices which are false optimizations.  These may seem
+to help performance, but are actually have no effect or are even detrimental.
+
+<!-- -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - -->
+<h3>Macros</h3>
+
+Some developers use macros to avoid the overhead of a function call.  Macros
+are the bluntest tool for defining functions.  Use the C++ language feature
+of inline functions instead.  Instead of 
+<pre>
+#define DISTANCE(x,y) (std::sqrt((x - y) * (x - y)))
+</pre>
+use
+<pre>
+inline
+double
+computeDistance(const double x, const double y) {
+  return std::sqrt((x - y) * (x - y));
+}
+</pre>
+
+
+<!-- -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - -->
+<h3>Psychological Optimizations</h3>
+
+<p>
+Using single-character variable names will not improve performance!  If you
+are guilty of this sin, then write the previous sentence on a board and bang
+it against your head until the idea sinks in.  Short formulas <em>look</em>
+more efficient.  When you use descriptive variable names you may
+subconsiously assume that the computer will take longer to "read" them
+when it is executing the program.  Of course, the variable name has no effect
+on performance.  Also, formatting your program to fit on fewer lines
+will not help performance.  Omitting braces only makes your program harder
+to read and makes the programming more error prone.  The following two
+examples are functionally equivalent, but the former is easier to understand.
+</p>
+
+<pre>
+template&lt;typename ForwardIterator&gt
+ForwardIterator
+min_element(ForwardIterator first, ForwardIterator last) {
+  if (first == last) {
+    return first;
+  }
+  ForwardIterator result = first;
+  while (++first != last) {
+    if (*first &lt *result) {
+      result = first;
+    }
+  }
+  return result;
+}
+</pre>
+
+<pre>
+template&lt;typename I&gt
+I min_element(I a, I b) {
+  if (a == b) return a;
+  I r = a;
+  while (++a != b)
+    if (*a &lt *r) r = a;
+  return r;
+}
+</pre>
+
+
+<!-- -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - -->
+<h3>Iterators Versus Indexing</h3>
+
+<p>
+Using iterators is usually not more or less efficient than using array
+indexing.  You should prefer one over the other for ease of implementation and
+clarity of presentation, but not for efficiency.  Consider the following
+three examples.
+</p>
+
+<pre>
+sum = 0;
+for (int i = 0; i != array.size(); ++i) {
+  sum += array[i];
+}
+</pre>
+
+<pre>
+sum = 0;
+for (ConstIterator i = array.begin(); i != array.end(); ++i) {
+  sum += *i;
+}
+</pre>
+
+<pre>
+sum = std::accumulate(array.begin(), array.end(), 0);
+</pre>
+
+<p>
+The three examples have essentially the same efficiency.  The final one
+is prefered because of its simplicity and use of a standard idiom.
+</p>
+
+
+<!-- -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - -->
+<h3>Repeated Expressions</h3>
+
+<p>
+Optimizing compilers recognize repeated expressions.  They will store
+temporary values as necessary to most efficiently execute a section of code.
+Don't try to tell the compiler how to do this.  It is better at optimizing
+an expression than you.  Don't limit its flexibility by introducing
+unecessary temporary variables.  Use
+<pre>
+c = (a + b) * (a + b);
+</pre>
+instead of
+<pre>
+temp = a + b;
+c = temp * temp;
+</pre>
+</p>
+
+
+<!-- -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - -->
+<h3>Unrolling Loops of Known Length</h3>
+
+<p>
+Optimizing compilers will unroll small loops of fixed length to avoid the
+overhead of the loop.  That is, they replace the expression
+<pre>
+for (int i = 0; i != 5; ++i) {
+  x[i] = i;
+}
+</pre>
+with
+<pre>
+x[0] = 0;
+x[1] = 1;
+x[2] = 2;
+x[3] = 3;
+x[4] = 4;
+</pre>
+Thus, there is no need for you to do this by hand.  Let the compiler do its
+job.
+</p>
+
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h2>Polynomial Evaluation</h2>
+
+<p>
+Sometimes you can rewrite an arithmetic expression in a form that is more
+efficient.  In these cases, an optimizing compiler will not transform the
+expression by itself.  An example of this is Horner's method of evaluating
+polynomials.  One can evaluate a polynomial term-by-term in the following
+manner.
+<pre>
+result = a0 + a1 * x + a2 * x * x + a3 * x * x * x;
+</pre>
+Each additional term requires two multiplication and one addition.
+Horner's method is more efficient.
+<pre>
+result = ((a3 * x + a2) * x + a1) * x + a0;
+</pre>
+Now each additional term requires one multiplication and one addition.
+Some architectures can perform a
+<a href="http://en.wikipedia.org/wiki/Fused_multiply-add">fused multiply-add</a>
+in one clock cycle.
+(An FMA is an expression of the form <code>y = a * x + b</code>.)
+For these architectures, Horner's method is especially efficient.
+</p>
+
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h2>Mathematical Functions</h2>
+
+<p>
+Addition and subtraction are cheap.  
+Most processors can perform a couple of them per cycle.
+Multiplication is cheap because the operation is broken into multiple
+stages. It takes multiple cycles to complete, but a new multiplication
+can be started at each cycle.
+Mathematical functions such as <code>exp()</code>, <code>log()</code>, and
+<code>sqrt()</code> are much more expensive.  This is sensible, but what
+may be surprising is that <code>floor()</code>, <code>ceil()</code> and
+division are also expensive.  They are not as expensive as <code>exp()</code>,
+but they are much more expensive than the intrinsic operations of
+addition and multiplication.
+</p>
+
+<p>
+Note that although most processors can perform a couple of additions
+per cycle, you should expect a speed of a couple cycles
+per operation. There is a significant gap between what is
+theoretically possible and what performance you can obtain.
+Even if there is no stalling due to cache misses, there are load
+and store operations.
+</p>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h2>Mixing Types</h2>
+
+<p>
+Addition and multiplication are fast for both integer types and
+floating-point types. Changing the size of the number type typically
+has little impact on performance. Whether you use a 8, 16, 32, or
+64-bit integer will probably not affect the running time. Likewise for
+float and double. (Of course the size of your data structures will be
+affected. If you are getting cache misses, using a smaller type could
+help.) 
+</p>
+
+
+<p>
+You can mix integer types in an expression without hurting
+performance. Note however you will pay a significant penalty for
+mixing integers and floating-point numbers or for mixing floats and
+doubles. The penalty comes from converting an integer to a
+floating-point number and from converting a float to a double,
+respectively. A mixed-type operation costs several times more than a
+single-type operation.
+</p>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h2>Inline Functions</h2>
+
+<p>
+Declaring functions to be inline can save on overhead for function
+calls. Note that the inline qualification is only a suggestion to the
+compiler. You will have to use the appropriate optimization flags for
+the compiler to actually inline the functions. For the GNU compiler,
+-O3 will turn on the -finline-functions option. You can check which
+functions are inlined with Shark, or another trace application. Note
+that you can make more functions inline by using the -finline-limit option.
+</p>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h2>Branch Prediction and Speculation</h2>
+
+<p>
+Most modern super-scalar processors perform branch prediction and speculation.
+Based on previous evaluations, the processor predicts whether the condition
+in an <code>if</code> statement will be true or false.  Then it fills the
+pipeline with the instructions that it expects to execute.  If it guesses
+incorrectly, it has to flush the pipeline which incurs a performance penalty.
+Branch prediction and speculation usually improves the overall performance
+of a code.  With it, predictable branches become less expensive and
+unpredictable branches more expensive.  When you are considering
+potential optimizations, keep in mind that unpredictable branches
+may incur a significant penalty.
+</p>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h2>Default Arguments</h2>
+
+<p>
+Don't use default arguments with performance-critical functions.
+By performance-critical I mean functions which are themselves not expensive
+but comprise a significant portion of the computational cost of the
+program because they are called many times. Consider the following function:
+<pre>
+double
+f(const double x, const double r = 0);</pre>
+You will get better performance when calling the functon with a single
+argument if you split the function into two versions:
+<pre>
+double
+f(const double x, const double r);
+double
+f(const double x);</pre>
+Note that the former method is cleaner and avoids code duplication.
+Ideally there would not be a performance penalty for using the former
+method. Unless you have an ideal compiler, use the latter method.
+</p>
+
+
+
+<!---------------------------------------------------------------------------->
+<h2>STL</h2>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h2>Sorted Associative Containers</h2>
+
+<p>
+Each of <code>set</code>, <code>multi_set</code>, <code>map</code>, and
+<code>multi_map</code> are sorted associative containers. You can improve the
+performance of insertions if you know where the element should go. Use the
+<code>insert</code> member function that takes a position as the first
+argument.
+</p>
+<pre>
+iterator
+insert(iterator position, const value_type& x);</pre>
+<p>
+The position should be the location that immediately <em>precedes</em> the
+insert location.
+</p>
+
+
+<!---------------------------------------------------------------------------->
+<h2>Memory Issues</h2>
+
+<p>
+Use packed data structures when possible. For example prefer to use a
+2-D array instead of an array of arrays like
+<code>std::vector&lt;std::vector&lt;T&gt;&gt;</code>. Having the data in a
+contiguous array may improve cache performance.
+</p>
+
+<p>
+Free memory that you no longer need. If you allocated the memory
+yourself using <code>new</code>, then use <code>delete</code>
+to free the memory. In some
+circumstances it is prudent to release the memory used by a
+<code>std::vector</code>. Using the <code>clear()</code> member
+function will set the size
+of the vector to zero, but will not deallocate the memory. However, you can
+use <code>swap()</code> to release the memory as demonstrated below.
+</p>
+<pre>
+std::vector<double> x(size);
+...
+// Resize the vector to zero length and deallocate its memory.
+{
+   // Make an empty vector.
+   std::vector<double> tmp;
+   // Swap the vector with an empty one.
+   tmp.swap(x);
+   // The memory for tmp will be deallocated when its destructor is called.
+}</pre>
+
+
+<p>
+Note that when you deallocate memory it may or may not be immediately
+freed. It is up to the operating system whether or not to reclaim the
+memory while your program is running. If it needs the memory it
+will reclaim it, otherwise it will wait until your program exits and
+reclaim all of the memory at once.
+</p>
+
+</body>
+<hr>
+<address>
+<a href="https://bitbucket.org/seanmauch/stlib">https://bitbucket.org/seanmauch/stlib</a>
+/ at(seanmauch, dot(me, com))
+</address>
+</html>
+

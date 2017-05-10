@@ -1,0 +1,48 @@
+This directory contains executables and scripts for assessing the 
+performance of the ORQ data structures.  
+
+				Executables
+
+Executables with a .lattice suffix test the data structures for the
+case that the records lie on lattice points in 3D.  An ORQ is done for
+each record in the file.  The search radius is 2.5 times the lattice
+spacing.  Give the size of the lattice as a command line argument.
+Example:
+	CellArray.lattice 10
+
+Executables with a .mesh suffix test the data structures for the case
+that the records lie on a mesh in 3D.  An ORQ is done for each record
+in the file.  All the executables take the mesh file and the search
+radius as command line arguments.  Most have additional command line
+arguments such as leaf size or cell size.  For example,
+	KDTree.mesh ../data/chair.01.ascii 8 2
+uses a kd-tree with a leaf size of 8 and a query radius of 2.
+For the dense and sparse cell arrays you must give the size of the cell as 
+a command line argument.  For the example,
+	CellArray.mesh ../data/chair.01.ascii 4 4 4 2
+the size of the cell is 4x4x4 and the search radius is 2.  This way the
+cell is the same size as each of the query windows.
+
+
+				Scripts
+
+The *.chair.script family uses meshes of chairs as input.  Go to the ../data
+directory and make the chairs first.
+
+The *.random.script family uses uniformly distributed random points as input.
+Go to the ../data directory and make those data sets first.  Each window query
+returns about 10 records.  This tests the codes for doing very small window 
+queries.
+
+The *.random100.script family uses the same uniformly distributed
+random points as input.  Each window query returns about 100 records
+to test the codes for doing moderate sized window queries.
+
+				Timings
+
+There are tables of timings that I have done in the file "timings".
+
+
+
+
+

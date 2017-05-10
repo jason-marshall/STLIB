@@ -1,0 +1,54 @@
+100000 vertices, 0 faces.
+Search_Radius = 0.05
+Cell size = 0.01 x 0.01 x 0.01
+memory usage = 2082288
+time = 15.66
+count = 9358294
+100000 vertices, 0 faces.
+Search_Radius = 0.05
+Cell size = 0.02 x 0.02 x 0.02
+memory usage = 1539728
+time = 11.2853
+count = 9358294
+100000 vertices, 0 faces.
+Search_Radius = 0.05
+Cell size = 0.03 x 0.03 x 0.03
+memory usage = 997984
+time = 10.2275
+count = 9358294
+100000 vertices, 0 faces.
+Search_Radius = 0.05
+Cell size = 0.04 x 0.04 x 0.04
+memory usage = 659632
+time = 10.218
+count = 9358294
+100000 vertices, 0 faces.
+Search_Radius = 0.05
+Cell size = 0.05 x 0.05 x 0.05
+memory usage = 534400
+time = 11.3724
+count = 9358294
+100000 vertices, 0 faces.
+Search_Radius = 0.05
+Cell size = 0.075 x 0.075 x 0.075
+memory usage = 447040
+time = 15.2535
+count = 9358294
+100000 vertices, 0 faces.
+Search_Radius = 0.05
+Cell size = 0.1 x 0.1 x 0.1
+memory usage = 417600
+time = 22.8757
+count = 9358294
+100000 vertices, 0 faces.
+Search_Radius = 0.05
+Cell size = 0.15 x 0.15 x 0.15
+memory usage = 406272
+time = 39.4279
+count = 9358294
+100000 vertices, 0 faces.
+Search_Radius = 0.05
+Cell size = 0.2 x 0.2 x 0.2
+memory usage = 402400
+time = 70.076
+count = 9358294

@@ -1,0 +1,306 @@
+(* Content-type: application/mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 7.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       145,          7]
+NotebookDataLength[      9931,        297]
+NotebookOptionsPosition[      9079,        266]
+NotebookOutlinePosition[      9438,        282]
+CellTagsIndexPosition[      9395,        279]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Schlogl", "Title",
+ CellChangeTimes->{{3.4477918323861227`*^9, 3.447791834175372*^9}}],
+
+Cell[BoxData[
+ RowBox[{"Needs", "[", "\"\<PlotLegends`\>\"", "]"}]], "Input", "Deemphasis",
+ CellID->151534233],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+  "SetDirectory", "[", 
+   "\"\<~/Development/stlib/results/stochastic/convergence/transient/schlogl\>\
+\"", "]"}], ";"}]], "Input",
+ CellChangeTimes->{{3.447792008252809*^9, 3.447792058996266*^9}, 
+   3.4477967385880613`*^9, {3.4477982152902813`*^9, 3.447798215792438*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"standard", "=", 
+   RowBox[{"Import", "[", 
+    RowBox[{"\"\<standard/error.txt\>\"", ",", "\"\<Table\>\""}], "]"}]}], 
+  ";"}]], "Input",
+ CellChangeTimes->{{3.447791950931509*^9, 3.447791960754718*^9}, {
+   3.44779211326258*^9, 3.447792119205099*^9}, {3.44779224167362*^9, 
+   3.447792245279166*^9}, 3.4477926929429007`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"tree", "=", 
+   RowBox[{"Import", "[", 
+    RowBox[{"\"\<tree/error.txt\>\"", ",", "\"\<Table\>\""}], "]"}]}], 
+  ";"}]], "Input",
+ CellChangeTimes->{{3.447791950931509*^9, 3.447791960754718*^9}, {
+   3.44779211326258*^9, 3.447792139037019*^9}, {3.447792253625313*^9, 
+   3.447792256015298*^9}, 3.447792698949911*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"times", "=", 
+   RowBox[{"Join", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Transpose", "[", "standard", "]"}], "[", 
+      RowBox[{"[", "1", "]"}], "]"}], ",", 
+     RowBox[{
+      RowBox[{"Transpose", "[", "tree", "]"}], "[", 
+      RowBox[{"[", "1", "]"}], "]"}]}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.447797778528489*^9, 3.44779785352013*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"logStandard", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"Log", "[", 
+        RowBox[{
+         RowBox[{"standard", "[", 
+          RowBox[{"[", "i", "]"}], "]"}], "[", 
+         RowBox[{"[", "1", "]"}], "]"}], "]"}], ",", 
+       RowBox[{"Log", "[", 
+        RowBox[{
+         RowBox[{"standard", "[", 
+          RowBox[{"[", "i", "]"}], "]"}], "[", 
+         RowBox[{"[", "2", "]"}], "]"}], "]"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", 
+       RowBox[{"Length", "[", "standard", "]"}]}], "}"}]}], "]"}]}], 
+  ";"}]], "Input",
+ CellChangeTimes->{{3.4477970691063643`*^9, 3.447797163302009*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"logTree", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"Log", "[", 
+        RowBox[{
+         RowBox[{"tree", "[", 
+          RowBox[{"[", "i", "]"}], "]"}], "[", 
+         RowBox[{"[", "1", "]"}], "]"}], "]"}], ",", 
+       RowBox[{"Log", "[", 
+        RowBox[{
+         RowBox[{"tree", "[", 
+          RowBox[{"[", "i", "]"}], "]"}], "[", 
+         RowBox[{"[", "2", "]"}], "]"}], "]"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", 
+       RowBox[{"Length", "[", "tree", "]"}]}], "}"}]}], "]"}]}], 
+  ";"}]], "Input",
+ CellChangeTimes->{{3.4477970691063643`*^9, 3.4477971884847193`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"fitStandard", "[", "x_", "]"}], "=", 
+  RowBox[{"Exp", "[", 
+   RowBox[{
+    RowBox[{"Fit", "[", 
+     RowBox[{"logStandard", ",", 
+      RowBox[{"{", 
+       RowBox[{"1", ",", "x"}], "}"}], ",", "x"}], "]"}], "/.", 
+    RowBox[{"x", "\[Rule]", 
+     RowBox[{"Log", "[", "x", "]"}]}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.447797191043467*^9, 3.447797212244185*^9}, {
+  3.447797286737549*^9, 3.447797287927425*^9}, {3.44779792135605*^9, 
+  3.447797987260749*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"fitTree", "[", "x_", "]"}], "=", 
+  RowBox[{"Exp", "[", 
+   RowBox[{
+    RowBox[{"Fit", "[", 
+     RowBox[{"logTree", ",", 
+      RowBox[{"{", 
+       RowBox[{"1", ",", "x"}], "}"}], ",", "x"}], "]"}], "/.", 
+    RowBox[{"x", "\[Rule]", 
+     RowBox[{"Log", "[", "x", "]"}]}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.447797191043467*^9, 3.447797212244185*^9}, {
+  3.447797286737549*^9, 3.447797287927425*^9}, {3.44779792135605*^9, 
+  3.447798005229138*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(", 
+   RowBox[{"x", "/.", 
+    RowBox[{"FindRoot", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"fitStandard", "[", "x", "]"}], "\[Equal]", "0.1"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"x", ",", "100"}], "}"}]}], "]"}]}], ")"}], "/", 
+  RowBox[{"(", 
+   RowBox[{"x", "/.", 
+    RowBox[{"FindRoot", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"fitTree", "[", "x", "]"}], "\[Equal]", "0.1"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"x", ",", "100"}], "}"}]}], "]"}]}], ")"}]}]], "Input",
+ CellChangeTimes->{{3.44786260475413*^9, 3.447862645777772*^9}, {
+  3.447862676729867*^9, 3.4478626775654087`*^9}, {3.4478627526410913`*^9, 
+  3.447862766965262*^9}, {3.447862939931637*^9, 3.447863012416695*^9}}],
+
+Cell[BoxData[
+ RowBox[{"ListLogLogPlot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"standard", ",", "tree"}], "}"}], ",", 
+   RowBox[{"PlotStyle", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"Red", ",", "Green"}], "}"}]}], ",", 
+   RowBox[{"AxesLabel", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"\"\<Simulation\\nTime\>\"", ",", "\"\<Error\>\""}], "}"}]}]}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.44779214252229*^9, 3.447792146031108*^9}, {
+  3.4477923231219378`*^9, 3.447792332208497*^9}, {3.447792401312503*^9, 
+  3.447792402392355*^9}, {3.447792521648746*^9, 3.447792522798637*^9}, {
+  3.447800403916119*^9, 3.4478004158759947`*^9}, {3.4489105521019907`*^9, 
+  3.448910574189402*^9}}],
+
+Cell[BoxData[
+ RowBox[{"LogLogPlot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"fitStandard", "[", "x", "]"}], ",", 
+     RowBox[{"fitTree", "[", "x", "]"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", 
+     RowBox[{"Min", "[", "times", "]"}], ",", 
+     RowBox[{"Max", "[", "times", "]"}]}], "}"}], ",", 
+   RowBox[{"PlotStyle", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"Red", ",", "Green"}], "}"}]}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.447797290275881*^9, 3.44779734511371*^9}, {
+  3.447797545969098*^9, 3.4477975806492853`*^9}, {3.447797668803289*^9, 
+  3.447797669680935*^9}, {3.44779807804904*^9, 3.44779812538632*^9}, {
+  3.447798464756012*^9, 3.4477984914268513`*^9}, {3.447798546783998*^9, 
+  3.447798561149704*^9}, {3.4477988431667337`*^9, 3.447798855557123*^9}, {
+  3.4477991131112957`*^9, 3.447799121493772*^9}, {3.447799154570047*^9, 
+  3.447799387071548*^9}, {3.447799650690359*^9, 3.447799659640123*^9}}],
+
+Cell[BoxData[
+ RowBox[{"ShowLegend", "[", 
+  RowBox[{
+   RowBox[{"Show", "[", 
+    RowBox[{"%%", ",", "%"}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Graphics", "[", 
+          RowBox[{"{", 
+           RowBox[{"Red", ",", 
+            RowBox[{"Line", "[", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{"0", ",", "0"}], "}"}], ",", 
+               RowBox[{"{", 
+                RowBox[{"1", ",", "0"}], "}"}]}], "}"}], "]"}]}], "}"}], 
+          "]"}], ",", "Standard"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Graphics", "[", 
+          RowBox[{"{", 
+           RowBox[{"Green", ",", 
+            RowBox[{"Line", "[", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{"0", ",", "0"}], "}"}], ",", 
+               RowBox[{"{", 
+                RowBox[{"1", ",", "0"}], "}"}]}], "}"}], "]"}]}], "}"}], 
+          "]"}], ",", "Tree"}], "}"}]}], "}"}], ",", 
+     RowBox[{"LegendPosition", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"0.2", ",", "0.2"}], "}"}]}], ",", 
+     RowBox[{"LegendSpacing", "\[Rule]", "0"}], ",", 
+     RowBox[{"LegendSize", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"0.5", ",", "0.3"}], "}"}]}], ",", 
+     RowBox[{"LegendShadow", "\[Rule]", "None"}]}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.447799732364297*^9, 3.447799742803993*^9}, {
+   3.447799816771903*^9, 3.447799867226976*^9}, 3.447799915999951*^9, {
+   3.4477999476449327`*^9, 3.447799975339984*^9}, 3.44780004303583*^9, {
+   3.447800079379303*^9, 3.4478001075016747`*^9}, {3.447800286934207*^9, 
+   3.4478002941343737`*^9}, {3.447800335840728*^9, 3.447800341571105*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Export", "[", 
+   RowBox[{"\"\<convergence.pdf\>\"", ",", "%"}], "]"}], ";"}]], "Input",
+ CellChangeTimes->{{3.447863206100103*^9, 3.4478632435786*^9}, {
+  3.448910891418531*^9, 3.4489108929273853`*^9}}]
+}, Open  ]]
+},
+WindowSize->{640, 750},
+WindowMargins->{{4, Automatic}, {Automatic, 4}},
+ShowSelection->True,
+FrontEndVersion->"7.0 for Mac OS X x86 (32-bit) (November 10, 2008)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[567, 22, 92, 1, 76, "Title"],
+Cell[662, 25, 111, 2, 27, "Input",
+ CellID->151534233],
+Cell[776, 29, 309, 7, 58, "Input"],
+Cell[1088, 38, 361, 8, 27, "Input"],
+Cell[1452, 48, 352, 8, 27, "Input"],
+Cell[1807, 58, 399, 11, 27, "Input"],
+Cell[2209, 71, 701, 21, 43, "Input"],
+Cell[2913, 94, 687, 21, 43, "Input"],
+Cell[3603, 117, 503, 13, 27, "Input"],
+Cell[4109, 132, 495, 13, 27, "Input"],
+Cell[4607, 147, 752, 20, 43, "Input"],
+Cell[5362, 169, 695, 16, 43, "Input"],
+Cell[6060, 187, 954, 20, 43, "Input"],
+Cell[7017, 209, 1805, 47, 88, "Input"],
+Cell[8825, 258, 238, 5, 27, "Input"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

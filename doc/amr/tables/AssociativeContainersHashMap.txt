@@ -1,0 +1,16 @@
+<table border = "1">
+<tr> <th> Number of records <th> 10 <th> 100 <th> 1000 <th> 10,000 <th> 100,000 <th> 1,000,000
+<tr> <th> Time (ns)
+<td> 
+10
+<td> 
+10
+<td> 
+11
+<td> 
+12
+<td> 
+14
+<td> 
+105
+</table>

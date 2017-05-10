@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cain version="1.2">
+  <listOfModels>
+    <model id="LotkaVolterra">
+      <listOfSpecies>
+        <species initialAmount="50" id="Prey"/>
+        <species initialAmount="100" id="Predator"/>
+      </listOfSpecies>
+      <listOfReactions>
+        <reaction propensity="1" massAction="true" id="PreyReproduction">
+          <listOfReactants>
+            <speciesReference species="Prey"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference stoichiometry="2" species="Prey"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="0.005" massAction="true" id="PredatorPreyInteraction">
+          <listOfReactants>
+            <speciesReference species="Prey"/>
+            <speciesReference species="Predator"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference stoichiometry="2" species="Predator"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="0.6" massAction="true" id="PredatorDeath">
+          <listOfReactants>
+            <speciesReference species="Predator"/>
+          </listOfReactants>
+        </reaction>
+      </listOfReactions>
+    </model>
+  </listOfModels>
+  <listOfMethods>
+    <method category="0" numberOfBins="32" multiplicity="4" equilibrationTime="0.0" id="Direct" method="0" timeDependence="0" startTime="0.0" recordingTime="100.0" numberOfFrames="101" options="0"/>
+  </listOfMethods>
+  <random seed="2147483648">
+  </random>
+</cain>

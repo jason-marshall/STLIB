@@ -1,0 +1,122 @@
+# -*- Makefile -*-
+
+# Before including this, the makefile should define the sources.
+
+# Default compiler.
+CXX = g++
+CC = g++
+
+CXXINCLUDE += -I.. -I../../../../src
+CXXFLAGS += $(CXXINCLUDE)
+
+# If we are using the boost library.
+ifdef BOOST
+CXXINCLUDE += -I../../../../src/third-party/boost/tr1 -I../../../../src/third-party
+CXXFLAGS += -DBOOST
+LINKERFLAGS += -DBOOST
+endif
+
+# Profiling flags.
+#CXXFLAGS += -pg
+#LINKERFLAGS += -pg
+
+# CONTINUE: Will -O3 work?
+# Gnu compiler.
+ifeq ($(CXX),g++)
+# 32 or 64-bit.
+ifeq ($(BITS),32)
+CXXFLAGS += -m32
+LINKERFLAGS += -m32
+endif
+ifeq ($(BITS),64)
+CXXFLAGS += -m64
+LINKERFLAGS += -m64
+endif
+CXXFLAGS += -O2 -ansi -pedantic -Wall
+endif
+
+# IBM XL compiler.
+ifeq ($(CXX),xlC)
+CXXFLAGS += -O3 
+endif
+
+# Intel compiler.
+ifeq ($(CXX),icc)
+# CONTINUE: How can I Display errors and warning but not remarks?
+CXXFLAGS += -fast -strict_ansi
+endif
+
+# PathScale compiler.
+ifeq ($(CXX),pathCC)
+CXXFLAGS += -O3 -ansi -INLINE:aggressive=ON -OPT:alias=typed
+endif
+
+# PGI compiler.
+ifeq ($(CXX),pgCC)
+CXXFLAGS += -O3 -fastsse -Minline
+endif
+
+SOURCES = $(SOURCES_EXPLICIT) $(SOURCES_2) $(SOURCES_3) $(SOURCES_N) \
+  $(SOURCES_N2) $(SOURCES_NM) $(SOURCES_20_21_22_30_31_32_33) \
+  $(SOURCES_22_32_33) $(SOURCES_21_22_31_32_33) $(SOURCES_21_31_22_32) 
+DEPENDENCIES = $(SOURCES:.cc=.d)
+TARGETS = $(SOURCES_EXPLICIT:.cc=.exe) \
+  $(SOURCES_2:.cc=2.exe) \
+  $(SOURCES_3:.cc=3.exe) \
+  $(SOURCES_N:.cc=2.exe) $(SOURCES_N:.cc=3.exe) \
+  $(SOURCES_N2:.cc=22.exe) $(SOURCES_N2:.cc=32.exe) \
+  $(SOURCES_NM:.cc=21.exe) $(SOURCES_NM:.cc=22.exe) \
+  $(SOURCES_NM:.cc=32.exe) $(SOURCES_NM:.cc=33.exe) \
+  $(SOURCES_20_21_22_30_31_32_33:.cc=20.exe) \
+  $(SOURCES_20_21_22_30_31_32_33:.cc=21.exe) \
+  $(SOURCES_20_21_22_30_31_32_33:.cc=22.exe) \
+  $(SOURCES_20_21_22_30_31_32_33:.cc=30.exe) \
+  $(SOURCES_20_21_22_30_31_32_33:.cc=31.exe) \
+  $(SOURCES_20_21_22_30_31_32_33:.cc=32.exe) \
+  $(SOURCES_20_21_22_30_31_32_33:.cc=33.exe) \
+  $(SOURCES_22_32_33:.cc=22.exe) $(SOURCES_22_32_33:.cc=32.exe) \
+  $(SOURCES_22_32_33:.cc=33.exe) \
+  $(SOURCES_21_22_31_32_33:.cc=21.exe) \
+  $(SOURCES_21_22_31_32_33:.cc=22.exe) \
+  $(SOURCES_21_22_31_32_33:.cc=31.exe) \
+  $(SOURCES_21_22_31_32_33:.cc=32.exe) \
+  $(SOURCES_21_22_31_32_33:.cc=33.exe) \
+  $(SOURCES_21_31_22_32:.cc=21.exe) $(SOURCES_21_31_22_32:.cc=31.exe) \
+  $(SOURCES_21_31_22_32:.cc=22.exe) $(SOURCES_21_31_22_32:.cc=32.exe) 
+
+.SUFFIXES:
+.SUFFIXES: .cc .d .o .exe
+
+# The default target.
+all: $(TARGETS)
+
+clean: 
+	$(RM) *.o *.d *~ core* *.stackdump
+
+distclean: 
+	$(MAKE) clean 
+	$(RM) $(TARGETS) $(DEPENDENCIES)
+
+again: 
+	$(MAKE) distclean 
+	$(MAKE) 
+
+
+.cc.d: 
+	$(CXX) -MM $(CXXINCLUDE) \
+  -DDIMENSION=0 -DSPACE_DIMENSION=0 -DSIMPLEX_DIMENSION=0 $< > $@.$$$$; \
+  sed 's,\($*\)\.o[ :]*,\1.o $@ : ,g' < $@.$$$$ > $@; \
+  $(RM) $@.$$$$
+
+.cc.o: 
+	$(CXX) $(CXXFLAGS) -c $<
+
+.o.exe:
+	$(CXX) $(LINKERFLAGS) -o $@ $<
+
+
+ifneq ($(MAKECMDGOALS),clean)
+ifneq ($(MAKECMDGOALS),distclean)
+-include $(DEPENDENCIES)
+endif
+endif

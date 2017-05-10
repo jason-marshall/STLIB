@@ -1,0 +1,15 @@
+# -*- python -*-
+
+import os.path
+import num_jobs
+from env import serial
+
+#sourceDirectory = os.path.realpath('../src')
+#Export('sourceDirectory')
+
+VariantDir('release', '.')
+if COMMAND_LINE_TARGETS:
+    for x in COMMAND_LINE_TARGETS:
+        SConscript(os.path.join('release', x, 'SConscript'))
+else:
+    SConscript([os.path.join('release', str(x)) for x in Glob('*/SConscript')])

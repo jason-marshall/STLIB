@@ -1,0 +1,132 @@
+(************** Content-type: application/mathematica **************
+
+                    Mathematica-Compatible Notebook
+
+This notebook can be used with any Mathematica-compatible
+application, such as Mathematica, MathReader or Publicon. The data
+for the notebook starts with the line containing stars above.
+
+To get the notebook into a Mathematica-compatible application, do
+one of the following:
+
+* Save the data starting with the line of stars above into a file
+  with a name ending in .nb, then open the file inside the
+  application;
+
+* Copy the data starting with the line of stars above to the
+  clipboard, then use the Paste menu command inside the application.
+
+Data for notebooks contains only printable 7-bit ASCII and can be
+sent directly in email or through ftp in text mode.  Newlines can be
+CR, LF or CRLF (Unix, Macintosh or MS-DOS style).
+
+NOTE: If you modify the data for this notebook not in a Mathematica-
+compatible application, you must delete the line below containing
+the word CacheID, otherwise Mathematica-compatible applications may
+try to use invalid cache data.
+
+For more information on notebooks and Mathematica-compatible 
+applications, contact Wolfram Research:
+  web: http://www.wolfram.com
+  email: info@wolfram.com
+  phone: +1-217-398-0700 (U.S.)
+
+Notebook reader applications are available free of charge from 
+Wolfram Research.
+*******************************************************************)
+
+(*CacheID: 232*)
+
+
+(*NotebookFileLineBreakTest
+NotebookFileLineBreakTest*)
+(*NotebookOptionsPosition[      2954,         88]*)
+(*NotebookOutlinePosition[      3602,        111]*)
+(*  CellTagsIndexPosition[      3558,        107]*)
+(*WindowFrame->Normal*)
+
+
+
+Notebook[{
+Cell["SequentialScanSphereQuerySize", "Text"],
+
+Cell[BoxData[
+    \(<< Graphics`Graphics`\)], "Input"],
+
+Cell[BoxData[
+    \(\(querySize = 
+        Table[\@\(1/2\^n\), {n, 19, \(-2\), \(-1\)}];\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(ssTime = {0.119241, 0.119222, 0.119217, 0.119313, 0.119329, 0.119377, 
+          0.119503, 0.119583, 0.119765, 0.120086, 0.120415, 0.120962, 
+          0.12183, 0.123111, 0.125185, 0.128512, 0.133975, 0.143135, 
+          0.157639, 0.17847, 0.204678, 0.233221};\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(ssData = Transpose[{querySize, ssTime}];\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(\(ssData // N\) // TableForm\) // TextForm\)], "Input"],
+
+Cell[BoxData[
+    \(\(LogLinearListPlot[
+        ssData, \[IndentingNewLine]PlotStyle \[Rule] 
+          PointSize[
+            0.02], \[IndentingNewLine]Ticks \[Rule] {{0.01, 0.1, 1}, {0.05, 
+              0.1, 0.15, \ 0.2}}, TextStyle \[Rule] {FontSize \[Rule] 12}, 
+        PlotLabel -> "\<Execution Time\>", 
+        PlotRange \[Rule] {0, 0.233221}];\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(LogLinearListPlot[ssData, PlotJoined \[Rule] True];\)\)], "Input"],
+
+Cell["Save as SequentialScanSphereQuerySize.eps.", "Text"],
+
+Cell[BoxData[
+    \(\(Show[%%, %];\)\)], "Input"]
+},
+FrontEndVersion->"4.1 for X",
+ScreenRectangle->{{0, 1280}, {0, 1024}},
+WindowSize->{673, 943},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+Magnification->1.5
+]
+
+(*******************************************************************
+Cached data follows.  If you edit this Notebook file directly, not
+using Mathematica, you must remove the line containing CacheID at
+the top of  the file.  The cache data will then be recreated when
+you save this file from within Mathematica.
+*******************************************************************)
+
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+
+(*NotebookFileOutline
+Notebook[{
+Cell[1705, 50, 45, 0, 46, "Text"],
+Cell[1753, 52, 54, 1, 39, "Input"],
+Cell[1810, 55, 103, 2, 54, "Input"],
+Cell[1916, 59, 298, 4, 154, "Input"],
+Cell[2217, 65, 77, 1, 39, "Input"],
+Cell[2297, 68, 77, 1, 39, "Input"],
+Cell[2377, 71, 369, 7, 154, "Input"],
+Cell[2749, 80, 88, 1, 39, "Input"],
+Cell[2840, 83, 58, 0, 46, "Text"],
+Cell[2901, 85, 49, 1, 39, "Input"]
+}
+]
+*)
+
+
+
+(*******************************************************************
+End of Mathematica Notebook file.
+*******************************************************************)
+

@@ -1,0 +1,232 @@
+
+:
+MPI processes = 1
+Total time = 0.186685
+
+Distribute objects with multi-level cells:
+Total time = 0.18659
+
+sfc::distribute() for CellsMultiLevel:
+Initial objects = 1.04858e+06
+maxObjectsPerCell = 83880
+Redistributed objects = 1.04858e+06
+Local cells = 64
+Global cells = 64
+buildReduceBroadcast() = 0.179137
+distributeNoSort() = 0.00499142
+Total time = 0.184154
+
+:
+MPI processes = 2
+Total time
+  sum = 0.3482, mean = 0.1741, min = 0.173963, max = 0.174237
+
+Distribute objects with multi-level cells:
+Total time
+  sum = 0.348052, mean = 0.174026, min = 0.173941, max = 0.174111
+
+sfc::distribute() for CellsMultiLevel:
+Initial objects = 1.04858e+06
+maxObjectsPerCell = 59488
+Redistributed objects
+  sum = 2.09715e+06, mean = 1.04858e+06, min = 1.04782e+06, max = 1.04933e+06
+Local cells = 32
+Global cells = 64
+buildReduceBroadcast()
+  sum = 0.327962, mean = 0.163981, min = 0.16398, max = 0.163982
+distributeNoSort()
+  sum = 0.0143199, mean = 0.00715995, min = 0.00715989, max = 0.00716001
+Total time
+  sum = 0.342333, mean = 0.171166, min = 0.171166, max = 0.171166
+
+:
+MPI processes = 4
+Total time
+  sum = 0.738426, mean = 0.184607, min = 0.184403, max = 0.18484
+
+Distribute objects with multi-level cells:
+Total time
+  sum = 0.738231, mean = 0.184558, min = 0.184379, max = 0.184718
+
+sfc::distribute() for CellsMultiLevel:
+Initial objects = 1.04858e+06
+maxObjectsPerCell = 41936
+Redistributed objects
+  sum = 4.1943e+06, mean = 1.04858e+06, min = 1.04646e+06, max = 1.05089e+06
+Local cells
+  sum = 640, mean = 160, min = 128, max = 192
+Global cells = 512
+buildReduceBroadcast()
+  sum = 0.691997, mean = 0.172999, min = 0.17299, max = 0.173013
+distributeNoSort()
+  sum = 0.03435, mean = 0.00858751, min = 0.00856474, max = 0.00860571
+Total time
+  sum = 0.726441, mean = 0.18161, min = 0.181603, max = 0.181617
+
+:
+MPI processes = 8
+Total time
+  sum = 1.59994, mean = 0.199993, min = 0.197493, max = 0.200733
+
+Distribute objects with multi-level cells:
+Total time
+  sum = 1.59924, mean = 0.199905, min = 0.197458, max = 0.200662
+
+sfc::distribute() for CellsMultiLevel:
+Initial objects = 1.04858e+06
+maxObjectsPerCell = 29664
+Redistributed objects
+  sum = 8.38861e+06, mean = 1.04858e+06, min = 1.04646e+06, max = 1.05089e+06
+Local cells
+  sum = 896, mean = 112, min = 64, max = 128
+Global cells = 512
+buildReduceBroadcast()
+  sum = 1.47159, mean = 0.183949, min = 0.183928, max = 0.183966
+distributeNoSort()
+  sum = 0.102184, mean = 0.0127729, min = 0.0102882, max = 0.0134395
+Total time
+  sum = 1.57396, mean = 0.196745, min = 0.194254, max = 0.197402
+
+:
+MPI processes = 16
+Total time
+  sum = 3.99738, mean = 0.249836, min = 0.247264, max = 0.251479
+
+Distribute objects with multi-level cells:
+Total time
+  sum = 3.99613, mean = 0.249758, min = 0.247187, max = 0.251454
+
+sfc::distribute() for CellsMultiLevel:
+Initial objects = 1.04858e+06
+maxObjectsPerCell = 20968
+Redistributed objects
+  sum = 1.67772e+07, mean = 1.04858e+06, min = 1.04399e+06, max = 1.05161e+06
+Local cells
+  sum = 1408, mean = 88, min = 64, max = 128
+Global cells = 512
+buildReduceBroadcast()
+  sum = 3.62977, mean = 0.226861, min = 0.226798, max = 0.226881
+distributeNoSort()
+  sum = 0.294593, mean = 0.0184121, min = 0.017271, max = 0.0190513
+Total time
+  sum = 3.92471, mean = 0.245294, min = 0.244165, max = 0.245926
+
+:
+MPI processes = 32
+Total time
+  sum = 28.994, mean = 0.906063, min = 0.86795, max = 0.928604
+
+Distribute objects with multi-level cells:
+Total time
+  sum = 28.9761, mean = 0.905502, min = 0.86792, max = 0.928575
+
+sfc::distribute() for CellsMultiLevel:
+Initial objects = 1.04858e+06
+maxObjectsPerCell = 14824
+Redistributed objects
+  sum = 3.35544e+07, mean = 1.04858e+06, min = 1.04361e+06, max = 1.05317e+06
+Local cells
+  sum = 11741, mean = 366.906, min = 256, max = 512
+Global cells = 4096
+buildReduceBroadcast()
+  sum = 8.82015, mean = 0.27563, min = 0.275282, max = 0.27583
+distributeNoSort()
+  sum = 15.9132, mean = 0.497286, min = 0.469941, max = 0.505701
+Total time
+  sum = 24.734, mean = 0.772937, min = 0.745772, max = 0.781237
+
+:
+MPI processes = 64
+Total time
+  sum = 117.579, mean = 1.83716, min = 1.70101, max = 1.93108
+
+Distribute objects with multi-level cells:
+Total time
+  sum = 117.377, mean = 1.83401, min = 1.69983, max = 1.93106
+
+sfc::distribute() for CellsMultiLevel:
+Initial objects = 1.04858e+06
+maxObjectsPerCell = 10480
+Redistributed objects
+  sum = 6.71089e+07, mean = 1.04858e+06, min = 1.03563e+06, max = 1.05709e+06
+Local cells
+  sum = 19969, mean = 312.016, min = 256, max = 512
+Global cells = 4096
+buildReduceBroadcast()
+  sum = 30.5229, mean = 0.47692, min = 0.476539, max = 0.477209
+distributeNoSort()
+  sum = 74.2993, mean = 1.16093, min = 1.0302, max = 1.24381
+Total time
+  sum = 104.824, mean = 1.63787, min = 1.50699, max = 1.72067
+
+:
+MPI processes = 128
+Total time
+  sum = 422.226, mean = 3.29864, min = 3.05371, max = 3.40988
+
+Distribute objects with multi-level cells:
+Total time
+  sum = 421.803, mean = 3.29534, min = 3.05292, max = 3.39961
+
+sfc::distribute() for CellsMultiLevel:
+Initial objects = 1.04858e+06
+maxObjectsPerCell = 7408
+Redistributed objects
+  sum = 1.34218e+08, mean = 1.04858e+06, min = 1.03832e+06, max = 1.05908e+06
+Local cells
+  sum = 36361, mean = 284.07, min = 256, max = 512
+Global cells = 4096
+buildReduceBroadcast()
+  sum = 50.0897, mean = 0.391326, min = 0.390691, max = 0.391558
+distributeNoSort()
+  sum = 339.695, mean = 2.65387, min = 2.42243, max = 2.74695
+Total time
+  sum = 389.788, mean = 3.04521, min = 2.81377, max = 3.13833
+
+:
+MPI processes = 256
+Total time
+  sum = 1913.63, mean = 7.47511, min = 6.72462, max = 7.88787
+
+Distribute objects with multi-level cells:
+Total time
+  sum = 1911.54, mean = 7.46696, min = 6.72458, max = 7.80182
+
+sfc::distribute() for CellsMultiLevel:
+Initial objects = 1.04858e+06
+maxObjectsPerCell = 5240
+Redistributed objects
+  sum = 2.68435e+08, mean = 1.04858e+06, min = 1.02747e+06, max = 1.06823e+06
+Local cells
+  sum = 69136, mean = 270.062, min = 256, max = 512
+Global cells = 4096
+buildReduceBroadcast()
+  sum = 112.291, mean = 0.438635, min = 0.43806, max = 0.438961
+distributeNoSort()
+  sum = 1691.71, mean = 6.60823, min = 5.91795, max = 6.94089
+Total time
+  sum = 1804, mean = 7.04689, min = 6.35665, max = 7.37947
+
+:
+MPI processes = 512
+Total time
+  sum = 9442.31, mean = 18.442, min = 16.6066, max = 19.457
+
+Distribute objects with multi-level cells:
+Total time
+  sum = 9423.99, mean = 18.4062, min = 16.6065, max = 19.3239
+
+sfc::distribute() for CellsMultiLevel:
+Initial objects = 1.04858e+06
+maxObjectsPerCell = 3704
+Redistributed objects
+  sum = 5.36871e+08, mean = 1.04858e+06, min = 1.03275e+06, max = 1.05702e+06
+Local cells
+  sum = 555032, mean = 1084.05, min = 1024, max = 2048
+Global cells = 32768
+buildReduceBroadcast()
+  sum = 506.971, mean = 0.990178, min = 0.981037, max = 0.994228
+distributeNoSort()
+  sum = 8685.37, mean = 16.9636, min = 15.1843, max = 17.8822
+Total time
+  sum = 9192.35, mean = 17.9538, min = 16.1778, max = 18.8745

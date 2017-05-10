@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cain version="1.2">
+  <listOfModels>
+    <model id="DecayingDimerizing" name="Decaying, Dimerizing">
+      <listOfSpecies>
+        <species initialAmount="100000" id="Monomer"/>
+        <species initialAmount="0" id="UnstableDimer"/>
+        <species initialAmount="0" id="StableDimer"/>
+      </listOfSpecies>
+      <listOfReactions>
+        <reaction propensity="1.0" massAction="true" id="Decay">
+          <listOfReactants>
+            <speciesReference species="Monomer"/>
+          </listOfReactants>
+        </reaction>
+        <reaction propensity="0.002" massAction="true" id="DimerizationForward">
+          <listOfReactants>
+            <speciesReference stoichiometry="2" species="Monomer"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="UnstableDimer"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="0.5" massAction="true" id="DimerizationBackward">
+          <listOfReactants>
+            <speciesReference species="UnstableDimer"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference stoichiometry="2" species="Monomer"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="0.04" massAction="true" id="Stabilization">
+          <listOfReactants>
+            <speciesReference species="UnstableDimer"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="StableDimer"/>
+          </listOfProducts>
+        </reaction>
+      </listOfReactions>
+    </model>
+  </listOfModels>
+  <listOfMethods>
+    <method category="0" numberOfBins="32" multiplicity="4" equilibrationTime="0.0" id="Direct" method="0" timeDependence="0" startTime="0.0" recordingTime="30.0" numberOfFrames="11" options="0"/>
+  </listOfMethods>
+  <random seed="2147483648">
+  </random>
+</cain>

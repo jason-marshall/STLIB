@@ -1,0 +1,103 @@
+
+<html>
+<head>
+<title>Direct Method with Time-Dependent Propensities</title>
+</head>
+<body>
+<h1>Direct Method with Time-Dependent Propensities</h1>
+
+<p>
+Cain does not currently offer an implementation of the direct method
+for systems of reactions that have time-dependent propensities. However,
+we present the method here because it will help us understand
+hybrid methods. Let &alpha;(t) be the sum of the propensities. If each of the
+propensities was approximately constant on the time scale of 1/&alpha;(t),
+which is the average time to the next reaction,
+then an approximate solution method could treat them as if they were
+actually constant. Of course one would need to evaluate all of the
+propensities at each step. If any of the propensities varied significantly
+on that time scale then we would need to account for this behavior.
+In the following exposition we will assume that no propensities become
+zero during a step.
+</p>
+
+<p>
+Consider the exponential distribution with rate parameter &lambda;.
+The probability density function is &lambda; e<sup>-&lambda; t</sup>;
+the mean is 1/&lambda;. Let E be an exponential deviate with unit rate
+constant. We can obtain an exponential deviate with rate constant &lambda;
+simply by dividing by &lambda;. Now consider the case that the rate
+parameter is not constant. A exponential deviate is T where
+&int;<sub>0</sub><sup>T</sup> &lambda;(t)dt = E. Note that for constant
+&lambda; this equation reduces to &lambda; T = E.
+</p>
+
+<p>
+Recall that when using the direct method one uses exponential deviates
+to determine when reactions fire. To determine the time to the next reaction
+we generate a unit exponential deviate and then divide that by the sum
+of the propensities &alpha;. This gives us an exponential deviate with
+rate parameter &alpha;. Now consider a system of reactions in which the
+reaction propensities are functions of time. In order to determine
+the time to the next reaction we need to generate a unit exponential
+deviate E and then numerically solve
+&int;<sub>t</sub><sup>t+T</sup> &alpha;(x)dx = E for T.
+</p>
+
+<p>
+To solve for T we can numerically integrate &alpha;(t). Below is a simple
+algorithm for this.
+<pre>
+T = 0
+while &alpha;(t+T) &Delta;t &lt; E:
+  E -= &alpha;(t+T) &Delta;t
+  T += &Delta;t
+T += E / &alpha;(T)
+</pre>
+</p>
+
+<p>
+You might recognize the above algorithm as the
+<a href="http://en.wikipedia.org/wiki/Forward_Euler_method">
+forward Euler method</a>, the simplest method for integrating ordinary
+differential equations. The accuracy of this method depends on
+&Delta;t. There are more accurate methods of numerically integrating
+&alpha;(t). The
+<a href="http://en.wikipedia.org/wiki/Midpoint_method">
+midpoint method</a> and the
+<a href="http://en.wikipedia.org/wiki/Runge-Kutta_methods">
+fourth-order Runge-Kutta method</a> are good options.
+</p>
+
+<p>
+So now we know how to determine when the next reaction fires, but how do we
+determine which reaction fires? To do this, we integrate each of the
+reaction propensities:
+pmf<sub>i</sub> = &int;<sub>t</sub><sup>t+T</sup> a<sub>i</sub>(x)dx. To
+select a reaction we draw a discrete deviate with this weighted probability
+mass function. Below we use the forward Euler method to calculate the
+time step T and the probability mass function pmf used to pick a reaction.
+We assume that &Delta;t has been initialized to an appropriate value.
+<pre>
+s = 0
+for i in 1..N:
+  pmf<sub>i</sub> = 0
+  p<sub>i</sub> = a<sub>i</sub>(t)
+  s += p<sub>i</sub>
+T = 0
+while s &Delta;t &lt; E:
+  E -= s &Delta;t
+  T += &Delta;t
+  for i in 1..N:
+    pmf<sub>i</sub> += p<sub>i</sub> &Delta;t
+    p<sub>i</sub> = a<sub>i</sub>(t+T)
+    s += pmf<sub>i</sub>
+&Delta;t = E / s
+T += &Delta;t
+for i in 1..N:
+  pmf<sub>i</sub> += p<sub>i</sub> &Delta;t
+</pre>
+</p>
+
+</body>
+</html>

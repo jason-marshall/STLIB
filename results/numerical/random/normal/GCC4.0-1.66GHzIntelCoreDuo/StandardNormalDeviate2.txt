@@ -1,0 +1,4 @@
+Meaningless result = 2.11844
+CLOCKS_PER_SEC = 100
+Generated 10000000 standard normal random numbers in 1.53 seconds.
+Time per random number = 153 nanoseconds.

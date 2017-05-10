@@ -1,0 +1,63 @@
+# -*- Makefile -*-
+
+CXX          = g++
+CXXINCLUDE  = -I../../../../src
+CXXFLAGS    = $(CXXINCLUDE)
+#CXXFLAGS    += -pg
+
+# Gnu compiler.
+ifeq ($(CXX),g++)
+# CONTINUE
+CXXFLAGS += -O3 -ansi -pedantic -Wall -funroll-loops -fstrict-aliasing
+#CXXFLAGS += -g -DDEBUG_ads -DDEBUG_geom -ansi -pedantic -Wall
+endif
+# Intel compiler.
+ifeq ($(CXX),icc)
+# Display errors and warning but not remarks.
+CXXFLAGS += -fast -strict_ansi
+endif
+
+SOURCES = $(wildcard *.cc)
+OBJECTS = $(SOURCES:.cc=.o)
+DEPENDENCIES = $(SOURCES:.cc=.d)
+TARGETS = $(SOURCES:.cc=.exe)
+
+.SUFFIXES:
+.SUFFIXES: .cc .d .o .exe
+
+default: $(TARGETS)
+
+all: $(TARGETS)
+
+clean: 
+	$(RM) *.o *.d *~ core* *.stackdump
+
+distclean: 
+	$(MAKE) clean 
+	$(RM) $(TARGETS) $(DEPENDENCIES)
+
+again: 
+	$(MAKE) distclean 
+	$(MAKE) 
+
+# Implicit rules.
+
+.cc.o:
+	$(CXX) $(CXXFLAGS) -c $<
+
+.o.exe:
+	$(CXX) $(LINKERFLAGS) -o $@ $<
+
+.cc.d: 
+	$(CXX) -MM $(CXXFLAGS) $< > $@.$$$$; \
+  sed 's,\($*\)\.o[ :]*,\1.o $@ : ,g' < $@.$$$$ > $@; \
+  $(RM) $@.$$$$
+
+-include $(DEPENDENCIES)
+
+# $Log$
+# Revision 1.1  2007/02/03 01:35:39  sean
+# Original.
+#
+
+# End of file.

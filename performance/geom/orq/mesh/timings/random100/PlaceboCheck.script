@@ -1,0 +1,5 @@
+PlaceboCheck.mesh ../data/uniform_random.3.ascii 1 100 >> PlaceboCheck.random100.timings
+PlaceboCheck.mesh ../data/uniform_random.4.ascii 1 100 >> PlaceboCheck.random100.timings
+PlaceboCheck.mesh ../data/uniform_random.5.ascii 1 100 >> PlaceboCheck.random100.timings
+PlaceboCheck.mesh ../data/uniform_random.6.ascii 1 100 >> PlaceboCheck.random100.timings
+#PlaceboCheck.mesh ../data/uniform_random.7.ascii 1 100 >> PlaceboCheck.random100.timings

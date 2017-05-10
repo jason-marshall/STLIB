@@ -1,0 +1,6 @@
+Octree.orq ../data/uniform_random.6.ascii 2 random.queries > Octree.random.query_size.timings
+Octree.orq ../data/uniform_random.6.ascii 4 random.queries >> Octree.random.query_size.timings
+Octree.orq ../data/uniform_random.6.ascii 8 random.queries >> Octree.random.query_size.timings
+Octree.orq ../data/uniform_random.6.ascii 16 random.queries >> Octree.random.query_size.timings
+Octree.orq ../data/uniform_random.6.ascii 32 random.queries >> Octree.random.query_size.timings
+Octree.orq ../data/uniform_random.6.ascii 64 random.queries >> Octree.random.query_size.timings

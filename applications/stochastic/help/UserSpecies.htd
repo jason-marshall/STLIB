@@ -1,0 +1,144 @@
+<html>
+<head>
+<title>Species Editor</title>
+</head>
+<body>
+<h1>Species Editor</h1>
+
+<p align="center">
+<img src="SpeciesEditor.png">
+</p>
+
+<p>
+The species editor allows you to view and edit the species. The
+identifier (ID) field is required. In order to be compatible with
+<a href="http://sbml.org/">SBML</a>, there are a couple of restrictions.
+The identifier is a string that starts with an underscore or a letter
+and is composed entirely of underscores, letters and digits. Spaces
+and special characters like $ are not allowed.  &quot;s1&quot;,
+&quot;species158&quot;, &quot;unstableDimer&quot;, and
+&quot;_pi_314&quot; are all valid identifiers. (Don't enter the
+quotes.) &quot;2x4&quot;, &quot;species 158&quot;, &quot;s-158&quot;
+are invalid. Finally, the identifiers must be unique.  The name field
+is optional. It is an arbitrary string that describes the species, for
+example &quot;unstable dimer&quot;.  &quot;Coolest #*@$ species
+ever!!!&quot; is also a valid name, but show a little restraint - this
+is science. The compartment field is optional. It does not affect the
+simulation output. By default the name and compartment fields are hidden.
+Click <img src="system-search.png">&nbsp; in the tool bar to show
+or hide these columns.
+</p>
+
+<p>
+The initial amount field is required. It is the initial
+population of the species and must evaluate to a non-negative integer.
+You may enter a number or any Python expression involving the parameters.
+The following are examples of valid initial amounts.
+<ul>
+  <li> <tt>100</tt>
+  <li> <tt>1e10</tt>
+  <li> <tt>2**10</tt>
+  <li> <tt>pow(X0, 3)</tt>
+  <li> <tt>ceil(pi * R**2)</tt>
+</ul>
+Here we assume that <tt>X0</tt> and <tt>R</tt> have been defined as
+parameters. <tt>pow</tt> and <tt>ceil</tt> are math functions.
+<tt>pi</tt> is a mathematical constant.
+</p> 
+<p>
+There is a tool bar for editing the species. You can select rows by clicking
+on the row label along the left side of the table. The following operations
+are available:
+<ul>
+  <li> <img src="add.png">&nbsp; Add a species to the table. If you
+  select a row, the new species will be inserted above that row.
+  <li> <img src="cancel.png">&nbsp; Delete the selected rows.
+  <li> <img src="up.png">&nbsp; Left click to move the selected
+  row up. Right click to move the selected row to the top. This has no
+  effect if no rows or multiple rows are selected.
+  <li> <img src="down.png">&nbsp; Left click to move the selected
+  row down. Right click to move the selected row to the bottom. 
+  <li> <img src="sort.png">&nbsp; Left click to sort by identifier
+  in ascending order. Right click to sort in descending order.
+  <li> <img src="scale.png">&nbsp; Automatically size the cells in
+  the table to fit their contents.
+  <li> <img src="system-search.png">&nbsp; Show/hide the optional
+  fields.
+</ul>
+If the species table is not valid, you will get an error message when you
+try to launch a simulation.
+</p>
+
+<p>
+<b>A Note About Identifiers and Compartments.</b><br>
+Note that in designing a scheme to describe species and compartments
+one could use either species identifiers that have compartment scope
+or global scope. We follow the <a href="http://sbml.org/">SBML</a>
+convention that the identifiers have global scope and therefore must
+be unique.  Consider a trivial problem with two species <em>X</em> and
+<em>Y</em> and two compartments <em>A</em> and <em>B</em>. If species
+identifiers had compartment scope then one could describe the species
+as below.
+</p>
+
+<!--CONTINUE: Tables are not currently rendered correctly.
+<table border="1">
+  <tr><th>ID<th>Compartment
+  <tr><td>X<td>A
+  <tr><td>Y<td>A
+  <tr><td>X<td>B
+  <tr><td>Y<td>B
+</table>
+-->
+<pre><b>
+ID  Compartment</b>
+---------------
+X   A
+Y   A
+X   B
+Y   B
+</pre>
+
+<p>
+This notation is handy because we can easily see that although the
+populations of <em>X</em> in <em>A</em> and <em>B</em> are distinct,
+they are populations of the same type of species. The disadvantage of
+this notation is that writing reactions is verbose. One cannot simply
+write &quot;<em>X &rarr; Y</em>&quot;, because it does not specify
+whether the reaction occurs in <em>A</em>, or <em>B</em>, or
+both. Furthermore a notation such as &quot;<em>X &rarr; Y</em> in
+<em>A</em>&quot; is not sufficient because it cannot describe
+transport between compartments. Thus, one is stuck with a notation
+such as &quot;<em>X</em> in <em>A</em> &rarr; <em>Y</em> in
+<em>A</em>.&quot; In Cain, the species identifiers must be unique:
+</p>
+
+<!--CONTINUE: Tables are not currently rendered correctly.
+<table border="1">
+  <tr><th>ID<th>Compartment
+  <tr><td>X_A<td>A
+  <tr><td>Y_A<td>A
+  <tr><td>X_B<td>B
+  <tr><td>Y_B<td>B
+</table>
+-->
+<pre><b>
+ID    Compartment</b>
+-----------------
+X_A   A
+Y_A   A
+X_B   B
+Y_B   B
+</pre>
+
+<p>
+Thus the compartment field is optional; it is not used to describe the
+reactions and does not affect simulation results. It's only use is in
+visually categorizing the species. If you leave the compartment field
+blank, then internally each species is placed in the same unnamed compartment.
+If you export such a model in SBML format, the compartment will be given an
+identifier such as &quot;Unnamed&quot;.
+</p>
+
+</body>
+</html>

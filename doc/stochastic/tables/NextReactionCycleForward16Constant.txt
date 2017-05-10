@@ -1,0 +1,172 @@
+<table border = "1" rules = "rows">
+<tr> <th> Species <th> <th> 32 <th> 64 <th> 128 <th> 256 <th> 512 <th> 1024 <th> 2048 <th> 4096 <th> 8192 <th> 16384
+<tr> <th> Reactions <th> <th> 512 <th> 1024 <th> 2048 <th> 4096 <th> 8192 <th> 16384 <th> 32768 <th> 65536 <th> 131072 <th> 262144 
+<tr> <th rowspan="3"> Linear search
+<td> Simple
+<td> 2519
+<td> 4350
+<td> 8010
+<td> 15400
+<td> 30410
+<td> 60400
+<td> 119600
+<td> 236900
+<td> 470800
+<td> 30000000
+<tr>
+<td> Unrolled
+<td> 1345
+<td> 1990
+<td> 3170
+<td> 5600
+<td> 10590
+<td> 20800
+<td> 40300
+<td> 78500
+<td> 154400
+<td> 306600
+<tr>
+<td> Pointer
+<td> 1381
+<td> 2030
+<td> 3680
+<td> 6850
+<td> 12970
+<td> 25700
+<td> 49800
+<td> 97900
+<td> 195800
+<td> 486000
+<tr> <th rowspan="4"> Partition
+<td> Fixed Size
+<td> 1303
+<td> 1440
+<td> 1580
+<td> 1850
+<td> 2450
+<td> 3900
+<td> 5450
+<td> 7070
+<td> 9060
+<td> 11730
+<tr>
+<td> Size Adaptive
+<td> 1060
+<td> 1110
+<td> 1130
+<td> 1200
+<td> 1500
+<td> 2480
+<td> 3440
+<td> 4200
+<td> 4900
+<td> 5850
+<tr>
+<td> Cost Adaptive
+<td> 1095
+<td> 1140
+<td> 1180
+<td> 1270
+<td> 1580
+<td> 2610
+<td> 3660
+<td> 4510
+<td> 5410
+<td> 6540
+<tr>
+<td> Propensities
+<td> 1098
+<td> 1150
+<td> 1180
+<td> 1250
+<td> 1550
+<td> 2570
+<td> 3610
+<td> 4490
+<td> 5420
+<td> 6730
+<tr> <th rowspan="3"> Binary Heap
+<td> Pointer
+<td> 1437
+<td> 1480
+<td> 1560
+<td> 1650
+<td> 2000
+<td> 3100
+<td> 4250
+<td> 5550
+<td> 7070
+<td> 8690
+<tr>
+<td> Pair
+<td> 1336
+<td> 1360
+<td> 1430
+<td> 1480
+<td> 1870
+<td> 2930
+<td> 4180
+<td> 5340
+<td> 6370
+<td> 7290
+<tr>
+<td> Gibson Bruck
+<td> 1517
+<td> 1550
+<td> 1630
+<td> 1680
+<td> 1950
+<td> 2990
+<td> 4290
+<td> 5610
+<td> 6860
+<td> 8040
+<tr> <th rowspan="4"> Hashing
+<td> Chaining
+<td> 1653
+<td> 1680
+<td> 1760
+<td> 1880
+<td> 2630
+<td> 4310
+<td> 6400
+<td> 8500
+<td> 10450
+<td> 12230
+<tr>
+<td> Chaning Vector
+<td> 1710
+<td> 1750
+<td> 1820
+<td> 1920
+<td> 2610
+<td> 4210
+<td> 6130
+<td> 7980
+<td> 9670
+<td> 11250
+<tr>
+<td> Chaining Generic Vector
+<td> 1892
+<td> 1930
+<td> 2020
+<td> 2110
+<td> 2730
+<td> 4470
+<td> 6480
+<td> 8350
+<td> 9940
+<td> 11400
+<tr>
+<td> Chaining Generic List
+<td> 3160
+<td> 3360
+<td> 3530
+<td> 3660
+<td> 4080
+<td> 5470
+<td> 7470
+<td> 9860
+<td> 12400
+<td> 15110
+</table>

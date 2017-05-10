@@ -1,0 +1,6 @@
+SequentialScan.mesh ../data/uniform_random.2.ascii 0.232079 >> SequentialScan.random.timings
+SequentialScan.mesh ../data/uniform_random.3.ascii 0.107722 >> SequentialScan.random.timings
+SequentialScan.mesh ../data/uniform_random.4.ascii 0.05 >> SequentialScan.random.timings
+#SequentialScan.mesh ../data/uniform_random.5.ascii 0.0232079 >> SequentialScan.random.timings
+#SequentialScan.mesh ../data/uniform_random.6.ascii 0.0107722 >> SequentialScan.random.timings
+#SequentialScan.mesh ../data/uniform_random.7.ascii 0.005 >> SequentialScan.random.timings

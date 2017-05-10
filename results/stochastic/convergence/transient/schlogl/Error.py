@@ -1,0 +1,41 @@
+"""Calculate the errors."""
+
+import sys, os
+sys.path.append('../../../../../applications/stochastic/state')
+from Histogram import Histogram, histogramDistance
+
+def exitOnError():
+    print('''Usage:
+python Error.py directory''')
+    sys.exit(1)
+
+if __name__ == '__main__':
+    if len(sys.argv) != 2:
+        print('Error! Wrong number of arguments.')
+        exitOnError()
+    directory = sys.argv[1]
+    # Read the converged solutions for each recorded species.
+    convergedFile = open('converged.txt', 'r')
+    numberOfHistograms = int(convergedFile.readline())
+    converged = [Histogram() for _i in range(numberOfHistograms)]
+    for h in converged:
+        h.read(convergedFile)
+    # The simulation output.
+    data = open(directory + '/output.txt', 'r')
+    size = int(data.readline())
+    # The file to report the errors.
+    report = open(directory + '/error.txt', 'w')
+
+    # For each test.
+    histogram = Histogram(converged[0].size())
+    for i in range(size):
+        # The run time.
+        time = float(data.readline())
+        # Compute the average error.
+        error = 0.
+        # For each recorded species.
+        for h in range(numberOfHistograms):
+            histogram.read(data)
+            error += histogramDistance(histogram, converged[h])
+        error /= numberOfHistograms
+        report.write('%s %s\n' % (time, error))

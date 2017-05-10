@@ -1,0 +1,228 @@
+(************** Content-type: application/mathematica **************
+                     CreatedBy='Mathematica 5.2'
+
+                    Mathematica-Compatible Notebook
+
+This notebook can be used with any Mathematica-compatible
+application, such as Mathematica, MathReader or Publicon. The data
+for the notebook starts with the line containing stars above.
+
+To get the notebook into a Mathematica-compatible application, do
+one of the following:
+
+* Save the data starting with the line of stars above into a file
+  with a name ending in .nb, then open the file inside the
+  application;
+
+* Copy the data starting with the line of stars above to the
+  clipboard, then use the Paste menu command inside the application.
+
+Data for notebooks contains only printable 7-bit ASCII and can be
+sent directly in email or through ftp in text mode.  Newlines can be
+CR, LF or CRLF (Unix, Macintosh or MS-DOS style).
+
+NOTE: If you modify the data for this notebook not in a Mathematica-
+compatible application, you must delete the line below containing
+the word CacheID, otherwise Mathematica-compatible applications may
+try to use invalid cache data.
+
+For more information on notebooks and Mathematica-compatible 
+applications, contact Wolfram Research:
+  web: http://www.wolfram.com
+  email: info@wolfram.com
+  phone: +1-217-398-0700 (U.S.)
+
+Notebook reader applications are available free of charge from 
+Wolfram Research.
+*******************************************************************)
+
+(*CacheID: 232*)
+
+
+(*NotebookFileLineBreakTest
+NotebookFileLineBreakTest*)
+(*NotebookOptionsPosition[      6429,        183]*)
+(*NotebookOutlinePosition[      7114,        207]*)
+(*  CellTagsIndexPosition[      7070,        203]*)
+(*WindowFrame->Normal*)
+
+
+
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Gamma", "Title"],
+
+Cell[BoxData[
+    \(\(arguments = {\[IndentingNewLine]10\^\(-8\), \
+\[IndentingNewLine]10\^\(-7\), \[IndentingNewLine]10\^\(-6\), \
+\[IndentingNewLine]10\^\(-5\), \[IndentingNewLine]10\^\(-4\), \
+\[IndentingNewLine]10\^\(-3\), \[IndentingNewLine]10\^\(-2\), \
+\[IndentingNewLine]10\^\(-1\), \[IndentingNewLine]10\^0, \
+\[IndentingNewLine]10\^1, \[IndentingNewLine]10\^2, \[IndentingNewLine]10\^3, \
+\[IndentingNewLine]10\^4, \[IndentingNewLine]10\^5, \
+\[IndentingNewLine]10\^6};\)\)], "Input"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(values = 
+      Table[CForm[N[Log[Gamma[arguments[\([i]\)]]], 20]], {i, 1, 
+          Length[arguments]}]\)], "Input"],
+
+Cell[BoxData[
+    RowBox[{"{", 
+      RowBox[{
+        InterpretationBox[
+          StyleBox["18.420680738180208905",
+            ShowStringCharacters->True,
+            NumberMarks->True],
+          CForm[ 18.4206807381802089053753059731`20.],
+          Editable->True,
+          AutoDelete->True], ",", 
+        InterpretationBox[
+          StyleBox["16.118095593236761523",
+            ShowStringCharacters->True,
+            NumberMarks->True],
+          CForm[ 16.1180955932367615226425876777`20.],
+          Editable->True,
+          AutoDelete->True], ",", 
+        InterpretationBox[
+          StyleBox["13.815509980749431669",
+            ShowStringCharacters->True,
+            NumberMarks->True],
+          CForm[ 13.815509980749431669207826871`20.],
+          Editable->True,
+          AutoDelete->True], ",", 
+        InterpretationBox[
+          StyleBox["11.512919692895825707",
+            ShowStringCharacters->True,
+            NumberMarks->True],
+          CForm[ 11.5129196928958257074208339309`20.],
+          Editable->True,
+          AutoDelete->True], ",", 
+        InterpretationBox[
+          StyleBox["9.2102826586339622584",
+            ShowStringCharacters->True,
+            NumberMarks->True],
+          CForm[ 9.2102826586339622584486579753`20.],
+          Editable->True,
+          AutoDelete->True], ",", 
+        InterpretationBox[
+          StyleBox["6.9071788853838536825",
+            ShowStringCharacters->True,
+            NumberMarks->True],
+          CForm[ 6.9071788853838536825123446681`20.],
+          Editable->True,
+          AutoDelete->True], ",", 
+        InterpretationBox[
+          StyleBox["4.5994798780420217225",
+            ShowStringCharacters->True,
+            NumberMarks->True],
+          CForm[ 4.59947987804202172251394541100874567319`20.],
+          Editable->True,
+          AutoDelete->True], ",", 
+        InterpretationBox[
+          StyleBox["2.2527126517342059599",
+            ShowStringCharacters->True,
+            NumberMarks->True],
+          CForm[ 2.25271265173420595986970164637135841146`20.],
+          Editable->True,
+          AutoDelete->True], ",", 
+        InterpretationBox[
+          StyleBox["0",
+            ShowStringCharacters->True,
+            NumberMarks->True],
+          CForm[ 0],
+          Editable->True,
+          AutoDelete->True], ",", 
+        InterpretationBox[
+          StyleBox["12.801827480081469611",
+            ShowStringCharacters->True,
+            NumberMarks->True],
+          CForm[ 12.8018274800814696112077178746`20.],
+          Editable->True,
+          AutoDelete->True], ",", 
+        InterpretationBox[
+          StyleBox["359.13420536957539878",
+            ShowStringCharacters->True,
+            NumberMarks->True],
+          CForm[ 359.1342053695753987760440104603`20.],
+          Editable->True,
+          AutoDelete->True], ",", 
+        InterpretationBox[
+          StyleBox["5905.2204232091812118",
+            ShowStringCharacters->True,
+            NumberMarks->True],
+          CForm[ 5905.2204232091812118260769123614`20.],
+          Editable->True,
+          AutoDelete->True], ",", 
+        InterpretationBox[
+          StyleBox["82099.717496442377273",
+            ShowStringCharacters->True,
+            NumberMarks->True],
+          CForm[ 82099.7174964423772726489580976937`20.],
+          Editable->True,
+          AutoDelete->True], ",", 
+        InterpretationBox[
+          StyleBox[\(1.0512877089736568949  e6\),
+            ShowStringCharacters->True,
+            NumberMarks->True],
+          CForm[ 1.0512877089736568949008580182488374`20.*^6],
+          Editable->True,
+          AutoDelete->True], ",", 
+        InterpretationBox[
+          StyleBox[\(1.281550456914761166  e7\),
+            ShowStringCharacters->True,
+            NumberMarks->True],
+          CForm[ 1.28155045691476116599769717850171132`20.*^7],
+          Editable->True,
+          AutoDelete->True]}], "}"}]], "Output"]
+}, Open  ]]
+}, Open  ]]
+},
+FrontEndVersion->"5.2 for Microsoft Windows",
+ScreenRectangle->{{0, 1680}, {0, 963}},
+WindowSize->{820, 933},
+WindowMargins->{{0, Automatic}, {Automatic, -2}},
+ShowSelection->True,
+Magnification->1.5
+]
+
+(*******************************************************************
+Cached data follows.  If you edit this Notebook file directly, not
+using Mathematica, you must remove the line containing CacheID at
+the top of  the file.  The cache data will then be recreated when
+you save this file from within Mathematica.
+*******************************************************************)
+
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+
+(*NotebookFileOutline
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[1776, 53, 22, 0, 141, "Title"],
+Cell[1801, 55, 494, 8, 432, "Input"],
+
+Cell[CellGroupData[{
+Cell[2320, 67, 138, 3, 68, "Input"],
+Cell[2461, 72, 3940, 107, 191, "Output"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+
+
+(*******************************************************************
+End of Mathematica Notebook file.
+*******************************************************************)
+

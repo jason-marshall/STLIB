@@ -1,0 +1,5 @@
+Combine the source files using ifdefs so each source file generates multiple 
+targets.
+
+Change the close_pts from a vector to an array in each .cc file.
+Redo the timings for random100.

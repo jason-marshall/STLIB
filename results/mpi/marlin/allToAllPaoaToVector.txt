@@ -1,0 +1,174 @@
+NumProcesses,Alltoallv,NonBlocking
+1,0.220856,0.209003
+2,0.202065,0.210181
+4,0.257608,0.250439
+8,0.353261,0.256989
+16,0.63168,0.505743
+32,1.34687,1.20017
+64,2.82459,2.57102
+128,5.70563,5.47851
+256,11.9416,11.3546
+512,12.3706,13.2127
+
+
+
+Send 10000 objects to 1 processes.
+Size of object is 72 bytes.
+Use blocking communication.
+Meaningless result = 0
+Total time (s)
+  sum = 86.562, mean = 0.169066, min = 0.104923, max = 0.220856
+Time per byte per process (ns)
+  sum = 120225, mean = 234.814, min = 145.727, max = 306.744
+Send 10000 objects to 2 processes.
+Size of object is 72 bytes.
+Use blocking communication.
+Meaningless result = 0
+Total time (s)
+  sum = 91.4286, mean = 0.178571, min = 0.150642, max = 0.202065
+Time per byte per process (ns)
+  sum = 126984, mean = 248.016, min = 209.225, max = 280.645
+Send 10000 objects to 4 processes.
+Size of object is 72 bytes.
+Use blocking communication.
+Meaningless result = 0
+Total time (s)
+  sum = 105.03, mean = 0.205136, min = 0.162828, max = 0.257608
+Time per byte per process (ns)
+  sum = 145874, mean = 284.911, min = 226.151, max = 357.789
+Send 10000 objects to 8 processes.
+Size of object is 72 bytes.
+Use blocking communication.
+Meaningless result = 0
+Total time (s)
+  sum = 150.421, mean = 0.29379, min = 0.222512, max = 0.353261
+Time per byte per process (ns)
+  sum = 208917, mean = 408.042, min = 309.045, max = 490.641
+Send 10000 objects to 16 processes.
+Size of object is 72 bytes.
+Use blocking communication.
+Meaningless result = 0
+Total time (s)
+  sum = 291.047, mean = 0.568451, min = 0.490455, max = 0.63168
+Time per byte per process (ns)
+  sum = 404232, mean = 789.516, min = 681.187, max = 877.334
+Send 10000 objects to 32 processes.
+Size of object is 72 bytes.
+Use blocking communication.
+Meaningless result = 0
+Total time (s)
+  sum = 667.849, mean = 1.30439, min = 1.24588, max = 1.34687
+Time per byte per process (ns)
+  sum = 927568, mean = 1811.66, min = 1730.39, max = 1870.66
+Send 10000 objects to 64 processes.
+Size of object is 72 bytes.
+Use blocking communication.
+Meaningless result = 0
+Total time (s)
+  sum = 1423.07, mean = 2.77943, min = 2.71623, max = 2.82459
+Time per byte per process (ns)
+  sum = 1.97648e+06, mean = 3860.32, min = 3772.55, max = 3923.04
+Send 10000 objects to 128 processes.
+Size of object is 72 bytes.
+Use blocking communication.
+Meaningless result = 0
+Total time (s)
+  sum = 2892.37, mean = 5.64915, min = 5.58827, max = 5.70563
+Time per byte per process (ns)
+  sum = 4.01718e+06, mean = 7846.05, min = 7761.49, max = 7924.49
+Send 10000 objects to 256 processes.
+Size of object is 72 bytes.
+Use blocking communication.
+Meaningless result = 0
+Total time (s)
+  sum = 6090.87, mean = 11.8962, min = 11.8529, max = 11.9416
+Time per byte per process (ns)
+  sum = 8.45954e+06, mean = 16522.5, min = 16462.4, max = 16585.6
+Send 10000 objects to 512 processes.
+Size of object is 72 bytes.
+Use blocking communication.
+Meaningless result = 0
+Total time (s)
+  sum = 6333.29, mean = 12.3697, min = 12.3602, max = 12.3706
+Time per byte per process (ns)
+  sum = 8.79624e+06, mean = 17180.1, min = 17167, max = 17181.3
+Send 10000 objects to 1 processes.
+Size of object is 72 bytes.
+Use non-blocking communication.
+Meaningless result = 0
+Total time (s)
+  sum = 84.1654, mean = 0.164385, min = 0.0914466, max = 0.209003
+Time per byte per process (ns)
+  sum = 116896, mean = 228.313, min = 127.009, max = 290.281
+Send 10000 objects to 2 processes.
+Size of object is 72 bytes.
+Use non-blocking communication.
+Meaningless result = 0
+Total time (s)
+  sum = 92.6393, mean = 0.180936, min = 0.155458, max = 0.210181
+Time per byte per process (ns)
+  sum = 128666, mean = 251.3, min = 215.914, max = 291.918
+Send 10000 objects to 4 processes.
+Size of object is 72 bytes.
+Use non-blocking communication.
+Meaningless result = 0
+Total time (s)
+  sum = 100.139, mean = 0.195584, min = 0.151709, max = 0.250439
+Time per byte per process (ns)
+  sum = 139082, mean = 271.645, min = 210.707, max = 347.832
+Send 10000 objects to 8 processes.
+Size of object is 72 bytes.
+Use non-blocking communication.
+Meaningless result = 0
+Total time (s)
+  sum = 120.706, mean = 0.235754, min = 0.192278, max = 0.256989
+Time per byte per process (ns)
+  sum = 167647, mean = 327.436, min = 267.052, max = 356.929
+Send 10000 objects to 16 processes.
+Size of object is 72 bytes.
+Use non-blocking communication.
+Meaningless result = 0
+Total time (s)
+  sum = 240.349, mean = 0.469433, min = 0.416427, max = 0.505743
+Time per byte per process (ns)
+  sum = 333819, mean = 651.99, min = 578.371, max = 702.421
+Send 10000 objects to 32 processes.
+Size of object is 72 bytes.
+Use non-blocking communication.
+Meaningless result = 0
+Total time (s)
+  sum = 595.303, mean = 1.1627, min = 1.11696, max = 1.20017
+Time per byte per process (ns)
+  sum = 826810, mean = 1614.86, min = 1551.34, max = 1666.9
+Send 10000 objects to 64 processes.
+Size of object is 72 bytes.
+Use non-blocking communication.
+Meaningless result = 0
+Total time (s)
+  sum = 1309.12, mean = 2.55688, min = 2.50948, max = 2.57102
+Time per byte per process (ns)
+  sum = 1.81823e+06, mean = 3551.23, min = 3485.39, max = 3570.86
+Send 10000 objects to 128 processes.
+Size of object is 72 bytes.
+Use non-blocking communication.
+Meaningless result = 0
+Total time (s)
+  sum = 2791.32, mean = 5.45179, min = 5.40874, max = 5.47851
+Time per byte per process (ns)
+  sum = 3.87683e+06, mean = 7571.93, min = 7512.14, max = 7609.04
+Send 10000 objects to 256 processes.
+Size of object is 72 bytes.
+Use non-blocking communication.
+Meaningless result = 0
+Total time (s)
+  sum = 5774.55, mean = 11.2784, min = 10.9828, max = 11.3546
+Time per byte per process (ns)
+  sum = 8.0202e+06, mean = 15664.5, min = 15253.8, max = 15770.3
+Send 10000 objects to 512 processes.
+Size of object is 72 bytes.
+Use non-blocking communication.
+Meaningless result = 0
+Total time (s)
+  sum = 6763.49, mean = 13.2099, min = 13.2, max = 13.2127
+Time per byte per process (ns)
+  sum = 9.39373e+06, mean = 18347.1, min = 18333.4, max = 18351

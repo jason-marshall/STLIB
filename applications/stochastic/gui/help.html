@@ -1,0 +1,3536 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<title>Cain Help</title>
+</head>
+
+<body>
+
+<!-------------------------------------------------------------------------->
+<img src="icons/cain.png" align=RIGHT>
+<h1><a name="Cain Help">Cain Help</a></h1>
+
+
+<!-------------------------------------------------------------------------->
+<h2><a name="Acknowledgments">Acknowledgments</a></h2>
+
+<p>
+This project was supported by Grant Number R01EB007511
+from the National Institute Of Biomedical Imaging And Bioengineering.
+The content is solely the responsibility of the authors and does not
+necessarily represent the official views of the National Institute Of
+Biomedical Imaging And Bioengineering or the National Institutes of
+Health.
+</p>
+
+<p>
+I gratefully acknowledge the advice and support I have received from
+Dan Gillespie, Linda Petzold and her research group at UCSB, and
+Michael Hucka.
+</p>
+
+<!-------------------------------------------------------------------------->
+<h2><a name="License">License</a></h2>
+<!--Adapted from License.txt in stlib.-->
+
+<p>
+Copyright (c) 1999-2009, California Institute of Technology
+</p>
+
+<p>
+All rights reserved.
+</p>
+
+<p>
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+<ul>
+  <li>
+  Redistributions of source code must retain the above copyright
+  notice, this list of conditions and the following disclaimer.
+  <li>
+  Redistributions in binary form must reproduce the above copyright
+  notice, this list of conditions and the following disclaimer in the
+  documentation and/or other materials provided with the distribution.
+  <li>
+  Neither the name of the California Institute of Technology nor
+  the names of its contributors may be used to endorse or promote
+  products derived from this software without specific prior written
+  permission.
+</ul>
+</p>
+
+<p>
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+&quot;AS IS&quot; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+</p>
+
+<!-------------------------------------------------------------------------->
+<h2><a name="Introduction">Introduction</a></h2>
+
+<p>
+This is version 0.12 of Cain, developed by Sean Mauch,
+<img src="icons/seanEmail.png">, at the
+<a href="http://www.cacr.caltech.edu/">Center for Advanced Computing Research</a>
+at the 
+<a href="http://www.caltech.edu/">California Institute of Technology</a>.
+</p>
+
+<p>
+Cain performs stochastic and deterministic simulations of chemical
+reactions. It can spawn multiple simulation processes to utilize
+multi-core computers. It stores models, methods, and simulation
+output (populations and reaction counts)
+in an XML format. In addition, <a href="http://sbml.org/">SBML</a>
+models can be imported and exported.  The models and methods
+can be read from input files or edited within the program.
+</p>
+
+<p>
+The GUI (Graphical User Interface) is written in
+<a href="http://www.python.org/">Python</a> and uses the
+<a href="http://www.wxpython.org/">wxPython</a> toolkit.
+The solvers are implemented as command line executables, written in
+<a href="http://en.wikipedia.org/wiki/C%2B%2B">C++</a>, which are driven
+by Cain. This makes it easy to launch batch jobs. It also simplifies the
+process of adding new solvers. Cain offers a variety of solvers:
+<ul>
+  <li> Gillespie's direct method.
+  <li> Gillespie's first reaction method.
+  <li> Gibson and Bruck's next reaction method.
+  <li> Tau-leaping.
+  <li> Hybrid direct/tau-leaping.
+  <li> ODE integration.
+</ul>
+</p>
+
+<p>
+The reactions may have mass-action kinetic laws or arbitrary
+propensity functions. For the latter, custom command line executables are
+generated when the simulations are launched. For the former one has the choice
+of generating a custom executable or of using one of the built-in mass-action
+solvers. Compiling and launching the solvers is done internally; you do not
+need to know how to write or compile programs. However, to use the custom
+executables your computer must have compiler software. Without a
+compiler you can only simulate systems with mass-action kinetics.
+</p>
+
+<p>
+Once you have run a simulation to generate trajectories (possible
+realizations of the system) you can visualize the results by plotting
+the species populations or reactions counts. You can also view the
+output in a table or export it to a spreadsheet.
+</p>
+
+
+<!-------------------------------------------------------------------------->
+<h2><a name="Installation">Installation</a></h2>
+
+<p>
+Cain is free, open source software that is available at
+<a href="http://cain.sourceforge.net/">http://cain.sourceforge.net/</a>.
+Distributions are available for Mac OS X, Microsoft Windows, and Linux/Unix.
+See the appropriate section below for installation instructions.
+</p>
+
+<p>
+<b>Mac OS X.</b><br>
+To install Cain, download the disk image and drag the application bundle to
+your Applications folder (or wherever you want to place it). The CainExamples
+folder contains data files. Drag it to an appropriate location.
+</p>
+
+<p>
+To use Cain you will need 
+<a href="http://www.python.org/">Python</a>,
+<a href="http://www.wxpython.org/">wxPython</a>,
+<a href="http://numpy.scipy.org/">numpy</a>, and
+<a href="http://matplotlib.sourceforge.net/">matplotlib</a>.
+Unfortunately, Leopard (10.5) comes with rather old versions of the first
+three and does not have matplotlib. There are several ways of obtaining the
+necessary software to run Cain. The easiest solution is to install the
+<a href="http://www.enthought.com/products/epd.php">Enthought Python
+Distribution</a>. The EPD is designed for those working in scientific
+computing and comes with all of the packages that Cain needs. It is a
+commercial product, but is free for educational use
+if you are associated with a degree-granting institution.
+</p>
+
+<p>
+The other option is to download and install the packages.
+Get Python, wxPython, and numpy from the sites indicated above.
+(Just download the binaries; installation is a snap.)
+The easiest way to get matplotlib is to use the
+<a href="http://peak.telecommunity.com/DevCenter/EasyInstall">EasyInstall</a>
+module. Just follow the directions in the 'Installing &quot;Easy Install&quot;'
+section. Then in an xterm execute the commands:<br>
+<tt>sudo easy_install matplotlib</tt><br>
+To upgrade a package with EasyInstall, use the -U option, for example:<br>
+<tt>sudo easy_install -U matplotlib</tt><br>
+If you do not have the necessary packages installed, Cain will show an error
+message when you attempt to launch the application.
+</p>
+
+<p>
+In order to compile custom executables (either for kinetic laws that are
+not mass-action or to speed up simulations that use mass-action kinetics)
+you will need a C++ compiler. The <a href="http://gcc.gnu.org/">GNU GCC</a>
+compiler is freely available, but it is not installed by default. You can
+get it by installing the Xcode tools on your Mac OS X install disc.
+Alternatively, you can download the Xcode package from the
+<a href="https://connect.apple.com/">Apple Developer Connection</a>.
+You will need to register for a free account. After that, log in and
+follow the <tt>Downloads</tt> and the <tt>Developer Tools</tt> links.
+Download and install Xcode 3.0. This will install the compilers as well
+as Apple's integrated development environment.
+</p>
+<p>
+To uninstall Cain, simply delete the <tt>Cain</tt> and <tt>CainExamples</tt>
+folders.
+</p>
+
+
+<p>
+<b>Microsoft Windows.</b><br>
+For Microsoft Windows, Cain is distributed as an executable.
+Download and run the installer. Also download the example data files.
+Unzip these and place them in a convenient location.
+The mass-action solvers are
+pre-compiled. In order to use custom propensities you will need a compiler;
+Cain uses Microsoft Visual Studio 2008. If you do not already have MSVS 2008,
+get
+<a href="http://www.microsoft.com/Express/vc/">Microsoft Visual C++ 2008 Express Edition</a>. It is a free, command line version of Visual Studio.
+</p>
+
+<!--
+<p>
+Currently the GNU compiler is supported. (I am working on support for
+Microsoft Visual Studio.) You can obtain the GNU compiler from the
+<a href="http://www.mingw.org/">MinGW</a> project. Install the C++
+compiler and add the installation directory to your path. That is
+append the installation directory to the <tt>PATH</tt> environment variable.
+</p>
+-->
+
+<p>
+To uninstall Cain, select <tt>Cain&rarr;Uninstall Cain</tt> from the
+start menu. Then delete the <tt>CainExamples</tt> folder.
+</p>
+
+<p>
+<b>Linux/Unix.</b><br>
+For Linux or Unix, use the platform-independent distribution. You will
+need appropriate versions of
+<a href="http://www.python.org/">Python</a>,
+<a href="http://www.wxpython.org/">wxPython</a>,
+<a href="http://matplotlib.sourceforge.net/">matplotlib</a>, and
+<a href="http://numpy.scipy.org/">numpy</a>,
+as well as a C++ compiler. I recommend using
+the current version of <a href="http://gcc.gnu.org/">GNU GCC</a>.
+Note that only Python versions 2.4.x and 2.5.x are currently supported
+because the numpy package does not work with later versions.
+If you do not have the necessary Python packages installed, Cain will show
+an error message when you attempt to launch the application.
+</p>
+
+<p>
+If you run RedHat Linux the 
+<a href="http://www.enthought.com/">Enthought Python Distribution</a> may be
+convenient. It includes all of the packages that Cain requires. There is a
+free version for those associated with educational institutions.
+</p>
+
+<p>
+Download the platform-independent distribution and place it in a convenient
+location. Then uncompress the zip file.<br>
+<tt>unzip Cain.zip</tt><br>
+Build the mass-action solvers.<br>
+<tt>cd Cain</tt><br>
+<tt>make</tt><br>
+Then launch the GUI.<br>
+<tt>python Cain.py&amp;</tt><br>
+There are example files distributed in <tt>CainExamples.zip</tt>.
+</p>
+
+<p>
+To uninstall Cain, simply delete the <tt>Cain</tt> and <tt>CainExamples</tt>
+directories.
+</p>
+
+
+<!-------------------------------------------------------------------------->
+<h2><a name="Platform-Specific Information">Platform-Specific Information</a></h2>
+
+<p>
+<b>CentOS 5.2 Linux.</b><br>
+Because <a href="http://www.centos.org/">CentOS 5.2</a> is
+&quot;enterprise&quot; Linux, it has an old version of Python.
+It is recommended that you upgrade to a more recent version.
+The easiest approach is to install the
+<a href="http://www.enthought.com/">Enthought Python Distribution</a>.
+It includes all of the packages that Cain requires. There is a
+free version for those associated with educational institutions.
+Select Applications&rarr;Add/Remove Software to launch the Package Manager.
+Search for f2c and then install the libf2c library. Download and save
+the Enthought
+Python Distribution installer file. You may either install for all users
+or just for your own use. Let's assume the former. (If you do not have
+administrator privileges, you can install EPD in your home directory.)
+In a terminal switch to
+superuser with &quot;su&quot;. Start the installation with something like
+&quot;sh epd_py25-4.1.30101-rh5-x86.installer&quot;. Choose an appropriate
+location like &quot;/usr/lib/python2.5&quot;.
+To put python on your path, execute
+&quot;export PATH=/usr/lib/python2.5/bin:$PATH&quot; in a terminal.
+It will be convenient to add that command to your .bash_profile in your
+home directory. 
+</p>
+
+<p>
+Next ensure that you have a C++ compiler.
+In the Package Manager install
+<tt>Development Libraries</tt> and <tt>Development Tools</tt>.
+</p>
+
+<p>
+If you want to do things the hard way, it is also possible to use the version
+of python that ships with CentOS 5.2.
+Cain has some minor problems, but still works.
+To get wxPython install 
+<tt>Fedora Core 6, Python 2.4 common-gtk2-unicode</tt> and
+<tt>Fedora Core 6, Python 2.4 gtk2-unicode</tt>
+from the <a href="http://www.wxpython.org/">wxPython</a>
+downloads page. To get numpy and matplotlib you will need to install
+something like the following packages:
+<ul>
+  <li> python-numpy-1.0.1-1.fc6.rf.i386.rpm
+  <li> python-dateutil-1.1-3.fc6.noarch.rpm
+  <li> pytz-2006p-1.fc6.noarch.rpm
+  <li> python-matplotlib-0.90.0-1.fc6.i386.rpm
+</ul>
+</p>
+
+<p>
+If you use an old version of python and plot any simulation output you may
+see the following message in the shell:<br>
+<tt>** (python:6182): WARNING **: IPP request failed with status 1030</tt><br>
+I don't know what causes this error.
+After you exit Cain you will need to press Ctrl-c in the shell to get the
+prompt back.
+</p>
+
+
+<!-- CentOS 5.2
+I installed the guest additions.
+I added
+Modes "1440x900"
+to /etc/X11/xorg.conf
+
+I installed python-setuptools with the package manager. However installing
+matplotlib with easy_install did not work.
+-->
+
+<p>
+<b>RedHat 5.3 Linux.</b><br>
+Follow the same instructions as for CentOS 5.2.
+</p>
+
+<p>
+<b>Fedora 10.</b><br>
+Select System&rarr;Administration&rarr;Add/Remove Software. Install the following packages:
+<ul>
+  <li> gcc-c++: C++ support for GCC.
+  <li> wxPython: GUI toolkit for the Python programming language.
+  <li> python-matplotlib: Python plotting library.
+</ul>
+Then follow the installation instructions to compile the solvers and launch
+the application.
+</p>
+
+<!--
+<p>
+<b>Windows Vista 64-Bit.</b><br>
+http://sourceforge.net/projects/mingw/
+Select Download-Browse All Packages.
+Automated MinGW Installer.
+MinGW-5.1.4.exe
+Save.
+Download and install.
+Which MinGW package do you wish to install? Choose Candidate.
+Download and run the MinGW installer.
+Select the MinGW base tools and MinGW Make.
+
+If you select g++ compiler you get:
+MinGW Installation Aborted.
+Extracting gcc-g++-3.4.5-10060117-3.tar.gz
+
+GCC Version 4.
+</p>
+-->
+
+<!-------------------------------------------------------------------------->
+<h2><a name="User's Guide">User's Guide</a></h2>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h3><a name="Overview">Overview</a></h3>
+<p>
+The application window is composed of nine panels and a toolbar. The panels
+are labeled in the figure below. These will each be described in turn. If you
+pause the cursor over a title in any of the panels you will see a tool tip
+that describes the relevant functionality.
+</p>
+
+<p>
+<img src="figures/CainCapture.png">
+</p>
+
+<p>
+The five panels in the top row follow the workflow of running a stochastic
+simulation. Select a model (a system of species and the reactions that govern
+their evolution) in the model list. Then select a simulation method. One can
+use exact or approximate methods to generate realizations of the process.
+In the recorder panel you specify the species and reactions that you want to
+record. In the launcher panel you select the number of trajectories to generate
+and start the simulation. The simulation output is listed in the rightmost
+panel.
+</p>
+
+<p>
+The four panels in the bottom row comprise the model editor. These show the
+species, reactions, parameters, and compartments for the selected. If no model
+is selected in the model list panel, the model editor is empty. You can edit a
+model via the grids and their toolbars in each panel.
+</p>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h3><a name="Quick Start">Quick Start</a></h3>
+<p>
+Cain comes with a collection of example data files in the CainExamples folder.
+Open one of these files, <tt>BirthDeath.xml</tt> for example.
+You will see lists of the defined models and methods in the first two panels.
+When you select a model, its species, reactions, etc. are shown in the editor
+panels in the bottom row. Select a model and a method. Then select the
+species and/or reactions to record. You can
+generate a suite of trajectories with the quick launch button
+<img src="icons/16x16/launch.png">&nbsp; in the launcher frame. A description of
+the output will appear in the top, right panel.
+</p>
+
+<p>
+Play around with the buttons and panels. Most of the text labels and buttons
+have tool tips describing their functionality. Just pause the cursor over an
+object to see what it does. Hopefully most of the widgets do
+what you expect. Note that you must have a model and a method selected
+in order to launch a simulation. When you get stuck or confused, come
+back here and continue reading this manual.
+</p>
+
+<p>
+Note that there is a splitter between the top and bottom row of panels.
+It appears differently on each operating system. On Mac OS X splitters are
+indicated with what appears to be a small indentation at their centers.
+You can click and drag the splitter to change the ratio of space allocated
+to the top and bottom rows. There are also vertical splitters between each
+of the editor panels in the bottom row.
+</p>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h3><a name="Model List">Model List</a></h3>
+<p>
+With Cain you can investigate any number of models during a session.
+The first panel lists the models by their identifiers.
+The following actions are available from the model list toolbar:
+<ul>
+  <li><img src="icons/16x16/add.png">&nbsp;
+  Add a new model.
+  <li><img src="icons/16x16/editcopy.png">&nbsp;
+  Add a clone of the selected model.
+  <li><img src="icons/16x16/chess-board.png">&nbsp;
+  Add a duplicated version of the selected model. This duplicates the species
+  and reactions to form a larger system, which is useful for testing the
+  scalability of methods. You can choose the multiplicity (how many times to
+  duplicate) and whether to multiply the propensity functions by unit
+  random numbers.
+  <li><img src="icons/16x16/cancel.png">&nbsp;
+  Delete the selected model.
+  <li><img src="icons/16x16/up.png">&nbsp;
+  Move the selected model up in the list.
+  <li><img src="icons/16x16/down.png">&nbsp;
+  Move the selected model down in the list.
+</ul>
+You must select a model before editing it or launching a simulation;
+do this by clicking on its identifier in the list.
+A model identifier can be any string, but must be
+unique. You can edit the names by clicking twice on a list item. When
+a simulation is run, the identifiers for the model and the method
+are stored with the output. Thus you cannot
+edit or a delete a model that has dependent output. If you want to do
+that, delete that output first. You may, however, change the model or
+the method names at any time; the simulation output will be updated to
+reflect the change.
+</p>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h3><a name="Method Editor">Method Editor</a></h3>
+<p>
+The simulation methods are listed by their identifiers. The
+left half of this panel has much the same functionality as the models
+list. One addition however, is the help button
+<img src="icons/16x16/help.png">. Hitting the help button will open a window
+with documentation on the select method.
+Recall that if a simulation method with associated parameters
+has been used in a simulation, you cannot edit or delete it without
+first deleting the dependent output. You can change its name
+by double clicking on the identifier.
+</p>
+
+<p>
+In the right half of this panel you select the simulation
+method. First select the output category. There are several types of
+output:
+<ul>
+  <li> <tt>Time Series, Uniform</tt> - Generate stochastic trajectories.
+  Record the populations and reaction counts at uniformly spaced intervals
+  in time.
+  <li> <tt>Time Series, All Reactions</tt> - Generate stochastic trajectories.
+  Record every reaction event. Use this output choice when you want a detailed
+  view of a small number of trajectories. Choose the time interval so
+  the number of reactions is not too large.
+  <li> <tt>Time Series, Deterministic</tt> - Generate a single deterministic
+  trajectory by numerically integrating a set of ordinary differential
+  equations. Record the populations and reaction counts at uniformly spaced
+  intervals in time. Note that in this case the populations and reaction counts
+  are real numbers instead of integers.
+  <li> <tt>Histograms, Transient Behavior</tt> - Generate stochastic
+  trajectories. Record the populations in histograms at uniformly spaced
+  intervals in time. 
+  Recording the species populations in histograms gives you more quantitative
+  information about a system than recording and plotting trajectories.
+  <li> <tt>Histograms, Steady State</tt> - 
+  Record the average population values over the simulation time in
+  histograms. You may choose to start each simulation by letting the system
+  equilibrate for a specified time interval. This does not affect the time
+  during which the state is recorded. Average value histograms are useful for
+  determining the steady state probability distributions for the species
+  populations.
+</ul>
+In the second field select the
+algorithm to generate the desired output.  For each method there is a
+choice of options which may affect the performance or accuracy.  Next
+select the end time for the simulation.  (The start time is zero.)
+If you have elected
+to record the state at frames, you choose the number of frames to
+record.  The first frame is at the beginning of the simulation, and
+the last is at the end. If you are only interested in the the final
+populations or the final reaction counts, choose the number of frames
+to be one. For this special case, the state will be recorded only at
+the end time. Some simulation methods require a parameter such as
+allowed error or step size. This quantity is entered in the final box.
+</p>
+
+<p>
+Below is a list of the available methods and options for each output category.
+Each of the solvers use sparse arrays for the state change vectors
+[<a href="#li2006">Li 2006</a>]. The methods that require exponential deviates
+use the ziggurat method [<a href="#marsaglia2000">Marsaglia 2000</a>].
+<ul>
+  <li> <h4><tt>Time Series, Uniform</tt></h4>
+  <ul>
+    <li> <h5><tt>Direct</tt></h5>
+    Gillespie's direct method
+    [<a href="#gillespie1976">Gillespie 1976</a>]
+    [<a href="#gillespie1977">Gillespie 1977</a>].
+    A reaction dependency graph [<a href="#gibson2000">Gibson 2000</a>]
+    is used to minimize the cost of recomputing propensities.
+    Unless otherwise indicated, the sum of the propensities and associated
+    quantities are dynamically updated. 
+    At each step the time increment is determined by drawing an exponential
+    deviate. The mean of the distribution is the sum of the propensities.
+    The reaction is chosen by
+    generating a discrete deviate whose weighted probability mass function
+    is the set of reaction propensities. There are many options for
+    generating the discrete deviate. The computational complexities for
+    generating deviates and for modifying propensities are indicated
+    for each method in terms of the number of reactions <em>M</em>.
+    <ul>
+      <li> <tt>2-D search</tt>
+      - Generate O(<em>M<sup>1/2</sup></em>). Modify O(1).
+      The propensities are stored in a 2-D table that stores the sum of each
+      row. The number of rows (and hence the number of columns) is
+      O(<em>M<sup>1/2</sup></em>). The discrete deviate is generated by
+      first determining the appropriate row with a linear search and then
+      performing a linear search within that row. 
+      <li> <tt>2-D search, sorted</tt>
+      - Generate O(<em>M<sup>1/2</sup></em>). Modify O(1).
+      The propensities are periodically ordered so the larger values have
+      smaller
+      <a href="http://en.wikipedia.org/wiki/Manhattan_distance">Manhattan
+      distance</a> from the lower corner of the table than
+      smaller values. For some problems this may reduce the costs of searching.
+      <li> <tt>2-D search, bubble sort</tt>
+      - Generate O(<em>M<sup>1/2</sup></em>). Modify O(1).
+      The propensities are dynamically ordered each time they are modified.
+      <li> <tt>Compost ion rejection</tt>
+      - Generate O(1).  Modify O(1).
+      Propensities are placed in groups. In each
+      group the propensities differ by at most a factor of two. A deviate
+      is generated by a linear search on the groups followed by selecting
+      a reaction within a group with the method of rejection.
+      This solver implements a slightly modified version of the composition
+      rejection method presented in [<a href="slepoy2008">Slepoy 2008</a>].
+      <li> <tt>Binary search, full CMF</tt>
+      - Generate O(log <em>M</em>). Modify O(<em>M</em>).
+      The cumulative mass function (CMF) is stored in an array. This allows
+      one to generate a discrete deviate with a binary search on that array.
+      At each time step the CMF is regenerated. This is an implementation
+      of the logarithmic direct method [<a href="li2006">Li 2006</a>].
+      <li> <tt>Binary search, sorted CMF</tt>
+      - Generate O(log <em>M</em>). Modify O(<em>M</em>).
+      In this solver the reactions are arranged in descending order according
+      to the sum of the propensities of the influencing reactions. This
+      minimizes the portion of the CMF that one has to recompute after
+      firing a reaction and updating the influenced propensities.
+      <li> <tt>Binary search, recursive CMF</tt>
+      - Generate O(log <em>M</em>). Modify O(log <em>M</em>).
+      Instead of storing the full CMF, a partial, recursive CMF is used.
+      This approach is equivalent to the method presented in
+      [<a href="gibson2000">Gibson 2000</a>]. A deviate can be generated
+      with a binary search. Modifying a propensity affects at most
+      log<sub>2</sub> <em>M</em> elements of the partial, recursive CMF.
+      <li> <tt>Linear search</tt>
+      - Generate O(<em>M</em>). Modify O(1).
+      We use a linear search on the PMF to generate a deviate. The sum of
+      the propensities is dynamically updated.
+      <li> <tt>Linear search, delayed update</tt>
+      - Generate O(<em>M</em>). Modify O(1).
+      This solver recomputes the sum of the propensities at each time step
+      as done in the original formulation of the direct method
+      [<a href="#gillespie1977">Gillespie 1977</a>].
+      <li> <tt>Linear search, sorted</tt>
+      - Generate O(<em>M</em>). Modify O(1).
+      The propensities are periodically sorted in descending order
+      [<a href="#mccollum2005">McCollum 2005</a>].
+      <li> <tt>Linear search, bubble sort</tt>
+      - Generate O(<em>M</em>). Modify O(1).
+      The propensities are dynamically ordered by using swaps each time
+      a propensity is modified.
+    </ul>
+    <li> <h5><tt>Next Reaction</tt></h5>
+    Gibson and Bruck's next reaction method
+    [<a href="#gibson2000">Gibson 2000</a>].
+    <ul>
+      <li> <tt>Hashing</tt>
+      - Pop O(1). Modify O(1).
+      The indexed priority queue is implemented with a hash table
+      [<a href="#cormen2001">Cormen 2001</a>]. We use hashing with chaining,
+      which means that each bin in the hash table contains a list of
+      elements. The hash function is a linear function of the putative
+      reaction times, truncated to an integer to obtain a bin index.
+      The hash function is dynamically adapted to obtain the target load.
+      (The <em>load</em> is the average number of elements in each bin.)
+      <li> <tt>Binary heap, pointer</tt>
+      - Pop O(log <em>M</em>). Modify O(log <em>M</em>).
+      This solver uses a binary heap that is implemented with an array
+      of pointers to the putative reaction times. This is the data structure
+      used in [<a href="#gibson2000">Gibson 2000</a>].
+      <li> <tt>Binary heap, pair</tt>
+      - Pop O(log <em>M</em>). Modify O(log <em>M</em>).
+      We use a binary heap implemented with an array of index/time pairs.
+      The pair version of the binary heap typically has better performance
+      than the pointer version on 64-bit architectures. Vice versa for
+      32-bit architectures.
+      <li> <tt>Partition</tt>
+      - Pop O(<em>M<sup>1/2</sup></em>). Modify O(<em>M<sup>1/2</sup></em>).
+      A splitting value is used to divide the reactions two categories.
+      The splitting value is chosen so that initially there are
+      O(<em>M<sup>1/2</sup></em>) reactions in the lower partition.
+      The remainder are in the upper partition. In determining the minimum
+      putative reaction time, one only has to examine reactions in the
+      lower partition. When the lower partition is empty, a new splitting
+      value is chosen.
+      <li> <tt>Linear search</tt>
+      - Pop O(<em>M</em>). Modify O(1).
+      The putative reaction times are stored in an array. We use a linear
+      search to find the minimum.
+    </ul>
+    <li> <h5><tt>First Reaction</tt></h5>
+    Gillespie's first reaction method
+    [<a href="#gillespie1976">Gillespie 1976</a>]
+    [<a href="#gillespie1977">Gillespie 1977</a>].
+    <ul>
+      <li> <tt>Simple</tt>
+      - A simple implementation of the method.
+      <li> <tt>Reaction influence</tt>
+      - We use the reaction influence data structure to minimize recomputing
+      the propensities.
+      <li> <tt>Absolute time</tt>
+      - We use absolute times instead of waiting times for each reaction.
+      This allows us to reduce the number of exponential deviates used.
+      After firing a reaction, we only generate new reaction times for the
+      influenced reactions.
+    </ul>
+    <li> <h5><tt>Tau-Leaping</tt></h5>
+    All of the tau-leaping solvers have first order accuracy. They differ in
+    how they calculate the expected propensities, whether they correct
+    negative populations, and how they calculate the time step. For calculating
+    the expected propensities one may use a first, second, or fourth order
+    Runge-Kutta scheme. (The first and second order schemes are commonly
+    called forward and midpoint, respectively.)
+    While all yield a first order stochastic method, using
+    a higher order scheme is typically more efficient. Use the adaptive step
+    size solvers unless you are studying the effect of step size. With a fixed
+    step size it is difficult to predict the accuracy of the simulation.
+    With the adaptive step size solvers you may choose whether or not to
+    correct negative populations. Without correction, some portion of the
+    simulations may fail.
+    <ul>
+      <li> <tt>Runge-Kutta, 4th order</tt>
+      <li> <tt>Midpoint</tt>
+      <li> <tt>Forward</tt>
+      <li> <tt>Runge-Kutta, 4th order, no correction</tt>
+      <li> <tt>Midpoint, no correction</tt>
+      <li> <tt>Forward, no correction</tt>
+      <li> <tt>Runge-Kutta, 4th order, fixed step size</tt>
+      <li> <tt>Midpoint, fixed step size</tt>
+      <li> <tt>Forward, fixed step size</tt>
+    </ul>
+    <li> <h5><tt>Hybrid Direct/Tau-Leaping</tt></h5>
+    With these solvers you can choose the scheme for calculating the expected
+    propensities.
+    <ul>
+      <li> <tt>Runge-Kutta, 4th order</tt>
+      <li> <tt>Midpoint</tt>
+      <li> <tt>Forward</tt>
+    </ul>
+  </ul>
+  <li> <h4><tt>Time Series, All Reactions</tt></h4>
+  The direct method with a 2-D search is used when recording each reaction
+  event.
+  <ul>
+    <li> <h5><tt>Direct</tt></h5>
+    <ul>
+      <li> <tt>2-D search</tt>
+    </ul>
+  </ul>
+  <li> <h4><tt>Time Series, Deterministic</tt></h4>
+  When generating a single deterministic trajectory one can either use a
+  built-in solver or export the problem to a Mathematica notebook.
+  The solvers use
+  <a href="http://en.wikipedia.org/wiki/Runge–Kutta">Runge-Kutta</a>
+  schemes. For ordinary work, use the
+  adaptive step size
+  <a href="http://en.wikipedia.org/wiki/Cash-Karp">Cash-Karp</a> variant,
+  which is a fifth order method. The rest of the solvers are only useful
+  in studying how the order and step size affect the solution.
+  <ul>
+    <li> <h5><tt>ODE, Integrate Reactions</tt></h5>
+    <ul>
+      <li> <tt>Runge-Kutta, Cash-Karp</tt>
+      <li> <tt>Runge-Kutta, Cash-Karp, fixed step size</tt>
+      <li> <tt>Runge-Kutta, 4th order, fixed step size</tt>
+      <li> <tt>Midpoint, fixed step size</tt>
+      <li> <tt>Forward, fixed step size</tt>
+    </ul>
+    <li> <h5><tt>Mathematica</tt></h5>
+    <ul>
+      <li> <tt>NDSolve</tt>
+    </ul>
+  </ul>
+  <li> <h4><tt>Histograms, Transient Behavior</tt></h4>
+  <ul>
+    <li> <h5><tt>Direct</tt></h5>
+    <ul>
+      <li> <tt>2-D search</tt>
+    </ul>
+  </ul>
+  <li> <h4><tt>Histograms, Steady State</tt></h4>
+  By recording the average value of species populations you can determine
+  the steady state solution (if it exists).
+  <ul>
+    <li> <h5><tt>Direct</tt></h5>
+    Each of the following use the direct method with a 2-D search.
+    <ul>
+      <li> <tt>Elapsed time</tt>
+      This is the most efficient method for most problems. The algorithm
+      keeps track of when species change values in order to minimize the cost
+      of recording the populations.
+      <li> <tt>Time steps</tt>
+      This is the traditional method. The species populations are recorded
+      at every time step.
+      <li> <tt>All possible states</tt>
+      This is an implementation of the all possible states method
+      [<a href="#lipshtat2007">Lipshtat 2007</a>]. It is usually less efficient
+      than the traditional method.
+    </ul>
+  </ul>
+</ul>
+</p>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h3><a name="Recorder">Recorder</a></h3>
+<p>
+In the recorder panel you specify the species and/or reactions that you
+want to record in the simulation output. Press
+<img src="icons/16x16/add.png">&nbsp; or 
+<img src="icons/16x16/list-remove.png">&nbsp; to select or deselect all of
+the species or reactions.
+If you modify a model hit the refresh button
+<img src="icons/16x16/view-refresh.png">&nbsp;
+to update the recordable items.
+The items that may be recorded depend on
+the type of simulation. When generating time series data of stochastic or
+deterministic, you may select any combination of
+species and reactions. When using histograms to record stochastic trajectories,
+you may select any combination of species. For trajectories that record
+all reaction events, all of the species and reactions are marked as
+being recorded.
+</p>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h3><a name="Launcher">Launcher</a></h3>
+<p>
+In this panel you select the number of trajectories that you would like to
+generate and the number of processes to use. For best performance, set the
+number of processes to the number of cores that you have in your computer.
+If you have a dual-core processor, select 2. If you have a dual-socket
+computer with quad-core processors, select 8.
+</p>
+
+<p>
+Note the slider at the bottom of the launcher panel. This allows you to set
+the priority of the solvers. (Mac OS X and Linux users may be familiar with
+the <a href="http://en.wikipedia.org/wiki/Nice_(Unix)">nice</a> program,
+which allows one to set the priority of a process.) By default, the solvers are
+launched with the lowest possible priority. This way your computer will
+remain responsive. You can continue to work with Cain, check your email, or
+surf the web. If your computer is not busy with other tasks, launching with
+a low priority has a negligible effect on the running time of the simulations.
+</p>
+
+<p>
+There are two ways to launch simulations; you can use 
+either the mass-action launch button <img src="icons/16x16/launch.png">&nbsp;
+or the compile and launch button <img src="icons/16x16/compile.png">.
+The mass-action launch button <img src="icons/16x16/launch.png">&nbsp;
+will launch the simulation using the built-in mass-action solvers. Of
+course you can only use this option if you model uses only mass-action
+kinetics. The latter will compile the solver if necessary and then launch using
+the custom solver. Compilation typically takes a few seconds. If you
+entered any propensity functions which are not proper C++ expressions,
+you will be notified of the compilation errors.
+Note that you can set the compilation options through the preferences button
+<img src="icons/16x16/preferences-system.png">&nbsp; in the main tool bar.
+Unless you are generating a small number of trajectories (in
+which case compiling the solver may take longer than running the
+simulation), the compile and launch option will probably be faster.
+The mass-action solvers use a function that can evaluate
+kinetic laws with any stoichiometry. Evaluating this function is not as
+fast as evaluating a specific propensity function.
+</p>
+
+<p>
+When a simulation is running, the fraction of trajectories that have
+been generated is shown in the progress bar. You can abort a running
+simulation with <img src="icons/16x16/stop.png">. This will wait for
+each processes to finish generating its current trajectory and then
+exit.  The trajectories that have been generated up to that point will
+be stored.  You can also kill a simulation
+with <img src="icons/16x16/cancel.png">.  This will kill the solver
+processes and store the partial results if possible. Note that you can
+repeatedly launch suites of simulations to accumulate more trajectories. You
+don't have to calculate them all in a single run.
+</p>
+
+<p>
+You can run simulations from the command line if you want. This may be
+useful if you want to use several computers to generate the output.
+(See the <a href="#solvers">Command Line Solvers</a>
+section.)  First export a solver with
+<img src="icons/16x16/utilities-terminal.png">.  You have the option of
+exporting a custom solver or a generic mass-action solver.
+A custom solver is specific to the selected model. A generic solver may
+be used with any model that has mass-action kinetics.
+Next export ascii input files with the export jobs button
+<img src="icons/16x16/filesave.png">. This will write an input file for
+each process; the trajectories will be split between the processes.
+Each file contains a description of the selected model and method
+as well as the number of trajectories.  Suppose you 
+export a solver to <tt>solver.exe</tt>. Then you enter 1000 trajectories
+and 4 processes in the launcher window and export the job with a base name
+of <tt>batch</tt>. This will create the solver inputs: 
+<tt>batch_0.txt</tt>, <tt>batch_1.txt</tt>, <tt>batch_2.txt</tt>, and
+<tt>batch_3.txt</tt>.
+You can generate the trajectories for the first batch with the command:
+<pre>
+./solver.exe &lt;batch_0.txt &gt;trajectories_0.txt
+</pre>
+You can import the simulation results with the import trajectories
+button <img src="icons/16x16/fileopen.png">. (Make sure that you have selected
+the correct model and method before doing so.)
+See the <a href="#file">File Formats</a> section for specifications of
+the input and output file formats.
+</p>
+
+<p>
+If you select the &quot;Mathematica&quot; method in the methods
+editor, the export jobs button changes to the export to Mathematica
+button <img src="icons/16x16/mathematica.png">.
+The Mathematica notebook defines the ODE's that describe the reactions
+and species populations as well as commands for numerically solving
+the set of ODE's and plotting the results. The final section in the
+notebook has commands for saving times series data from the solution in a text
+file. You can import this in Cain with the import trajectories
+button <img src="icons/16x16/fileopen.png">.
+</p>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h3><a name="Simulation Output">Simulation Output</a></h3>
+<p>
+Information about the simulation output is displayed in the final frame.
+The outputs are grouped according to the model and method used to generate
+them. After selecting an item, the following operations are available in
+the toolbar:
+<ul>
+  <li> <img src="icons/16x16/cancel.png">&nbsp; Delete the output.
+  <li> <img src="icons/16x16/up.png">&nbsp; Move the selection up in the list.
+  <li> <img src="icons/16x16/down.png">&nbsp; Move the selection down in the
+  list.
+  <li> <img src="icons/16x16/plot.png">&nbsp; Plot the species populations or
+  the reaction counts.
+  <li> <img src="icons/16x16/x-office-spreadsheet.png">&nbsp; Display the
+  species populations or reaction counts in a table.
+  <li> <img src="icons/16x16/HistogramDistance.png">&nbsp; Calculate the
+  distance between histograms. This button opens a frame that allows you to
+  select individual histograms or sets of histograms.
+  <li> <img src="icons/16x16/filesave.png">&nbsp; Export the data as
+  comma-separated values
+  (<a href="http://en.wikipedia.org/wiki/Comma-separated_values">CSV</a>)
+  or as a
+  <a href="http://www.gnuplot.info/">gnuplot</a> data file and script.
+  A CSV file can be imported into a spreadsheet program like
+  <a href="http://www.openoffice.org/product/calc.html">Calc</a>,
+  <a href="http://www.apple.com/iwork/numbers/">Numbers</a>, or
+  <a href="http://office.microsoft.com/excel/">Excel</a>.
+  Exporting to gnuplot will create the files <tt>x.dat</tt> and
+  <tt>x.gnu</tt> for a specified base name <tt>x</tt>. You can use
+  gnuplot to generate graphs 
+  with the shell command &quot;gnuplot x.gnu&quot;. For trajectory output
+  this will create
+  the files <tt>x-Populations.jpg</tt> and <tt>x-Reactions.jpg</tt>
+  that plot the populations and reaction counts, respectively. It will
+  also create plots for each species and each reaction.
+  For histogram output it will generate graphs of each histogram.
+  Note that you
+  can set some plotting options through the preferences button
+  <img src="icons/16x16/preferences-system.png">&nbsp; in the main tool bar.
+</ul>
+</p>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h3><a name="Species Editor">Species Editor</a></h3>
+<p>
+The species editor allows you to view and edit the species. The
+identifier (ID) field is required. In order to be compatible with
+<a href="http://sbml.org/">SBML</a>, there are a couple of restrictions.
+The identifier is a string that starts with an underscore or a letter
+and is composed entirely of underscores, letters and digits. Spaces
+and special characters like $ are not allowed.  &quot;s1&quot;,
+&quot;species158&quot;, &quot;unstableDimer&quot;, and
+&quot;_pi_314&quot; are all valid identifiers. (Don't enter the
+quotes.) &quot;2x4&quot;, &quot;species 158&quot;, &quot;s-158&quot;
+are invalid. Finally, the identifiers must be unique.  The name field
+is optional. It is an arbitrary string that describes the species, for
+example &quot;unstable dimer&quot;.  &quot;Coolest #*@$ species
+ever!!!&quot; is also a valid name, but show a little restraint - this
+is science. The compartment field is optional. It does not affect the
+simulation output. By default the name and compartment fields are hidden.
+Click <img src="icons/16x16/system-search.png">&nbsp; in the tool bar to show
+or hide these columns.
+</p> 
+<p>
+The initial amount field is required. It is the initial
+population of the species and must evaluate to a non-negative integer.
+You may enter a number or any Python expression involving the parameters.
+The following are examples of valid initial amounts.
+<ul>
+  <li> <tt>100</tt>
+  <li> <tt>1e10</tt>
+  <li> <tt>2**10</tt>
+  <li> <tt>pow(X0, 3)</tt>
+  <li> <tt>ceil(pi * R**2)</tt>
+</ul>
+Here we assume that <tt>X0</tt> and <tt>R</tt> have been defined as
+parameters. <tt>pow</tt> and <tt>ceil</tt> are math functions.
+<tt>pi</tt> is a mathematical constant.
+</p> 
+<p>
+There is a tool bar for editing the species. You can select rows by clicking
+on the row label along the left side of the table. The following operations
+are available:
+<ul>
+  <li> <img src="icons/16x16/add.png">&nbsp; Add a species to the table. If you
+  select a row, the new species will be inserted above that row.
+  <li> <img src="icons/16x16/cancel.png">&nbsp; Delete the selected rows.
+  <li> <img src="icons/16x16/up.png">&nbsp; Left click to move the selected
+  row up. Right click to move the selected row to the top. This has no
+  effect if no rows or multiple rows are selected.
+  <li> <img src="icons/16x16/down.png">&nbsp; Left click to move the selected
+  row down. Right click to move the selected row to the bottom. 
+  <li> <img src="icons/16x16/sort.png">&nbsp; Left click to sort by identifier
+  in ascending order. Right click to sort in descending order.
+  <li> <img src="icons/16x16/scale.png">&nbsp; Automatically size the cells in
+  the table to fit their contents.
+  <li> <img src="icons/16x16/system-search.png">&nbsp; Show/hide the optional
+  fields.
+</ul>
+If the species table is not valid, you will get an error message when you
+try to launch a simulation.
+</p>
+
+<p>
+<b>A Note About Identifiers and Compartments.</b><br>
+Note that in designing a scheme to describe species and compartments
+one could use either species identifiers that have compartment scope
+or global scope. We follow the <a href="http://sbml.org/">SBML</a>
+convention that the identifiers have global scope and therefore must
+be unique.  Consider a trivial problem with two species <em>X</em> and
+<em>Y</em> and two compartments <em>A</em> and <em>B</em>. If species
+identifiers had compartment scope then one could describe the species
+as below.
+<table border="1">
+  <tr><th>ID<th>Compartment
+  <tr><td>X<td>A
+  <tr><td>Y<td>A
+  <tr><td>X<td>B
+  <tr><td>Y<td>B
+</table>
+This notation is handy because we can easily see that although the
+populations of <em>X</em> in <em>A</em> and <em>B</em> are distinct,
+they are populations of the same type of species. The disadvantage of
+this notation is that writing reactions is verbose. One cannot simply
+write &quot;<em>X &rarr; Y</em>&quot;, because it does not specify
+whether the reaction occurs in <em>A</em>, or <em>B</em>, or
+both. Furthermore a notation such as &quot;<em>X &rarr; Y</em> in
+<em>A</em>&quot; is not sufficient because it cannot describe
+transport between compartments. Thus, one is stuck with a notation
+such as &quot;<em>X</em> in <em>A</em> &rarr; <em>Y</em> in
+<em>A</em>.&quot; In Cain, the species identifiers must be unique:
+<table border="1">
+  <tr><th>ID<th>Compartment
+  <tr><td>X_A<td>A
+  <tr><td>Y_A<td>A
+  <tr><td>X_B<td>B
+  <tr><td>Y_B<td>B
+</table>
+Thus the compartment field is optional; it is not used to describe the
+reactions and does not affect simulation results. It's only use is in
+visually categorizing the species. If you leave the compartment field
+blank, then internally each species is placed in the same unnamed compartment.
+If you export such a model in SBML format, the compartment will be given an
+identifier such as &quot;Unnamed&quot;.
+</p>
+
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h3><a name="Reaction Editor">Reaction Editor</a></h3>
+<p>
+The identifier and name for a reaction are analogous to those for a
+species. By default the name field is hidden.
+Specify the reactants and products by typing the species
+identifiers preceded by their stoichiometries. For example: &quot;s1&quot;,
+&quot;s1 + s2&quot;, &quot;2 s2&quot;, or
+&quot;2 s1 + s2 + 2 s3&quot;. The stoichiometries must be positive
+integers.  A reaction may have an empty set of reactants or an empty
+set of products, but not both. (A &quot;reaction&quot; without
+reactants or products has no effect on the system.)
+The <tt>MA</tt> field indicates if the equation has mass-action kinetics.
+In the
+<tt>Propensity</tt> field you can either enter a propensity factor for
+use in a mass-action kinetic law or you can enter an arbitrary
+propensity function.  The reactions editor has the same tool bar as
+the species editor. Again, you will be informed of any bad input when
+you try to launch a simulation.
+</p>
+
+<p>
+If the <tt>MA</tt> field is checked, a reaction will use a mass-action
+kinetics law.  For this case you can enter a number or a Python
+expression that evaluates to a number in the <tt>Propensity</tt>
+field.  This non-negative number will be used as the propensity factor
+in the reaction's propensity function.  Below are some examples of
+reactions and their propensity functions for a propensity factor of
+<em>k</em>. [X] indicates the population of species X. (0 indicates the empty
+set; either no reactants or no products.)
+<table border="1">
+  <tr><th>Reaction<th>Propensity Function
+  <tr><td>0 &rarr; X<td>k
+  <tr><td>X &rarr; Y<td>k [X]
+  <tr><td>X + Y &rarr; Z<td>k [X] [Y]
+  <tr><td>2 X &rarr; Y<td>k [X] ([X] - 1)/ 2
+</table>
+If the <tt>MA</tt> field is not checked the <tt>Propensity</tt> field
+is used as the propensity function. For example, you might
+to use a
+<a href="http://en.wikipedia.org/wiki/Michaelis_menten">Michaelis-Menten</a>
+kinetic law. Use the species identifiers
+to indicate the species populations. You can use any model parameters
+in defining the function. The format of the function must be
+a C++ expression. (Don't worry if you don't know C++. Just remember to use
+* for multiplication instead of a space. Also, if you divide by a number use a
+decimal point in it. For example, write &quot;5/2.&quot; or &quot;5/2.0&quot; instead of &quot;5/2&quot;.
+<a href="http://en.wikipedia.org/wiki/Integer_division#Division_of_integers">
+Integer division</a> instead of floating point division will be used in the
+third expression resulting in 2 instead of 2.5.)
+Below are
+some examples of valid expressions for propensity functions. Assume that
+the species identifiers are s1, s2, ...
+<table border="1">
+  <tr><th>C++ Expression<th>Propensity Function
+  <tr><td>2.5<td>2.5
+  <tr><td>5*pow(s1, 2)<td>5 [s1]<sup>2</sup>
+  <tr><td>1e5*s2<td> 100000 [s2]
+  <tr><td>P*s1*s2/(4+s2)<td> P [s1] [s2] / (4 + [s2])
+  <tr><td>log(Q)*sqrt(s1)<td> log(Q) &#8730;[s1]
+</table>
+Here we assume that <tt>P</tt> and <tt>Q</tt> have been defined as parameters.
+Note that you do not have to use the <tt>std</tt> namespace qualification
+with the standard math functions like <tt>sqrt</tt>, <tt>log</tt>, and
+<tt>exp</tt>. The expressions will be evaluated in a function with a
+<tt>using namespace std;</tt> declaration.
+</p>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h3><a name="Parameter Editor">Parameter Editor</a></h3>
+<p>
+Model parameters are constants that you can use in the expressions for the
+species initial amounts and the reaction propensities. The <tt>ID</tt>
+field is required, but the name is optional (and hidden by default).
+For the value you can enter
+a number or any Python expression. You can use the standard mathematical
+functions and constants as well as other parameters to define the values.
+You will get an error message if the parameters cannot be evaluated.
+Below is an example of a valid set of parameters.
+<table border="1">
+  <tr><th>ID<th>Value<th>Name
+  <tr><td>R<td>sqrt(10)<td>Radius
+  <tr><td>Area<td>pi * R**2<td>
+  <tr><td>Volume<td>H * Area<td>
+  <tr><td>H<td>5.5<td>Height
+</table>
+</p>
+
+<p>
+It is permitted to use the mathematical constants <tt>pi</tt> and <tt>e</tt>
+as parameter identifiers. In this case, the values you assign to them
+will override their natural values. You may also use the names of Python
+built-in functions and math functions as parameter identifiers.
+However, to avoid confusion it best to avoid such names.
+The following set of parameters are valid, but misleading.
+Below <tt>lambda</tt> has the value <tt>cos(6)</tt>.
+<table border="1">
+  <tr><th>ID<th>Value
+  <tr><td>pi<td>3
+  <tr><td>e<td>2
+  <tr><td>sin<td>pi * e
+  <tr><td>lambda<td>cos(sin)
+</table>
+</p>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h3><a name="Compartment Editor">Compartment Editor</a></h3>
+<p>
+In panel you can edit the compartments. Recall that in Cain compartments are
+optional. They are provided primarily to facilitate importing and
+exporting models in SBML format. The identifier and size fields are required;
+the name field is optional. 
+</p>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h3><a name="Tool Bar">Tool Bar</a></h3>
+<p>
+The tool bar at the top of the window provides short-cuts for common
+operations.  The models, methods, and simulation output
+comprise the application state.  Each of these are loaded/stored when
+you open/save a file.  With the file operations you can
+clear the state <img src="icons/16x16/filenew.png">,
+open a file <img src="icons/16x16/fileopen.png">,
+save the state <img src="icons/16x16/filesave.png">,
+save to a different file name <img src="icons/16x16/filesaveas.png">,
+or quit <img src="icons/16x16/exit.png">.
+</p>
+
+<p>
+You can seed the random number generator by clicking the die icon
+<img src="icons/16x16/dice.png">&nbsp; and entering an unsigned 32-bit
+integer. (An integer between 0 and 4294967295, inclusive.) This number
+is used to generate new states for the Mersenne Twister states. You
+won't ordinarily need this feature. It is primarily used for testing
+and comparing simulation methods.
+</p>
+
+<p>
+In the final group you can edit the application preferences
+<img src="icons/16x16/preferences-system.png">&nbsp;
+or open the help browser <img src="icons/16x16/help.png">. In the
+application preferences you can set up the compiler.
+</p>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h3><a name="Mathematical Expressions">Mathematical Expressions</a></h3>
+<p>
+Each of the species initial amounts, the propensity factors for mass-action
+kinetic laws, and the parameter values are interpreted as Python expressions.
+Python supports the standard
+<a href="http://docs.python.org/lib/typesnumeric.html">
+numerical operations</a>. Additionally you can use the functions and constants
+defined in the 
+<a href="http://docs.python.org/lib/module-math.html">math module</a>.
+</p>
+
+<p>
+For kinetic laws which are not mass-action, the propensity function
+must be a valid C++ expression. Both Python and C++ use the C math library,
+so the syntax is almost the same. One difference to note: C++ does not
+support the power operator <tt>x**y</tt>. Use <tt>pow(x, y)</tt> instead.
+You can use any of standard math functions without the <tt>std</tt>
+namespace qualification as well as the constants <tt>pi</tt> and <tt>e</tt>.
+Of course you can also use the model parameters. Use the species identifiers
+to denote the species populations.
+</p>
+
+
+<!-------------------------------------------------------------------------->
+<h2><a name="Examples">Examples</a></h2>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h3><a name="Birth-Death">Birth-Death</a></h3>
+<!--CONTINUE: Reduce the size of the large figures.-->
+<!--CONTINUE: lambda = 0,1,2,3 would probably be more interesting.-->
+
+<p>
+Consider the linear birth-death process presented in Section 1.3 of
+<a href="http://www.staff.ncl.ac.uk/d.j.wilkinson/smfsb/">Stochastic
+Modelling for Systems Biology</a>. The text introduces some differences
+between continuous, deterministic modelling and discrete, stochastic modelling.
+Let <em>X(t)</em> be the population of bacteria which reproduce at a rate
+of &lambda; and die at a rate of &mu;. The continuous model of this process
+is the differential equation
+</p>
+<p align="center">
+<em>
+X'(t) = (&lambda; - &mu;) X(t),
+X(0) = x<sub>0</sub>
+</em>
+</p>
+<p>
+which has the solution
+</p>
+<p align="center">
+<em>X(t) = x<sub>0</sub></em> e<sup>(&lambda; - &mu;)<em>t</em></sup>.
+</p>
+<p>
+We can numerically solve the continuous, deterministic model in Cain.
+Open the file <tt>BirthDeath.xml</tt> and select the
+<tt>Birth Death 0 1</tt> model, which has parameter values &lambda; = 0
+and &mu; = 1. In the method editor, select the
+<tt>Deterministic Trajectory</tt> category with the default method and options.
+Click the mass-action launch button <img src="icons/16x16/launch.png">&nbsp;
+to generate the solution. You can plot the solution by clicking the
+plot button <img src="icons/16x16/plot.png">&nbsp; in the output list
+and selecting <tt>Population trajectories</tt>. The population as a
+function of time is plotted below.
+</p>
+<p>
+<img src="figures/BirthDeath/BirthDeath-0-1-ODE-Populations.jpg">
+</p>
+
+<p>
+The ODE integration method in Cain solves a
+different formulation of the model than the population-based
+formulation above.
+(Select <tt>Deterministic Trajectory</tt> for the category and
+<tt>ODE, Integrate Reactions</tt> for the method.)
+As the method name suggests, it integrates the reaction
+counts. The birth-death process can be modelled with the following
+set of differential equations:
+</p>
+<p align="center">
+<em>
+B'(t) = &lambda; X(t), B(0) = 0<br>
+D'(t) = &mu; X(t), D(0) = 0<br>
+X'(t) = B'(t) - D'(t), X(0) = x<sub>0</sub>
+</em>
+</p>
+<p>
+which for &lambda; &ne; &mu; has the solution
+</p>
+
+<p align="center">
+<em>B(t) = &lambda; x<sub>0</sub></em>
+(1 - e<sup>(&lambda; - &mu;)<em>t</em></sup>) / (&mu; - &lambda;)<br>
+<em>D(t) = &mu; x<sub>0</sub></em>
+(1 - e<sup>(&lambda; - &mu;)<em>t</em></sup>) / (&mu; - &lambda;)<br>
+<em>X(t) = x<sub>0</sub></em> e<sup>(&lambda; - &mu;)<em>t</em></sup>.
+</p>
+
+<p>
+Here <em>B(t)</em> is the number of birth reactions and
+<em>D(t)</em> is the number of death reactions. The time derivative of
+the population <em>X'(t)</em> depends on the birth rate and death
+rate. While the population solutions are the same, the reaction-based
+formulation of the model carries more information than the
+population-based formulation. The population depends only
+on the difference &lambda; - &mu;. However, the reaction counts depend
+on the two parameters separately. For &lambda; = 0 and &mu; = 1
+no birth reactions occur. In the output list you can plot with the
+<tt>Cumulative reaction count trajectories</tt> option to generate
+a figure like the one below.
+</p>
+
+<p>
+<img src="figures/BirthDeath/BirthDeath-0-1-ODE-Reactions.jpg">
+</p>
+
+<p>
+For &lambda; = 10 and &mu; = 11, the population is the same, but the
+reaction counts differ. Below is a plot of the reaction counts for this case.
+</p>
+
+<p>
+<img src="figures/BirthDeath/BirthDeath-10-11-ODE-Reactions.jpg">
+</p>
+
+<p>
+Now consider the discrete stochastic model, which has reaction
+propensities instead of deterministic reaction rates.
+This model is composed of the birth reaction 
+<em>X &rarr; 2 X</em> and the death reaction <em>X &rarr;</em> 0 which
+have propensities &lambda;<em>X</em> and &mu;<em>X</em>, respectively.
+First we will generate a trajectory that records all of the reactions.
+Select the <tt>Birth Death 0 1</tt> model,
+and the
+<tt>All Reaction Events</tt> category and then generate a trajectory with
+the mass-action launch button. Below is a plot of the species
+populations. We see that the population changes by discrete amounts.
+</p>
+
+<p>
+<img src="figures/BirthDeath/BirthDeath-0-1-1-DAR-Populations.jpg">
+</p>
+
+<p>
+Below we use Cain to reproduce the results in the text that demonstrate how
+increasing &lambda; + &mu; while holding &lambda; - &mu; = -1 increases the
+volatility in the system. For each test, we generate an ensemble of five
+trajectories and plot these populations along with the
+deterministic solution.
+</p>
+
+<table align="center">
+  <tr>
+    <td><img src="figures/BirthDeath/BirthDeath-0-1-DAR-ODE-Populations.jpg">
+    <td><img src="figures/BirthDeath/BirthDeath-3-4-DAR-ODE-Populations.jpg">
+  <tr>
+    <td>&lambda; = 0, &mu; = 1
+    <td>&lambda; = 3, &mu; = 4
+  <tr>
+    <td><img src="figures/BirthDeath/BirthDeath-7-8-DAR-ODE-Populations.jpg">
+    <td><img src="figures/BirthDeath/BirthDeath-10-11-DAR-ODE-Populations.jpg">
+  <tr>
+    <td>&lambda; = 7, &mu; = 8
+    <td>&lambda; = 10, &mu; = 11
+</table>
+
+
+<p>
+For a simple problem like this we can store and visualize all of the
+reactions. However, for more complicated models (or longer running
+times) generating a suite of trajectories may involve billions of reaction
+events. Storing, and particularly plotting, that much data could be
+time consuming or just impossible on your computer. Thus instead of
+storing all of the reaction events, one typically
+stores snapshots of the populations and reaction counts at set points
+in time. Below we select the <tt>Time Series, Uniform</tt> category
+and the <tt>Direct</tt> method with 51 frames.
+For each test, we generate an ensemble of ten
+trajectories and plot the populations and the cumulative
+reaction counts. Note that because we are only sampling the
+state, we don't see the same &quot;noisiness&quot; in the trajectories.
+</p>
+
+<table align="center">
+  <tr>
+    <td><img src="figures/BirthDeath/BirthDeath-0-1-Populations.jpg">
+    <td><img src="figures/BirthDeath/BirthDeath-0-1-Reactions.jpg">
+  <tr>
+    <td colspan="2">&lambda; = 0, &mu; = 1
+  <tr>
+    <td><img src="figures/BirthDeath/BirthDeath-3-4-Populations.jpg">
+    <td><img src="figures/BirthDeath/BirthDeath-3-4-Reactions.jpg">
+  <tr>
+    <td colspan="2">&lambda; = 3, &mu; = 4
+  <tr>
+    <td><img src="figures/BirthDeath/BirthDeath-7-8-Populations.jpg">
+    <td><img src="figures/BirthDeath/BirthDeath-7-8-Reactions.jpg">
+  <tr>
+    <td colspan="2">&lambda; = 7, &mu; = 8
+  <tr>
+    <td><img src="figures/BirthDeath/BirthDeath-10-11-Populations.jpg">
+    <td><img src="figures/BirthDeath/BirthDeath-10-11-Reactions.jpg">
+  <tr>
+    <td colspan="2">&lambda; = 10, &mu; = 11
+</table>
+
+<p>
+When you use the plot button <img src="icons/16x16/plot.png">, 
+to plot trajectories, there are six plotting methods. You can plot the
+populations, the binned
+reaction counts (the reaction counts for each frame),
+or the cumulative reaction counts. For each of these
+you can plot either the statistics (mean and optionally the standard deviation)
+or the trajectories.
+Below are the six plotting methods for the
+birth-death model with &lambda; = 3 and &mu; = 4.
+</p>
+
+<p>
+<table align="center">
+  <tr><td><img src="figures/BirthDeath/BirthDeath-3-4-PopulationStatistics.jpg">
+  <td><img src="figures/BirthDeath/BirthDeath-3-4-PopulationTrajectories.jpg">
+  <tr><td>Population Statistics
+  <td>Population Trajectories
+  <tr><td><img src="figures/BirthDeath/BirthDeath-3-4-BinnedReactionCountStatistics.jpg">
+  <td><img src="figures/BirthDeath/BirthDeath-3-4-BinnedReactionCountTrajectories.jpg">
+  <tr><td>Binned Reaction Count Statistics
+  <td>Binned Reaction Count Trajectories
+  <tr><td><img src="figures/BirthDeath/BirthDeath-3-4-CumulativeReactionCountStatistics.jpg">
+  <td><img src="figures/BirthDeath/BirthDeath-3-4-CumulativeReactionCountTrajectories.jpg">
+  <tr><td>Cumulative Reaction Count Statistics
+  <td>Cumulative Reaction Count Trajectories
+</table>
+</p>
+
+<p>
+After you select the plotting method, you can select
+further options in the plotting window shown below.
+The window has a list of either the species or the reactions.
+By clicking on the first checkbox field you can select which items
+to plot. The &quot;Select all&quot; button will select all
+of the items.
+By clicking on a button in the Color field you can select the line color.
+You can customize the appearance of the lines.
+The &quot;Color lines&quot; button will automatically color the
+selected lines according
+to hue. In the subsequent item fields you can select the line style (solid,
+dashed, etc.) and the line width. If you select a style for the
+marker, one will be placed at each frame. In the subsequent fields you
+customize the appearance of the markers.
+In the bottom half of the window you can select whether and
+where the legend will be displayed.  Finally you can enter the title and
+axes labels if you like.
+</p>
+
+<p>
+<img src="figures/PlottingWindow.png">
+</p>
+
+<p>
+Consider how the value of &lambda; affects the population of X at time
+t = 2.5. From the plots above it appears that with increasing &lambda; there
+is greater variance in the population, and also a greater likelihood of
+extinction (X = 0). However, it is not possible to quantify these
+observations by looking at trajectory plots. Recording histograms of the state
+is the right tool for this. We select the <tt>Histograms, Transient
+Behavior</tt>
+output category. Since we are only interested in the population at
+t = 2.5, we set the end time to that value and set the number of frames
+to 1. We set the number of bins to 128 and launch simulation with
+100000 trajectories for each value of &lambda;. When plotting histograms
+you choose the species and the frame (time). You can also choose colors
+and enter a title and axes labels if you like. The plot configuration
+window for histograms is shown below.
+</p>
+
+<p>
+<img src="figures/HistogramPlottingWindow.png">
+</p>
+
+<p>
+The histograms for each value of &lambda; are shown below. We see that for
+&lambda; = 0, the mode (most likely population) is 4, but for &lambda; =
+3, 7, or 10, the mode is 0. The likelihood of extinction increases with
+increasing &lambda;.
+</p>
+
+<table align="center">
+  <tr>
+    <td><img src="figures/BirthDeath/BirthDeath2.5Lambda0.jpg">
+    <td><img src="figures/BirthDeath/BirthDeath2.5Lambda3.jpg">
+  <tr>
+    <td>&lambda; = 0, &mu; = 1
+    <td>&lambda; = 3, &mu; = 4
+  <tr>
+    <td><img src="figures/BirthDeath/BirthDeath2.5Lambda7.jpg">
+    <td><img src="figures/BirthDeath/BirthDeath2.5Lambda10.jpg">
+  <tr>
+    <td>&lambda; = 7, &mu; = 8
+    <td>&lambda; = 10, &mu; = 11
+</table>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h3><a name="Immigration-Death">Immigration-Death</a></h3>
+
+<p>
+Consider a system with a single species <em>X</em> and two reactions:
+immigration and death. The immigration reaction is 0&rarr;<em>X</em>
+with a unit propensity factor. The death reaction is <em>X</em>&rarr;0
+and has propensity factor 0.1. Since both reactions use mass action kinetic
+laws, the propensities are 1 and 0.1 <em>X</em>, respectively. The analogous
+deterministic process is <em>X</em>' = 1 - 0.1<em>X</em>. We can find
+the steady state solution of this by setting <em>X</em>' to zero and solving
+for <em>X</em>, which yields <em>X</em> = 10. (More accurately it is a
+stationary point that happens to be a steady state solution.)
+</p>
+
+</p>
+The discrete system does not have the same kind of steady state solution
+as the continuous model. At steady state, there is a probability
+distribution for the population of <em>X</em>.
+To determine this distribution open the <tt>ImmigrationDeath.xml</tt>
+example file and select <tt>ImmigrationDeath10</tt> from the model list
+and <tt>SteadyState</tt> from the list of methods.
+The initial population is 10.
+The direct method with the elapsed time solver option generates
+average value histograms. 
+We specify that we will record <em>X</em> and generate two
+trajectories. We hit <img src="icons/16x16/plot.png">&nbsp;
+to plot the histogram, shown below. Since we generated two
+trajectories, we can estimate the error in the histogram. Hit the table
+button <img src="icons/16x16/x-office-spreadsheet.png">&nbsp; and select
+<tt>Estimated error</tt>. The result depends upon the stream of random
+number used, I got an estimated error of 0.0087. This indicates that the
+histogram is fairly accurate and captures the typical behavior of the system.
+We could obtain a more accurate answer by generating more trajectories.
+</p>
+
+<p>
+<img src="figures/ImmigrationDeath/ImmigrationDeathSteadyState.jpg">
+</p>
+
+
+<!-------------------------------------------------------------------------->
+<h2><a name="Simulation Methods">Simulation Methods</a></h2>
+
+<p>
+A simulation method may be either deterministic or stochastic. One can obtain a
+deterministic method by modelling the reactions with ordinary differential
+equations. Numerically integrating the equations gives an approximate solution.
+<!--CONTINUE.-->
+</p>
+
+
+<p>
+The simulations may be performed with exact or approximate methods.
+<a href="http://en.wikipedia.org/wiki/Gillespie_algorithm">Gillespie's
+direct method</a> and Gibson and Bruck's next reaction method
+are both exact methods. Various formulations of both of these methods
+are available. For the direct method, there are a variety of ways of
+generating a discrete deviate, that determines which reaction fires.
+The next reaction method uses a priority queue. Several data structures
+can be used to implement a priority queue. The choice of data structure
+will influence the performance, but not the output.
+</p>
+
+<p>
+Tau-leaping is an approximate, discrete, stochastic method. It is used
+to generate an ensemble of trajectories, each of which is an
+approximate realization of the stochastic process. The tau-leaping
+method takes jumps in time and uses Poisson deviates to determine how
+many times each reaction fires.  One can choose fixed time steps or
+specify a desired accuracy. The latter is the preferred method.  There
+is a hybrid method which combines the direct method and
+tau-leaping. An adaptation of the direct method is used for reactions
+that are slow or involve small populations; the tau-leaping method is
+used for the rest.  This offers improved accuracy and performance for
+the case that some species have small populations. For this hybrid
+method, one specifies the desired accuracy.
+</p>
+
+<p>
+One can model the reactions with a set of ordinary differential equations.
+In this case one assumes that the populations are continuous and
+not discrete (integer). One can numerically integrate the differential
+equations to obtain an approximate solution. Note that since this is a
+deterministic model, it generates a single solution instead of an
+ensemble of trajectories.
+</p>
+
+<p>
+Each of the stochastic simulation methods use discrete, uniform deviates
+(random integers). We use the 
+<a href="http://www.math.sci.hiroshima-u.ac.jp/~m-mat/MT/emt.html">Mersenne Twister 19937</a>
+algorithm to generate these.
+Both of the exact methods also use exponential deviates that determine
+the reaction times. For these we use the ziggurat method.
+</p>
+
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h3><a name="Discrete Stochastic Simulations">Discrete Stochastic Simulations</a></h3>
+
+<p>
+We consider discrete stochastic simulations that are modelled with a set
+of species and a set of reactions that transform the species' amounts.
+Instead of using a
+continuum approximation and dealing with species mass or concentration, 
+the amount of each species is a non-negative integer which is the population.
+Depending on the species, this could be the number of molecules or the
+number of organisms, etc. Reactions transform a set reactants into a set of
+products, each being a linear combination of species with integer coefficients.
+</p>
+
+<p>
+Consider a system of <em>N</em> species represented by the state vector 
+<em>X(t) = (X<sub>1</sub>(t), ... X<sub>N</sub>(t))</em>.
+<em>X<sub>n</sub>(t)</em> is the population of the 
+<em>n<sup>th</sup></em> species at time <em>t</em>.
+There are <em>M</em> reaction channels
+which change the state of the system.  Each reaction is characterized by 
+a propensity function <em>a<sub>m</sub></em> and a state change vector
+<em>V<sub>m</sub> = (V<sub>m1</sub>, ..., V<sub>mN</sub>)</em>.
+<em>a<sub>m</sub> dt</em> is the 
+probability that the <em>m<sup>th</sup></em> reaction will occur in the 
+infinitesimal time interval <em>[t .. t + dt)</em>.  The state 
+change vector is the difference between the state after the reaction and 
+before the reaction.
+</p>
+
+<p>
+To generate a trajectory (a possible realization of the evolution of the
+system) one starts with an initial state and then repeatedly fires reactions.
+To fire a reaction, one must answer the two questions:
+<ol>
+  <li> When will the next reaction fire?
+  <li> Which reaction will fire next?
+</ol>
+Let the next reaction have index &mu; and fire at time <em>t + &tau;</em>.
+Let &alpha; be the sum of the propensities.  The time to the
+next reaction is an exponentially distributed random variable with mean
+1 / &alpha; ; the probability density function is 
+<em>P(&tau; = x) = &alpha; e<sup>- &alpha; x</sup></em>.
+The index of the next reaction to fire is a discrete random variable
+with probability mass function <em>P(&mu; = m) = a<sub>m</sub> / &alpha;</em>.
+</p>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h3><a name="Direct Method">Direct Method</a></h3>
+
+<h4>Original Version</h4>
+
+<p>
+Once the state vector <em>X</em> has been initialized, Gillespie's direct 
+method proceeds by 
+repeatedly stepping forward in time until a termination condition is reached.
+(See <a href="http://www.caam.rice.edu/~caam210/reac/gillespie.pdf">Exact
+Stochastic Simulation of Coupled Chemical Reactions</a>.)
+At each step, one generates two uniform random deviates in the interval
+(0..1).  The first deviate, along with the sum of the propensities,
+is used to generate an exponential deviate which
+is the time to the first reaction to fire.  The second deviate is used to
+determine which reaction will fire.
+Below is the algorithm for a single step.
+<ol>
+<li> for <em>m</em> in <em>[1..M]</em>:
+  Compute <em>a<sub>m</sub></em> from <em>X</em>.
+<li> <em>&alpha; = &Sigma;<sub>m = 1</sub><sup>M</sup> a<sub>m</sub>(X)</em>
+<li> Generate two unit, uniform random numbers <em>r<sub>1</sub></em>
+  and <em>r<sub>2</sub></em>.
+<li> <em>&tau; = -</em>ln<em>(r<sub>1</sub>) / &alpha;</em>
+<li> Set &mu; to the minimum index such that 
+<em> &Sigma;<sub>m = 1</sub><sup>&mu;</sup> a<sub>m</sub> &gt;
+  r<sub>2</sub> &alpha;</em>
+<li> <em>t = t + &tau;</em>
+<li> <em>X = X + V<sub>&mu;</sub></em>
+</ol>
+</p>
+
+<p>
+Consider the computational complexity of the direct method.
+We assume that the reactions are loosely coupled and hence 
+computing a propensity <em>a<sub>m</sub></em> is O(1).
+Thus the cost of computing the propensities
+is O(<em>M</em>). Determining &mu; requires iterating over
+the array of propensities and thus has cost O(<em>M</em>). 
+With our loosely coupled assumption, updating the state has unit cost.
+Therefore the computational complexity of a step with the direct method is 
+O(<em>M</em>). 
+</p>
+
+<h4>Efficient Formulations</h4>
+
+<p>
+To improve the computational complexity of the direct method, we first write 
+it in a more generic way. A time step consists of the following:
+<ol>
+<li> &tau; = exponentialDeviate() / &alpha;
+<li> &mu; = discreteFiniteDeviate()
+<li> <em>t = t + &tau;</em>
+<li> <em>X = X + V<sub>&mu;</sub></em>
+<li> Update the discrete deviate generator.
+<li> Update the sum of the propensities &alpha;.
+</ol>
+</p>
+
+<p>
+There are several ways of improving the performance of the direct method:
+<ul>
+<li> Use faster algorithms to generate exponential deviates and discrete 
+  deviates.
+<li> Use sparse arrays for the state change vectors.
+<li> Continuously update &alpha; instead of recomputing it at each time step.
+</ul>
+</p>
+
+<p>
+The original formulation of the direct method uses the inversion method to
+generate an exponential deviate. This is easy to program, but is 
+computationally expensive due to the evaluation of the logarithm. There are
+a couple of recent algorithms
+(<a href="http://www.jstatsoft.org/v05/i08/">ziggurat</a> and
+<a href="http://www.umanitoba.ca/statistics/faculty/johnson/Preprints/rng-preprint.pdf">acceptance complement</a>)
+that have much better performance.
+</p>
+
+<p>
+There are many algorithms for generating discrete
+deviates. The static case (fixed probability mass function) is well
+studied. The simplest approach is CDF inversion with a linear
+search. One can implement this with a build-up or chop-down search on
+the PMF. The method is easy to code and does not require storing the
+CDF. However, it has linear complexity in the number of events, so it
+is quite slow.  A better approach is CDF inversion with a binary
+search. For this method, one needs to store the CDF.  The binary
+search results in logarithmic computational complexity.  A better
+approach still is Walker's algorithm, which has constant complexity.
+Walker's algorithm is a binning approach in which each bin represents
+either one or two events.
+</p>
+
+<p>
+Generating discrete deviates with a dynamically changing PMF
+is significantly trickier than in the static case. CDF inversion with
+a linear search adapts well to the dynamic case; it does not have any
+auxiliary data structures. The faster methods have significant
+preprocessing costs.  In the dynamic case these costs are incurred in
+updating the PMF. The binary search and Walker's algorithm both have
+linear preprocessing costs.  Thus all three considered algorithms have
+the same complexity for the combined task of generating a deviate and
+modifying the PMF. There are algorithms that can both efficiently generate
+deviates and modify the PMF.  In fact, there is a method that has constant
+complexity. See the documentation of the source code for details.
+</p>
+
+<p>
+The original formulation of the direct method uses CDF inversion with a
+linear search. Subsequent versions have stored the PMF in sorted order or 
+used CDF inversion with a binary search. These modifications have yielded 
+better performance, but have not changed the worst-case computational
+complexity of the algorithm. Using a more sophisticated discrete
+deviate generator will improve the performance of the direct method, 
+particularly for large problems.
+</p>
+
+<p>
+For representing reactions and the state change vectors, one can use either 
+dense or sparse arrays. Using dense 
+arrays is more efficient for small or tightly coupled problems. Otherwise 
+sparse arrays will yield better performance. Consider loosely coupled problems.
+For small problems one can expect modest performance benefits (10 %) 
+in using dense arrays. For more than about 30 species, it is better to use 
+sparse arrays. 
+</p>
+
+<p>
+For loosely coupled problems, it is better to continuously update the
+sum of the propensities &alpha; instead of recomputing it at each
+time step.  Note that this requires some care. One must account for
+round-off error and periodically recompute the sum.
+</p>
+
+<p>
+The following options are available with the
+direct method. Inversion with a 2-D search is the default; it is an efficient
+method for most problems. If performance is important (i.e. if it will take
+a long time to generate the desired number of trajectories) it may be
+worthwhile to try each method with a small number of trajectories and then
+select the best method for the problem.
+<ul>
+  <li>
+  <tt>Inversion with a 2-D search.</tt> O(<em>M<sup>1/2</sup></em>).
+  The discrete deviate is generated with
+  a 2-D search on the PMF. This method often has the best performance for
+  small and medium problems. Its simplicity and predictable branches make it
+  well-suited for super-scalar (standard) processors.
+  <li>
+  <tt>Composition rejection.</tt> O(1). This method has excellent
+  scalability in the number of reactions so it is efficient for large
+  problems. However, because of its sophistication, it is slow for small
+  problems. 
+  <li>
+  <tt>Inversion with recursive CDF.</tt> O(log <em>M</em>).
+  This is a fairly fast method for any problem. However, despite the lower
+  computational complexity, it usually does not perform as well as the
+  2-D search. This is partially due to the fact that branches is a binary
+  search are not predictable. Unpredictable branches are expensive on
+  super-scalar processors.
+  <li>
+  <tt>Inversion with PMF.</tt> O(<em>M</em>). The discrete deviate is
+  generated with a linear, chop-down search on the PMF. This method is
+  efficient for small problems.
+  <li>
+  <tt>Inversion with sorted PMF.</tt> O(<em>M</em>). The discrete deviate is
+  generated with a linear, chop-down search on the sorted PMF. This method is
+  efficient for problems in which a small number of reactions account for
+  most of the firing events.
+  <li>
+  <tt>Inversion with CDF.</tt> O(<em>M</em>). The discrete deviate is
+  generated with a binary search on the CDF. The method has linear complexity
+  because the CDF must be regenerated after each reaction event.
+</ul>
+</p>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h3><a name="First Reaction Method">First Reaction Method</a></h3>
+
+<h4>Original Version</h4>
+
+<p>
+Gillespie's first reaction method generates a uniform random deviate for
+each reaction at each time step.  These uniform deviates are used to compute
+exponential deviates which are the times at which each reaction will next fire.
+By selecting the minimum of these times, one identifies the time and 
+the index of the first reaction to fire.  The algorithm for a single step
+is given below.
+<ol>
+<li> for <em>m</em> in <em>[1..M]</em>:
+  <ol>
+    <li> Compute a<sub>m</sub> from <em>X</em>.
+    <li> Generate a unit, uniform random number <em>r</em>.
+    <li> <em>&tau;<sub>m</sub> = -</em>ln<em>(r) / a<sub>m</sub></em>
+  </ol>
+<li> <em>&tau; = </em>min<em><sub>m</sub> &tau;<sub>m</sub></em>
+<li> <em>&mu; =</em> index of the minimum <em>&tau;<sub>m</sub></em>
+<li> <em>t = t + &tau;</em>
+<li> <em>X = X + V<sub>&mu;</sub></em>
+</ol>
+</p>
+
+<h4>Efficient Formulation</h4>
+
+<p>
+As with the direct method, using an efficient exponential deviate generator
+will improve the performance. But with the first reaction method an
+exponential deviate is generated for each reaction, so using a good generator
+is critical. One can also improve the efficiency by only
+computing those propensities that have changed. For this one needs a reaction
+influence data structure. The implementation of the first reaction method in
+Cain uses these optimizations.
+</p>
+
+<p>
+The first reaction method is not as efficient as the direct method. Taking a
+step has linear complexity in the number of reactions and it requires
+more random numbers than the direct method. For small problems it has
+acceptable performance, but it is not efficient for large problems.
+The first reaction method may be adapted
+to re-use the reaction times instead of regenerating them at each step.
+This method is introduced below.
+</p>
+
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h3><a name="Next Reaction Method">Next Reaction Method</a></h3>
+
+<h4>Original Version</h4>
+
+<p>
+Gibson and Bruck's next reaction method is an adaptation of the first
+reaction method.
+(See <a href="#gibson2000">&quot;Efficient Exact Stochastic Simulation of Chemical Systems with Many Species and Many Channels.&quot;</a>)
+Instead of computing the time to each reaction, one deals with the
+time at which a reaction will occur.  These times are not computed
+anew at each time step, but re-used.  The reaction times are stored in
+an indexed priority queue (<em>indexed</em> because the reaction
+indices are stored with the reaction times).  Also, propensities are
+computed only when they have changed.  Below is the algorithm for a
+single step.
+<ol>
+<li> Get the reaction index &mu; and the reaction time &tau; by 
+  removing the minimum element from the priority queue.
+<li> <em>t = &tau;</em>
+<li> <em>X = X + V<sub>&mu;</sub></em>
+<li> For each propensity <em>m</em> (except &mu;) that is affected by 
+   reaction &mu;: <!--CONTINUE != -->
+  <ol>
+    <li> &alpha; = updated propensity.
+    <li> <em>&tau;<sub>m</sub> = (a<sub>m</sub> / &alpha;)
+    (&tau;<sub>m</sub> - t) + t</em>
+    <li> <em>a<sub>m</sub> = &alpha;</em>
+    <li> Update the priority queue with the new value of
+    <em>tau<sub>m</sub></em>.
+  </ol>
+<li> Generate an exponential random variable <em>r</em> with mean
+  <em>a<sub>&mu;</sub></em>.
+<li> <em>&tau;<sub>m</sub> = t + r</em>
+<li> Push <em>&tau;<sub>m</sub></em> into the priority queue.
+</ol>
+</p>
+
+<p>
+Consider the computational complexity of the next reaction method.  We
+assume that the reactions are loosely coupled and hence computing a
+propensity <em>a<sub>m</sub></em> is O(1).  Let <em>D</em> be an upper
+bound on the number of propensities that are affected by firing a
+single reaction.  Then the cost of updating the propensities and the
+reaction times is O(<em>D</em>). Since the cost of inserting or
+changing a value in the priority queue is O(log <em>M</em>), the cost
+of updating the priority queue is O(<em>D</em> log <em>M</em>).
+Therefore the computational complexity of a step with the next
+reaction method is O(<em>D</em> log <em>M</em>).
+</p>
+
+
+<h4>Efficient Formulations</h4>
+
+<p>
+One can reformulate the next reaction method to obtain a more efficient 
+algorithm.  The most expensive parts of the algorithm are maintaining
+the binary heap, updating the state, and generating exponential deviates.
+Improving the generation of exponential deviates is a minimally invasive 
+procedure.  Instead of using the inversion method, one can use the 
+ziggurat method or the acceptance complement method.
+(See <a href="#marsaglia2000">Marsaglia 2000</a>
+and
+<a href="#rubin2006">Rubin 2006</a>)
+Reducing the cost of the binary heap operations is 
+a more complicated affair.  We present several approaches below.
+</p>
+
+
+<p>
+<b>Indexed Priority Queues</b><br>
+The term <em>priority queue</em> has almost become synonymous with
+<em>binary heap</em>.  For most applications, a binary heap is an
+efficient way of implementing a priority queue.  For a heap with <em>M</em>
+elements, one can access the minimum element in constant time. The
+cost to insert or extract an element or to change the value of an
+element is O(log <em>M</em>).  Also, the storage requirements are
+linear in the number of elements.  While a binary heap is rarely the
+most efficient data structure for a particular application, it is
+usually efficient enough.  If performance is important and the heap
+operations constitute a significant portion of the computational cost
+in an application, then it may be profitable to consider other data
+structures.
+</p>
+
+
+<p>
+<b>Linear Search</b><br>
+The simplest method of implementing a priority queue is to store the
+elements in an array and use a linear search to find the minimum
+element.  The computational complexity of finding the minimum element
+is O(<em>M</em>).  Inserting, deleting, and modifying elements can be
+done in constant time.  For the next reaction method, linear search is
+the most efficient algorithm when the number of reactions is small.
+</p>
+
+<p>
+<b>Partitioning</b><br>
+For larger problem sizes, one can utilize the under-appreciated method
+of partitioning.  One stores the elements in an array, but classifies the
+the elements into two categories: <em>lower</em> and <em>upper</em>.  One uses a splitting
+value to discriminate; the elements in the lower partition are less than
+the splitting value.  Then one can determine the minimum value in the queue
+with a linear search on the elements in the lower partition.  Inserting,
+erasing, and modifying values can all be done in constant time.  However,
+there is the overhead of determining in which partition an element belongs.
+When the lower partition becomes empty, one must choose a new splitting 
+value and re-partition the elements (at cost O(<em>M</em>)).
+By choosing the splitting value so that there are O(<em>M<sup>1/2</sup></em>)
+elements in the lower partition, one can attain an average cost of
+O(<em>M<sup>1/2</sup></em>) for determining the minimum element.  
+This choice balances the costs of searching and re-partitioning.
+The cost of a search, O(<em>M<sup>1/2</sup></em>), times the number
+of searches before one needs to re-partition, O(<em>M<sup>1/2</sup></em>),
+has the same complexity as the cost of re-partitioning.  There are 
+several strategies for choosing the splitting value and partitioning
+the elements.  Partitioning with a linear search is an efficient method
+for problems of moderate size.
+</p>
+
+
+<p>
+<b>Binary Heaps</b><br>
+When using indexed binary heaps, there are a few implementation details
+that have a significant impact on performance. See the documentation
+of the source code for details.
+Binary heaps have decent performance for a wide range of problem sizes.
+Because the algorithms are fairly simple, they perform well for small 
+problems.  Because of the logarithmic complexity, they are suitable for
+fairly large problems.
+</p>
+
+
+
+<p>
+<b>Hashing</b><br>
+There is a data structure that can perform each of the operations
+(finding the minimum element, inserting, removing, and modifying)
+in constant time.  This is accomplished with hashing. (One could also 
+refer to the method as bucketing.)  The reaction times are stored in
+a hash table.  
+(See <a href="#cormen2001">&quot;Introduction to Algorithms, Second Edition.&quot;</a>)
+The hashing function is a linear function of the reaction
+time (with a truncation to convert from a floating point value to an 
+integer index).
+The constant in the linear function is chosen to give the desired load.
+For hashing with chaining, if the load is O(1), then all
+operations can be done in constant time.  As with binary heaps, the 
+implementation is important.
+</p>
+
+
+<p>
+The following options are available with the next reaction method. 
+<ul>
+  <li>
+  <tt>Hashing.</tt> O(1). Uses a hash table to store the reaction times.
+  This is typically the fastest method for medium and large problems.
+  <li>
+  <tt>Binary Search.</tt> O(log <em>M</em>). Uses a indexed binary heap
+  to store the reaction times. This version has good performance for most
+  problems.
+  <li>
+  <tt>Partition.</tt> O(<em>M<sup>1/2</sup></em>). Partitions the reactions
+  according to which will fire soon. This option has good performance for
+  small to medium sized problems.
+  <li>
+  <tt>Linear Search.</tt> O(<em>M</em>). Stores the reaction times in an
+  array. This method offers good performance only for fairly small problems.
+</ul>
+</p>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h3><a name="Tau-Leaping">Tau-Leaping</a></h3>
+
+
+<p>
+With tau-leaping we take steps forward in time. For each reaction we calculate
+a predicted average propensity. We then generate Poisson deviates to determine
+how many times each reaction will fire during the step. The advantage of
+tau-leaping is that it can jump over many reactions and thus may be much
+more efficient than exact methods. The disadvantage is that it is not an
+exact method. 
+</p>
+
+<p>
+There are several options for the tau-leaping solver. By default it
+will use an adaptive step size and will correct negative populations.
+You can also choose to not correct negative populations, the
+simulation will fail if a species is overdrawn.
+There is also a fixed time step option. This option is only useful for
+studying the tau-leaping method. With a fixed step size it is
+difficult to gauge the accuracy of the simulation.
+</p>
+
+<p>
+In tau-leaping, one uses an expected value of the propensities in
+advancing the solution.  The propensities are assumed to be constant
+over the time step. There are several ways of selecting the
+expected propensity values. The simplest is forward stepping;
+The expected propensities are the values at the beginning of
+the step. One can also use midpoint stepping. In this case one
+advances to the midpoint of the interval with a deterministic step.
+Then one uses the midpoint propensity values to take a stochastic
+step and fire the reactions. Midpoint stepping is analogous to a second
+order Runge-Kutta method for ODE's. One can also use higher order
+approximations to determine the expected propensities. You can use
+a fourth order Runge-Kutta scheme with deterministic steps to choose
+the expected propensities and then take a stochastic step with these
+values. Note that regardless of how you choose the expected
+propensities, the tau-leaping solver is still a first-order accurate
+stochastic method. That is, you can choose a first, second, or fourth
+order method for calculating the expected propensities, but you still
+assume that the propensities are constant when taking the stochastic
+step. Thus it is a first-order stochastic method. However, using
+higher order formulas for the expected propensities is typically more
+accurate.
+</p>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h3><a name="Direct Method with Time-Dependent Propensities">
+Direct Method with Time-Dependent Propensities</a></h3>
+
+<p>
+Cain does not currently offer an implementation of the direct method
+for systems of reactions that have time-dependent propensities. However,
+we present the method here because it will help us understand
+hybrid methods. Let &alpha;(t) be the sum of the propensities. If each of the
+propensities was approximately constant on the time scale of 1/&alpha;(t),
+which is the average time to the next reaction,
+then an approximate solution method could treat them as if they were
+actually constant. Of course one would need to evaluate all of the
+propensities at each step. If any of the propensities varied significantly
+on that time scale then we would need to account for this behavior.
+In the following exposition we will assume that no propensities become
+zero during a step.
+</p>
+
+<p>
+Consider the exponential distribution with rate parameter &lambda;.
+The probability density function is &lambda; e<sup>-&lambda; t</sup>;
+the mean is 1/&lambda;. Let E be an exponential deviate with unit rate
+constant. We can obtain an exponential deviate with rate constant &lambda;
+simply by dividing by &lambda;. Now consider the case that the rate
+parameter is not constant. A exponential deviate is T where
+&int;<sub>0</sub><sup>T</sup> &lambda;(t)dt = E. Note that for constant
+&lambda; this equation reduces to &lambda; T = E.
+</p>
+
+<p>
+Recall that when using the direct method one uses exponential deviates
+to determine when reactions fire. To determine the time to the next reaction
+we generate a unit exponential deviate and then divide that by the sum
+of the propensities &alpha;. This gives us an exponential deviate with
+rate parameter &alpha;. Now consider a system of reactions in which the
+reaction propensities are functions of time. In order to determine
+the time to the next reaction we need to generate a unit exponential
+deviate E and then numerically solve
+&int;<sub>t</sub><sup>t+T</sup> &alpha;(x)dx = E for T.
+</p>
+
+<p>
+To solve for T we can numerically integrate &alpha;(t). Below is a simple
+algorithm for this.
+<pre>
+T = 0
+while &alpha;(t+T) &Delta;t &lt; E:
+  E -= &alpha;(t+T) &Delta;t
+  T += &Delta;t
+T += E / &alpha;(T)
+</pre>
+</p>
+
+<p>
+You might recognize the above algorithm as the
+<a href="http://en.wikipedia.org/wiki/Forward_Euler_method">
+forward Euler method</a>, the simplest method for integrating ordinary
+differential equations. The accuracy of this method depends on
+&Delta;t. There are more accurate methods of numerically integrating
+&alpha;(t). The
+<a href="http://en.wikipedia.org/wiki/Midpoint_method">
+midpoint method</a> and the
+<a href="http://en.wikipedia.org/wiki/Runge-Kutta_methods">
+fourth-order Runge-Kutta method</a> are good options.
+</p>
+
+<p>
+So now we know how to determine when the next reaction fires, but how do we
+determine which reaction fires? To do this, we integrate each of the
+reaction propensities:
+pmf<sub>i</sub> = &int;<sub>t</sub><sup>t+T</sup> a<sub>i</sub>(x)dx. To
+select a reaction we draw a discrete deviate with this weighted probability
+mass function. Below we use the forward Euler method to calculate the
+time step T and the probability mass function pmf used to pick a reaction.
+We assume that &Delta;t has been initialized to an appropriate value.
+<pre>
+s = 0
+for i in 1..N:
+  pmf<sub>i</sub> = 0
+  p<sub>i</sub> = a<sub>i</sub>(t)
+  s += p<sub>i</sub>
+T = 0
+while s &Delta;t &lt; E:
+  E -= s &Delta;t
+  T += &Delta;t
+  for i in 1..N:
+    pmf<sub>i</sub> += p<sub>i</sub> &Delta;t
+    p<sub>i</sub> = a<sub>i</sub>(t+T)
+    s += pmf<sub>i</sub>
+&Delta;t = E / s
+T += &Delta;t
+for i in 1..N:
+  pmf<sub>i</sub> += p<sub>i</sub> &Delta;t
+</pre>
+</p>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h3><a name="Hybrid Direct/Tau-Leaping">Hybrid Direct/Tau-Leaping</a></h3>
+
+<p>
+The hybrid direct/tau-leaping method combines the direct method and the
+tau-leaping method. It is more accurate than tau-leaping for problems that
+have species with small populations. For some problems it is also faster
+than tau-leaping. Recall that tau-leaping is only efficient if many reactions
+firing during a time step. This hybrid method divides the reactions into two
+groups: volatile/slow and stable. We use the direct method to simulate
+the reactions in the volatile/slow group and tau-leaping to simulate
+the stable reactions.
+</p>
+
+<p>
+Like regular tau-leaping, one specifies an accuracy
+goal with the allowed error &epsilon;. One assumes that the expected value of
+the reaction propensities is constant during a time step. The time step is
+chosen so that the expected relative change in any propensity is less than
+&epsilon;. A reaction is volatile if firing it a single time would produce
+a relative change of more than &epsilon; in any of its reactants.
+Consider these examples with &epsilon; = 0.1:
+The reaction X &rarr; Y is volatile if x < 10.
+The reaction X + Y &rarr; Z is volatile if either x < 10 or y < 10.
+The reaction 2 X &rarr; Y is volatile if x < 20.
+</p>
+
+<p>
+Reactions that are &quote;slow&quote; are also simulated with the direct
+method. A reaction is classified as slow if it would fire few times during
+a time step. The threshold for few times is 0.1. During a time step one
+first computes the tau-leaping step &tau;. Then any reactions in the stable
+group that have become volatile or slow are moved to the volatile/slow group.
+</p>
+
+<p>
+To take a step with the hybrid method we determine a
+time step &tau; for the stable reactions and generate a unit exponential
+deviate <em>e</em> for the volatile/slow reactions.
+Let &sigma; be the sum of the PMF for the discrete deviate generator.
+If <em>e</em> &leq; &sigma; &tau;, we reduce the time step to
+<em>e</em>/&sigma; and take a tau-leaping step as well as fire a volatile/slow
+reaction. Otherwise we reduce <em>e</em> by &sigma; &tau; and save this value
+for the next step, update the PMF with the integrated propensities, and
+take a tau-leaping step. To integrate the propensities one can use
+the forward Euler method, the midpoint method, or the fourth order
+Runge-Kutta method.
+</p>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h3><a name="ODE Integration">ODE Integration</a></h3>
+
+<p>
+One can generate an approximate deterministic trajectory by considering the
+system of reactions as a set of ordinary differential equations and then
+numerically integrating these equations to determine the reactions counts and
+species populations. There are many scheme for numerically integrating
+ODE's. The Cain solver uses the
+<a href="http://en.wikipedia.org/wiki/Cash-Karp">Cash-Karp</a> variant
+of the 
+<a href="http://en.wikipedia.org/wiki/Runge-Kutta">Runge-Kutta</a> method.
+This is a fifth-order explicit method with an adaptive step size.
+There are also a number of solvers with fixed step size. These are primarily
+useful for testing algorithms. The adaptive step size solver is preferred
+for normal work.
+</p>
+
+
+
+<!-------------------------------------------------------------------------->
+<h2><a name="Performance">Performance</a></h2>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h3><a name="Exact Methods">Exact Methods</a></h3>
+
+<p>
+For a test problem we consider the auto-regulatory network
+presented in
+<a href="http://www.staff.ncl.ac.uk/d.j.wilkinson/smfsb/">Stochastic
+Modelling for Systems Biology</a>.
+There are five species: Gene, P2Gene, Rna, P, and P2,
+with initial amounts 10, 0, 1, 0, and 0,
+respectively. There are eight reactions which have mass-action kinetic
+laws. The table below shows the reactions and
+propensity factors.
+</p>
+
+<p align=center>
+<table border = "1" rules = "all">
+  <tr> <th> Reaction <th> Rate constant
+  <tr> <td> Gene + P2 &rarr; P2Gene <td> 1
+  <tr> <td> P2Gene &rarr; Gene + P2 <td> 10
+  <tr> <td> Gene &rarr; Gene + Rna <td> 0.01
+  <tr> <td> Rna &rarr; Rna + P <td> 10
+  <tr> <td> 2 P &rarr; P2 <td> 1
+  <tr> <td> P2 &rarr; 2 P <td> 1
+  <tr> <td> Rna &rarr; 0 <td> 0.1
+  <tr> <td> P &rarr; 0 <td> 0.01
+</table>
+Reactions for the auto-regulatory network.
+</p>
+
+<p>
+The first figures below  shows a single trajectory. 
+A close-up is shown in the next figure.
+We can see that the system is fairly noisy.
+</p>
+
+
+<p align=center>
+<img src="figures/Performance/AutoRegulatory50.jpg"><br>
+Auto-regulatory system on the time interval [0..50].
+</p>
+
+<p align=center>
+<img src="figures/Performance/AutoRegulatory5.jpg"><br>
+Auto-regulatory system on the time interval [0..5].
+</p>
+
+<p>
+In order to present a range of problem sizes, we duplicate the 
+species and reactions. For a test problem with 50 species and 80
+reactions we have 10 auto-regulatory groups. The reaction propensity
+factors in each group are scaled by a unit, uniform random deviate. We
+study systems ranging from 5 to 50,000 species.
+</p>
+
+<p>
+The table below shows the performance for
+various formulations of the direct method. Using a linear search is
+efficient for a small number of reactions, but does not scale well to
+larger problems. In the first row we recompute the sum of the 
+propensities at each time step. (This is the original formulation of
+the direct method.) In the next row we see that immediately updating
+the sum significantly improves the performance. The following two rows
+show the effect of ordering the reactions. In the former we
+periodically sort the reactions and in the latter we swap reactions
+when modifying the propensities. Ordering the reactions pays off for
+the largest problem size, but for the rest the overhead outweighs the
+benefits.
+</p>
+
+<p>
+The 2-D search method has the best overall performance. It is fast for
+small problems and scales well enough to best the more sophisticated
+methods. Because the auto-regulatory network is so noisy, ordering the
+reactions hurts the performance of the method.
+</p>
+
+<p>
+The binary search on a complete CDF has good performance for the
+smallest problem size, but has poor scalability. Ordering the
+reactions is a significant help, but the method is still very slow for
+large problems. The binary search on a partial, recursive CDF is
+fairly slow for the smallest problem, but has good scalability. The
+method is in the running for the second best overall performance.
+</p>
+
+<p>
+Because of its complexity, the composition rejection method has poor
+performance for small problems. However, it has excellent scalability.
+It edges out the 2-D search method for the test with 80,000 reactions.
+Although its complexity is independent of the number of reactions, the
+execution time rises with problem size largely because of caching effects. As
+with all of the other methods, larger problems and increased storage 
+requirements lead to cache misses. The composition rejection method is
+tied with the binary search on a partial CDF for the second best
+overall performance.
+</p>
+
+<p align=center>
+<table border = "1" rules = "all">
+<tr> <th> Species <th>  <th> 5 <th> 50 <th> 500 <th> 5,000 <th> 50,000 
+<tr> <th> Reactions <th>  <th> 8 <th> 80 <th> 800 <th> 8,000 <th> 80,000 
+<tr> <th> Algorithm <th> Option <th> <th> <th> <th> <th>
+<tr bgcolor="#CFFFFF"> <th rowspan="4"> Linear Search
+<td> Delayed update
+<td> 101
+<td> 264
+<td> 1859
+<td> 17145
+<td> 168455
+<tr bgcolor="#CFFFFF">
+<td> Immediate update
+<td> 109
+<td> 163
+<td> 780
+<td> 6572
+<td> 63113
+<tr bgcolor="#CFFFFF">
+<td> Complete sort
+<td> 107
+<td> 197
+<td> 976
+<td> 7443
+<td> 22862
+<tr bgcolor="#CFFFFF">
+<td> Bubble sort
+<td> 110
+<td> 205
+<td> 1001
+<td> 7420
+<td> 25872
+<tr bgcolor="#CFCFFF"> <th rowspan="3"> 2-D Search
+<td> Default
+<td> 109
+<td> 130
+<td> 218
+<td> 347
+<td> 1262
+<tr bgcolor="#CFCFFF">
+<td> Complete sort
+<td> 115
+<td> 148
+<td> 247
+<td> 402
+<td> 1566
+<tr bgcolor="#CFCFFF">
+<td> Bubble sort
+<td> 124
+<td> 149
+<td> 220
+<td> 328
+<td> 1674
+<tr bgcolor="#FFCFFF"> <th rowspan="3"> Binary Search
+<td> Complete CDF
+<td> 105
+<td> 219
+<td> 1196
+<td> 10378
+<td> 103209
+<tr bgcolor="#FFCFFF">
+<td> Complete CDF, sorted
+<td> 114
+<td> 202
+<td> 835
+<td> 3825
+<td> 30273
+<tr bgcolor="#FFCFFF">
+<td> Partial, recursive CDF
+<td> 232
+<td> 328
+<td> 433
+<td> 552
+<td> 1314
+<tr bgcolor="#FFCFCF"> <th rowspan="1"> Rejection
+<td> Composition
+<td> 341
+<td> 365
+<td> 437
+<td> 482
+<td> 1189
+</table>
+Auto-Regulatory. Direct method. Average time per reaction in nanoseconds.
+</p>
+
+<p>
+In the next table we show the performance of the first reaction
+method. We consider a simple implementation and two implementations
+that take innovations from the next reaction method. Because a
+step in the first reaction method has linear computational complexity
+in the number of reactions, all of the formulations have poor
+scalability. The simple formulation is fairly slow for small problem
+sizes. Even for small problems, there is a heavy price
+for computing the propensity function and an exponential deviate for
+each reaction. Using the reaction influence graph to reduce
+recomputing the propensity functions is a moderate help. Storing
+absolute times instead of the waiting times greatly improves
+performance. By storing the absolute times, one avoids computing
+the propensity functions and an exponential deviate for all of the
+reactions at each time step. Only the reactions influenced by the
+fired reaction need to be recomputed. However, this formulation is
+still not competitive with the direct method.
+</p>
+
+<p align=center>
+<table border = "1" rules = "all">
+<tr> <th> Species <th> 5 <th> 50 <th> 500 <th> 5,000 <th> 50,000 
+<tr> <th> Reactions <th> 8 <th> 80 <th> 800 <th> 8,000 <th> 80,000 
+<tr> <th> Option <th> <th> <th> <th> <th>
+<tr bgcolor="#CFFFFF">
+<td> Simple
+<td> 201
+<td> 1968
+<td> 19843
+<td> 159133
+<td> 1789500
+<tr bgcolor="#CFCFFF">
+<td> Reaction influence
+<td> 194
+<td> 1510
+<td> 13324
+<td> 110828
+<td> 890948
+<tr bgcolor="#FFCFFF">
+<td> Absolute time
+<td> 133
+<td> 249
+<td> 1211
+<td> 10368
+<td> 102316
+</table>
+Auto-Regulatory. First reaction method. Average time per reaction in nanoseconds.
+</p>
+
+
+<p>
+In the table below we show the performance for
+various formulations of the next reaction method. Using a linear search is
+only efficient for a small number of reactions. Manual loop unrolling
+improves its performance, but it is still not practical for large
+problems.
+</p>
+
+<p>
+The size adaptive and cost adaptive versions of the partition method
+have pretty good performance. They are competitive with more
+sophisticated methods up to the test with 800 reactions, but the
+square root complexity shows in the larger tests.
+</p>
+
+<p>
+The binary heap methods have good performance. On 64-bit processors
+the pair formulation is typically better than the pointer
+formulation. (Vice-versa for 32-bit processors.)
+</p>
+
+<p>
+Using hashing for the priority queue yields the best overall
+performance for the next reaction method. It is efficient for small
+problems and has good scalability.
+</p>
+
+
+<p align=center>
+<table border = "1" rules = "all">
+<tr> <th> Species <th>  <th> 5 <th> 50 <th> 500 <th> 5,000 <th> 50,000 
+<tr> <th> Reactions <th>  <th> 8 <th> 80 <th> 800 <th> 8,000 <th> 80,000 
+<tr> <th> Algorithm <th> Option <th> <th> <th> <th> <th>
+<tr bgcolor="#CFFFFF"> <th rowspan="2"> Linear Search
+<td> Simple
+<td> 124
+<td> 386
+<td> 2990
+<td> 28902
+<td> 287909
+<tr bgcolor="#CFFFFF">
+<td> Unrolled
+<td> 120
+<td> 228
+<td> 1116
+<td> 9557
+<td> 94156
+<tr bgcolor="#CFCFFF"> <th rowspan="4"> Partition
+<td> Fixed size
+<td> 139
+<td> 381
+<td> 582
+<td> 1455
+<td> 5175
+<tr bgcolor="#CFCFFF">
+<td> Size adaptive
+<td> 163
+<td> 193
+<td> 285
+<td> 500
+<td> 1735
+<tr bgcolor="#CFCFFF">
+<td> Cost adaptive
+<td> 124
+<td> 196
+<td> 303
+<td> 537
+<td> 1828
+<tr bgcolor="#CFCFFF">
+<td> Propensities
+<td> 146
+<td> 191
+<td> 333
+<td> 723
+<td> 2515
+<tr bgcolor="#FFCFFF"> <th rowspan="2"> Binary Heap
+<td> Pointer
+<td> 166
+<td> 199
+<td> 290
+<td> 413
+<td> 1448
+<tr bgcolor="#FFCFFF">
+<td> Pair
+<td> 154
+<td> 192
+<td> 272
+<td> 374
+<td> 1304
+<tr bgcolor="#FFCFCF"> <th rowspan="1"> Hashing
+<td> Chaining
+<td> 151
+<td> 187
+<td> 307
+<td> 320
+<td> 964
+</table>
+Auto-Regulatory. Next reaction method. Average time per reaction in nanoseconds.
+</p>
+
+<p>
+The table below shows the best performing 
+formulation in each category. Only the methods based on a linear
+search perform poorly. The rest at least offer reasonable performance.
+The direct method with a 2-D search and the next reaction method that
+uses a hash table offer the best overall performance. The former is
+faster up to the test with 800 reactions; the latter has better
+performance for the large problems. 
+</p>
+
+<p align=center>
+<table border = "1" rules = "all">
+<tr> <th> <th> <th> Species <th> 5 <th> 50 <th> 500 <th> 5,000 <th> 50,000
+<tr> <th> <th> <th> Reactions <th> 8 <th> 80 <th> 800 <th> 8,000 <th> 80,000
+<tr> <th> Method <th> Algorithm <th> Option <th> <th> <th> <th> <th>
+<tr bgcolor="#CFFFFF"> <td> Direct <td> Linear search
+<td> Complete sort
+<td> 107
+<td> 197
+<td> 976
+<td> 7443
+<td> 22862
+<tr bgcolor="#CFFFFF"> <td> Direct <td> 2-D search
+<td> Default
+<td> 109
+<td> 130
+<td> 218
+<td> 347
+<td> 1262
+<tr bgcolor="#CFFFFF"> <td> Direct <td> Binary search
+<td> Partial, recursive CDF
+<td> 232
+<td> 328
+<td> 433
+<td> 552
+<td> 1314
+<tr bgcolor="#CFFFFF"> <td> Direct <td> Rejection
+<td> Composition
+<td> 341
+<td> 365
+<td> 437
+<td> 482
+<td> 1189
+<tr bgcolor="#CFCFFF"> <td> First reaction <td> Linear search
+<td> Absolute time
+<td> 133
+<td> 249
+<td> 1211
+<td> 10368
+<td> 102316
+<tr bgcolor="#FFCFFF"> <td> Next reaction <td> Linear search
+<td> Unrolled
+<td> 120
+<td> 228
+<td> 1116
+<td> 9557
+<td> 94156
+<tr bgcolor="#FFCFFF"> <td> Next reaction <td> Partition
+<td> Cost adaptive
+<td> 124
+<td> 196
+<td> 303
+<td> 537
+<td> 1828
+<tr bgcolor="#FFCFFF"> <td> Next reaction <td> Binary heap
+<td> Pair
+<td> 154
+<td> 192
+<td> 272
+<td> 374
+<td> 1304
+<tr bgcolor="#FFCFFF"> <td> Next reaction <td> Hashing
+<td> Chaining
+<td> 151
+<td> 187
+<td> 307
+<td> 320
+<td> 964
+</table>
+Auto-Regulatory. Average time per reaction in nanoseconds.
+</p>
+
+<p>
+Of course the performance of the various formulations depends upon the
+problem. The species populations could be highly variable, or fairly
+stable. The range of propensities could large or small. However, the
+performance results for the auto-regulatory network are very
+typical. Most problems give similar results. The biggest difference is
+that for some systems ordering the reactions is useful when using the
+direct method. The auto-regulatory system is too noisy for this to
+improve performance.
+</p>
+
+
+<!-------------------------------------------------------------------------->
+<h2><a name="Developer's Guide">Developer's Guide</a></h2>
+
+<p>
+<b>Overview.</b><br>
+Cain is written in <a href="http://www.python.org/">Python</a> and uses the
+<a href="http://www.wxpython.org/">wxPython</a> GUI toolkit.
+For plotting simulation results, it uses
+<a href="http://matplotlib.sourceforge.net/">matplotlib</a> and
+<a href="http://numpy.scipy.org/">numpy</a>. Cain utilizes command line
+executables to perform the simulations. These executables read a description
+of the problem (model, method, and number of trajectories)
+from stdin and write the trajectories to stdout. Cain launches the
+executables; it sends the input and captures the output with pipes. When
+launching a job, the user select the number of processes to use. Cain launches
+this number of executables. It asks the pool of solvers to each generate
+trajectories one at a time until the desired number has been collected.
+This allows the user to stop or abort a running simulation and store
+the trajectories that have been generated so far.
+</p>
+
+<p>
+<b>Source code.</b><br>
+The source code for Cain, both Python application code and C++ solver
+code is available in
+<a href="http://www.cacr.caltech.edu/~sean/projects/stlib/stlib.html">STLib</a>.
+The Cain application is in <tt>stlib/applications/stochastic</tt>.
+The Python source code is split into the three top-level directories:
+<tt>gui</tt>, <tt>io</tt>, and <tt>state</tt>. The script <tt>Cain.py</tt>
+launches the application. Thus you can launch Cain with the shell command
+<tt>python Cain.py</tt>. The solvers are in the <tt>solvers</tt> directory.
+There is a makefile there. The executables use STLib's stochastic and
+numerical packages, located in <tt>stlib/src</tt>. Consult
+STLib's documentation for information about the stochastic simulation
+methods, random number generators, etc.
+</p>
+
+<p>
+<b>Mac OS X Distribution.</b><br>
+For Mac OS X, Cain is distributed as an application bundle. The Python source
+code and the command line executables are placed in a folder called
+<tt>Cain.app</tt>. From the Finder, this appears as an application called
+Cain. You can make the application bundle by executing
+<tt>make bundle</tt> in <tt>stlib/applications/stochastic</tt>.
+This copies the appropriate content
+into the <tt>Cain.app/Contents/Resources</tt> directory.
+I pack the application bundle and example data files (in
+<tt>stlib/data/stochastic</tt>) into a disk image for easy distribution.
+</p>
+
+<p>
+To make a disk image, use Disk Utility. Click New Image and make a 40
+MB image called Cain. Quit Disk Utility. In the mounted devices,
+changed the name to Cain.  Drag the application bundle to the disk
+image. Rename the data folder &quot;stochastic&quot; to &quot;CainExamples&quot;.
+Remove the folder &quot;CainExamples/sbml/bmd-2007-9-25&quot;. Drag the
+data folder to the disk image.  Finally eject the disk image.
+</p>
+
+<p>
+<b>Microsoft Windows Distribution.</b><br>
+For MS Windows, Cain is distributed as a frozen executable.
+I use <a href="http://www.py2exe.org/">py2exe</a> to accomplish this. (See
+that web site for details on how the Python interpreter and the Python source
+are packed into a stand-alone executable.)
+Execute <tt>make win</tt> in <tt>stlib/applications/stochastic</tt>
+to build the Cain executable in the <tt>dist</tt> directory.
+I use <a href="http://www.jrsoftware.org/">Inno Setup</a> to make an
+installer.
+</p>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h3><a name="Command Line Solvers">Command Line Solvers</a></h3>
+
+<p>
+Cain uses command line executables to carry out the simulations. The
+executables an in the <tt>solvers</tt> directory.
+</p>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h3><a name="File Formats">File Formats</a></h3>
+
+<p>
+<b>XML</b><br>
+Cain stores models, methods, simulation output, and random number state
+in an XML format. See the <a href="#XML Format">Cain XML File Format</a>
+section for the specification.
+</p>
+
+<p>
+<b>SBML</b><br>
+Cain can import and export SBML models. However, it has limited ability
+to parse kinetic laws; complicated expressions may not parsed. In this case
+you have to enter the propensity function in the Reaction Editor.
+If the SBML model has reversible reactions, they will each be split into
+two irreversible reactions. (The stochastic simulation algorithms only work
+for irreversible reactions.) You will need to correct the propensity
+functions. Also, only mass-action
+kinetic laws can be exported to SBML. Other kinetic laws are omitted.
+</p>
+
+
+<p>
+<b>Input for solvers.</b><br>
+For batch processing, you can export a text file for input to one of the
+solvers. The different categories of solvers require different inputs.
+However, the input for each of the solvers starts with the following:
+<pre>
+&lt;number of species&gt;
+&lt;number of reactions&gt;
+&lt;list of initial amounts&gt;
+&lt;packed reactions&gt;
+&lt;list of propensity factors&gt;
+&lt;number of species to record&gt;
+&lt;list of species to record&gt;
+&lt;number of reactions to record&gt;
+&lt;list of reactions to record&gt;
+&lt;maximum allowed steps&gt;
+&lt;number of solver parameters&gt;
+&lt;list of solver parameters&gt;
+</pre>
+To make the text processing easier and to make the files easier to read,
+each term in brackets occupies a single line. Note the following about
+the input fields:
+<ul>
+  <li>
+  For each reaction in
+  packed reactions, the reactants are listed followed by the products.
+  The format for a reaction with M reactants and N products is:
+  <pre>
+&lt;number of reactants&gt; &lt;index1&gt; &lt;stoichiometry1&gt; ... &lt;indexM&gt; &lt;stoichiometryM&gt;
+&lt;number of products&gt; &lt;index1&gt; &lt;stoichiometry1&gt; ... &lt;indexN&gt; &lt;stoichiometryN&gt; 
+</pre>
+  An empty set of reactants or products is indicated with a single zero.
+  <li>
+  A value of zero indicates there is no limit on the maximum allowed steps.
+  (More precisely, the limit is
+  <tt>std::numeric_limits&lt;std::size_t&gt;::max()</tt>.)
+</ul>
+</p>
+
+<p>
+Below are a couple examples of packed reactions:
+<ul>
+  <li>
+  0 &rarr; X: 0 1 0 1<br>
+  <li>
+  X &rarr; 0 : 1 0 1 0<br>
+  <li>
+  X &rarr; Y : 1 0 1 1 1 1<br>
+  <li>
+  X &rarr; 2 X : 1 0 1 1 0 2<br>
+  <li>
+  X &rarr; Y, Y &rarr; X, Y &rarr; Z : 1 0 1 1 1 1 1 1 1 1 0 1 1 1 1 1 2 1
+</ul>
+</p>
+
+<p>
+Following the above input that is common to all solvers, is solver-specific
+input. Consult the source code for documentation. As an example, each of
+the exact methods (direct, first reaction, next reaction) that record
+time series data at uniformly spaced interval use the following
+solver-specific input:
+</p>
+
+<pre>
+&lt;number of frames&gt;
+&lt;list of frame times&gt;
+&lt;list of MT 19937 state&gt;
+&lt;number of trajectories&gt;
+</pre>
+
+The state of the Mersenne Twister 19937 is a list of 624, 32-bit unsigned
+integers followed by an array index that specifies the current position
+in the list. Thus the state is defined with 625 integers.
+
+<p>
+Consider the following simple problem with one species and two reactions:
+birth X &rarr; 2 X and death X &rarr; 0. Let the propensity
+factors be 0.9 and 1.1, respectively. Let the initial population
+of X be 50. We wish to use the direct method to simulate the process
+from time t = 0 to t = 10, recording all species and reaction
+each second (resulting in
+11 frames). Enter this model in Cain, set the number of trajectories to
+1000, and export it as a batch job with
+the file name <tt>input.txt</tt>. To do this,
+click the disk icon <img src="icons/16x16/filesave.png">&nbsp; in the Launcher
+panel. Below is the resulting data file (with most of the Mersenne Twister
+state omitted.)
+</p>
+
+<pre>
+1
+2
+50
+1 0 1 1 0 2 1 0 1 0
+0.90000000000000002 1.1000000000000001
+1
+0
+2
+0 1
+0
+0
+
+11
+0.0 1.0 2.0 3.0 4.0 5.0 6.0 7.0 8.0 9.0 10.0
+2147483648 1477382859 ... 1489482022 816301522 625
+1000
+</pre>
+
+<p>
+<b>Solver output.</b><br>
+The different categories of solvers produce different output.
+Consult the source code for documentation.
+Below is the file format for exact solvers that record trajectories with
+frames. As before, each term in brackets occupies a single line.
+<pre>
+&lt;number of species&gt;
+&lt;number of reactions&gt;
+&lt;number of species to record&gt;
+&lt;list of species to record&gt;
+&lt;number of reactions to record&gt;
+&lt;list of reactions to record&gt;
+&lt;output class&gt;
+&lt;number of frames&gt;
+&lt;list of frame times&gt;
+for each task:
+  &lt;number of trajectories&gt;
+  for each trajectory:
+    &lt;list of initial MT 19937 state&gt;
+    &lt;success or failure&gt;
+    &lt;list of populations&gt;
+    &lt;list of reaction counts&gt;
+  &lt;list of final MT 19937 state&gt;
+</pre>
+</p>
+
+<p>
+We can use the input file that we exported above to generate a trajectory
+with the direct method.
+<pre>
+./solvers/Direct2DSearch.exe &lt;input.txt &gt;output.txt
+</pre>
+The contents of the output file are shown below. Again most of the
+Mersenne Twister state is omitted.
+<pre>
+1
+2
+1
+0
+2
+0 1
+TrajectoryFrames
+11
+0 1 2 3 4 5 6 7 8 9 10 
+1
+2147483648 1477382859 ... 1489482022 816301522 625
+success
+50 68 58 37 42 25 21 12 8 7 11 
+0 0 71 53 120 112 147 160 192 200 223 248 246 275 256 294 264 306 275 318 285 324 
+3669219105 1764262773 ... 664743223 247954458 616
+</pre>
+</p>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h3><a name="Adding New Solvers">Adding New Solvers</a></h3>
+
+<p>
+It is easy to add a new simulation method to Cain if it is similar to
+one of the built-in methods. Just write a
+program that reads the same input format and generates the same output
+format as one of the other solvers. You can write your program in any
+language and use any software or hardware resources that you have on
+your machine.  Although it is not required, it is a good idea to make
+your program serial.  Cain utilizes concurrency by running multiple
+instances of a solver.  Place your program in the <tt>solvers</tt>
+directory. Then edit the <tt>_data</tt> variable in the file
+<tt>state/simulationMethods.py</tt>. Insert a description of your method into
+one of the existing categories.
+</p>
+
+
+<!-------------------------------------------------------------------------->
+<h2><a name="Cain XML File Format">Cain XML File Format</a></h2>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h3><a name="Top-Level Elements">Top-Level Elements</a></h3>
+
+Cain files store the models, methods, simulation output, and random number
+states. Below is the overall structure of a Cain file. The required elements
+are shown in black; the optional elements are colored grey.
+
+<pre>
+  &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+  &lt;cain&gt;<font color="#777777">
+    &lt;listOfModels&gt;
+      <em>One or more</em> &lt;model&gt; <em>elements.</em>
+    &lt;/listOfModels&gt;
+    &lt;listOfMethods&gt;
+      <em>One or more</em> &lt;method&gt; <em>elements.</em>
+    &lt;/listOfMethods&gt;
+    &lt;listOfOutput&gt;
+      <em>One or more output elements.</em>
+    &lt;/listOfOutput&gt;
+    &lt;random&gt;
+      <em>Zero or more</em> &lt;stateMT19937&gt; <em>elements.</em>
+    &lt;/random&gt;</font>
+  &lt;/cain&gt;
+</pre>
+
+In the next few sections we will describe each of the top-level elements.
+Each element attribute has one of the following formats:
+<ul>
+  <li> An <b>Identifier</b> is a string that starts with an underscore
+  or a letter and is composed entirely of underscores, letters and digits. 
+  See the <a href="#guide species">Species Editor</a> section for details.
+  <li> A <b>String</b> is an arbitrary string (sequence of characters). These
+  are used for descriptive names.
+  <li> <b>Boolean</b> is either &quot;true&quot; or &quot;false&quot;.
+  <li> <b>Integer</b> is a 32-bit unsigned integer.
+  <li> <b>Number</b> is a floating-point number.
+  <li> <b>PythonExpression</b> is a Python expression. If you use functions
+  from the math package, don't use the &quot;math.&quot; qualification,
+  i.e. write &quot;floor(exp(5))&quot; instead of
+  &quot;math.floor(math.exp(5))&quot;. 
+  See the discussion of initial amounts in the
+  <a href="#guide species">Species Editor</a> section for more information.
+  <li> <b>C++Expression</b> is a C++ expression.
+  See the <a href="#guide reactions">Reaction Editor</a> section for details.
+</ul>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h3><a name="Models">Models</a></h3>
+
+The model element is just a simplified version of its SBML counterpart.
+However, in an SBML file there is a single model element. Cain files can
+have any number of models. Below is the top-level structure.
+
+<pre>
+  &lt;model id=&quot;Identifier&quot; <font color="#777777">name=&quot;String&quot;</font>&gt;
+    <font color="#777777">&lt;listOfParameters&gt;
+      <em>One or more</em> &lt;parameter&gt; <em>elements.</em>
+    &lt;/listOfParameters&gt;
+    &lt;listOfCompartments&gt;
+      <em>One or more</em> &lt;compartment&gt; <em>elements.</em>
+    &lt;/listOfCompartments&gt;</font>
+    &lt;listOfSpecies&gt;
+      <em>One or more</em> &lt;species&gt; <em>elements.</em>
+    &lt;/listOfSpecies&gt;
+    &lt;listOfReactions&gt;
+      <em>One or more</em> &lt;reaction&gt; <em>elements.</em>
+    &lt;/listOfReactions&gt;
+  &lt;/model&gt;
+</pre>
+
+Parameters are Python expressions which may use mathematical function and
+other parameter identifiers. Parameters must evaluate to a numerical value.
+<pre>
+  &lt;parameter id=&quot;Identifier&quot; expression=&quot;PythonExpression&quot; <font color="#777777">name=&quot;String&quot;</font>/&gt;
+</pre>
+
+Compartments are only used for information. They do not affect simulation
+output.
+<pre>
+  &lt;compartment id=&quot;Identifier&quot; <font color="#777777">name=&quot;String&quot; spatialDimensions=&quot;Dimension&quot;
+   size=&quot;Number&quot; constant=&quot;Boolean&quot; outside=&quot;Identifier&quot;</font>/&gt;
+</pre>
+
+The initial amount of a species must evaluate to a non-negative integer.
+<pre>
+  &lt;species id=&quot;Identifier&quot; initialAmount=&quot;PythonExpression&quot; <font color="#777777">name=&quot;String&quot; compartment=&quot;Identifier&quot;</font>/&gt;
+</pre>
+
+The reaction element is simpler than its SBML counterpart. There is no
+reversible attribute. In stochastic simulation one represents a
+reversible reaction by specifying both the forward and backward
+reactions along with their kinetic laws. Note that while the
+listOfReactants and listOfProducts elements are optional, at least one
+of the two must be present.  Instead of containing a kineticLaw
+element, the reaction element has the propensity attribute. For mass
+action kinetics, the propensity is a python expression.
+
+<pre>
+  &lt;reaction id=&quot;Identifier&quot; massAction=&quot;true&quot; propensity=&quot;PythonExpression&quot; <font color="#777777">name=&quot;String&quot;</font>&gt;
+    <font color="#777777">&lt;listOfReactants&gt;
+      <em>One or more</em> &lt;speciesReference&gt; <em>elements.</em>
+    &lt;/listOfReactants&gt;
+    &lt;listOfProducts&gt;
+      <em>One or more</em> &lt;speciesReference&gt; <em>elements.</em>
+    &lt;/listOfProducts&gt;</font>
+  &lt;/reaction&gt;
+</pre>
+
+If the reaction does not use a mass action kinetics law, the propensity
+is a C++ expression. (See the
+<a href="#guide reactions">Reaction Editor</a> section.)
+
+<pre>
+  &lt;reaction id=&quot;Identifier&quot; massAction=&quot;false&quot; propensity=&quot;C++Expression&quot; <font color="#777777">name=&quot;String&quot;</font>&gt;
+    <font color="#777777">...</font>
+  &lt;/reaction&gt;
+</pre>
+
+The speciesReference element is used to represent reactants and products.
+The stoichiometry attribute must be a positive integer. Omitting it indicates
+that the stoichiometry is one.
+<pre>
+  &lt;speciesReference species=&quot;Identifier&quot; <font color="#777777">stoichiometry=&quot;Integer&quot;</font>/&gt;
+</pre>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h3><a name="Methods">Methods</a></h3>
+
+A solver is specified with three indices: category, method, and options. The
+mapping from these three indices to the name of a command line solver is defined
+in <code>state/simulationMethods.py</code>. The category indicates what kind of
+output the solver produces: histograms, trajectories with state recorded at
+specified frames, or trajectories that record every reaction. Next is the
+simulation method: direct, next reaction, tau-leaping, etc. Most methods
+have a number of options. For instance, with tau-leaping you can choose
+to use adaptive step size or a fixed step size.
+
+The starting time of the simulation is zero. The time interval is specified
+by defining the end time. For solvers that record time series data at
+uniformly-spaced intervals, the number of frames defines the frame times.
+For solvers that generate histograms
+one needs to specify the number of bins. The solvers dynamically adjust the
+bin width to maintain this constant number of bins. Some solvers require
+a parameter value. For example tau-leaping with an adaptive step size uses
+an error tolerance parameters. Which solvers require a parameters is
+indicated in <code>state/simulationMethods.py</code>.
+<pre>
+  &lt;method id=&quot;Identifier&quot; category=&quot;Integer&quot; method=&quot;Integer&quot;
+   options=&quot;Integer&quot; <font color="#777777">endTime=&quot;Number&quot; numberOfFrames=&quot;Integer&quot; numberOfBins=&quot;Integer&quot;
+   solverParameter=&quot;Number&quot;</font>/&gt;
+</pre>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h3><a name="Output">Output</a></h3>
+
+There are three simulation output elements corresponding to the three kinds
+of data a simulation may produce:
+<ul>
+  <li> <code>histogramFrames</code> - Record histograms of species populations
+  at specified frames.
+  <li> <code>trajectoryFrames</code> - Record the species populations and
+  reactions counts at specified frames. In this way one can plot the
+  realizations as a function of time.
+  <li> <code>trajectoryAllReactions</code> - Record every reaction event for
+  each trajectory.
+</ul>
+Each of the simulation output elements store the identifiers for the model
+and method used to produce the output.
+
+Below is the histogramFrames element. The number of trajectories generated
+is stored as an attribute. The top level elements are the list of
+frame times, the list of recorded species, and a histogram for each combination
+of frame and recorded species.
+<pre>
+  &lt;histogramFrames model=&quot;Identifier&quot; method=&quot;Identifier&quot; numberOfTrajectories=&quot;Integer&quot;&gt;
+    &lt;frameTimes&gt;
+      <em>List of numbers.</em>
+    &lt;/frameTimes&gt;
+    &lt;recordedSpecies&gt;
+      <em>List of indices.</em>
+    &lt;/recordedSpecies&gt;
+    <em>One</em> &lt;histogram&gt;<em> element for each frame and each recorded species.</em>
+  &lt;/histogramFrames&gt;
+</pre>
+
+For a histogram one stores the lower bound and bin width as attributes.
+The number of bins can be deduces from the lists of bin values. One also
+stores the frame index and recorded species index as attributes.
+The histogram bin values are stored in two lists. By computing the histogram
+distance between the two parts, one can estimate the error in the combined
+histogram.
+<pre>
+  &lt;histogram lowerBound=&quot;Number&quot; width=&quot;Number&quot; frame=&quot;Integer&quot; species=&quot;Integer&quot;&gt;
+    &lt;firstHistogram&gt;
+      <em>List of numbers.</em>
+    &lt;/firstHistogram&gt;
+    &lt;secondHistogram&gt;
+      <em>List of numbers.</em>
+    &lt;/secondHistogram&gt;
+  &lt;/histogram&gt;
+</pre>
+
+In a trajectoryFrames element one records the list of frame times, the indices
+of the recorded species and the indices of the recorded reactions.
+For each trajectory generated, there is a list of populations and a list
+of reactions counts. The number of populations in each list is the
+product of the number of frames and the number of recorded species. The
+populations at a given frame are contiguous. Likewise for the recorded species.
+<pre>
+  &lt;trajectoryFrames model=&quot;Identifier&quot; method=&quot;Identifier&quot;&gt;
+    &lt;frameTimes&gt;
+      <em>List of numbers.</em>
+    &lt;/frameTimes&gt;
+    &lt;recordedSpecies&gt;
+      <em>List of indices.</em>
+    &lt;/recordedSpecies&gt;
+    &lt;recordedReactions&gt;
+      <em>List of indices.</em>
+    &lt;/recordedReactions&gt;
+    <em>For each trajectory:</em>
+      &lt;populations&gt;
+        <em>List of numbers.</em>
+      &lt;/populations&gt;
+      &lt;reactionCounts&gt;
+        <em>List of numbers.</em>
+      &lt;/reactionCounts&gt;
+  &lt;/trajectoryFrames&gt;
+</pre>
+
+In a trajectoryAllReactions element one stores the simulation end time
+as an attribute. Unlike the other simulation output elements this quantity
+can't be deduced from a list of frame times. For each trajectory generated
+one records a list of reaction indices and a list of reaction times. Each
+index/time pair specifies a reaction event. 
+<pre>
+  &lt;trajectoryAllReactions model=&quot;Identifier&quot; method=&quot;Identifier&quot; endTime=&quot;Number&quot;&gt;
+    <em>For each trajectory:</em>
+      &lt;indices&gt;
+        <em>List of indices.</em>
+      &lt;/indices&gt;
+      &lt;times&gt;
+        <em>List of numbers.</em>
+      &lt;/times&gt;
+  &lt;/trajectoryAllReactions&gt;
+</pre>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h3><a name="Random Numbers">Random Numbers</a></h3>
+
+The random element store the states for the Mersenne twister random
+number generator. This state is a list of 625 integers: an array of 624
+integers followed by an index into the array. The seed is used for generating
+new states.
+<pre>
+  &lt;random <font color="#777777">seed=&quot;Integer&quot;</font>&gt;
+    <font color="#777777"><em>For each state:</em>
+      &lt;stateMT19937&gt;
+        <em>List of integers.</em>
+      &lt;/stateMT19937&gt;</font>
+  &lt;/random&gt;
+</pre>
+
+<!-------------------------------------------------------------------------->
+<h2><a name="FAQ">FAQ</a></h2>
+
+<p>
+<b>Why is this program called Cain?</b><br>
+I couldn't think of a Catchy And Informative Name.
+</p>
+
+<p>
+<b>Where can I get the latest version of Cain?</b><br>
+<a href="http://cain.sourceforge.net/">http://cain.sourceforge.net/</a>
+</p>
+
+<p>
+<b>I found an error. What should I do?</b><br>
+Don't panic! Send an email to <img src="icons/seanEmail.png">.  Please include
+any relevant data files and a description of what causes the problem. If
+Cain wrote a file called <tt>ErrorLog.txt</tt>, include that as well.
+</p>
+
+<p>
+<b>I have a question or feature request. Who should I contact?</b><br>
+<img src="icons/seanEmail.png">
+</p>
+
+<p>
+<b>Why can't I edit the model or the method?</b><br>
+You have generated output using that model or that method.
+Once you have done this, Cain will not let you modify them. If
+it did, the model or method would no longer correspond
+to the generated output. If you delete the output
+you will be able to edit the model or method.
+</p>
+
+
+<!-------------------------------------------------------------------------->
+<h2><a name="Links">Links</a></h2>
+
+
+<b>Stochastic Simulations.</b><br>
+<ul>
+  <li>
+  The <a href="http://sbml.org/">SBML</a> (Systems Biology Markup Language)
+  homepage has links to many software projects.
+  <li> 
+  <a href="http://www.me.ucsb.edu/dept_site/people/new_faculty_pages/petzold_page.html">Linda Petzold</a> and her research group at
+  <a href="http://www.ucsb.edu/">UCSB</a>
+  (including <a href="http://www.cs.ucsb.edu/~hongli/">Hong Li</a>,
+  <a href="http://www.kevinsanft.com/">Kevin Sanft</a>,
+  <a href="http://www.cse.ucsb.edu/IGERT/students/IGERT_roh.html">Min Roh</a>,
+  and
+  <a href="http://www.cse.ucsb.edu/IGERT/students/IGERT_drawert.html">Brian Drawert</a>)
+  study stochastic simulation methods and have developed 
+  <a href="http://www.engineering.ucsb.edu/~cse/StochKit/">StochKit</a>.
+  <li>
+  <a href="http://www.staff.ncl.ac.uk/d.j.wilkinson/">Darren Wilkinson</a>,
+  provides software and test models at his web site.
+  <li>
+  <a href="http://magnet.systemsbiology.net/software/Dizzy/">Dizzy</a>
+  is a chemical kinetics stochastic simulation software package written in
+  Java.
+  <li>
+  <a href="http://www.copasi.org/">COPASI</a>
+  is a software application for simulation and analysis of biochemical networks.
+  <li>
+  <a href="http://www.sysbio.pl/stocks/">STOCKS</a>
+  is public domain (GNU GPL) software for stochastic simulations of
+  biochemical processes. 
+</ul>
+
+<b>Open-source software resources.</b><br>
+<ul>
+  <li>
+  <a href="http://sourceforge.net/">SourceForge</a> hosts a wealth of
+  software projects.
+  <li>
+  <a href="http://freshmeat.net/">freshmeat</a> maintains the Web's largest
+  index of Unix and cross-platform software.
+</ul>
+
+<b>Software.</b><br>
+<ul>
+  <li>
+  <a href="http://www.python.org/">Python</a> is a simple, powerful, and
+  extensible object-oriented programming language.
+  <li>
+  <a href="http://www.wxpython.org/">wxPython</a> is a cross-platform GUI
+  toolkit.
+  <li>
+  Cain uses <a href="http://matplotlib.sourceforge.net/">matplotlib</a>, a
+  2D plotting library.
+  <li>
+  Cain uses some icons from the 
+  <a href="http://tango.freedesktop.org/Tango_Desktop_Project">
+  Tango Desktop Project</a>.
+</ul>
+
+<!-------------------------------------------------------------------------->
+<h2><a name="Bibliography">Bibliography</a></h2>
+
+<b>Books.</b><br>
+<ul>
+  <li>
+  <a name="wilkinson2006"
+  href="http://www.staff.ncl.ac.uk/d.j.wilkinson/smfsb/">
+  Stochastic Modelling for Systems Biology</a> by 
+  <a href="http://www.staff.ncl.ac.uk/d.j.wilkinson/">Darren Wilkinson</a>.
+  
+  <li>
+  <a href="http://www.math.ttu.edu/~lallen/stochasticbook.html">
+  An Introduction to Stochastic Models with Applications to Biology</a>
+  by
+  <a href="http://www.math.ttu.edu/~lallen/">Linda Allen</a>
+  
+  <li>
+  <a name="devroye1986" href="http://cg.scs.carleton.ca/~luc/rnbookindex.html">
+  Non-Uniform Random Variate Generation</a> by 
+  <a href="http://cg.scs.carleton.ca/~luc/index.html">Luc Devroye</a>.
+
+  <li>
+  <a name="cormen2001" href="http://projects.csail.mit.edu/clrs/">
+  Introduction to Algorithms, Second Edition.</a> by
+  Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, and Clifford Stein.
+</ul>
+  
+<b>Articles.</b><br>
+<ul>
+  <li>
+  <a name="gillespie1976">Daniel T. Gillespie</a>
+  &quot;A General Method for Numerically Simulating the Stochastic Time
+  Evolution of Coupled Chemical Reactions&quot;, 
+  Journal of Computational Physics, Vol. 22, No. 4, 1976, 403-434.
+  <li>
+  <a name="gillespie1977">Daniel T. Gillespie</a>
+  &quot;Exact Stochastic Simulation of Coupled Chemical Reactions.&quot;
+  Journal of Physical Chemistry, Vol. 81, No. 25, 1977.
+  <li>
+  <a name="matsumoto1998">M. Matsumoto and T. Nishimura</a>
+  <a href="http://www.math.sci.hiroshima-u.ac.jp/~m-mat/MT/emt.html">
+  &quot;Mersenne Twister: A 623-dimensionally equidistributed
+  uniform pseudorandom number generator.&quot;</a>
+  ACM Trans. on Modelling and Computer Simulation,
+  Vol. 8, No. 1, Jan. 1998, 3-30.
+  <li>
+  <a name="cao2004">Yang Cao, Hong Li, and Linda Petzold</a>
+  &quot;Efficient formulation of the stochastic simulation algorithm for
+  chemically reacting systems.&quot;
+  Journal of Chemical Physics,
+  Vol. 121, No. 9, 2004.
+  <li>
+  <a name="gibson2000">Michael A. Gibson and Jehoshua Bruck.</a>
+  &quot;Efficient Exact Stochastic Simulation of Chemical Systems with
+  Many Species and Many Channels.&quot;
+  Journal of Physical Chemistry A, Vol. 104, No. 9, 1876-1889, 2000.
+  <li>
+  <a name="marsaglia2000">George Marsaglia and Wai Wan Tsang.</a>
+  &quot;The ziggurat method for generating random variables.&quot; 
+  Journal of Statistical Software, 
+  Vol. 5, 2000, Issue 8.
+  http://www.jstatsoft.org/v05/i08/
+  <li>
+  <a name="kierzek2002">Andrzej M. Kierzek</a>
+  &quot;STOCKS: STOChastic Kinetic Simulations of biochemical systems with
+  the Gillespie algorithm&quot;
+  Bioinformatics, Vol. 18, No. 3, 2002, 470-481.
+  <li>
+  <a name="proctor2005">C. J. Proctor, C. Soti, R. J. Boys, C. S. Gillespie,
+  D. P. Shanley, D. J. Wilkinson, and T. B. L. Kirkwood</a>
+  &quot;Modelling the actions of chaperones and their role in ageing&quot;
+  Mechanisms of Ageing and Development,
+  Vol. 126, No. 1, Jan. 2005, 119-131.
+  <li>
+  <a name="mccollum2005">James M. McCollum, Gregory D. Peterson, Chris D. Cox,
+  Michael L. Simpson, and Nagiza F. Samatova</a>
+  &quot;The sorting direct method for stochastic simulation of biochemical
+  systems with varying reaction execution behavior.&quot;
+  Computational Biology and Chemistry,
+  Vol. 30, No. 1, Feb. 2006, 39-49.
+  <li>
+  <a name="rubin2006">Herman Rubin and Brad Johnson.</a>
+  &quot;Efficient generation of exponential and normal deviates.&quot;
+  Journal of Statistical Computation and Simulation, Vol. 76, No. 6, 
+  509-518, 2006.
+  <li>
+  <a name="cao2006">Yang Cao and Linda Petzold</a>
+  &quot;Accuracy limitations and the measurement of errors in the stochastic
+  simulation of chemically reacting systems.&quot;
+  Journal of Computational Physics,
+  Vol. 212, 2006, 6-24.
+  <li>
+  <a name="li2006">Hong Li and Linda Petzold</a>
+  <a href="http://www.engr.ucsb.edu/~cse">Logarithmic Direct Method for
+  Discrete Stochastic Simulation of Chemically Reacting Systems</a>.
+  Department of Computer Science, University of California, Santa Barbara,
+  2006.
+  <li>
+  <a name="gillespie2007">Daniel T. Gillespie</a>
+  &quot;Stochastic Simulation of Chemical Kinetics&quot;
+  Annu. Rev. Phys. Chem.,
+  Vol. 58, 2007, 35-55.
+  <li>
+  <a name="lipshtat2007">Azi Lipshtat</a>
+  &quot;&quot;All possible steps&quot; approach to the accelerated use of
+  Gillespie's algorithm&quot;
+  Journal of Chemical Physics,
+  Vol. 126, No. 18, 2007.
+  <li>
+  <a name="slepoy2008">Alexander Slepoy, Aidan P. Thompson,
+  and Steven J. Plimpton</a>
+  &quot;A constant-time kinetic Monte Carlo algorithm for simulation of large
+  biochemical reaction networks&quot;
+  Journal of Chemical Physics,
+  Vol. 128, No. 20, 2008.
+</ul>
+  
+<!-------------------------------------------------------------------------->
+<h2><a name="Known Issues">Known Issues</a></h2>
+
+<p>
+Saving plots in PNG (Portable Network Graphics) format may not work. Select
+another format, like PDF (Portable Document Format), instead.
+</p>
+
+<p>
+The status bar at the bottom of the main window does not work correctly on
+OS X, so the tool tips are not displayed. This is a known issue with
+wxPython.
+</p>
+
+<p>
+Version 2.8.9.2 of wxPython may not correctly display tables in the
+documentation. I would recommend using version 2.8.9.1. You can also view the
+PDF version (available as a download) for the correct output.
+</p>
+
+<!-------------------------------------------------------------------------->
+<h2><a name="To Do">To Do</a></h2>
+
+<ul>
+  <li> Collect and analyze test problems.
+  <li> Add more export options.
+  <li> Consider time-dependent propensity functions.
+  <li> Add copy and paste to the species, reaction and parameter lists.
+  Also add ability to clear selected columns.
+  <li> Let the user specify the maximum allowed number of steps.
+  <li> Plot reaction propensities.
+  <li> Check export of compartments to SBML.
+  <li> Import SBML with the open button.
+  <li> Add import/export capabilities for SBML shorthand.
+  <li> Query for unsaved data on quit.
+</ul>
+
+<!-- Private ToDo
+<ul>
+  <li> Should I use TimeEpochOffset in StateVariables?
+  <li> I need to check if the species populations are negative. I can't just check that the propensities are non-negative. _computePropensities in OdeReaction.
+  <li> Standardize the solver names.
+  <li> Write the rest of the inhomogeneous solvers.
+  <li> Add an error tolerance to the inhomogeneous solvers. Then use numerical integration.
+  <li> Update Python software on Windows.
+  <li> Define a wx.CloseEvent handler. Clean up windows on exit.
+  <li> Why didn't the all reactions plot work for the Schlogl model?
+  <li> Preserve the order of models and methods.
+  <li> Task queue.
+  <li> Fix names when exporting to Mathematica.
+  <li> Re-order the output classes.
+  <li> More options for outputing CSV.
+  <li> Add more options for text export. Which species should be written.
+  <li> Sort by any field.
+  <li> Index and large window for recorded species.
+  <li> Search bar for species and reactions.
+  <li> Select all species and reactions for Mathematica solver.
+  <li> Try 53-bit discrete deviates with the direct methods.
+  <li> Consider using kernel functions to obtain smooth PDF's for simulation
+  output.
+  <li> Perhaps I should scale the histogram values by the inverse bin width.
+  This would give it unit area.
+  <li> Support SBML export of non-mass-action kinetic laws.
+  <li> Find out why Proctor fails with ODE.
+  <li> Ask to save changes on quit.
+  <li> Reduce validity checks in hybrid method.
+  <li> Check for negative populations in ODE methods. Solve population == 0
+  and reduce the time step.
+  <li> Why doesn't Wilkinson's mm-stoch2 model work?
+  <li> Add more options for CSV export of all-reaction trajectories.
+  <li> Get rid of read errors when killing simulations.
+  <li> Save the preferences.
+  <li> Write a mass-action propensities functor that stores the
+  reactants in a StaticArrayOfArrays.
+  <li> In Propensities: call a function that updates all affected
+  propensities for a given reaction instead of computing the
+  propensities individually. Use the reaction influence data
+  structure. This will save overhead on function calls.
+  <li> Tweak rebuilding frequencies for sorting methods.
+  <li> Track errors for next reaction method.
+  <li> Get rid of EssTerminationCondition.
+  <li> Get rid of HTML output.
+  <li> Check out GUI2Exe.
+  <li> Record the state of the discrete, uniform generator at the beginning
+  of each trajectory. This would make each trajectory reproducible.
+</ul>
+-->
+
+<!-------------------------------------------------------------------------->
+<hr>
+<address>
+Sean Mauch,
+<a href="http://www.its.caltech.edu/~sean/">http://www.its.caltech.edu/~sean/</a>,
+<img src="icons/seanEmail.png">
+</address>
+
+</body>
+</html>

@@ -1,0 +1,729 @@
+<html>
+<head>
+<title>C++ Idioms and Best Practices</title>
+<link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+
+<body>
+<h1 align=center>C++ Idioms and Best Practices</h1>
+
+<a href="index.html">Back</a>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h2>Classes</h2>
+
+<!-- -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - -->
+<h3>Prefer simple classes and don't add unnecessary functions.</h3>
+
+<p>
+Consider the following two implementations of a class. 
+</p>
+
+<pre>
+class Foo {
+private:
+   int _bar;
+public:
+   int getBar() const {
+      return _bar;
+   }
+   void setBar(const int bar) {
+      _bar = bar;
+   }
+};
+</pre>
+
+<pre>
+struct Foo {
+   int bar;
+};
+</pre>
+
+<p>
+The latter is clearly superior. It is more succinct; the intention is
+clearer. The former is a misapplication of the data hiding
+principle. If you declare a data member to be private you are at least
+indicating that the user should not be able to directly manipulate its
+value. In addition, maybe the user should not be able to access it's
+value. Thus, declaring a data member as private and then implementing
+an accessor and a manipulator is just extra work and obfuscates the
+functionality.
+</p>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h2>Constructors, Destructors and Assignment Operators</h2>
+
+<!-- -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - -->
+<h3>Let the compiler define constructors and the destructor.</h3>
+
+<p>
+It is usually preferable to let the compiler define the copy
+constructor, assignment operator, and destructor. These synthesized
+functions will likely be more efficient than user-implemented
+versions. However, if you allocate memory with <code>new</code>
+(which you should not do unless you are writing a container class)
+then you will need to implement these functions.
+</p>
+
+<p>
+If your class has constant member data, the assignment operator will
+not be synthesized. If you want to enable assignment, you will have
+to define that operator. Below is an example.
+</p>
+<pre>
+template&lt;typename _T&gt;
+class Foo {
+private:
+   const _T _eps;
+   _T _data;
+
+public:
+   Foo() :
+      _eps(std::sqrt(std::numeric_limits&lt;_T&gt;::epsilon())),
+      _data() {
+   }
+
+   Foo&
+   operator=(const Foo& other) {
+      if (this != &other) {
+         // _eps already has the correct value.
+         _data = other._data;
+      }
+      return *this;
+   }
+};
+</pre>
+
+
+<!-- -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - -->
+<h3>Explicitly initialize variables.</h3>
+
+<p>
+C++ has complicated initialization rules. Consider the following program.
+</p>
+
+<pre>
+#include &lt;iostream&gt;
+
+int a;
+
+void foo() {
+   int b;
+   std::cout &lt;&lt; "b = " &lt;&lt; b &lt;&lt; '\n';
+}
+
+int main() {
+   std::cout &lt;&lt; "a = " &lt;&lt; a &lt;&lt; '\n';
+   foo();
+   return 0;
+}
+</pre>
+
+<p>
+When I compile and run this program I get the following output.
+</p>
+<pre>
+a = 0
+b = 10
+</pre>
+
+<p>
+Recall that static objects are initialized to 0 if no initializer is
+specified. By contrast automatic objects with no specified initializer
+are left uninitialized. Because <tt>a</tt> is a global variable, it is
+a static object and thus is initialized to 0. Since <tt>b</tt> is a
+local variable, it is an automatic object and in this case its initial
+value could be any integer. Of course this behavior is obvious to
+an expert like you. However, someone with less experience might be
+not realize all of the implications of constructing an object without
+an initial value. Thus it is best to follow a simple rule: <i>Never use
+default rules to initialize a variable.</i> If you specify the
+initial value then even novices may understand your code. In
+considering the following two examples (which are equivalent because
+of the default initialization rules) it is apparent that the latter
+is better style.
+</p>
+
+<pre>
+int a;
+bool b;
+
+struct Foo {
+   int x;
+};
+Foo foo;
+
+class Bar {
+   int _x;
+public:
+   Bar() :
+      _x() {
+   }
+};
+</pre>
+
+<pre>
+int a = 0;
+bool b = false;
+
+struct Foo {
+   int x;
+};
+Foo foo = {0};
+
+class Bar {
+   int _x;
+public:
+   Bar() :
+      _x(0) {
+   }
+};
+</pre>
+
+
+<!-- -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - -->
+<h3>Use initializer lists in constructors.</h3>
+
+<p>
+Use initializer lists instead of assignment to initialize member
+variables in constructors. This will improve both the readability and the
+performance of your code.
+List all of your member variables (in the
+order that you declared them) in the initializer list. If you don't
+use the correct order the compiler will probably complain because 
+the variables must be initialized in the order they were declared.
+</p>
+
+<p>
+Suppose that you were to use assignment instead of an initializer list as
+shown below.
+<pre>
+class Circle {
+private
+  std::tr1::&lt;double, 2&gt; _center;
+  double _radius;
+public:
+  Circle(const std::tr1::&lt;double, 2&gt;&amp; center, const double radius) {
+    _center = center;
+    _radius = radius;
+  }
+  ...
+};
+</pre>
+This will hurt performance because the variables will first be default
+initialized and then assigned a value. In effect, the following
+operations are performed.
+<pre>
+// Initialization.
+_center[0] = 0;
+_center[1] = 0;
+_radius = 0;
+// Assignment.
+_center[0] = center[0];
+_center[1] = center[1];
+_radius = radius;
+</pre>
+It is better to use the following form.
+<pre>
+ Circle(const std::tr1::&lt;double, 2&gt;&amp; center, const double radius) :
+    _center(center),
+    _radius(radius) {
+  }
+</pre>
+</p>
+
+<p>
+Below is an example of the correct use of initializer lists. Note that
+you can only default initialize arrays. That is, you cannot set the
+array values in the initialization list. You must perform that
+assignment in the body of the constructor. (Note that you should
+prefer <tt>std::vector</tt> or <tt>std::tr1::array</tt> to
+plain arrays.)
+<pre>
+class Foo {
+private:
+  double _parameter;
+  double _coordinates[3];
+  float _density;
+  std::vector<double> _values;
+  std::string _name;
+
+public:
+  Foo(const double parameter, const double x, const double y,
+      const double z, const std::size_t numValues, const std::string& name) :
+    _parameter(parameter),
+    _coordinates(),
+    _density(0),
+    _sizes(numValues),
+    _name(name) {
+    _coordinates[0] = x;
+    _coordinates[1] = y;
+    _coordinates[2] = z;
+  }
+  ...
+};
+</pre>
+</p>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h2>Macros</h2>
+
+<!-- -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - -->
+<h3>Don't use macros to define constants.</h3>
+
+<p>
+The C++ preprocessor is basically a text substitution program.  It doesn't
+know about C++ syntax.  Don't use macros to define constants.  The C++ language
+has several better ways of doing that.  Instead of using
+<pre>
+#define N 256
+</pre>
+prefer the following
+<pre>
+const std::size_t ArraySize = 256;
+</pre>
+</p>
+
+<p>
+Using the preprocessor to define constants in a source file is ill-advised.
+Doing so in a header file is downright evil.  The macro substitition rules
+spill over into an source file that include the header.
+</p>
+
+
+<!-- -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - -->
+<h3>Don't use macros to define functions.</h3>
+
+Sometimes people use macros to define functions to that the function works
+for a variety of argument types.  Use templated functions instead.  Macros
+don't know anything about C++ syntax.  It is better to use language features.
+Instead of
+<pre>
+#define MIN(x,y) (x &lt y : x ? y)
+</pre>
+use
+<pre>
+template&lt;typename T&gt
+inline
+min(const T x, const T y) {
+  return (x &lt y : x ? y);
+}
+</pre>
+
+
+
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h2>Namespaces</h2>
+
+<h3>Static</h3>
+<p>
+In C, the keyword <strong>static</strong> can be used to indicate that a
+function or object is local to a translation unit.  For example, one can
+have:
+<pre>
+static int a;
+static void f() {...}
+</pre>
+in multiple source files.  Each translation unit will have its own variable
+<strong>a</strong> and function <strong>f()</strong>.  This usage of
+<strong>static</strong> is deprecated in C++.
+(See "The C++ Programming Language" by Bjarne Stroustrup.)
+Instead, use unnamed namespaces:
+<pre>
+namespace {
+  int a;
+  void f() {...}
+}
+</pre>
+</p>
+
+
+<h3>Using</h3>
+<p>
+Avoid using <strong>using</strong> declarations to strip namespaces.
+Statements like
+<pre>
+using namespace std;
+using namespace ads;
+</pre>
+are dangerous.  They dump the contents of a namespace into the local scope.
+If you are lucky, this may lead to name collisions that are detected at
+compile time.  However, it may also lead to the worst kind of error, a program
+that compiles and runs but gives unexpected results.  Consider the
+following program.
+<pre>
+#include &lt;iostream&gt
+
+double
+distance(const double* x, const double* y) {
+  return *y - *x;
+}
+
+int 
+main() {
+  double x = 1, y = 2.5;
+  std::cout &lt&lt distance(&x, &y) &lt&lt "\n";
+  return 0;
+}
+</pre>
+It gives the result 1.5.  A novice user might put in a <strong>using</strong>
+statement to avoid having to qualify <strong>cout</strong> with
+<strong>std::</strong>.
+<pre>
+#include &lt;iostream&gt
+
+double
+distance(const double* x, const double* y) {
+  return *y - *x;
+}
+
+int 
+main() {
+  using namespace std;
+  double x = 1, y = 2.5;
+  cout &lt&lt distance(&x, &y) &lt&lt "\n";
+  return 0;
+}
+</pre>
+Now the program gives a different result, -1 when I ran it.  In the second
+program, an STL function that computes distance between iterators is called.
+<pre>
+template&lt;class InputIterator&gt
+typename iterator_traits&lt;InputIterator&gt::difference_type
+distance(InputIterator first, InputIterator last);
+</pre>
+Some developers consider their code to be more aesthetically pleasing when
+they don't have to use namespace qualifications, and thus carelessly
+strip off namespaces with <strong>using</strong> statements.  This is
+bad programming and can lead to insidous errors.  While using
+<strong>using</strong> in this manner in a source code file is a bad idea,
+putting it in a header file is truly evil.  Then this dangerous practice
+is propagated to every source file that includes that header.
+</p>
+
+<h3>Interfaces and Argument Dependent Lookup</h3>
+
+<p>
+If a class is defined in a namespace, put all associated free functions in
+that namespace as well. Note that the C++ rules on
+<a href="">argument dependent lookup</a> will enable you to use those
+free functions without explicitly qualifying them. In the example below,
+the output operator is declared in the <code>foo</code> namespace. When
+it is used in <code>main</code>, there is no need to explicitly qualify
+the namespace, i.e. <code>foo::operator&lt&lt(std::cout, bar)</code>.
+</p>
+<pre>
+namespace foo {
+  class Bar {...};
+
+  std::ostream&
+  operator&lt&lt(std::ostream&, const Bar& bar) {...}
+}
+
+int
+main() {
+  foo::Bar bar;
+  std::cout &lt&lt bar;
+  return 0;
+}
+</pre>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h2>Including Files</h2>
+
+
+<!-- -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - -->
+<h3>Relative Paths</h3>
+
+<p>
+Within a library, use relative paths to include files.  Do not rely on the
+user adding an include path at compile time.  The user should be able to
+include a header in the library and compile with a command as simple as:
+<pre>
+g++ test.cc
+</pre>
+</p>
+
+
+<!-- -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - -->
+<h3>Dependency Errors</h3>
+
+
+Dependency errors occur when a header <code>B.h</code> uses
+functionality from another header <code>A.h</code> which it does not include.
+Then using
+<pre>
+#include "A.h"
+#include "B.h"
+</pre>
+in a <code>.cc</code> file works fine, but using
+<pre>
+#include "B.h"
+#include "A.h"
+</pre>
+results in a compilation error.  You can avoid dependency errors by using unit
+tests and not using convenience headers in your tests and examples.
+
+
+<!-- -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - -->
+<h3>Convenience Headers</h3>
+
+
+<p>
+In a project with many packages, it is a good idea to have
+<em>convenience headers</em> to make it easier for the user to access
+an entire package.  For each source code directory, there is a corresponding
+header file, which includes all of the files in that directory.  For example,
+if one were using bounding boxes from the computational geometry package,
+one could use:
+<pre>
+#include "stlib/src/geom/kernel/BBox.h"
+</pre>
+If one wanted to use several geometric primitives in the
+<strong>kernel</strong> sub-package one could use 
+<pre>
+#include "stlib/src/geom/kernel.h"
+</pre>
+to include all of the header files in the <strong>kernel</strong>
+directory.  One can also include all of the classes and functions in the
+computational geometry package.
+<pre>
+#include "stlib/src/geom.h"
+</pre>
+</p>
+
+<p>
+It's a good idea to provide convenience headers because for the user they
+are... well, convenient.  For someone who is not very familiar with a library,
+they allow one to remain blissfully unaware of the file structure.  Using
+convenience headers comes at the cost of increased compilation time and
+decreased portability.  Obviously, including unnecessary files
+increases the compilation time.  If one is using a compiler that is only
+partially supported, then one would want to include as little code as possible.
+The more header files you include, the more likely you are to encounter
+a construct that your compiler doesn't like.
+</p>
+
+<p>
+The developer should not use the convenience headers in the source code,
+the test code, or example code.  The primary issues are correctness and
+portability; compilation time is of secondary importance.  Using convenience
+headers in the source code decreases the portability because it increases
+the unnecessary headers that will be included in a user's application code.
+Using convenience headers in the test code or example code may hide
+dependency errors.  
+</p>
+
+
+
+
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h2>Exceptions</h2>
+
+<p>
+Don't use exception specifications such as the following.
+<pre>
+void f() throw();
+void g() throw(A, B);
+void h() throw(...);
+</pre>
+Part of the idea behind exception specifications was that they would help
+the compiler optimize code because it can make assumptions like: This function
+will never throw an exception.  The reality is that these constructs may
+hurt performance because the compiler generates extra code that checks
+the exception specifications at <em>run time</em>.
+</p>
+
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h2>Inheritance</h2>
+
+<!-- -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - -->
+<h3>Virtual Bases</h3>
+
+<p>
+When using ordinary (non-virtual) inheritance, a class may only initialize
+its direct bases.  Below is an example.
+<pre>
+class A {
+public:
+  A(int n);
+}
+
+class B: public A {
+public:
+  B(const int n) : A(n) {}
+}
+
+class C: public A {
+public:
+  C(const int n) : A(n) {}
+}
+
+class D: public B, public C {
+public:
+  D(const int n) : B(n), C(n) {}
+}
+</pre>
+The code below is erroneous.  <code>A</code> is not a direct base of
+<code>D</code>.
+<pre>
+class D: public B, public C {
+public:
+  // Error: A is not a direct base, so cannot call its constructor.
+  D(const int n) : A(n), B(n), C(n) {}
+}
+</pre>
+</p>
+
+<p>
+By contrast, when you use virtual bases,
+it is the responsibility of the most derived
+class to initialize them.  (Check out the Poisson random deviate classes in
+the <code>src/numerical/random</code> directory.  They each have
+<code>UsesUniformRandomDeviate</code> as a virtual base.)  The code below
+illustrates this point.  <code>A</code> is a virtual base for <code>B</code>
+and <code>C</code>.  Hence it is a virtual base for <code>D</code>.
+<code>D</code> must explicitly call <code>A</code>'s constructor to get
+the correct behavior, it will not
+be called through either <code>B</code> or <code>C</code>.
+<pre>
+class A {
+public:
+  A(int n);
+}
+
+class B: public virtual A {
+public:
+  B(const int n) : A(n) {}
+}
+
+class C: public virtual A {
+public:
+  C(const int n) : A(n) {}
+}
+
+class D: public B, public C {
+public:
+  D(const int n) : A(n), B(n), C(n) {}
+}
+</pre>
+If <code>D</code> did not explicitly call <code>A</code>'s constructor,
+then its default constructor (not the integer constructor) would implicitly
+be called.  This behavior can cause logic errors that are difficult to detect.
+If the virtual base does not need a default constructor, make it private.
+This will force derived classes to explicitly initialize the virtual base.
+<pre>
+class A {
+private:
+  // This forces derived classes to use the integer constructor.
+  A();
+public:
+  A(int n);
+}
+</pre>
+Then the following code will result in a compilation error.
+<pre>
+class D: public B, public C {
+public:
+  D(const int n) : B(n), C(n) {}
+}
+</pre>
+</p>
+
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h2>Const</h2>
+
+<p>
+If a variable or member function is constant, declare it as such.
+<pre>
+const int Dimension = 3;
+
+class A {
+private:
+  int _value;
+public:
+  int getValue() const {
+    return _value;
+  }
+}
+</pre>
+Concerning function arguments: when defining a function, use
+<code>const</code> for arguments that are not modified.
+<pre>
+int
+f(const int n) {
+  ...
+}
+</pre>
+However, do not use <code>const</code> when <em>declaring</em> a function.
+<pre>
+int
+f(int n);
+</pre>
+This is because <code>int f(int n)</code> and <code>int f(const int n)</code>
+have the same signature.  The <const>const</const> is an implementation
+detail of the function.  It has no effect on the caller.
+</p>
+
+<p>
+There are some subtleties in using <code>const</code> with
+pointers. There are four possibilities shown in the table below.
+<table>
+  <tr align=left>
+    <td><code>int* x = ... </code>
+    <td>Pointer to <code>int</code>.
+  <tr align=left>
+    <td><code>const int* x = ... </code>
+    <td>Pointer to <code>const int</code>. Modifying the pointee
+      (<code>x[0] = 5;</code> for example) is not allowed.
+  <tr align=left>
+    <td><code>int* const x = ... </code>
+    <td>Const pointer to <code>int</code>. Modifying the pointee
+      is allowed, but modifying the pointer
+      (<code>x = 0;</code> for example) is not.
+  <tr align=left>
+    <td><code>const int* const x = ... </code>
+    <td>Const pointer to <code>const int</code>. Modifying the
+      pointer or pointee is not allowed.
+</table>
+</p>
+
+<p>
+Use a pointer to constant type when the pointee should not be
+modified.
+<pre>
+std::vector<double> x(10);
+...
+const double* first = &x[0];
+</pre>
+You will usually want to use a constant pointer when you
+dynamically allocate memory. This is because you don't want to lose
+the handle to the memory that you will later need to free. Below
+is an example.
+<pre>
+double* const x = new double[10];
+for (std::size_t i = 0; i != 10; ++i) {
+   x[i] = i;
+}
+...
+delete[] x;
+</pre>
+Use a const pointer to a const type for dynamically allocated
+constants or for constant arrays.
+<pre>
+const char* const message = "Hello, World!";
+</pre>
+</p>
+
+</body>
+<hr>
+<address>
+<a href="https://bitbucket.org/seanmauch/stlib">https://bitbucket.org/seanmauch/stlib</a>
+/ at(seanmauch, dot(me, com))
+</address>
+</html>
+

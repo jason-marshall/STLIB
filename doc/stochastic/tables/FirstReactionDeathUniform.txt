@@ -1,0 +1,44 @@
+<table border = "1" rules = "all">
+<tr> <th> Species <th> 4 <th> 8 <th> 16 <th> 32 <th> 64 <th> 128 <th> 256 <th> 1,024 <th> 4,096 <th> 16,384 <th> 65,536
+<tr> <th> Reactions <th> 4 <th> 8 <th> 16 <th> 32 <th> 64 <th> 128 <th> 256 <th> 1,024 <th> 4,096 <th> 16,384 <th> 65,536
+<tr> <th> Option <th> <th> <th> <th> <th> <th> <th> <th> <th> <th> <th>
+<tr bgcolor="white">
+<td> Reaction influence
+<td> 147
+<td> 267
+<td> 459
+<td> 838
+<td> 1574
+<td> 3037
+<td> 5984
+<td> 23537
+<td> 95282
+<td> 381512
+<td> 1697897
+<tr bgcolor="white">
+<td> Reaction influence
+<td> 142
+<td> 230
+<td> 360
+<td> 624
+<td> 1141
+<td> 2162
+<td> 4204
+<td> 16377
+<td> 67257
+<td> 268530
+<td> 1076000
+<tr bgcolor="white">
+<td> Absolute time
+<td> 67
+<td> 73
+<td> 85
+<td> 104
+<td> 144
+<td> 225
+<td> 389
+<td> 1381
+<td> 5282
+<td> 20900
+<td> 83470
+</table>

@@ -1,0 +1,5 @@
+GraphMCC.dense 100 10 >> GraphMCC.dense.10.timings
+GraphMCC.dense 200 10 >> GraphMCC.dense.10.timings
+GraphMCC.dense 400 10 >> GraphMCC.dense.10.timings
+GraphMCC.dense 800 10 >> GraphMCC.dense.10.timings
+GraphMCC.dense 1600 10 >> GraphMCC.dense.10.timings

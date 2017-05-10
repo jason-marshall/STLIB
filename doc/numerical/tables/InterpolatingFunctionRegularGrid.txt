@@ -1,0 +1,11 @@
+<table border = "1" rules = "all">
+<tr> <th> Dimension <th> Order <th> Time
+<tr> <td> 1 <td> Linear <td> 20.6
+<tr> <td> 2 <td> Linear <td> 44.1
+<tr> <td> 3 <td> Linear <td> 86.3
+<tr> <td> 4 <td> Linear <td> 181.7
+<tr> <td> 1 <td> Cubic <td> 40.3
+<tr> <td> 2 <td> Cubic <td> 440.3
+<tr> <td> 1 <td> Cubic with Derivative <td> 59.0
+<tr> <td> 2 <td> Cubic with Derivative <td> 459.4
+</table>

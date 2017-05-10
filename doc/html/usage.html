@@ -1,0 +1,69 @@
+<html>
+<head>
+<title>Usage</title>
+<link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+
+<body>
+<h1 align=center>Usage</h1>
+
+<a href="index.html">Back</a>
+
+<p>
+There are ten top-level directories:
+<table>
+  <tr align=left><th>data<td> Data files.
+  <tr align=left><th>doc<td> Documentation.
+  <tr align=left><th>doxygen<td> Configuration files and makefiles for
+    building the documentation.
+  <tr align=left><th>examples<td> Drivers and example programs.
+  <tr align=left><th>src<td> The source code. (All header files.)
+  <tr align=left><th>performance<td> Drivers to test the performance of the
+    algorithms.
+  <tr align=left><th>prototypes<td> Prototypes for testing new algorithms.
+  <tr align=left><th>results<td> Makefiles that use the example programs to
+    produce results.
+  <tr align=left><th>test<td> Uniting testing code.
+  <tr align=left><th>utilities<td> Utility programs.
+</table>
+</p>
+
+<p>
+In some distributions of this code the documentation is pre-built. If you have 
+<a href="http://www.stack.nl/~dimitri/doxygen/">Doxygen</a>, 
+you can build it yourself by executing <strong>make</strong> in the 
+<strong>doxygen</strong> directory. As a user, you will work with the source
+code in <strong>src</strong> and the drivers in
+<strong>examples</strong>.
+The <strong>data</strong> directory will also be useful for running
+the drivers. There is probably no need to look in the other directories.
+</p>
+
+
+<p>
+This library is composed entirely of header files.
+To use any class or function in this library, simply include the file that
+contains its definition. The packages are composed of header files with a
+<code>.h</code> suffix and implementation files with a <code>.ipp</code>
+suffix. The header
+files contain the user interface: class definitions and function declarations.
+Although the documentation presents all of the classes and functions, you
+may prefer to directly browse the header files.
+The <code>.ipp</code> files contain the function definitions. It should not
+be necessary to study these files as they are an implementation detail.
+</p>
+
+<p>
+Eeach top-level package in STLib has its own namespace. These are enumerated
+in the <a href="#Packages">Packages section</a>. There is no namespace
+for STLib as a whole.
+</p>
+
+</body>
+<hr>
+<address>
+<a href="https://bitbucket.org/seanmauch/stlib">https://bitbucket.org/seanmauch/stlib</a>
+/ at(seanmauch, dot(me, com))
+</address>
+</html>
+

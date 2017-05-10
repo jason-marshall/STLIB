@@ -1,0 +1,13 @@
+# -*- python -*-
+
+import sys
+sys.path.append('..')
+from doxygen import doxygen
+
+doxygen.Doxyfile('Doxyfile', ['../main.cfg', 'local.cfg'])
+target = '../html/performance/index.html'
+Default([target])
+sources = Glob('../../stlib/performance/*.h') \
+    + ['../mpi/mpi.tag']
+doxygen.Doxygen([target, 'performance.tag'], ['Doxyfile'] + sources)
+Clean(target, ['../html/performance', 'performance.tag'])

@@ -1,0 +1,139 @@
+
+<html>
+<head>
+<title>Reaction Editor</title>
+</head>
+<body>
+<h1>Reaction Editor</h1>
+
+<p align="center">
+<img src="ReactionEditor.png">
+</p>
+
+<p>
+The identifier and name for a reaction are analogous to those for a
+species. By default the name field is hidden.
+Specify the reactants and products by typing the species
+identifiers preceded by their stoichiometries. For example: &quot;s1&quot;,
+&quot;s1 + s2&quot;, &quot;2 s2&quot;, or
+&quot;2 s1 + s2 + 2 s3&quot;. The stoichiometries must be positive
+integers.  A reaction may have an empty set of reactants or an empty
+set of products, but not both. (A &quot;reaction&quot; without
+reactants or products has no effect on the system.)
+The <tt>MA</tt> field indicates if the equation has mass-action kinetics.
+In the
+<tt>Propensity</tt> field you can either enter a propensity factor for
+use in a mass-action kinetic law or you can enter an arbitrary
+propensity function.  The reactions editor has the same tool bar as
+the species editor. Again, you will be informed of any bad input when
+you try to launch a simulation.
+</p>
+
+<p>
+If the <tt>MA</tt> field is checked, a reaction will use a mass-action
+kinetics law.  For this case you can enter a number or a Python
+expression that evaluates to a number in the <tt>Propensity</tt>
+field.  This non-negative number will be used as the propensity factor
+in the reaction's propensity function.  Below are some examples of
+reactions and their propensity functions for a propensity factor of
+<em>k</em>. [X] indicates the population of species X. The population
+is measured in substance units, for example number of molecules, and
+not in concentration units. (In the table
+below 0 indicates the empty set; either no reactants or no products.)
+</p>
+
+<!--CONTINUE: Tables are not currently rendered correctly.
+<table border="1">
+  <tr><th>Reaction<th>Propensity Function
+  <tr><td>0 &rarr; X<td>k
+  <tr><td>X &rarr; Y<td>k [X]
+  <tr><td>X + Y &rarr; Z<td>k [X] [Y]
+  <tr><td>2 X &rarr; Y<td>k [X] ([X] - 1)/ 2
+</table>
+-->
+<pre><b>
+Reaction   Propensity Function</b>
+-------------------------------
+0 &rarr; X      k
+X &rarr; Y      k [X]
+X + Y &rarr; Z  k [X] [Y]
+2 X &rarr; Y    k [X] ([X] - 1)/ 2
+</pre>
+
+<p>
+If the <tt>MA</tt> field is not checked the <tt>Propensity</tt> field
+is used as the propensity function. For example, you might
+to use a
+<a href="http://en.wikipedia.org/wiki/Michaelis_menten">Michaelis-Menten</a>
+kinetic law. Use the species identifiers
+to indicate the species populations. You can use any model parameters
+in defining the function. The format of the function must be
+a C++ expression. (Don't worry if you don't know C++. Just remember to use
+* for multiplication instead of a space. Also, if you divide by a number use a
+decimal point in it. For example, write &quot;5/2.&quot; or &quot;5/2.0&quot; instead of &quot;5/2&quot;.
+<a href="http://en.wikipedia.org/wiki/Integer_division#Division_of_integers">
+Integer division</a> instead of floating point division will be used in the
+third expression resulting in 2 instead of 2.5.)
+Below are
+some examples of valid expressions for propensity functions. Assume that
+the species identifiers are s1, s2, ...
+</p>
+
+<!--CONTINUE: Tables are not currently rendered correctly.
+<table border="1">
+  <tr><th>C++ Expression<th>Propensity Function
+  <tr><td>2.5<td>2.5
+  <tr><td>5*pow(s1, 2)<td>5 [s1]<sup>2</sup>
+  <tr><td>1e5*s2<td> 100000 [s2]
+  <tr><td>P*s1*s2/(4+s2)<td> P [s1] [s2] / (4 + [s2])
+  <tr><td>log(Q)*sqrt(s1)<td> log(Q) &#8730;[s1]
+</table>
+-->
+<pre><b>
+C++ Expression   Propensity Function</b>
+------------------------------------
+2.5              2.5
+5*pow(s1, 2)     5 [s1]<sup>2</sup>
+1e5*s2           100000 [s2]
+P*s1*s2/(4+s2)   P [s1] [s2] / (4 + [s2])
+log(Q)*sqrt(s1)  log(Q) &#8730;[s1]
+</pre>
+
+<p>
+Here we assume that <tt>P</tt> and <tt>Q</tt> have been defined as parameters.
+Note that you do not have to use the <tt>std</tt> namespace qualification
+with the standard math functions like <tt>sqrt</tt>, <tt>log</tt>, and
+<tt>exp</tt>. The expressions will be evaluated in a function with a
+<tt>using namespace std;</tt> declaration.
+</p>
+
+<p>
+Most of the stochastic simulation methods store the values of the
+propensity functions and recompute them only when the values
+change. (This innovation was introduced with the
+<a href=SimulationNext.htm>next reaction method</a>.) If firing a
+certain reaction modifies a species <em>X</em> then any propensity
+that depends on <em>X</em> must be recomputed.  For mass-action
+kinetic laws, the propensity function depends on the reactants. Thus
+we use the reactants to determine the reaction dependencies.
+</p>
+
+<p>
+There is a technical issue with custom propensities when simulating a
+model with a stochastic method: If one uses a species
+population in the propensity function, then that species must appear as a
+reactant. Otherwise the reaction dependencies will not be determined correctly.
+For example consider a system with two species <em>X</em> and <em>Y</em>.
+Suppose one had the reaction <em>0 &rarr; X</em> with the custom propensity
+<em>Y</em>. Of course the propensity does not make physical sense, but that
+is beside the point. Cain will not allow this reaction. Attempting to launch
+a stochastic simulation will produce an error message.
+(One can, however, run a deterministic simulation.)
+To ammend the reaction one must
+add <em>Y</em> as a reactant (and as a product so as to leave the kinetics
+unchanged). The reaction <em>Y &rarr; X + Y</em> is allowed. 
+Physically speaking, <em>Y</em> is a substrate.
+</p>
+
+</body>
+</html>

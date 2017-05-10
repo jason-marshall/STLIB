@@ -1,0 +1,146 @@
+<table border = "1" rules = "all">
+<tr> <th> Method <th> Option <th> 4 <th> 8 <th> 16 <th> 32 <th> 64 <th> 128 <th> 256 <th> 1,024 <th> 4,096 <th> 16,384 <th> 65,536
+<tr bgcolor="white"> <th rowspan="4"> Linear Search
+<td> Delayed update
+<td> 124
+<td> 135
+<td> 142
+<td> 173
+<td> 237
+<td> 370
+<td> 632
+<td> 2229
+<td> 8533
+<td> 33847
+<td> 134946
+<tr bgcolor="white">
+<td> Immediate update
+<td> 115
+<td> 122
+<td> 128
+<td> 139
+<td> 162
+<td> 209
+<td> 301
+<td> 853
+<td> 3034
+<td> 11840
+<td> 47157
+<tr bgcolor="white">
+<td> Complete sort
+<td> 124
+<td> 131
+<td> 136
+<td> 147
+<td> 172
+<td> 222
+<td> 325
+<td> 925
+<td> 3216
+<td> 13529
+<td> 53628
+<tr bgcolor="white">
+<td> Bubble sort
+<td> 130
+<td> 135
+<td> 139
+<td> 150
+<td> 173
+<td> 226
+<td> 327
+<td> 918
+<td> 3256
+<td> 13543
+<td> 53381
+<tr bgcolor="aliceblue"> <th rowspan="3"> 2-D Search
+<td> 
+<td> 82
+<td> 86
+<td> 90
+<td> 98
+<td> 106
+<td> 112
+<td> 124
+<td> 163
+<td> 239
+<td> 379
+<td> 986
+<tr bgcolor="aliceblue">
+<td> Complete sort
+<td> 83
+<td> 87
+<td> 92
+<td> 97
+<td> 105
+<td> 111
+<td> 125
+<td> 167
+<td> 243
+<td> 390
+<td> 1107
+<tr bgcolor="aliceblue">
+<td> Bubble sort
+<td> 89
+<td> 95
+<td> 103
+<td> 111
+<td> 123
+<td> 131
+<td> 147
+<td> 190
+<td> 266
+<td> 421
+<td> 1218
+<tr bgcolor="white"> <th rowspan="3"> Binary Search
+<td> Complete CDF
+<td> 115
+<td> 127
+<td> 137
+<td> 160
+<td> 208
+<td> 295
+<td> 470
+<td> 1487
+<td> 5445
+<td> 21103
+<td> 84303
+<tr bgcolor="white">
+<td> Complete CDF, sorted
+<td> 164
+<td> 176
+<td> 197
+<td> 219
+<td> 256
+<td> 330
+<td> 457
+<td> 1151
+<td> 4399
+<td> 18350
+<td> 74420
+<tr bgcolor="white">
+<td> Partial, recursive CDF
+<td> 115
+<td> 127
+<td> 140
+<td> 152
+<td> 168
+<td> 180
+<td> 198
+<td> 245
+<td> 310
+<td> 402
+<td> 896
+<tr bgcolor="aliceblue"> <th rowspan="1"> Rejection
+<td> Bins with splitting
+<td> 169
+<td> 139
+<td> 127
+<td> 122
+<td> 123
+<td> 125
+<td> 147
+<td> 249
+<td> 589
+<td> 1869
+<td> 690
+</table>

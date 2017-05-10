@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cain version="1.2">
+  <listOfModels>
+    <model id="Activation">
+      <listOfSpecies>
+        <species initialAmount="0" id="A"/>
+        <species initialAmount="1" id="I"/>
+      </listOfSpecies>
+      <listOfReactions>
+        <reaction propensity="0.5" massAction="false" id="Activation">
+          <listOfReactants>
+            <speciesReference species="I"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="A"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="1" massAction="false" id="Inactivation">
+          <listOfReactants>
+            <speciesReference species="A"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="I"/>
+          </listOfProducts>
+        </reaction>
+      </listOfReactions>
+    </model>
+  </listOfModels>
+  <listOfMethods>
+    <method category="0" numberOfBins="32" multiplicity="4" equilibrationTime="0.0" id="Direct" method="0" timeDependence="0" startTime="0.0" recordingTime="30.0" numberOfFrames="101" options="0"/>
+  </listOfMethods>
+  <random seed="2147483648">
+  </random>
+</cain>

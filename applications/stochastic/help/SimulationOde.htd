@@ -1,0 +1,24 @@
+<html>
+<head>
+<title>ODE Integration</title>
+</head>
+<body>
+<h1>ODE Integration</h1>
+
+<p>
+One can generate an approximate deterministic trajectory by considering the
+system of reactions as a set of ordinary differential equations and then
+numerically integrating these equations to determine the reactions counts and
+species populations. There are many schemes for numerically integrating
+ODE's. The Cain solver uses the
+<a href="http://en.wikipedia.org/wiki/Cash-Karp">Cash-Karp</a> variant
+of the 
+<a href="http://en.wikipedia.org/wiki/Runge-Kutta">Runge-Kutta</a> method.
+This is a fifth-order explicit method with an adaptive step size.
+There are also a number of solvers with fixed step size. These are primarily
+useful for testing algorithms. The adaptive step size solver is preferred
+for normal work.
+</p>
+
+</body>
+</html>

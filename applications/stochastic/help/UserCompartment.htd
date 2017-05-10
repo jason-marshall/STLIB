@@ -1,0 +1,23 @@
+<html>
+<head>
+<title>Compartment Editor</title>
+</head>
+<body>
+<h1>Compartment Editor</h1>
+
+<p align="center">
+<img src="CompartmentEditor.png">
+</p>
+
+<p>
+In this panel you can edit the compartments.
+The identifier and size fields are required;
+the name field is optional. The sizes of compartments may be used
+in the same way as <a href="UserParameter">parameter</a> values.
+Recall that compartments are
+optional in Cain. If a species is not assigned to a compartment, it is
+automatically put in an unnamed compartment.
+</p>
+
+</body>
+</html>

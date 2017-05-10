@@ -1,0 +1,202 @@
+(************** Content-type: application/mathematica **************
+
+                    Mathematica-Compatible Notebook
+
+This notebook can be used with any Mathematica-compatible
+application, such as Mathematica, MathReader or Publicon. The data
+for the notebook starts with the line containing stars above.
+
+To get the notebook into a Mathematica-compatible application, do
+one of the following:
+
+* Save the data starting with the line of stars above into a file
+  with a name ending in .nb, then open the file inside the
+  application;
+
+* Copy the data starting with the line of stars above to the
+  clipboard, then use the Paste menu command inside the application.
+
+Data for notebooks contains only printable 7-bit ASCII and can be
+sent directly in email or through ftp in text mode.  Newlines can be
+CR, LF or CRLF (Unix, Macintosh or MS-DOS style).
+
+NOTE: If you modify the data for this notebook not in a Mathematica-
+compatible application, you must delete the line below containing
+the word CacheID, otherwise Mathematica-compatible applications may
+try to use invalid cache data.
+
+For more information on notebooks and Mathematica-compatible 
+applications, contact Wolfram Research:
+  web: http://www.wolfram.com
+  email: info@wolfram.com
+  phone: +1-217-398-0700 (U.S.)
+
+Notebook reader applications are available free of charge from 
+Wolfram Research.
+*******************************************************************)
+
+(*CacheID: 232*)
+
+
+(*NotebookFileLineBreakTest
+NotebookFileLineBreakTest*)
+(*NotebookOptionsPosition[      5707,        151]*)
+(*NotebookOutlinePosition[      6355,        174]*)
+(*  CellTagsIndexPosition[      6311,        170]*)
+(*WindowFrame->Normal*)
+
+
+
+Notebook[{
+Cell["CellXYForwardSearchKeyZChairCellSize.nb", "Text"],
+
+Cell[BoxData[
+    \(\(timeNoKey = {\[IndentingNewLine]{1/8, 
+            4.26084}, \[IndentingNewLine]{1.333/8, 
+            3.64483}, \[IndentingNewLine]{2/8, 
+            2.93921}, \[IndentingNewLine]{3/8, 
+            3.12457}, \[IndentingNewLine]{4/8, 
+            3.43414}, \[IndentingNewLine]{6/8, 
+            4.86328}, \[IndentingNewLine]{8/8, 
+            5.90481}, \[IndentingNewLine]{12/8, 
+            9.00666}, \[IndentingNewLine]{16/8, 
+            11.2085}\[IndentingNewLine]};\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(time = {\[IndentingNewLine]{1/8, 
+            4.04325}, \[IndentingNewLine]{1.333/8, 
+            2.92095}, \[IndentingNewLine]{2/8, 
+            2.06346}, \[IndentingNewLine]{3/8, 
+            1.80804}, \[IndentingNewLine]{4/8, 
+            1.82107}, \[IndentingNewLine]{6/8, 
+            2.36658}, \[IndentingNewLine]{8/8, 
+            2.7574}, \[IndentingNewLine]{12/8, 
+            4.04768}, \[IndentingNewLine]{16/8, 
+            4.82956}\[IndentingNewLine]};\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(\(Transpose[{\(Transpose[time]\)[\([1]\)], \(Transpose[
+                  time]\)[\([2]\)], \(Transpose[timeNoKey]\)[\([2]\)]}] // 
+          N\) // TableForm\) // TextForm\)], "Input"],
+
+Cell[BoxData[
+    \(\(ListPlot[timeNoKey, PlotJoined \[Rule] True, 
+        PlotRange \[Rule] {{0, 2}, {0, 11.2085}}, 
+        Ticks \[Rule] {{0, 0.5, 1, 1.5, 2}, {3, 6, 9}}, 
+        TextStyle \[Rule] {FontSize \[Rule] 12}, 
+        PlotLabel -> "\<Execution Time\>", 
+        PlotStyle \[Rule] Dashing[{0.02, 0.02}]];\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(ListPlot[time, PlotJoined \[Rule] True];\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(ListPlot[time, PlotStyle -> PointSize[0.02]];\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(timePlot = Show[%%%, %%, %];\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(memoryNoKey = {\[IndentingNewLine]{1/8, 
+            969636/10\^6}, \[IndentingNewLine]{1.333/8, 
+            750180/10\^6}, \[IndentingNewLine]{2/8, 
+            592932/10\^6}, \[IndentingNewLine]{3/8, 
+            522660/10\^6}, \[IndentingNewLine]{4/8, 
+            497892/10\^6}, \[IndentingNewLine]{6/8, 
+            480036/10\^6}, \[IndentingNewLine]{8/8, 
+            473700/10\^6}, \[IndentingNewLine]{12/8, 
+            469092/10\^6}, \[IndentingNewLine]{16/8, 
+            467436/10\^6}\[IndentingNewLine]};\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(memory = {\[IndentingNewLine]{1/8, 
+            4516104/10\^6}, \[IndentingNewLine]{1.333/8, 
+            3967464/10\^6}, \[IndentingNewLine]{2/8, 
+            3574344/10\^6}, \[IndentingNewLine]{3/8, 
+            3398664/10\^6}, \[IndentingNewLine]{4/8, 
+            3336744/10\^6}, \[IndentingNewLine]{6/8, 
+            3292104/10\^6}, \[IndentingNewLine]{8/8, 
+            3276264/10\^6}, \[IndentingNewLine]{12/8, 
+            3264744/10\^6}, \[IndentingNewLine]{16/8, 
+            3260604/10\^6}\[IndentingNewLine]};\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(\(Transpose[{\(Transpose[
+                  memory]\)[\([1]\)], \(Transpose[memory]\)[\([2]\)] + 
+                116232*4/10^6, \(Transpose[memoryNoKey]\)[\([2]\)] + 
+                116232*4/10^6}] // N\) // TableForm\) // TextForm\)], "Input"],
+
+Cell[BoxData[
+    \(\(ListPlot[memoryNoKey, PlotJoined \[Rule] True, 
+        PlotRange \[Rule] {{0, 2}, {0, 4.52}}, 
+        Ticks \[Rule] {{0, 0.5, 1, 1.5, 2}, {1, 2, 3, 4}}, 
+        TextStyle \[Rule] {FontSize \[Rule] 12}, 
+        PlotLabel -> "\<Memory Usage\>", 
+        PlotStyle \[Rule] Dashing[{0.02, 0.02}]];\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(ListPlot[memory, PlotJoined \[Rule] True];\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(ListPlot[memory, PlotStyle -> PointSize[0.02]];\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(memoryPlot = Show[%%%, %%, %];\)\)], "Input"],
+
+Cell["Save as CellXYForwardSearchKeyZChairCellSize.eps.", "Text"],
+
+Cell[BoxData[
+    \(\(Show[GraphicsArray[{timePlot, memoryPlot}], 
+        ImageSize \[Rule] 400];\)\)], "Input"]
+},
+FrontEndVersion->"4.1 for X",
+ScreenRectangle->{{0, 1280}, {0, 1024}},
+WindowSize->{673, 944},
+WindowMargins->{{Automatic, 8}, {Automatic, 0}},
+Magnification->1.5
+]
+
+(*******************************************************************
+Cached data follows.  If you edit this Notebook file directly, not
+using Mathematica, you must remove the line containing CacheID at
+the top of  the file.  The cache data will then be recreated when
+you save this file from within Mathematica.
+*******************************************************************)
+
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+
+(*NotebookFileOutline
+Notebook[{
+Cell[1705, 50, 55, 0, 46, "Text"],
+Cell[1763, 52, 507, 10, 269, "Input"],
+Cell[2273, 64, 501, 10, 269, "Input"],
+Cell[2777, 76, 207, 3, 108, "Input"],
+Cell[2987, 81, 334, 6, 154, "Input"],
+Cell[3324, 89, 77, 1, 39, "Input"],
+Cell[3404, 92, 82, 1, 39, "Input"],
+Cell[3489, 95, 65, 1, 39, "Input"],
+Cell[3557, 98, 554, 10, 350, "Input"],
+Cell[4114, 110, 558, 10, 350, "Input"],
+Cell[4675, 122, 268, 4, 131, "Input"],
+Cell[4946, 128, 334, 6, 154, "Input"],
+Cell[5283, 136, 79, 1, 39, "Input"],
+Cell[5365, 139, 84, 1, 39, "Input"],
+Cell[5452, 142, 67, 1, 39, "Input"],
+Cell[5522, 145, 65, 0, 46, "Text"],
+Cell[5590, 147, 113, 2, 62, "Input"]
+}
+]
+*)
+
+
+
+(*******************************************************************
+End of Mathematica Notebook file.
+*******************************************************************)
+

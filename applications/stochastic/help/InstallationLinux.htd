@@ -1,0 +1,50 @@
+<html>
+<head>
+<title>Installation on Linux/Unix</title>
+</head>
+<body>
+<h1>Installation on Linux/Unix</h1>
+
+<!--64-bit versions of Linux will not work with Virtual Box using Mac -->
+<!--OS X as the host. Use the 32-bit versions instead.-->
+
+<p>
+For Linux or Unix, use the platform-independent distribution. You will
+need appropriate versions of
+<a href="http://www.python.org/">Python</a>,
+<a href="http://www.wxpython.org/">wxPython</a>,
+<a href="http://matplotlib.sourceforge.net/">matplotlib</a>, and
+<a href="http://numpy.scipy.org/">numpy</a>,
+as well as a C++ compiler. There are platform-specific instructions
+for installing this software for
+<a href="InstallationRedHat.htm">RedHat 5.3</a>,
+<a href="InstallationRedHat.htm">CentOS 5.2</a>, and
+<a href="InstallationFedora.htm">Fedora 10</a>.
+I recommend using
+the current version of <a href="http://gcc.gnu.org/">GNU GCC</a>.
+Note that only Python versions 2.4.x through 2.6.x are currently supported.
+If you do not have the necessary Python packages installed, Cain will show
+an error message when you attempt to launch the application.
+</p>
+
+<p>
+Download the platform-independent distribution and place it in a convenient
+location. Then uncompress the zip file.<br>
+<tt>unzip Cain.zip</tt><br>
+Build the mass action solvers.<br>
+<tt>cd Cain</tt><br>
+<tt>make</tt><br>
+Then launch the GUI.<br>
+<tt>python Cain.py&amp;</tt><br>
+There are example files in the <tt>examples</tt> directory.
+You can open a file on startup by specifying the file as a command
+line argument. For example:<br>
+<tt>python Cain.py examples/cain/BirthDeath.xml&amp;</tt>
+</p>
+
+<p>
+To uninstall Cain, simply delete the <tt>Cain</tt> directory.
+</p>
+
+</body>
+</html>

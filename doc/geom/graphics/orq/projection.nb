@@ -1,0 +1,126 @@
+(***********************************************************************
+
+                    Mathematica-Compatible Notebook
+
+This notebook can be used on any computer system with Mathematica 4.0,
+MathReader 4.0, or any compatible application. The data for the notebook 
+starts with the line containing stars above.
+
+To get the notebook into a Mathematica-compatible application, do one of 
+the following:
+
+* Save the data starting with the line of stars above into a file
+  with a name ending in .nb, then open the file inside the application;
+
+* Copy the data starting with the line of stars above to the
+  clipboard, then use the Paste menu command inside the application.
+
+Data for notebooks contains only printable 7-bit ASCII and can be
+sent directly in email or through ftp in text mode.  Newlines can be
+CR, LF or CRLF (Unix, Macintosh or MS-DOS style).
+
+NOTE: If you modify the data for this notebook not in a Mathematica-
+compatible application, you must delete the line below containing the 
+word CacheID, otherwise Mathematica-compatible applications may try to 
+use invalid cache data.
+
+For more information on notebooks and Mathematica-compatible 
+applications, contact Wolfram Research:
+  web: http://www.wolfram.com
+  email: info@wolfram.com
+  phone: +1-217-398-0700 (U.S.)
+
+Notebook reader applications are available free of charge from 
+Wolfram Research.
+***********************************************************************)
+
+(*CacheID: 232*)
+
+
+(*NotebookFileLineBreakTest
+NotebookFileLineBreakTest*)
+(*NotebookOptionsPosition[      3925,         88]*)
+(*NotebookOutlinePosition[      4584,        112]*)
+(*  CellTagsIndexPosition[      4540,        108]*)
+(*WindowFrame->Normal*)
+
+
+
+Notebook[{
+Cell[BoxData[
+    \(\(Show[
+        Graphics3D[
+          Flatten[{\[IndentingNewLine]PointSize[
+                0.02], \[IndentingNewLine]Table[
+                Point[{10\ Random[], 10\ Random[], 
+                    10\ Random[]}], {100}], \[IndentingNewLine]Thickness[
+                0.01], \[IndentingNewLine]Line[{{3, 0, 0}, {3, 10, 0}, {3, 
+                    10, 10}, {3, 0, 10}, {3, 0, 
+                    0}}], \[IndentingNewLine]Line[{{4, 0, 0}, {4, 10, 0}, {4, 
+                    10, 10}, {4, 0, 10}, {4, 0, 
+                    0}}], \[IndentingNewLine]Line[{{0, 5, 0}, {10, 5, 
+                    0}, {10, 5, 10}, {0, 5, 10}, {0, 5, 
+                    0}}], \[IndentingNewLine]Line[{{0, 6, 0}, {10, 6, 
+                    0}, {10, 6, 10}, {0, 6, 10}, {0, 6, 
+                    0}}], \[IndentingNewLine]Line[{{0, 0, 7}, {10, 0, 
+                    7}, {10, 10, 7}, {0, 10, 7}, {0, 0, 
+                    7}}], \[IndentingNewLine]Line[{{0, 0, 8}, {10, 0, 
+                    8}, {10, 10, 8}, {0, 10, 8}, {0, 0, 
+                    8}}], \[IndentingNewLine]Cuboid[{3, 5, 7}, {4, 6, 
+                  8}], \[IndentingNewLine]Thickness[
+                0.005], \[IndentingNewLine]Line[{{0, 5, 7}, {10, 5, 
+                    7}}], \[IndentingNewLine]Line[{{0, 6, 7}, {10, 6, 
+                    7}}], \[IndentingNewLine]Line[{{0, 5, 8}, {10, 5, 
+                    8}}], \[IndentingNewLine]Line[{{0, 6, 8}, {10, 6, 
+                    8}}], \[IndentingNewLine]Line[{{3, 0, 7}, {3, 10, 
+                    7}}], \[IndentingNewLine]Line[{{4, 0, 7}, {4, 10, 
+                    7}}], \[IndentingNewLine]Line[{{3, 0, 8}, {3, 10, 
+                    8}}], \[IndentingNewLine]Line[{{4, 0, 8}, {4, 10, 
+                    8}}], \[IndentingNewLine]Line[{{3, 5, 0}, {3, 5, 
+                    10}}], \[IndentingNewLine]Line[{{4, 5, 0}, {4, 5, 
+                    10}}], \[IndentingNewLine]Line[{{3, 6, 0}, {3, 6, 
+                    10}}], \[IndentingNewLine]Line[{{4, 6, 0}, {4, 6, 
+                    10}}]\[IndentingNewLine]}]], 
+        PlotRange \[Rule] {{0, 10}, {0, 10}, {0, 10}}];\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(Export["\<point_in_box.jpg\>", %];\)\)], "Input"]
+},
+FrontEndVersion->"4.0 for X",
+ScreenRectangle->{{0, 1152}, {0, 864}},
+WindowSize->{651, 779},
+WindowMargins->{{231, Automatic}, {Automatic, 0}},
+Magnification->1.5
+]
+
+
+(***********************************************************************
+Cached data follows.  If you edit this Notebook file directly, not using
+Mathematica, you must remove the line containing CacheID at the top of 
+the file.  The cache data will then be recreated when you save this file 
+from within Mathematica.
+***********************************************************************)
+
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+
+(*NotebookFileOutline
+Notebook[{
+Cell[1717, 49, 2130, 34, 752, "Input"],
+Cell[3850, 85, 71, 1, 39, "Input"]
+}
+]
+*)
+
+
+
+
+(***********************************************************************
+End of Mathematica Notebook file.
+***********************************************************************)
+

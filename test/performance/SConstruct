@@ -1,0 +1,33 @@
+# -*- python -*-
+
+import os.path
+import subprocess
+import num_jobs
+from env import serial
+
+# Use "scons cuda=true" to enable cuda.
+# CONTINUE: Switch to true for the default after porting to CUDA 5.5.
+useCudaString = ARGUMENTS.get('cuda', 'false')
+if not useCudaString in ('false', 'true'):
+    print('Error: Expected "false" or "true" for the cuda argument, '\
+          'found: "' + useCudaString + '".')
+    Exit(1)
+if useCudaString == 'true':
+    try:
+        # Check if there is a CUDA compiler.
+        useCuda = subprocess.call(['which', 'nvcc']) == 0
+    except:
+        useCuda = False
+else:
+    useCuda = False
+Export('useCuda')
+
+sourceDirectory = os.path.realpath('../../src')
+Export('sourceDirectory')
+
+VariantDir('release', '.')
+if COMMAND_LINE_TARGETS:
+    for x in COMMAND_LINE_TARGETS:
+        SConscript(os.path.join('release', x, 'SConscript'))
+else:
+    SConscript([os.path.join('release', str(x)) for x in Glob('*/SConscript')])

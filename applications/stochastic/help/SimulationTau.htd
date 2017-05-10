@@ -1,0 +1,52 @@
+<html>
+<head>
+<title>Tau-Leaping</title>
+</head>
+<body>
+<h1>Tau-Leaping</h1>
+
+<p>
+With tau-leaping we take steps forward in time. For each reaction we calculate
+a predicted average propensity. We then generate Poisson deviates to determine
+how many times each reaction will fire during the step. The advantage of
+tau-leaping is that it can jump over many reactions and thus may be much
+more efficient than exact methods. The disadvantage is that it is not an
+exact method. 
+</p>
+
+<p>
+There are several options for the tau-leaping solver. By default it
+will use an adaptive step size and will correct negative populations.
+You can also choose to not correct negative populations, the
+simulation will fail if a species is overdrawn.
+There is also a fixed time step option. This option is only useful for
+studying the tau-leaping method. With a fixed step size it is
+difficult to gauge the accuracy of the simulation.
+</p>
+
+<p>
+In tau-leaping, one uses an expected value of the propensities in
+advancing the solution.  The propensities are assumed to be constant
+over the time step. There are several ways of selecting the
+expected propensity values. The simplest is forward stepping;
+The expected propensities are the values at the beginning of
+the step. One can also use midpoint stepping. In this case one
+advances to the midpoint of the interval with a deterministic step.
+Then one uses the midpoint propensity values to take a stochastic
+step and fire the reactions. Midpoint stepping is analogous to a second
+order Runge-Kutta method for ODE's. One can also use higher order
+approximations to determine the expected propensities. You can use
+a fourth order Runge-Kutta scheme with deterministic steps to choose
+the expected propensities and then take a stochastic step with these
+values. Note that regardless of how you choose the expected
+propensities, the tau-leaping solver is still a first-order accurate
+stochastic method. That is, you can choose a first, second, or fourth
+order method for calculating the expected propensities, but you still
+assume that the propensities are constant when taking the stochastic
+step. Thus it is a first-order stochastic method. However, using
+higher order formulas for the expected propensities is typically more
+accurate.
+</p>
+
+</body>
+</html>

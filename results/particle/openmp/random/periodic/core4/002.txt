@@ -1,0 +1,33 @@
+OpenMP num threads = 2
+
+_Dimension = 3, numParticles = 4000000
+Lower corner = 0 0 0 
+Lengths = 1 1 1 
+Cell lengths = 0.0153846 0.0153846 0.0153846 
+Num levels = 7
+Cell extents = 65 65 65 
+Num cells capacity = 2097152
+
+Reorder count = 0
+Repair count = 10
+
+Time totals:
+CheckOrder,Order,RecStartPos,LookupTable,FindNeighbors
+0.592349,1.61909,0.141665,0.03826,21.2297
+
+Time per operation:
+CheckOrder,Order,RecStartPos,LookupTable,FindNeighbors
+0.0592349,inf,inf,inf,inf
+
+Memory Usage:
+,used,capacity
+particles,128000000,128000000
+codes,32000008,32000008
+potentialNeighbors,1951672272,1951963320
+lookupTable,14680080,14680080
+
+Simulation costs:
+MoveParticles,CountNeighbors
+1.92452,29.4297
+
+Interactions per particle per step = 29.995

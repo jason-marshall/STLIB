@@ -1,0 +1,67 @@
+<html>
+<head>
+<title>Installation on Microsoft Windows</title>
+</head>
+<body>
+<h1>Installation on Microsoft Windows</h1>
+
+<p>
+For Microsoft Windows, Cain is distributed as an executable.
+Download and run the installer. The example data files are in the
+<tt>examples</tt> folder in the application directory. They are also
+distributed separately in the zip file <tt>CainExamplesWindows-x.y.zip</tt>.
+The mass-action solvers are
+pre-compiled. In order to use custom propensities you will need a compiler;
+Cain uses Microsoft Visual Studio 2010. If you do not already have MSVS 2010,
+get
+<a href="http://www.microsoft.com/Express/Downloads/">Microsoft Visual C++
+2010 Express Edition</a>. It is a free, command line version of Visual Studio.
+Select the Visual C++ 2010 Express download.
+</p>
+
+<!--
+<p>
+Currently the GNU compiler is supported. (I am working on support for
+Microsoft Visual Studio.) You can obtain the GNU compiler from the
+<a href="http://www.mingw.org/">MinGW</a> project. Install the C++
+compiler and add the installation directory to your path. That is
+append the installation directory to the <tt>PATH</tt> environment variable.
+</p>
+-->
+
+<p>
+To uninstall Cain, select <tt>Cain&rarr;Uninstall Cain</tt> from the
+start menu.
+</p>
+
+<!--
+5/31/2010
+I got an unusual error when I made the Cain 1.4 Windows installer -->
+using the Enthought Python distribution: The application only worked
+if Python was installed. I rebuilt the installer using the Python
+distribution from python.org. This rectified the problem.
+-->
+
+<!--
+<p>
+<b>Windows Vista 64-Bit.</b><br>
+http://sourceforge.net/projects/mingw/
+Select Download-Browse All Packages.
+Automated MinGW Installer.
+MinGW-5.1.4.exe
+Save.
+Download and install.
+Which MinGW package do you wish to install? Choose Candidate.
+Download and run the MinGW installer.
+Select the MinGW base tools and MinGW Make.
+
+If you select g++ compiler you get:
+MinGW Installation Aborted.
+Extracting gcc-g++-3.4.5-10060117-3.tar.gz
+
+GCC Version 4.
+</p>
+-->
+
+</body>
+</html>

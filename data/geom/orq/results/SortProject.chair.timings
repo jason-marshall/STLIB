@@ -1,0 +1,25 @@
+1782 vertices, 0 faces.
+Search_Radius = 2
+memory usage = 21420
+time = 0.060631
+count = 65412
+7200 vertices, 0 faces.
+Search_Radius = 2
+memory usage = 86436
+time = 0.47968
+count = 265104
+28968 vertices, 0 faces.
+Search_Radius = 2
+memory usage = 347652
+time = 3.86184
+count = 864296
+116232 vertices, 0 faces.
+Search_Radius = 2
+memory usage = 1394820
+time = 33.0085
+count = 3192056
+465672 vertices, 0 faces.
+Search_Radius = 2
+memory usage = 5588100
+time = 321.975
+count = 12220376

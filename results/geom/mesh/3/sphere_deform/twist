@@ -1,0 +1,3 @@
+x * cos( sqrt(x*x+y*y)*pi/2.) - y * sin( sqrt(x*x+y*y)*pi/2.)
+x * sin( sqrt(x*x+y*y)*pi/2.) + y * cos( sqrt(x*x+y*y)*pi/2.)
+z

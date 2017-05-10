@@ -1,0 +1,12 @@
+# -*- python -*-
+
+import sys
+sys.path.append('..')
+from doxygen import doxygen
+
+doxygen.Doxyfile('Doxyfile', ['../main.cfg', 'local.cfg'])
+target = '../html/levelSet/index.html'
+Default([target])
+sources = Glob('../../stlib/levelSet/*.h')
+doxygen.Doxygen([target, 'levelSet.tag'], ['Doxyfile'] + sources)
+Clean(target, ['../html/levelSet', 'levelSet.tag'])

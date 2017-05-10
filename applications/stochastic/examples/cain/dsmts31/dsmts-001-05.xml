@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cain version="1.5">
+  <listOfModels>
+    <model id="BirthDeath05" name="Birth-death model (001), variant 01">
+      <listOfParameters>
+        <parameter expression="0.11" id="Mu"/>
+        <parameter expression="0.1" id="Lambda"/>
+      </listOfParameters>
+      <listOfCompartments>
+        <compartment expression="1" id="Cell"/>
+      </listOfCompartments>
+      <listOfSpecies>
+        <species compartment="Cell" initialAmount="10000" id="X"/>
+      </listOfSpecies>
+      <listOfReactions>
+        <reaction propensity="Lambda" massAction="true" id="Birth">
+          <listOfReactants>
+            <speciesReference species="X"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference stoichiometry="2" species="X"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="Mu" massAction="true" id="Death">
+          <listOfReactants>
+            <speciesReference species="X"/>
+          </listOfReactants>
+        </reaction>
+      </listOfReactions>
+    </model>
+  </listOfModels>
+  <listOfMethods>
+    <method equilibrationTime="0.0" startTime="0.0" recordingTime="50.0" id="Reference" category="5" numberOfBins="32" multiplicity="4" method="0" timeDependence="0" numberOfFrames="51" options="0"/>
+    <method equilibrationTime="0.0" startTime="0.0" recordingTime="50.0" id="TimeSeries" category="0" numberOfBins="32" multiplicity="4" method="0" timeDependence="0" numberOfFrames="51" options="0"/>
+    <method equilibrationTime="0.0" startTime="0.0" recordingTime="50.0" id="Histogram" category="3" numberOfBins="32" multiplicity="4" method="0" timeDependence="0" numberOfFrames="1" options="0"/>
+  </listOfMethods>
+  <listOfOutput>
+    <statisticsFrames model="BirthDeath05" method="Reference">
+      <frameTimes>
+        0.0 1.0 2.0 3.0 4.0 5.0 6.0 7.0 8.0 9.0 10.0 11.0 12.0 13.0 14.0 15.0 16.0 17.0 18.0 19.0 20.0 21.0 22.0 23.0 24.0 25.0 26.0 27.0 28.0 29.0 30.0 31.0 32.0 33.0 34.0 35.0 36.0 37.0 38.0 39.0 40.0 41.0 42.0 43.0 44.0 45.0 46.0 47.0 48.0 49.0 50.0
+      </frameTimes>
+      <recordedSpecies>
+        0
+      </recordedSpecies>
+      <statistics>
+        10000.0 0.0 9900.4979999999996 45.483449999999998 9801.9869999999992 63.84308 9704.4549999999999 77.608050000000006 9607.8940000000002 88.945769999999996 9512.2939999999999 98.703199999999995 9417.6450000000004 107.3185 9323.9380000000001 115.05419999999999 9231.1630000000005 122.08292 9139.3119999999999 128.52547999999999 9048.3739999999998 134.47081 8958.3410000000003 139.98650000000001 8869.2039999999997 145.12559999999999 8780.9539999999997 149.93068 8693.5820000000003 154.43652 8607.0799999999999 158.67214999999999 8521.4380000000001 162.66192000000001 8436.6479999999992 166.42668 8352.7019999999993 169.98446999999999 8269.5910000000003 173.35086000000001 8187.308 176.53966 8105.8419999999996 179.56297000000001 8025.1880000000001 182.43163000000001 7945.3360000000002 185.15530999999999 7866.2790000000005 187.74275 7788.0079999999998 190.20180999999999 7710.5159999999996 192.53966 7633.7950000000001 194.76283000000001 7557.8370000000004 196.87732 7482.6360000000004 198.88864000000001 7408.1819999999998 200.80184 7334.4700000000003 202.62164000000001 7261.4899999999998 204.35237000000001 7189.2370000000001 205.99806000000001 7117.7030000000004 207.56252000000001 7046.8810000000003 209.04925 6976.7629999999999 210.46152000000001 6907.3429999999998 211.80248 6838.6139999999996 213.07499000000001 6770.5690000000004 214.28178 6703.1999999999998 215.42545999999999 6636.5029999999997 216.50845000000001 6570.4679999999998 217.53303 6505.0910000000003 218.50142 6440.3639999999996 219.41568000000001 6376.2820000000002 220.27772999999999 6312.8360000000002 221.08950999999999 6250.0230000000001 221.85272000000001 6187.8339999999998 222.56910999999999 6126.2640000000001 223.24025 6065.3069999999998 223.86772999999999
+      </statistics>
+    </statisticsFrames>
+  </listOfOutput>
+  <random seed="2147483648">
+  </random>
+</cain>

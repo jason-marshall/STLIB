@@ -1,0 +1,13 @@
+# -*- python -*-
+
+import sys
+sys.path.append('..')
+from doxygen import doxygen
+
+doxygen.Doxyfile('Doxyfile', ['../main.cfg', 'local.cfg'])
+target = '../html/mpi/index.html'
+Default([target])
+sources = Glob('../../stlib/mpi/*.h') \
+    + ['../container/container.tag']
+doxygen.Doxygen([target, 'mpi.tag'], ['Doxyfile'] + sources)
+Clean(target, ['../html/mpi', 'mpi.tag'])

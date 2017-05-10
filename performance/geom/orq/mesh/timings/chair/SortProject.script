@@ -1,0 +1,7 @@
+SortProject.mesh ../data/chair.01.ascii 2 >> SortProject.chair.timings
+SortProject.mesh ../data/chair.02.ascii 2 >> SortProject.chair.timings
+SortProject.mesh ../data/chair.04.ascii 2 >> SortProject.chair.timings
+SortProject.mesh ../data/chair.08.ascii 2 >> SortProject.chair.timings
+SortProject.mesh ../data/chair.16.ascii 2 >> SortProject.chair.timings
+#SortProject.mesh ../data/chair.32.ascii 2 >> SortProject.chair.timings
+#SortProject.mesh ../data/chair.64.ascii 2 >> SortProject.chair.timings

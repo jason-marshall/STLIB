@@ -1,0 +1,29 @@
+<html>
+<head>
+<title>Installation on Ubuntu 9</title>
+</head>
+<body>
+<h1>Installation on Ubuntu 9</h1>
+
+<!--
+Choose development packages during installation.
+sudo apt-get install dkms
+cd /media/cdrom
+sudo sh ./VBoxLinuxAdditions-amd64.run
+-->
+
+<p>
+Select System&rarr;Administration&rarr;Synaptic Package Manager.
+Install the following packages:
+<ul>
+  <li> g++: The GNU C++ compiler.
+  <li> python-wxversion: wxWidgets cross-platform C++ GUI toolkit.
+  <li> python-matplotlib: Python based plotting system in style
+  similar to Matlab.
+</ul>
+Then follow the <a href="InstallationLinux.htm">installation instructions</a>
+to compile the solvers and launch the application.
+</p>
+
+</body>
+</html>

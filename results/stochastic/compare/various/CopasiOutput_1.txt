@@ -1,0 +1,8 @@
+COPASI 4.4 (Build 26)
+The use of this software indicates the acceptance of the attached license.
+To view the license please use the option: --license
+
+
+real	0m8.836s
+user	0m8.733s
+sys	0m0.040s

@@ -1,0 +1,122 @@
+<table border = "1" rules = "all">
+<tr> <th> <th> <th> Species <th> 4 <th> 8 <th> 16 <th> 32 <th> 64 <th> 128 <th> 256 <th> 1,024 <th> 4,096 <th> 16,384 <th> 65,536
+<tr> <th> <th> <th> Reactions <th> 8 <th> 16 <th> 32 <th> 64 <th> 128 <th> 256 <th> 512 <th> 2,048 <th> 8,192 <th> 32,768 <th> 131,072
+<tr> <th> Method <th> Algorithm <th> Option <th> <th> <th> <th> <th> <th> <th> <th> <th> <th> <th>
+<tr bgcolor="#CFFFFF"> <td> Direct <td> Linear search
+<td> Complete sort
+<td> 76
+<td> 84
+<td> 92
+<td> 105
+<td> 142
+<td> 222
+<td> 362
+<td> 1209
+<td> 4558
+<td> 18016
+<td> 73294
+<tr bgcolor="#CFFFFF"> <td> Direct <td> 2-D search
+<td> Complete sort
+<td> 86
+<td> 94
+<td> 98
+<td> 104
+<td> 112
+<td> 131
+<td> 146
+<td> 189
+<td> 258
+<td> 614
+<td> 1361
+<tr bgcolor="#CFFFFF"> <td> Direct <td> Binary search
+<td> Partial, recursive CDF
+<td> 123
+<td> 138
+<td> 149
+<td> 164
+<td> 177
+<td> 191
+<td> 219
+<td> 270
+<td> 326
+<td> 549
+<td> 1057
+<tr bgcolor="#CFFFFF"> <td> Direct <td> Rejection
+<td> Composition
+<td> 206
+<td> 206
+<td> 206
+<td> 207
+<td> 212
+<td> 223
+<td> 234
+<td> 251
+<td> 265
+<td> 501
+<td> 973
+<tr bgcolor="#CFCFFF"> <td> First reaction <td> Linear search
+<td> Absolute time
+<td> 79
+<td> 94
+<td> 118
+<td> 166
+<td> 240
+<td> 406
+<td> 744
+<td> 2709
+<td> 10517
+<td> 41849
+<td> 167679
+<tr bgcolor="#FFCFFF"> <td> Next reaction <td> Linear search
+<td> Unrolled
+<td> 73
+<td> 87
+<td> 109
+<td> 160
+<td> 231
+<td> 391
+<td> 701
+<td> 2529
+<td> 9690
+<td> 38489
+<td> 153277
+<tr bgcolor="#FFCFFF"> <td> Next reaction <td> Partition
+<td> Cost adaptive
+<td> 89
+<td> 106
+<td> 115
+<td> 127
+<td> 144
+<td> 163
+<td> 195
+<td> 281
+<td> 437
+<td> 948
+<td> 1985
+<tr bgcolor="#FFCFFF"> <td> Next reaction <td> Binary heap
+<td> Pair
+<td> 84
+<td> 92
+<td> 97
+<td> 104
+<td> 130
+<td> 131
+<td> 154
+<td> 202
+<td> 262
+<td> 537
+<td> 1211
+<tr bgcolor="#FFCFFF"> <td> Next reaction <td> Hashing
+<td> Chaining
+<td> 94
+<td> 101
+<td> 105
+<td> 117
+<td> 116
+<td> 125
+<td> 134
+<td> 153
+<td> 183
+<td> 396
+<td> 805
+</table>

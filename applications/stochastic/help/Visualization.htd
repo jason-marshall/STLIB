@@ -1,0 +1,19 @@
+<html>
+<head>
+<title>Visualization and Analysis</title>
+</head>
+<body>
+<h1>Visualization and Analysis</h1>
+
+<p>
+In this section we consider how to visualize and analyze simulation
+output. You can plot either
+<a href="VisualizationPlottingTimeSeries.htm">time series data</a> or
+<a href="VisualizationPlottingTimeSeries.htm">histograms</a>,
+view output it in a <a href="VisualizationTable.htm">table</a>,
+or measure the <a href="VisualizationHistogram.htm">distance</a>
+between the probability distributions for the species populations.
+</p>
+
+</body>
+</html>

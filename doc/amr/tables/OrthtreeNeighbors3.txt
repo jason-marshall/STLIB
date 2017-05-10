@@ -1,0 +1,15 @@
+<table border = "1">
+<tr> <th> Nodes <th> 64 <th> 512 <th> 4,096 <th> 32,768 <th> 262,144
+<tr> <th> Time per neighbor
+<td> 111
+<td> 134
+<td> 161
+<td> 206
+<td> 211
+<tr> <th> Time per node
+<td> 500
+<td> 704
+<td> 904
+<td> 1198
+<td> 1248
+</table>

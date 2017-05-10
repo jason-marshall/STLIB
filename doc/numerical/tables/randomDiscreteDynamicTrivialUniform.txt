@@ -1,0 +1,159 @@
+<table border = "1" rules = "all">
+<tr> <th> Method <th> Option <th> 4 <th> 8 <th> 16 <th> 32 <th> 64 <th> 128 <th> 256 <th> 1,024 <th> 4,096 <th> 16,384 <th> 65,536
+<tr bgcolor="white"> <th rowspan="4"> Linear Search
+<td> Delayed update
+<td> 45
+<td> 54
+<td> 68
+<td> 96
+<td> 160
+<td> 291
+<td> 544
+<td> 2127
+<td> 8385
+<td> 33400
+<td> 133007
+<tr bgcolor="white">
+<td> Immediate update
+<td> 44
+<td> 50
+<td> 59
+<td> 70
+<td> 94
+<td> 144
+<td> 231
+<td> 800
+<td> 3064
+<td> 12412
+<td> 49356
+<tr bgcolor="white">
+<td> Complete sort
+<td> 53
+<td> 58
+<td> 63
+<td> 71
+<td> 86
+<td> 125
+<td> 193
+<td> 604
+<td> 2267
+<td> 8813
+<td> 34810
+<tr bgcolor="white">
+<td> Bubble sort
+<td> 53
+<td> 60
+<td> 64
+<td> 70
+<td> 84
+<td> 123
+<td> 189
+<td> 588
+<td> 2243
+<td> 8791
+<td> 34810
+<tr bgcolor="aliceblue"> <th rowspan="3"> 2-D Search
+<td> 
+<td> 58
+<td> 63
+<td> 70
+<td> 78
+<td> 84
+<td> 97
+<td> 100
+<td> 123
+<td> 175
+<td> 281
+<td> 482
+<tr bgcolor="aliceblue">
+<td> Complete sort
+<td> 50
+<td> 57
+<td> 68
+<td> 71
+<td> 76
+<td> 81
+<td> 86
+<td> 105
+<td> 153
+<td> 243
+<td> 402
+<tr bgcolor="aliceblue">
+<td> Bubble sort
+<td> 65
+<td> 68
+<td> 76
+<td> 83
+<td> 90
+<td> 97
+<td> 102
+<td> 124
+<td> 169
+<td> 253
+<td> 417
+<tr bgcolor="white"> <th rowspan="3"> Binary search
+<td> Complete CDF
+<td> 46
+<td> 66
+<td> 76
+<td> 103
+<td> 152
+<td> 242
+<td> 410
+<td> 1407
+<td> 5317
+<td> 20808
+<td> 82693
+<tr bgcolor="white">
+<td> Sorted CDF
+<td> 67
+<td> 79
+<td> 95
+<td> 124
+<td> 155
+<td> 210
+<td> 303
+<td> 855
+<td> 3634
+<td> 19944
+<td> 73668
+<tr bgcolor="white">
+<td> Partial, recursive CDF
+<td> 62
+<td> 76
+<td> 91
+<td> 102
+<td> 114
+<td> 128
+<td> 135
+<td> 163
+<td> 201
+<td> 260
+<td> 312
+<tr bgcolor="aliceblue"> <th rowspan="2"> Rejection
+<td> Bins with splitting
+<td> 38
+<td> 40
+<td> 40
+<td> 41
+<td> 45
+<td> 52
+<td> 51
+<td> 51
+<td> 56
+<td> 60
+<td> 66
+<tr bgcolor="aliceblue">
+<td> Composition
+<td> 96
+<td> 97
+<td> 109
+<td> 105
+<td> 115
+<td> 116
+<td> 115
+<td> 114
+<td> 123
+<td> 127
+<td> 133
+</table>

@@ -1,0 +1,91 @@
+<html>
+<head>
+<title>Installation on Mac OS X</title>
+</head>
+<body>
+<h1>Installation on Mac OS X</h1>
+
+<p>
+To install Cain, download the disk image and drag the application bundle to
+your Applications folder (or wherever you want to place it). The example data
+files are in the <tt>examples</tt> folder in the application bundle. They
+are also packaged separately in the <tt>CainExamples</tt>
+folder. You can drag this to a folder where you store data or documents.
+To uninstall Cain, simply drag the <tt>Cain</tt> application to the Trash.
+</p>
+
+
+<p>
+<b>Leopard.</b>
+To use Cain you will need 
+<a href="http://www.python.org/">Python</a>,
+<a href="http://www.wxpython.org/">wxPython</a>,
+<a href="http://numpy.scipy.org/">numpy</a>, and
+<a href="http://matplotlib.sourceforge.net/">matplotlib</a>.
+Unfortunately, Leopard (10.5) comes with rather old versions of the first
+three and does not have matplotlib. There are several ways of obtaining the
+necessary software to run Cain. The easiest solution is to install the
+<a href="http://www.enthought.com/products/epd.php">Enthought Python
+Distribution</a>. Alternatively, you can install the appropriate
+packages yourself. We consider these two alternatives below.
+</p>
+
+<p>
+<b>Snow Leopard.</b>
+There is a complication with using the system version of Python in
+Snow Leopard (10.6). The default version of Python is a 64-bit
+application and the wxPython libraries will only work with the 32-bit
+version. The easiest solution is to install the Enthought Python
+Distribution. Otherwise you can either install a 32-bit version of
+Python from the <a href="http://www.python.org/">Python web site</a>,
+or you can configure the system version of Python to run in 32-bit
+mode. For instructions on the latter search for
+&quot;wxpython snow leopard.&quot;
+</p>
+
+<p>
+<b>Enthought Python Distribution.</b>
+As mentioned above the easiest way to get appropriate versions of
+python and the required packages is to 
+<a href="http://www.enthought.com/products/getepd.php">download</a>
+the Enthought Python Distribution.
+The EPD is designed for those working in scientific
+computing and comes with all of the packages that Cain needs. It is a
+commercial product, but is free for educational use
+if you are associated with a degree-granting institution. (Click on
+the &quot;Academic&quot; button at the bottom of the download page.)
+</p>
+
+<p>
+<b>Installing Python packages yourself.</b>
+The other option is to download and install the packages.
+Get the software from the sites indicated above.
+Just download the binaries; installation is a snap. For example, one could
+download and install the following packages.
+<ul>
+  <li> <tt>python-2.6.5-macosx10.3-2010-03-24.dmg</tt>
+  <li> <tt>wxPython2.8-osx-unicode-2.8.10.1-universal-py2.6.dmg</tt>
+  <li> <tt>numpy-1.4.1-py2.6-python.org.dmg</tt>
+  <li> <tt>matplotlib-0.99.1.1-py2.5-macosx10.5.dmg</tt>
+</ul>
+If you do not have the necessary packages installed, Cain will show an error
+message when you attempt to launch the application.
+</p>
+
+<p>
+<b>C++ compiler.</b>
+In order to compile custom executables (either for kinetic laws that are
+not mass-action or to speed up simulations that use mass-action kinetics)
+you will need a C++ compiler. The <a href="http://gcc.gnu.org/">GNU GCC</a>
+compiler is freely available, but it is not installed by default. You can
+get it by installing the Xcode tools on your Mac OS X install disc.
+Alternatively, you can download the Xcode package from the
+<a href="https://connect.apple.com/">Apple Developer Connection</a>.
+You will need to register for a free account. After that, log in and
+follow the <tt>Downloads</tt> and the <tt>Developer Tools</tt> links.
+Download and install Xcode 3.1. This will install the compilers as well
+as Apple's integrated development environment.
+</p>
+
+</body>
+</html>

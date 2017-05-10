@@ -1,0 +1,57 @@
+Testing for ideal and actual determined fraction of vertices.
+Using the simple correctness criterion.
+
+Ratio of largest to smallest edge weight = 10.
+
+GRID GRAPHS:
+
+For the 20 x 20 rectangular grid graph: 400 vertices, 1520 edges.
+ideal fraction =  0.925754060325  actual fraction =  0.476702508961
+
+For the 40 x 40 rectangular grid graph: 1600 vertices, 6240 edges.
+ideal fraction =  0.855080213904  actual fraction =  0.39776119403
+
+For the 60 x 60 rectangular grid graph: 3600 vertices, 14160 edges.
+ideal fraction =  0.849822904368  actual fraction =  0.365232392937
+
+For the 80 x 80 rectangular grid graph: 6400 vertices, 25280 edges.
+ideal fraction =  0.845310435931  actual fraction =  0.348169106045
+
+For the 100 x 100 rectangular grid graph: 10000 vertices, 39600 edges.
+ideal fraction =  0.825  actual fraction =  0.331994156318
+
+
+SPARSE GRAPHS:
+
+For the sparse graph: 200 vertices, 800 edges.
+ideal fraction =  0.802419354839  actual fraction =  0.466042154567
+
+For the sparse graph: 400 vertices, 1600 edges.
+ideal fraction =  0.796407185629  actual fraction =  0.383285302594
+
+For the sparse graph: 600 vertices, 2400 edges.
+ideal fraction =  0.753459119497  actual fraction =  0.38128580522
+
+For the sparse graph: 800 vertices, 3200 edges.
+ideal fraction =  0.778752436647  actual fraction =  0.333611691023
+
+For the sparse graph: 1000 vertices, 4000 edges.
+ideal fraction =  0.775621118012  actual fraction =  0.349056603774
+
+
+COMPLETE GRAPHS:
+
+For the complete graph: 50 vertices, 2450 edges.
+ideal fraction =  0.653333333333  actual fraction =  0.494949494949
+
+For the complete graph: 100 vertices, 9900 edges.
+ideal fraction =  0.6875  actual fraction =  0.471428571429
+
+For the complete graph: 150 vertices, 22350 edges.
+ideal fraction =  0.65350877193  actual fraction =  0.465625
+
+For the complete graph: 200 vertices, 39800 edges.
+ideal fraction =  0.739776951673  actual fraction =  0.503797468354
+
+For the complete graph: 250 vertices, 62250 edges.
+ideal fraction =  0.711428571429  actual fraction =  0.526427061311

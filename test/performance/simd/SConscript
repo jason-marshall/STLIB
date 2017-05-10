@@ -1,0 +1,12 @@
+# -*- python -*-
+
+import os.path
+
+import sys
+sys.path.append('..')
+from env import serial
+
+# Compile.
+sources = Glob('*.cc')
+for source in sources:
+    serial.Program(source)

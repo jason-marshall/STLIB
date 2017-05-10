@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cain version="1.2">
+  <listOfModels>
+    <model id="IrreversibleIsomerization" name="Irreversible Isomerization">
+      <listOfSpecies>
+        <species initialAmount="100000" id="s1"/>
+      </listOfSpecies>
+      <listOfReactions>
+        <reaction propensity="1.0" massAction="true" id="r1">
+          <listOfReactants>
+            <speciesReference species="s1"/>
+          </listOfReactants>
+        </reaction>
+      </listOfReactions>
+    </model>
+  </listOfModels>
+  <listOfMethods>
+    <method category="0" numberOfBins="32" multiplicity="4" equilibrationTime="0.0" id="Direct" method="0" timeDependence="0" startTime="0.0" recordingTime="5.0" numberOfFrames="51" options="0"/>
+  </listOfMethods>
+  <random seed="2147483648">
+  </random>
+</cain>

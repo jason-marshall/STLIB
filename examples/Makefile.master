@@ -1,0 +1,57 @@
+# -*- Makefile -*-
+
+# This makefile contains definitions and rules that are common to all 
+# makefiles in the examples directory.  This file is included in makefiles
+# in these directories.  The variable RELATIVE_PATH should be 
+# defined before inclusion, this is the path relative to this location.  
+
+# Add the location of the stlib.
+CXXINCLUDE += -I$(RELATIVE_PATH)/../src
+
+include $(RELATIVE_PATH)/Makefile.compilers
+
+ifndef SOURCES
+SOURCES = $(wildcard *.cc)
+endif
+DEPENDENCIES = $(SOURCES:.cc=.d)
+TARGETS = $(SOURCES:.cc=.exe)
+
+.SUFFIXES:
+.SUFFIXES: .cc .d .o .exe
+
+# The default target.
+all: $(TARGETS)
+
+clean: 
+	$(RM) *.o *.d *~ core* *.stackdump .DS_Store .Thumbs.db
+
+distclean: 
+	$(MAKE) clean 
+	$(RM) $(TARGETS) $(DEPENDENCIES)
+
+again: 
+	$(MAKE) distclean 
+	$(MAKE) 
+
+# Implicit rules.
+
+.cc.d: 
+	$(CXX) -MM $(CXXINCLUDE) $< > $@.$$$$; \
+  sed 's,\($*\)\.o[ :]*,\1.o $@ : ,g' < $@.$$$$ > $@; \
+  $(RM) $@.$$$$
+
+ifneq ($(MAKECMDGOALS),clean)
+ifneq ($(MAKECMDGOALS),distclean)
+ifneq ($(MAKECMDGOALS),setup)
+ifneq ($(MAKECMDGOALS),teardown)
+-include $(DEPENDENCIES)
+endif
+endif
+endif
+endif
+
+.cc.o: 
+	$(CXX) $(CXXFLAGS) -c $< 
+
+.o.exe:
+	$(CXX) $(LINKERFLAGS) -o $@ $<

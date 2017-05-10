@@ -1,0 +1,29 @@
+hammerhead_triang.doc
+---------------------
+
+Triangulated and scaled version of hammerhead.off.
+
+Source: Viewpoint DataLabs, Orem UT, USA.
+URL: http://www.viewpoint.com/
+Copyright: Viewpoint DataLabs, a free give-away from their web site.
+
+CBP = {
+    object[
+        vertices[         2560],
+        facets[           5116],
+        edges[            7674],
+        borderedges[      0],
+        holes[            0],
+        components[       1],
+        genus[            0],
+        expectedcontours[ 517],
+        percentcontours[  6],
+        expectedintersections[        15626],
+        expectedfrontintersections[   1990],
+        expectedcontourintersections[ 94],
+        vertexdegree[ 2560, min[5], max[12],
+                mean[5.9953], var[0.4648], 15348.0000, 93206.0000],
+        edgesperfacet[5116, min[3], max[3],
+                mean[3.0000], var[0.0000], 15348.0000, 46044.0000]
+    ]
+}

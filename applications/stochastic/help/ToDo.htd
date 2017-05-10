@@ -1,0 +1,70 @@
+<html>
+<head>
+<title>To Do</title>
+</head>
+<body>
+<h1>To Do</h1>
+
+<ul>
+  <li> Streamline the process of generating tables. Show one
+  trajectory at a time.
+  <li> Hide unused fields in the method editor.
+  <li> Collect and analyze test problems.
+  <li> Add copy and paste to the species, reaction and parameter lists.
+  Also add ability to clear selected columns.
+  <li> Plot reaction propensities.
+  <li> Check export of compartments to SBML.
+  <li> Add import/export capabilities for SBML shorthand.
+  <li> The MS Windows backend for wxPython does not correctly fade
+  disabled bitmap buttons. I have added explicit SetBitmapDisabled()
+  calls to work around this issue. Remove these calls when this issue
+  is resolved.
+</ul>
+
+<!-- Private ToDo
+<ul>
+  <li> Cache the model before duplication.
+  <li> Refactor by moving code from ContentHandler, Mainframe, and State to
+  the responsible classes.
+  <li> Add undo edit to the grid editor.
+  <li> I need to check if the species populations are negative. I can't just check that the propensities are non-negative. _computePropensities in OdeReaction.
+  <li> Standardize the solver names.
+  <li> Add an error tolerance to the inhomogeneous solvers. Then use numerical integration.
+  <li> Why didn't the all reactions plot work for the Schlogl model?
+  <li> Preserve the order of models and methods.
+  <li> Task queue.
+  <li> Fix names when exporting to Mathematica.
+  <li> Sort by any field.
+  <li> Index and large window for recorded species.
+  <li> Search bar for species and reactions.
+  <li> Select all species and reactions for Mathematica solver.
+  <li> Try 53-bit discrete deviates with the direct methods.
+  <li> Consider using kernel functions to obtain smooth PDF's for simulation
+  output.
+  <li> Perhaps I should scale the histogram values by the inverse bin width.
+  This would give it unit area.
+  <li> Support SBML export of non-mass-action kinetic laws.
+  <li> Find out why Proctor fails with ODE.
+  <li> Reduce validity checks in hybrid method.
+  <li> Check for negative populations in ODE methods. Solve population == 0
+  and reduce the time step.
+  <li> Why doesn't Wilkinson's mm-stoch2 model work?
+  <li> Get rid of read errors when killing simulations.
+  <li> Save the preferences.
+  <li> Write a mass-action propensities functor that stores the
+  reactants in a StaticArrayOfArrays.
+  <li> In Propensities: call a function that updates all affected
+  propensities for a given reaction instead of computing the
+  propensities individually. Use the reaction influence data
+  structure. This will save overhead on function calls.
+  <li> Tweak rebuilding frequencies for sorting methods.
+  <li> Track errors for next reaction method.
+  <li> Get rid of EssTerminationCondition.
+  <li> Check out GUI2Exe.
+  <li> Record the state of the discrete, uniform generator at the beginning
+  of each trajectory. This would make each trajectory reproducible.
+</ul>
+-->
+
+</body>
+</html>

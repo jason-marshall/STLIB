@@ -1,0 +1,7 @@
+SparseCellArray.orq ../data/sphere.6.ascii 0.01 0.01 0.01 ../data/sphere.queries > SparseCellArray.sphere.query_size.timings
+SparseCellArray.orq ../data/sphere.6.ascii 0.01414 0.01414 0.01414 ../data/sphere.queries >> SparseCellArray.sphere.query_size.timings
+SparseCellArray.orq ../data/sphere.6.ascii 0.02 0.02 0.02 ../data/sphere.queries >> SparseCellArray.sphere.query_size.timings
+SparseCellArray.orq ../data/sphere.6.ascii 0.02828 0.02828 0.02828 ../data/sphere.queries >> SparseCellArray.sphere.query_size.timings
+SparseCellArray.orq ../data/sphere.6.ascii 0.04 0.04 0.04 ../data/sphere.queries >> SparseCellArray.sphere.query_size.timings
+SparseCellArray.orq ../data/sphere.6.ascii 0.05657 0.05657 0.05657 ../data/sphere.queries >> SparseCellArray.sphere.query_size.timings
+SparseCellArray.orq ../data/sphere.6.ascii 0.08 0.08 0.08 ../data/sphere.queries >> SparseCellArray.sphere.query_size.timings

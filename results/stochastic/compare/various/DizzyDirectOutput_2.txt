@@ -1,0 +1,10 @@
+warning:  there is a problem with class file "apple.applescript.AppleScriptEngine"
+warning:  there is a problem with class file "apple.applescript.AppleScriptEngineFactory$1"
+warning:  there is a problem with class file "apple.applescript.AppleScriptEngineFactory"
+# time, LacZ, PLac, PLacRNAP, RNAP, RbsLacZ, RbsRibosome, Ribosome, TrLacZ1, TrLacZ2, TrRbsLacZ, dgrLacZ, dgrRbsLacZ
+0, 0, 1.000000, 0, 35.00000, 0, 0, 350.0000, 0, 0, 0, 0, 0
+1.500000E6, 0, 0, 1.000000, 15.00000, 2.000000, 0, 0, 0, 19.00000, 0, 350.0000, 2.990890E5
+
+real 10.05
+user 9.81
+sys 0.15

@@ -1,0 +1,1 @@
+SequentialScan.orq ../data/sphere.6.ascii ../data/sphere.queries > SequentialScan.sphere.query_size.timings

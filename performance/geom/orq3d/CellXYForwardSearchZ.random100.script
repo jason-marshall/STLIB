@@ -1,0 +1,5 @@
+CellXYForwardSearchZ.mesh ../data/uniform_random.3.ascii 0.15472 0.15472 0.232079 >> CellXYForwardSearchZ.random100.timings
+CellXYForwardSearchZ.mesh ../data/uniform_random.4.ascii 0.0718145 0.0718145 0.107722 >> CellXYForwardSearchZ.random100.timings
+CellXYForwardSearchZ.mesh ../data/uniform_random.5.ascii 0.0333333 0.0333333 0.05 >> CellXYForwardSearchZ.random100.timings
+CellXYForwardSearchZ.mesh ../data/uniform_random.6.ascii 0.015472 0.015472 0.0232079 >> CellXYForwardSearchZ.random100.timings
+#CellXYForwardSearchZ.mesh ../data/uniform_random.7.ascii 0.00718145 0.00718145 0.0107722 >> CellXYForwardSearchZ.random100.timings

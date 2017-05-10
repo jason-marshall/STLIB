@@ -1,0 +1,8 @@
+<table border = "1">
+<tr> <th> Dimension <th> 1 <th> 2 <th> 3 <th> 4
+<tr> <th> Time
+<td> 1652
+<td> 3392
+<td> 7195
+<td> 14064
+</table>

@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbml xmlns="http://www.sbml.org/sbml/level2" level="2" version="1">
+  <model metaid="_481114" id="testid" name="Stone1996_NOsGC">
+    <notes>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	     This features the two step binding of NO to soluble Guanylyl Cyclase as proposed by &lt;a href = "http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;amp;db=pubmed&amp;amp;dopt=Abstract&amp;amp;list_uids=8573563">Stone JR, Marletta MA. Biochemistry (1996) 35(4):1093-9&lt;/a>. There is a fast step binding scheme and a slow step binding scheme. The difference lies in the binding of a NO to a non-heme site on sGC, which may not necessarily be the same site of binding during the initial binding. The rates have been directly used models.
+          <p>This model originates from BioModels Database: A Database of Annotated Published Models. It is copyright (c) 2005-2007 The BioModels Team.<br /> For more information see the <a href="http://www.ebi.ac.uk/biomodels/legal.html">terms of use</a>.</p>
+</body>
+    </notes>
+    <annotation xmlns:celldesigner="http://www.sbml.org/2001/ns/celldesigner" xmlns:doqcs="http://www.doqcs.ncbs.res.in" xmlns:jd="http://www.sys-bio.org/sbml">
+      <doqcs:timestamp>Wed Oct 18 11:15:12 2006</doqcs:timestamp>
+      <doqcs:accesstype>pathway</doqcs:accesstype>
+      <doqcs:transcriber>Sudhir Sivakumaran, NCBS</doqcs:transcriber>
+      <doqcs:developer> Stone and Marletta, 1996.</doqcs:developer>
+      <doqcs:species>Bovine</doqcs:species>
+      <doqcs:tissue>Lungs</doqcs:tissue>
+      <doqcs:cellcompartment>Cytosol</doqcs:cellcompartment>
+      <doqcs:methodology>Quantitative match to experiments</doqcs:methodology>
+      <doqcs:model_implementation>Mathematically equivalent</doqcs:model_implementation>
+      <doqcs:model_validation>Replicates original data </doqcs:model_validation>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" >
+<rdf:Description rdf:about="#_481114">
+<dcterms:created rdf:parseType="Resource">
+<dcterms:W3CDTF>2006-11-29T11:58:01</dcterms:W3CDTF>
+</dcterms:created>
+<dcterms:modified rdf:parseType="Resource">
+<dcterms:W3CDTF>2006-11-29T11:58:01</dcterms:W3CDTF>
+</dcterms:modified>
+<bqmodel:is>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.ebi.ac.uk/biomodels/#MODEL4779732381"/>
+</rdf:Bag>
+</bqmodel:is>
+<bqmodel:isDescribedBy>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.pubmed.gov/#8573563"/>
+</rdf:Bag>
+</bqmodel:isDescribedBy>
+</rdf:Description>
+</rdf:RDF>
+</annotation>
+
+    <listOfUnitDefinitions>
+      <unitDefinition id="vol_secINV">
+        <listOfUnits>
+          <unit kind="litre" multiplier="1" offset="0"/>
+          <unit kind="second" exponent="-1" multiplier="1" offset="0"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="vol_uMINVsecINV">
+        <listOfUnits>
+          <unit kind="litre" exponent="2" multiplier="1" offset="0"/>
+          <unit kind="mole" exponent="-1" scale="-6" multiplier="1" offset="0"/>
+          <unit kind="second" exponent="-1" multiplier="1" offset="0"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="substance">
+        <listOfUnits>
+          <unit kind="mole" scale="-6" multiplier="1" offset="0"/>
+        </listOfUnits>
+      </unitDefinition>
+    </listOfUnitDefinitions>
+    <listOfCompartments>
+      <compartment metaid="_481117" id="default_compartment" size="1e-18"/>
+      <compartment metaid="_481131" id="geometry" size="1.6667e-18"/>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species metaid="_481151" id="sGC_slash_GTP" compartment="geometry" initialConcentration="10"/>
+      <species metaid="_481171" id="sGC_slash_NO_dot_sGCfast" compartment="geometry" initialConcentration="0"/>
+      <species metaid="_481191" id="sGC_slash_NO_dot_SGC_6coord" compartment="geometry" initialConcentration="0"/>
+      <species metaid="_481211" id="sGC_slash_sGCfast" compartment="geometry" initialConcentration="3"/>
+      <species metaid="_481231" id="sGC_slash_NO_dot_sGC_5coord" compartment="geometry" initialConcentration="0"/>
+      <species metaid="_481251" id="sGC_slash_sGCtot_slash_kenz_slash_kenz_cplx" compartment="geometry" initialConcentration="0"/>
+      <species metaid="_481271" id="sGC_slash_NO_dot_sGC5accord" compartment="geometry" initialConcentration="0"/>
+      <species metaid="_481291" id="sGC_slash_nonhemebind_int" compartment="geometry" initialConcentration="0"/>
+      <species metaid="_481311" id="sGC_slash_NO_dot_sGC6coord" compartment="geometry" initialConcentration="0"/>
+      <species metaid="_481331" id="sGC_slash_NO_dot_sGCslow" compartment="geometry" initialConcentration="0"/>
+      <species metaid="_481351" id="sGC_slash_sGCslow" compartment="geometry" initialConcentration="3"/>
+      <species metaid="_481371" id="sGC_slash_cGMP" compartment="geometry" initialConcentration="0"/>
+      <species metaid="_481391" id="sGC_slash_NO" compartment="geometry" initialConcentration="0"/>
+      <species metaid="_481411" id="sGC_slash_sGCtot" compartment="geometry" initialConcentration="0"/>
+    </listOfSpecies>
+    <listOfRules>
+      <assignmentRule metaid="_481412" variable="sGC_slash_sGCtot">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <plus/>
+            <ci> sGC_slash_NO_dot_sGC_5coord </ci>
+            <ci> sGC_slash_NO_dot_sGC5accord </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+    </listOfRules>
+    <listOfReactions>
+      <reaction metaid="_481431" id="sGC_slash_NO_bind_sGCfast">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+	     This is the fast binding of NO to sGC, subsequently activating it, as proposed by Stone and Marletta. Rates of these binding reactions used directly from Stone and Marletta,1996, Biochemistry, 35(4):1093-1099, based on whose paper this model is made. Rates obtained from stopped flow kinetics detailed in paper.
+          </body>
+        </notes>
+        <listOfReactants>
+          <speciesReference species="sGC_slash_sGCfast"/>
+          <speciesReference species="sGC_slash_NO"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="sGC_slash_NO_dot_sGCfast"/>
+        </listOfProducts>
+        <kineticLaw>
+          <notes>
+            <body xmlns="http://www.w3.org/1999/xhtml">
+		kf*sGC_slash_sGCfast*sGC_slash_NO-kb*sGC_slash_NO_dot_sGCfast
+	    </body>
+          </notes>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <minus/>
+              <apply>
+                <times/>
+                <ci> kf </ci>
+                <ci> sGC_slash_sGCfast </ci>
+                <ci> sGC_slash_NO </ci>
+              </apply>
+              <apply>
+                <times/>
+                <ci> kb </ci>
+                <ci> sGC_slash_NO_dot_sGCfast </ci>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="kf" value="1.16666666666667e-15" units="vol_uMINVsecINV"/>
+            <parameter id="kb" value="1.33333333333333e-15" units="vol_secINV"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="_481451" id="sGC_slash_form_6coord">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+	     Rates used directly from Stone and Marletta,1996,Biochemistry, 35(4):1093-1099.
+          </body>
+        </notes>
+        <listOfReactants>
+          <speciesReference species="sGC_slash_NO_dot_sGCfast"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="sGC_slash_NO_dot_SGC_6coord"/>
+        </listOfProducts>
+        <kineticLaw>
+          <notes>
+            <body xmlns="http://www.w3.org/1999/xhtml">
+		kf*sGC_slash_NO_dot_sGCfast-kb*sGC_slash_NO_dot_SGC_6coord
+	    </body>
+          </notes>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <minus/>
+              <apply>
+                <times/>
+                <ci> kf </ci>
+                <ci> sGC_slash_NO_dot_sGCfast </ci>
+              </apply>
+              <apply>
+                <times/>
+                <ci> kb </ci>
+                <ci> sGC_slash_NO_dot_SGC_6coord </ci>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="kf" value="1.41666666666667e-15" units="vol_secINV"/>
+            <parameter id="kb" value="0" units="vol_secINV"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="_481471" id="sGC_slash_act_sGCfast">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+	     Rates used directly from Stone and Marletta,1996,Biochemistry, 35(4):1093-1099.
+          </body>
+        </notes>
+        <listOfReactants>
+          <speciesReference species="sGC_slash_NO_dot_SGC_6coord"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="sGC_slash_NO_dot_sGC_5coord"/>
+        </listOfProducts>
+        <kineticLaw>
+          <notes>
+            <body xmlns="http://www.w3.org/1999/xhtml">
+		kf*sGC_slash_NO_dot_SGC_6coord-kb*sGC_slash_NO_dot_sGC_5coord
+	    </body>
+          </notes>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <minus/>
+              <apply>
+                <times/>
+                <ci> kf </ci>
+                <ci> sGC_slash_NO_dot_SGC_6coord </ci>
+              </apply>
+              <apply>
+                <times/>
+                <ci> kb </ci>
+                <ci> sGC_slash_NO_dot_sGC_5coord </ci>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="kf" value="3.33333333333333e-17" units="vol_secINV"/>
+            <parameter id="kb" value="3.33333333333333e-19" units="vol_secINV"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="_481491" id="sGC_slash_act_sGCslow">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+	     Rates used directly from Stone and Marletta,1996, Biochemistry, 35(4):1093-1099.
+          </body>
+        </notes>
+        <listOfReactants>
+          <speciesReference species="sGC_slash_nonhemebind_int"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="sGC_slash_NO_dot_sGC5accord"/>
+        </listOfProducts>
+        <kineticLaw>
+          <notes>
+            <body xmlns="http://www.w3.org/1999/xhtml">
+		kf*sGC_slash_nonhemebind_int-kb*sGC_slash_NO_dot_sGC5accord
+	    </body>
+          </notes>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <minus/>
+              <apply>
+                <times/>
+                <ci> kf </ci>
+                <ci> sGC_slash_nonhemebind_int </ci>
+              </apply>
+              <apply>
+                <times/>
+                <ci> kb </ci>
+                <ci> sGC_slash_NO_dot_sGC5accord </ci>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="kf" value="2.66666666666667e-18" units="vol_secINV"/>
+            <parameter id="kb" value="3.33333333333333e-20" units="vol_secINV"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="_481511" id="sGC_slash_NObindnonheme">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+	     This step is the one that differs from the fast reaction scheme, as reported by Stone and Marletta. Here the reaction is dependent upon the binding of NO to an unidentified non-heme site on the protein. Rates used directly from Stone and Marletta,1996, Biochemistry, 35(4):1093-1099.
+          </body>
+        </notes>
+        <listOfReactants>
+          <speciesReference species="sGC_slash_NO_dot_sGC6coord"/>
+          <speciesReference species="sGC_slash_NO"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="sGC_slash_nonhemebind_int"/>
+        </listOfProducts>
+        <kineticLaw>
+          <notes>
+            <body xmlns="http://www.w3.org/1999/xhtml">
+		kf*sGC_slash_NO_dot_sGC6coord*sGC_slash_NO-kb*sGC_slash_nonhemebind_int
+	    </body>
+          </notes>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <minus/>
+              <apply>
+                <times/>
+                <ci> kf </ci>
+                <ci> sGC_slash_NO_dot_sGC6coord </ci>
+                <ci> sGC_slash_NO </ci>
+              </apply>
+              <apply>
+                <times/>
+                <ci> kb </ci>
+                <ci> sGC_slash_nonhemebind_int </ci>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="kf" value="8.33333333333333e-18" units="vol_uMINVsecINV"/>
+            <parameter id="kb" value="4.16666666666667e-17" units="vol_secINV"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="_481531" id="sGC_slash_form6coord">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+	     Rates used directly from Stone and Marletta,1996, Biochemistry, 35(4):1093-1099.
+          </body>
+        </notes>
+        <listOfReactants>
+          <speciesReference species="sGC_slash_NO_dot_sGCslow"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="sGC_slash_NO_dot_sGC6coord"/>
+        </listOfProducts>
+        <kineticLaw>
+          <notes>
+            <body xmlns="http://www.w3.org/1999/xhtml">
+		kf*sGC_slash_NO_dot_sGCslow-kb*sGC_slash_NO_dot_sGC6coord
+	    </body>
+          </notes>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <minus/>
+              <apply>
+                <times/>
+                <ci> kf </ci>
+                <ci> sGC_slash_NO_dot_sGCslow </ci>
+              </apply>
+              <apply>
+                <times/>
+                <ci> kb </ci>
+                <ci> sGC_slash_NO_dot_sGC6coord </ci>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="kf" value="1.41666666666667e-15" units="vol_secINV"/>
+            <parameter id="kb" value="0" units="vol_secINV"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="_481534" id="sGC_slash_NO_bind_sGCslow">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+	     This is the slow binding of NO to sGC, as reported by Stone and Marletta,1996, Biochemistry, 35(4):1093-1099. The rates shown have been used directly from their data from stopped kinetics.
+          </body>
+        </notes>
+        <listOfReactants>
+          <speciesReference species="sGC_slash_sGCslow"/>
+          <speciesReference species="sGC_slash_NO"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="sGC_slash_NO_dot_sGCslow"/>
+        </listOfProducts>
+        <kineticLaw>
+          <notes>
+            <body xmlns="http://www.w3.org/1999/xhtml">
+		kf*sGC_slash_sGCslow*sGC_slash_NO-kb*sGC_slash_NO_dot_sGCslow
+	    </body>
+          </notes>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <minus/>
+              <apply>
+                <times/>
+                <ci> kf </ci>
+                <ci> sGC_slash_sGCslow </ci>
+                <ci> sGC_slash_NO </ci>
+              </apply>
+              <apply>
+                <times/>
+                <ci> kb </ci>
+                <ci> sGC_slash_NO_dot_sGCslow </ci>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="kf" value="1.16666666666667e-15" units="vol_uMINVsecINV"/>
+            <parameter id="kb" value="1.33333333333333e-15" units="vol_secINV"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="_481535" id="sGC_slash_sGCtot_slash_kenz_1">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+	     The range of estimates found in the literature are: Km -> 40 - 150 uM (without NO) 20 - 40 uM (with NO) Vmax -> 10 - 100 nmol/mg/min (wihtout NO) 10 - 40 umol/mg/min (with NO). ----- thru personal correspondence from T. Bellamy, Wolfson Ins. for Biomedical Sciences, UK. NO increases the Vmax of sGC by 100-200 fold, and it has been proposed that this activation occurs subsequent to the binding of NO toa heme moiety on the enzyme. (Stone and Marletta,1995, Biochemistry,34:14668-14674). 
+          </body>
+        </notes>
+        <listOfReactants>
+          <speciesReference species="sGC_slash_GTP"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="sGC_slash_sGCtot_slash_kenz_slash_kenz_cplx"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="sGC_slash_sGCtot"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <notes>
+            <body xmlns="http://www.w3.org/1999/xhtml">
+		k1*sGC_slash_GTP*sGC_slash_sGCtot-k2*sGC_slash_sGCtot_slash_kenz_slash_kenz_cplx
+	    </body>
+          </notes>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <minus/>
+              <apply>
+                <times/>
+                <ci> k1 </ci>
+                <ci> sGC_slash_GTP </ci>
+                <ci> sGC_slash_sGCtot </ci>
+              </apply>
+              <apply>
+                <times/>
+                <ci> k2 </ci>
+                <ci> sGC_slash_sGCtot_slash_kenz_slash_kenz_cplx </ci>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="k1" value="1.05208333333333e-17" units="vol_uMINVsecINV"/>
+            <parameter id="k2" value="1.68333333333333e-16" units="vol_secINV"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="_481536" id="sGC_slash_sGCtot_slash_kenz_2" reversible="false">
+        <listOfReactants>
+          <speciesReference species="sGC_slash_sGCtot_slash_kenz_slash_kenz_cplx"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="sGC_slash_cGMP"/>
+        </listOfProducts>
+        <kineticLaw>
+          <notes>
+            <body xmlns="http://www.w3.org/1999/xhtml">
+		k3*sGC_slash_sGCtot_slash_kenz_slash_kenz_cplx
+	    </body>
+          </notes>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> k3 </ci>
+              <ci> sGC_slash_sGCtot_slash_kenz_slash_kenz_cplx </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="k3" value="4.20833333333333e-17" units="vol_secINV"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+    </listOfReactions>
+  </model>
+</sbml>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cain version="1.2">
+  <listOfModels>
+    <model id="Immigration">
+      <listOfSpecies>
+        <species initialAmount="0" id="X"/>
+      </listOfSpecies>
+      <listOfReactions>
+        <reaction propensity="1.0" massAction="true" id="Immigration">
+          <listOfProducts>
+            <speciesReference species="X"/>
+          </listOfProducts>
+        </reaction>
+      </listOfReactions>
+    </model>
+  </listOfModels>
+  <listOfMethods>
+    <method category="0" solverParameter="0.01" numberOfBins="32" multiplicity="4" equilibrationTime="0.0" id="Tau-Leaping" method="3" timeDependence="0" startTime="0.0" recordingTime="1.0" numberOfFrames="11" options="0"/>
+    <method category="0" numberOfBins="32" multiplicity="4" equilibrationTime="0.0" id="Direct" method="0" timeDependence="0" startTime="0.0" recordingTime="1.0" numberOfFrames="11" options="0"/>
+    <method category="0" solverParameter="0.01" numberOfBins="32" multiplicity="4" equilibrationTime="0.0" id="Hybrid" method="5" timeDependence="0" startTime="0.0" recordingTime="1.0" numberOfFrames="11" options="0"/>
+    <method category="2" solverParameter="1e-08" numberOfBins="32" multiplicity="4" equilibrationTime="0.0" id="ODE" method="0" timeDependence="0" startTime="0.0" recordingTime="1.0" numberOfFrames="11" options="0"/>
+    <method category="0" numberOfBins="32" multiplicity="4" equilibrationTime="0.0" id="Next Reaction" method="1" timeDependence="0" startTime="0.0" recordingTime="1.0" numberOfFrames="11" options="0"/>
+  </listOfMethods>
+  <random seed="2147483648">
+  </random>
+</cain>

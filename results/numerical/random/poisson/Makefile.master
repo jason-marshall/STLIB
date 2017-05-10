@@ -1,0 +1,785 @@
+# -*- Makefile -*-
+
+TIME_PER_TEST = 1
+
+TARGETS = \
+  \
+  InversionCheckPdf.jpg \
+  InversionCheckPdf.pdf \
+  \
+  InversionChopDown.jpg \
+  InversionChopDown.pdf \
+  InversionChopDownSimple.jpg \
+  InversionChopDownSimple.pdf \
+  InversionChopDownUnrolled.jpg \
+  InversionChopDownUnrolled.pdf \
+  \
+  InversionBuildUp.jpg \
+  InversionBuildUp.pdf \
+  InversionBuildUpSimple.jpg \
+  InversionBuildUpSimple.pdf \
+  \
+  InversionTable.jpg \
+  InversionTable.pdf \
+  \
+  InversionFromModeChopDown.jpg \
+  InversionFromModeChopDown.pdf \
+  \
+  InversionFromModeBuildUp.jpg \
+  InversionFromModeBuildUp.pdf \
+  \
+  ExponentialInterArrival.jpg \
+  ExponentialInterArrival.pdf \
+  \
+  ExponentialInterArrivalUsingUniform.jpg \
+  ExponentialInterArrivalUsingUniform.pdf \
+  \
+  DirectNr.jpg \
+  DirectNr.pdf \
+  \
+  RejectionNr.jpg \
+  RejectionNr.pdf \
+  \
+  AcceptanceComplementWinrand.jpg \
+  AcceptanceComplementWinrand.pdf \
+  \
+  Normal.jpg \
+  Normal.pdf \
+  \
+  RanlibSmallArgument.jpg \
+  RanlibSmallArgument.pdf \
+  RanlibLargeArgument.jpg \
+  RanlibLargeArgument.pdf \
+  \
+  StochKitSmallArgument.jpg \
+  StochKitSmallArgument.pdf \
+  StochKitLargeArgument.jpg \
+  StochKitLargeArgument.pdf \
+  \
+  RecursiveGslSmallArgument.jpg \
+  RecursiveGslSmallArgument.pdf \
+  RecursiveGslLargeArgument.jpg \
+  RecursiveGslLargeArgument.pdf \
+  \
+  InversionRatioOfUniformsWinrandSmallArgument.jpg \
+  InversionRatioOfUniformsWinrandSmallArgument.pdf \
+  InversionRatioOfUniformsWinrandLargeArgument.jpg \
+  InversionRatioOfUniformsWinrandLargeArgument.pdf \
+  InversionRejectionPatchworkWinrandSmallArgument.jpg \
+  InversionRejectionPatchworkWinrandSmallArgument.pdf \
+  InversionRejectionPatchworkWinrandLargeArgument.jpg \
+  InversionRejectionPatchworkWinrandLargeArgument.pdf \
+  InversionTableAcceptanceComplementWinrandSmallArgument.jpg \
+  InversionTableAcceptanceComplementWinrandSmallArgument.pdf \
+  InversionTableAcceptanceComplementWinrandLargeArgument.jpg \
+  InversionTableAcceptanceComplementWinrandLargeArgument.pdf \
+  \
+  DirectRejectionNrSmallArgument.jpg \
+  DirectRejectionNrSmallArgument.pdf \
+  DirectRejectionNrLargeArgument.jpg \
+  DirectRejectionNrLargeArgument.pdf \
+  \
+  InvAcNormSmallArgument.jpg \
+  InvAcNormSmallArgument.pdf \
+  InvAcNormLargeArgument.jpg \
+  InvAcNormLargeArgument.pdf \
+  \
+  IfmAcNormSmallArgument.jpg \
+  IfmAcNormSmallArgument.pdf \
+  IfmAcNormLargeArgument.jpg \
+  IfmAcNormLargeArgument.pdf \
+  \
+  InvIfmAcNormSmallArgument.jpg \
+  InvIfmAcNormSmallArgument.pdf \
+  InvIfmAcNormLargeArgument.jpg \
+  InvIfmAcNormLargeArgument.pdf \
+  \
+  ExpAcNormSmallArgument.jpg \
+  ExpAcNormSmallArgument.pdf \
+  ExpAcNormLargeArgument.jpg \
+  ExpAcNormLargeArgument.pdf \
+  \
+  ExpInvAcSmallArgument.jpg \
+  ExpInvAcSmallArgument.pdf \
+  ExpInvAcLargeArgument.jpg \
+  ExpInvAcLargeArgument.pdf \
+  \
+  ExpInvAcNormSmallArgument.jpg \
+  ExpInvAcNormSmallArgument.pdf \
+  ExpInvAcNormLargeArgument.jpg \
+  ExpInvAcNormLargeArgument.pdf \
+  \
+  CompareSmallArgument.jpg \
+  CompareSmallArgument.pdf \
+  CompareLargeArgument.jpg \
+  CompareLargeArgument.pdf \
+  CompareExpSmallArgument.jpg \
+  CompareExpSmallArgument.pdf \
+  CompareExpLargeArgument.jpg \
+  CompareExpLargeArgument.pdf \
+  CompareInvSmallArgument.jpg \
+  CompareInvSmallArgument.pdf \
+  CompareInvLargeArgument.jpg \
+  CompareInvLargeArgument.pdf \
+  CompareIfmSmallArgument.jpg \
+  CompareIfmSmallArgument.pdf \
+  CompareIfmLargeArgument.jpg \
+  CompareIfmLargeArgument.pdf \
+  CompareThirdSmallArgument.jpg \
+  CompareThirdSmallArgument.pdf \
+  CompareThirdLargeArgument.jpg \
+  CompareThirdLargeArgument.pdf \
+  CompareOverallSmallArgument.jpg \
+  CompareOverallSmallArgument.pdf \
+  CompareOverallLargeArgument.jpg \
+  CompareOverallLargeArgument.pdf \
+
+
+# The default target.
+all: $(TARGETS)
+
+clean: 
+	$(RM) *~
+
+distclean: 
+	$(MAKE) clean 
+	$(RM) *.txt *.jpg *.eps *.pdf
+
+again: 
+	$(MAKE) distclean 
+	$(MAKE) 
+
+export:
+	python export.py
+
+#
+# Implicit rules.
+#
+
+.SUFFIXES:
+.SUFFIXES: .eps .pdf
+
+.eps.pdf:
+	epstopdf $< > $@
+
+#
+# Explicit rules.
+#
+
+#------------------------------------------------------------------------------
+# Plots.
+#------------------------------------------------------------------------------
+
+
+# Inversion check PDF.
+InversionCheckPdf.jpg: ../gnu/InversionCheckPdf.gnu InversionCheckPdf.txt
+	gnuplot $<
+InversionChopDown.eps: ../gnu/InversionCheckPdf.gnu InversionCheckPdf.txt
+	gnuplot $<
+
+
+
+
+# Inversion chop down.
+InversionChopDown.jpg: ../gnu/InversionChopDown.gnu InversionChopDown.txt InversionChopDownCache.txt InversionChopDownSmall.txt InversionChopDownCacheSmall.txt InversionChopDownZero.txt InversionChopDownSmallZero.txt InversionChopDownApprox.txt
+	gnuplot $<
+InversionChopDown.eps: ../gnu/InversionChopDown.gnu InversionChopDown.txt InversionChopDownCache.txt InversionChopDownSmall.txt InversionChopDownCacheSmall.txt InversionChopDownZero.txt InversionChopDownSmallZero.txt InversionChopDownApprox.txt
+	gnuplot $<
+InversionChopDownSimple.jpg: ../gnu/InversionChopDownSimple.gnu InversionChopDownSimple.txt
+	gnuplot $<
+InversionChopDownSimple.eps: ../gnu/InversionChopDownSimple.gnu InversionChopDownSimple.txt
+	gnuplot $<
+InversionChopDownUnrolled.jpg: ../gnu/InversionChopDownUnrolled.gnu InversionChopDownUnrolled.txt
+	gnuplot $<
+InversionChopDownUnrolled.eps: ../gnu/InversionChopDownUnrolled.gnu InversionChopDownUnrolled.txt
+	gnuplot $<
+
+
+
+
+# Inversion build up.
+InversionBuildUp.jpg: ../gnu/InversionBuildUp.gnu InversionBuildUp.txt InversionBuildUpCache.txt InversionBuildUpSmall.txt InversionBuildUpCacheSmall.txt
+	gnuplot $<
+InversionBuildUp.eps: ../gnu/InversionBuildUp.gnu InversionBuildUp.txt InversionBuildUpCache.txt InversionBuildUpSmall.txt InversionBuildUpCacheSmall.txt
+	gnuplot $<
+InversionBuildUpSimple.jpg: ../gnu/InversionBuildUpSimple.gnu InversionBuildUpSimple.txt
+	gnuplot $<
+InversionBuildUpSimple.eps: ../gnu/InversionBuildUpSimple.gnu InversionBuildUpSimple.txt
+	gnuplot $<
+
+
+
+
+# Inversion table.
+InversionTable.jpg: ../gnu/InversionTable.gnu InversionTable.txt
+	gnuplot $<
+InversionChopDown.eps: ../gnu/InversionTable.gnu InversionTable.txt
+	gnuplot $<
+
+
+
+
+# Inversion from mode, chop down.
+InversionFromModeChopDown.jpg: ../gnu/InversionFromModeChopDown.gnu InversionFromModeChopDown.txt InversionFromModeChopDownCache.txt InversionFromModeChopDownSmall.txt InversionFromModeChopDownCacheSmall.txt InversionFromModeChopDownApprox.txt
+	gnuplot $<
+InversionFromModeChopDown.eps: ../gnu/InversionFromModeChopDown.gnu InversionFromModeChopDown.txt InversionFromModeChopDownCache.txt InversionFromModeChopDownSmall.txt InversionFromModeChopDownCacheSmall.txt InversionFromModeChopDownApprox.txt
+	gnuplot $<
+
+
+
+# Inversion from mode, build up.
+InversionFromModeBuildUp.jpg: ../gnu/InversionFromModeBuildUp.gnu InversionFromModeBuildUp.txt InversionFromModeBuildUpApprox.txt
+	gnuplot $<
+InversionFromModeBuildUp.eps: ../gnu/InversionFromModeBuildUp.gnu InversionFromModeBuildUp.txt InversionFromModeBuildUpApprox.txt
+	gnuplot $<
+# CONTINUE
+# ../gnu/InversionFromModeBuildUp.gnu InversionFromModeBuildUp.txt InversionFromModeBuildUpCache.txt InversionFromModeBuildUpSmall.txt InversionFromModeBuildUpCacheSmall.txt InversionFromModeBuildUpApprox.txt InversionFromModeBuildUpApproxSmall.txt 
+
+
+
+# Exponential inter-arrival.
+ExponentialInterArrival.jpg: ../gnu/ExponentialInterArrival.gnu ExponentialInterArrival.txt 
+	gnuplot $<
+ExponentialInterArrival.eps: ../gnu/ExponentialInterArrival.gnu ExponentialInterArrival.txt 
+	gnuplot $<
+ExponentialInterArrivalUsingUniform.jpg: ../gnu/ExponentialInterArrivalUsingUniform.gnu ExponentialInterArrivalUsingUniform.txt ExponentialInterArrivalUsingUniformCache.txt ExponentialInterArrivalUsingUniformSmall.txt ExponentialInterArrivalUsingUniformCacheSmall.txt ExponentialInterArrivalUsingUniformApprox.txt
+	gnuplot $<
+ExponentialInterArrivalUsingUniform.eps: ../gnu/ExponentialInterArrivalUsingUniform.gnu ExponentialInterArrivalUsingUniform.txt ExponentialInterArrivalUsingUniformCache.txt ExponentialInterArrivalUsingUniformSmall.txt ExponentialInterArrivalUsingUniformCacheSmall.txt ExponentialInterArrivalUsingUniformApprox.txt
+	gnuplot $<
+DirectNr.jpg: ../gnu/DirectNr.gnu DirectNr.txt ExponentialInterArrivalUsingUniform.txt 
+	gnuplot $<
+DirectNr.eps: ../gnu/DirectNr.gnu DirectNr.txt ExponentialInterArrivalUsingUniform.txt 
+	gnuplot $<
+
+
+
+# Rejection Numerical Recipes.
+RejectionNr.jpg: ../gnu/RejectionNr.gnu RejectionNr.txt
+	gnuplot $<
+RejectionNr.eps: ../gnu/RejectionNr.gnu RejectionNr.txt
+	gnuplot $<
+
+
+
+# Acceptance-Complement Winrand
+AcceptanceComplementWinrand.jpg: ../gnu/AcceptanceComplementWinrand.gnu AcceptanceComplementWinrand.txt
+	gnuplot $<
+AcceptanceComplementWinrand.eps: ../gnu/AcceptanceComplementWinrand.gnu AcceptanceComplementWinrand.txt
+	gnuplot $<
+
+
+
+# Normal approximation.
+Normal.jpg: ../gnu/Normal.gnu Normal.txt
+	gnuplot $<
+Normal.eps: ../gnu/Normal.gnu Normal.txt
+	gnuplot $<
+
+
+
+# Ranlib
+RanlibSmallArgument.jpg: ../gnu/Ranlib.gnu Ranlib.txt
+	gnuplot $<
+RanlibSmallArgument.eps: ../gnu/Ranlib.gnu Ranlib.txt
+	gnuplot $<
+RanlibLargeArgument.jpg: ../gnu/Ranlib.gnu Ranlib.txt
+	gnuplot $<
+RanlibLargeArgument.eps: ../gnu/Ranlib.gnu Ranlib.txt
+	gnuplot $<
+
+
+
+
+# StochKit
+StochKitSmallArgument.jpg: ../gnu/StochKit.gnu StochKit.txt
+	gnuplot $<
+StochKitSmallArgument.eps: ../gnu/StochKit.gnu StochKit.txt
+	gnuplot $<
+StochKitLargeArgument.jpg: ../gnu/StochKit.gnu StochKit.txt
+	gnuplot $<
+StochKitLargeArgument.eps: ../gnu/StochKit.gnu StochKit.txt
+	gnuplot $<
+
+
+
+
+# RecursiveGsl
+RecursiveGslSmallArgument.jpg: ../gnu/RecursiveGsl.gnu RecursiveGsl.txt
+	gnuplot $<
+RecursiveGslSmallArgument.eps: ../gnu/RecursiveGsl.gnu RecursiveGsl.txt
+	gnuplot $<
+RecursiveGslLargeArgument.jpg: ../gnu/RecursiveGsl.gnu RecursiveGsl.txt
+	gnuplot $<
+RecursiveGslLargeArgument.eps: ../gnu/RecursiveGsl.gnu RecursiveGsl.txt
+	gnuplot $<
+
+
+
+
+
+# Winrand
+InversionRatioOfUniformsWinrandSmallArgument.jpg: ../gnu/InversionRatioOfUniformsWinrand.gnu InversionRatioOfUniformsWinrand.txt
+	gnuplot $<
+InversionRatioOfUniformsWinrandSmallArgument.eps: ../gnu/InversionRatioOfUniformsWinrand.gnu InversionRatioOfUniformsWinrand.txt
+	gnuplot $<
+InversionRatioOfUniformsWinrandLargeArgument.jpg: ../gnu/InversionRatioOfUniformsWinrand.gnu InversionRatioOfUniformsWinrand.txt
+	gnuplot $<
+InversionRatioOfUniformsWinrandLargeArgument.eps: ../gnu/InversionRatioOfUniformsWinrand.gnu InversionRatioOfUniformsWinrand.txt
+	gnuplot $<
+
+InversionRejectionPatchworkWinrandSmallArgument.jpg: ../gnu/InversionRejectionPatchworkWinrand.gnu InversionRejectionPatchworkWinrand.txt
+	gnuplot $<
+InversionRejectionPatchworkWinrandSmallArgument.eps: ../gnu/InversionRejectionPatchworkWinrand.gnu InversionRejectionPatchworkWinrand.txt
+	gnuplot $<
+InversionRejectionPatchworkWinrandLargeArgument.jpg: ../gnu/InversionRejectionPatchworkWinrand.gnu InversionRejectionPatchworkWinrand.txt
+	gnuplot $<
+InversionRejectionPatchworkWinrandLargeArgument.eps: ../gnu/InversionRejectionPatchworkWinrand.gnu InversionRejectionPatchworkWinrand.txt
+	gnuplot $<
+
+InversionTableAcceptanceComplementWinrandSmallArgument.jpg: ../gnu/InversionTableAcceptanceComplementWinrand.gnu InversionTableAcceptanceComplementWinrand.txt
+	gnuplot $<
+InversionTableAcceptanceComplementWinrandSmallArgument.eps: ../gnu/InversionTableAcceptanceComplementWinrand.gnu InversionTableAcceptanceComplementWinrand.txt
+	gnuplot $<
+InversionTableAcceptanceComplementWinrandLargeArgument.jpg: ../gnu/InversionTableAcceptanceComplementWinrand.gnu InversionTableAcceptanceComplementWinrand.txt
+	gnuplot $<
+InversionTableAcceptanceComplementWinrandLargeArgument.eps: ../gnu/InversionTableAcceptanceComplementWinrand.gnu InversionTableAcceptanceComplementWinrand.txt
+	gnuplot $<
+
+
+
+
+
+
+# Direct/Rejection Numerical Recipes.
+DirectRejectionNrSmallArgument.jpg: ../gnu/DirectRejectionNr.gnu DirectRejectionNr.txt
+	gnuplot $<
+DirectRejectionNrSmallArgument.eps: ../gnu/DirectRejectionNr.gnu DirectRejectionNr.txt
+	gnuplot $<
+DirectRejectionNrLargeArgument.jpg: ../gnu/DirectRejectionNr.gnu DirectRejectionNr.txt
+	gnuplot $<
+DirectRejectionNrLargeArgument.eps: ../gnu/DirectRejectionNr.gnu DirectRejectionNr.txt
+	gnuplot $<
+
+
+
+# Inversion/Acceptance-Complement/Normal
+InvAcNormSmallArgument.jpg: ../gnu/InvAcNorm.gnu InvAcNorm.txt InvAcNormSmall.txt
+	gnuplot $<
+InvAcNormSmallArgument.eps: ../gnu/InvAcNorm.gnu InvAcNorm.txt InvAcNormSmall.txt
+	gnuplot $<
+InvAcNormLargeArgument.jpg: ../gnu/InvAcNorm.gnu InvAcNorm.txt InvAcNormSmall.txt
+	gnuplot $<
+InvAcNormLargeArgument.eps: ../gnu/InvAcNorm.gnu InvAcNorm.txt InvAcNormSmall.txt
+	gnuplot $<
+
+
+
+
+# Inversion from the mode/Acceptance-Complement/Normal
+IfmAcNormSmallArgument.jpg: ../gnu/IfmAcNorm.gnu IfmAcNorm.txt
+	gnuplot $<
+IfmAcNormSmallArgument.eps: ../gnu/IfmAcNorm.gnu IfmAcNorm.txt
+	gnuplot $<
+IfmAcNormLargeArgument.jpg: ../gnu/IfmAcNorm.gnu IfmAcNorm.txt
+	gnuplot $<
+IfmAcNormLargeArgument.eps: ../gnu/IfmAcNorm.gnu IfmAcNorm.txt
+	gnuplot $<
+# CONTINUE
+#../gnu/IfmAcNorm.gnu IfmAcNorm.txt IfmAcNormSmall.txt
+
+
+
+# Inversion/Inversion from the mode/Acceptance-Complement/Normal
+InvIfmAcNormSmallArgument.jpg: ../gnu/InvIfmAcNorm.gnu InvIfmAcNorm.txt
+	gnuplot $<
+InvIfmAcNormSmallArgument.eps: ../gnu/InvIfmAcNorm.gnu InvIfmAcNorm.txt
+	gnuplot $<
+InvIfmAcNormLargeArgument.jpg: ../gnu/InvIfmAcNorm.gnu InvIfmAcNorm.txt
+	gnuplot $<
+InvIfmAcNormLargeArgument.eps: ../gnu/InvIfmAcNorm.gnu InvIfmAcNorm.txt
+	gnuplot $<
+# CONTINUE
+#../gnu/InvIfmAcNorm.gnu InvIfmAcNorm.txt InvIfmAcNormSmall.txt
+
+
+
+
+# Exponential/Acceptance-Complement/Normal
+ExpAcNormSmallArgument.jpg: ../gnu/ExpAcNorm.gnu ExpAcNorm.txt
+	gnuplot $<
+ExpAcNormSmallArgument.eps: ../gnu/ExpAcNorm.gnu ExpAcNorm.txt
+	gnuplot $<
+ExpAcNormLargeArgument.jpg: ../gnu/ExpAcNorm.gnu ExpAcNorm.txt
+	gnuplot $<
+ExpAcNormLargeArgument.eps: ../gnu/ExpAcNorm.gnu ExpAcNorm.txt
+	gnuplot $<
+
+
+
+
+
+# Exponential/Inversion/Acceptance-Complement
+ExpInvAcSmallArgument.jpg: ../gnu/ExpInvAc.gnu ExpInvAc.txt
+	gnuplot $<
+ExpInvAcSmallArgument.eps: ../gnu/ExpInvAc.gnu ExpInvAc.txt
+	gnuplot $<
+ExpInvAcLargeArgument.jpg: ../gnu/ExpInvAc.gnu ExpInvAc.txt
+	gnuplot $<
+ExpInvAcLargeArgument.eps: ../gnu/ExpInvAc.gnu ExpInvAc.txt
+	gnuplot $<
+
+
+
+
+# Exponential/Inversion/Acceptance-Complement/Normal
+ExpInvAcNormSmallArgument.jpg: ../gnu/ExpInvAcNorm.gnu ExpInvAcNorm.txt
+	gnuplot $<
+ExpInvAcNormSmallArgument.eps: ../gnu/ExpInvAcNorm.gnu ExpInvAcNorm.txt
+	gnuplot $<
+ExpInvAcNormLargeArgument.jpg: ../gnu/ExpInvAcNorm.gnu ExpInvAcNorm.txt
+	gnuplot $<
+ExpInvAcNormLargeArgument.eps: ../gnu/ExpInvAcNorm.gnu ExpInvAcNorm.txt
+	gnuplot $<
+
+
+
+
+
+# Compare the best methods.
+CompareSmallArgument.jpg: ../gnu/CompareSmallArgument.gnu ExponentialInterArrival.txt InversionChopDown.txt InversionChopDownCache.txt InversionChopDownSmall.txt
+	gnuplot $<
+CompareSmallArgument.eps: ../gnu/CompareSmallArgument.gnu ExponentialInterArrival.txt InversionChopDown.txt InversionChopDownCache.txt InversionChopDownSmall.txt
+	gnuplot $<
+
+CompareLargeArgument.jpg: ../gnu/CompareLargeArgument.gnu AcceptanceComplementWinrand.txt Ranlib.txt
+	gnuplot $<
+CompareLargeArgument.eps: ../gnu/CompareLargeArgument.gnu AcceptanceComplementWinrand.txt Ranlib.txt
+	gnuplot $<
+
+CompareExpSmallArgument.jpg: ../gnu/CompareExp.gnu ExpAcNorm.txt ExpInvAc.txt ExpInvAcNorm.txt 
+	gnuplot $<
+CompareExpSmallArgument.eps: ../gnu/CompareExp.gnu ExpAcNorm.txt ExpInvAc.txt ExpInvAcNorm.txt 
+	gnuplot $<
+CompareExpLargeArgument.jpg: ../gnu/CompareExp.gnu ExpAcNorm.txt ExpInvAc.txt ExpInvAcNorm.txt 
+	gnuplot $<
+CompareExpLargeArgument.eps: ../gnu/CompareExp.gnu ExpAcNorm.txt ExpInvAc.txt ExpInvAcNorm.txt 
+	gnuplot $<
+
+CompareInvSmallArgument.jpg: ../gnu/CompareInv.gnu InvAcNorm.txt InvAcNormSmall.txt InvIfmAcNorm.txt 
+	gnuplot $<
+CompareInvSmallArgument.eps: ../gnu/CompareInv.gnu InvAcNorm.txt InvAcNormSmall.txt InvIfmAcNorm.txt 
+	gnuplot $<
+CompareInvLargeArgument.jpg: ../gnu/CompareInv.gnu InvAcNorm.txt InvAcNormSmall.txt InvIfmAcNorm.txt 
+	gnuplot $<
+CompareInvLargeArgument.eps: ../gnu/CompareInv.gnu InvAcNorm.txt InvAcNormSmall.txt InvIfmAcNorm.txt 
+	gnuplot $<
+
+CompareIfmSmallArgument.jpg: ../gnu/CompareIfm.gnu IfmAcNorm.txt 
+	gnuplot $<
+CompareIfmSmallArgument.eps: ../gnu/CompareIfm.gnu IfmAcNorm.txt 
+	gnuplot $<
+CompareIfmLargeArgument.jpg: ../gnu/CompareIfm.gnu IfmAcNorm.txt 
+	gnuplot $<
+CompareIfmLargeArgument.eps: ../gnu/CompareIfm.gnu IfmAcNorm.txt 
+	gnuplot $<
+
+CompareThirdSmallArgument.jpg: ../gnu/CompareThird.gnu Ranlib.txt InversionTableAcceptanceComplementWinrand.txt StochKit.txt
+	gnuplot $<
+CompareThirdSmallArgument.eps: ../gnu/CompareThird.gnu Ranlib.txt InversionTableAcceptanceComplementWinrand.txt StochKit.txt
+	gnuplot $<
+CompareThirdLargeArgument.jpg: ../gnu/CompareThird.gnu Ranlib.txt InversionTableAcceptanceComplementWinrand.txt StochKit.txt
+	gnuplot $<
+CompareThirdLargeArgument.eps: ../gnu/CompareThird.gnu Ranlib.txt InversionTableAcceptanceComplementWinrand.txt StochKit.txt
+	gnuplot $<
+
+CompareOverallSmallArgument.jpg: ../gnu/CompareOverall.gnu ExpInvAcNorm.txt InvIfmAcNorm.txt IfmAcNorm.txt InversionTableAcceptanceComplementWinrand.txt
+	gnuplot $<
+CompareOverallSmallArgument.eps: ../gnu/CompareOverall.gnu ExpInvAcNorm.txt InvIfmAcNorm.txt IfmAcNorm.txt InversionTableAcceptanceComplementWinrand.txt
+	gnuplot $<
+CompareOverallLargeArgument.jpg: ../gnu/CompareOverall.gnu ExpInvAcNorm.txt InvIfmAcNorm.txt IfmAcNorm.txt InversionTableAcceptanceComplementWinrand.txt
+	gnuplot $<
+CompareOverallLargeArgument.eps: ../gnu/CompareOverall.gnu ExpInvAcNorm.txt InvIfmAcNorm.txt IfmAcNorm.txt InversionTableAcceptanceComplementWinrand.txt
+	gnuplot $<
+
+
+
+#------------------------------------------------------------------------------
+# Data files.
+#------------------------------------------------------------------------------
+
+
+# Inversion check PDF.
+InversionCheckPdf.txt:
+	sleep 2
+	$(BIN_PATH)/InversionCheckPdf.exe ../ranges/0and1e-2to2e1.txt -t=$(TIME_PER_TEST) $(COMMAND_LINE_ARGUMENTS)
+
+
+
+
+# Inversion chop down.
+InversionChopDown.txt:
+	sleep 2
+	$(BIN_PATH)/InversionChopDown.exe ../ranges/0and1e-2to2e1.txt -t=$(TIME_PER_TEST) $(COMMAND_LINE_ARGUMENTS)
+
+InversionChopDownCache.txt:
+	sleep 2
+	$(BIN_PATH)/InversionChopDownCache.exe ../ranges/0and1e-2to2e1.txt -t=$(TIME_PER_TEST) $(COMMAND_LINE_ARGUMENTS)
+
+InversionChopDownSmall.txt:
+	sleep 2
+	$(BIN_PATH)/InversionChopDownSmall.exe ../ranges/0and1e-2to2e1.txt -t=$(TIME_PER_TEST) $(COMMAND_LINE_ARGUMENTS)
+
+InversionChopDownCacheSmall.txt:
+	sleep 2
+	$(BIN_PATH)/InversionChopDownCacheSmall.exe ../ranges/0and1e-2to2e1.txt -t=$(TIME_PER_TEST) $(COMMAND_LINE_ARGUMENTS)
+
+InversionChopDownZero.txt:
+	sleep 2
+	$(BIN_PATH)/InversionChopDownZero.exe ../ranges/0and1e-2to2e1.txt -t=$(TIME_PER_TEST) $(COMMAND_LINE_ARGUMENTS)
+
+InversionChopDownSmallZero.txt:
+	sleep 2
+	$(BIN_PATH)/InversionChopDownSmallZero.exe ../ranges/0and1e-2to2e1.txt -t=$(TIME_PER_TEST) $(COMMAND_LINE_ARGUMENTS)
+
+InversionChopDownApprox.txt:
+	sleep 2
+	$(BIN_PATH)/InversionChopDownApprox.exe ../ranges/0and1e-2to2e1.txt -t=$(TIME_PER_TEST) $(COMMAND_LINE_ARGUMENTS)
+
+InversionChopDownSimple.txt:
+	sleep 2
+	$(BIN_PATH)/InversionChopDownSimple.exe ../ranges/0and1e-2to2e1.txt -t=$(TIME_PER_TEST) $(COMMAND_LINE_ARGUMENTS)
+
+InversionChopDownUnrolled.txt:
+	sleep 2
+	$(BIN_PATH)/InversionChopDownUnrolled.exe ../ranges/0and1e-2to2e1.txt -t=$(TIME_PER_TEST) $(COMMAND_LINE_ARGUMENTS)
+
+
+
+# Inversion build up.
+InversionBuildUp.txt:
+	sleep 2
+	$(BIN_PATH)/InversionBuildUp.exe ../ranges/0and1e-2to2e1.txt -t=$(TIME_PER_TEST) $(COMMAND_LINE_ARGUMENTS)
+
+InversionBuildUpCache.txt:
+	sleep 2
+	$(BIN_PATH)/InversionBuildUpCache.exe ../ranges/0and1e-2to2e1.txt -t=$(TIME_PER_TEST) $(COMMAND_LINE_ARGUMENTS)
+
+InversionBuildUpSmall.txt:
+	sleep 2
+	$(BIN_PATH)/InversionBuildUpSmall.exe ../ranges/0and1e-2to2e1.txt -t=$(TIME_PER_TEST) $(COMMAND_LINE_ARGUMENTS)
+
+InversionBuildUpCacheSmall.txt:
+	sleep 2
+	$(BIN_PATH)/InversionBuildUpCacheSmall.exe ../ranges/0and1e-2to2e1.txt -t=$(TIME_PER_TEST) $(COMMAND_LINE_ARGUMENTS)
+
+InversionBuildUpSimple.txt:
+	sleep 2
+	$(BIN_PATH)/InversionBuildUpSimple.exe ../ranges/0and1e-2to2e1.txt -t=$(TIME_PER_TEST) $(COMMAND_LINE_ARGUMENTS)
+
+
+
+
+
+# Inversion table.
+InversionTable.txt:
+	sleep 2
+	$(BIN_PATH)/InversionTable.exe ../ranges/0and1e-2to2e1.txt -t=$(TIME_PER_TEST) $(COMMAND_LINE_ARGUMENTS)
+
+
+
+
+# Inversion from mode, chop down.
+InversionFromModeChopDown.txt:
+	sleep 2
+	$(BIN_PATH)/InversionFromModeChopDown.exe ../ranges/0and1e-2to1e2.txt -t=$(TIME_PER_TEST) $(COMMAND_LINE_ARGUMENTS)
+
+InversionFromModeChopDownCache.txt:
+	sleep 2
+	$(BIN_PATH)/InversionFromModeChopDownCache.exe ../ranges/0and1e-2to1e2.txt -t=$(TIME_PER_TEST) $(COMMAND_LINE_ARGUMENTS)
+
+InversionFromModeChopDownSmall.txt:
+	sleep 2
+	$(BIN_PATH)/InversionFromModeChopDownSmall.exe ../ranges/0and1e-2to1e2.txt -t=$(TIME_PER_TEST) $(COMMAND_LINE_ARGUMENTS)
+
+InversionFromModeChopDownCacheSmall.txt:
+	sleep 2
+	$(BIN_PATH)/InversionFromModeChopDownCacheSmall.exe ../ranges/0and1e-2to1e2.txt -t=$(TIME_PER_TEST) $(COMMAND_LINE_ARGUMENTS)
+
+InversionFromModeChopDownApprox.txt:
+	sleep 2
+	$(BIN_PATH)/InversionFromModeChopDownApprox.exe ../ranges/0and1e-2to1e2.txt -t=$(TIME_PER_TEST) $(COMMAND_LINE_ARGUMENTS)
+
+
+
+# Inversion from mode, build up.
+InversionFromModeBuildUp.txt:
+	sleep 2
+	$(BIN_PATH)/InversionFromModeBuildUp.exe ../ranges/0and1e-2to1e2.txt -t=$(TIME_PER_TEST) $(COMMAND_LINE_ARGUMENTS) $(COMMAND_LINE_ARGUMENTS_L1)
+
+InversionFromModeBuildUpApprox.txt:
+	sleep 2
+	$(BIN_PATH)/InversionFromModeBuildUpApprox.exe ../ranges/0and1e-2to1e2.txt -t=$(TIME_PER_TEST) $(COMMAND_LINE_ARGUMENTS) $(COMMAND_LINE_ARGUMENTS_L1)
+
+# CONTINUE
+#InversionFromModeBuildUpCache.txt:
+#	sleep 2
+#	$(BIN_PATH)/InversionFromModeBuildUpCache.exe ../ranges/0and1e-2to1e2.txt -t=$(TIME_PER_TEST) $(COMMAND_LINE_ARGUMENTS) $(COMMAND_LINE_ARGUMENTS_L1)
+
+
+
+
+
+# Exponential inter-arrival.
+ExponentialInterArrival.txt:
+	sleep 2
+	$(BIN_PATH)/ExponentialInterArrival.exe ../ranges/0and1e-2to1e1.txt -t=$(TIME_PER_TEST) $(COMMAND_LINE_ARGUMENTS)
+
+ExponentialInterArrivalUsingUniform.txt:
+	sleep 2
+	$(BIN_PATH)/ExponentialInterArrivalUsingUniform.exe ../ranges/0and1e-2to1e1.txt -t=$(TIME_PER_TEST) $(COMMAND_LINE_ARGUMENTS)
+
+ExponentialInterArrivalUsingUniformCache.txt:
+	sleep 2
+	$(BIN_PATH)/ExponentialInterArrivalUsingUniformCache.exe ../ranges/0and1e-2to1e1.txt -t=$(TIME_PER_TEST) $(COMMAND_LINE_ARGUMENTS)
+
+ExponentialInterArrivalUsingUniformSmall.txt:
+	sleep 2
+	$(BIN_PATH)/ExponentialInterArrivalUsingUniformSmall.exe ../ranges/0and1e-2to1e1.txt -t=$(TIME_PER_TEST) $(COMMAND_LINE_ARGUMENTS)
+
+ExponentialInterArrivalUsingUniformCacheSmall.txt:
+	sleep 2
+	$(BIN_PATH)/ExponentialInterArrivalUsingUniformCacheSmall.exe ../ranges/0and1e-2to1e1.txt -t=$(TIME_PER_TEST) $(COMMAND_LINE_ARGUMENTS)
+
+ExponentialInterArrivalUsingUniformApprox.txt:
+	sleep 2
+	$(BIN_PATH)/ExponentialInterArrivalUsingUniformApprox.exe ../ranges/0and1e-2to1e1.txt -t=$(TIME_PER_TEST) $(COMMAND_LINE_ARGUMENTS)
+
+DirectNr.txt:
+	sleep 2
+	$(BIN_PATH)/DirectNr.exe ../ranges/0and1e-2to1e1.txt -t=$(TIME_PER_TEST) $(COMMAND_LINE_ARGUMENTS)
+
+
+
+
+# Rejection Numerical Recipes.
+RejectionNr.txt:
+	sleep 2
+	$(BIN_PATH)/RejectionNr.exe ../ranges/1e0to1e6.txt -t=$(TIME_PER_TEST) $(COMMAND_LINE_ARGUMENTS)
+
+
+
+# Acceptance-Complement Winrand
+AcceptanceComplementWinrand.txt:
+	sleep 2
+	$(BIN_PATH)/AcceptanceComplementWinrand.exe ../ranges/1e0to1e6.txt -t=$(TIME_PER_TEST) $(COMMAND_LINE_ARGUMENTS) $(COMMAND_LINE_ARGUMENTS_L1)
+
+
+
+# Normal approximation.
+Normal.txt:
+	sleep 2
+	$(BIN_PATH)/Normal.exe ../ranges/1e2to1e6.txt -t=$(TIME_PER_TEST) $(COMMAND_LINE_ARGUMENTS)
+
+
+
+# Ranlib
+Ranlib.txt:
+	sleep 2
+	$(BIN_PATH)/Ranlib.exe ../ranges/0and1e-2to1e6.txt -t=$(TIME_PER_TEST) $(COMMAND_LINE_ARGUMENTS)
+
+
+
+# StochKit
+StochKit.txt:
+	sleep 2
+	$(BIN_PATH)/StochKit.exe ../ranges/0and1e-2to1e7.txt -t=$(TIME_PER_TEST) $(COMMAND_LINE_ARGUMENTS)
+
+
+
+# RecursiveGsl
+RecursiveGsl.txt:
+	sleep 2
+	$(BIN_PATH)/RecursiveGsl.exe ../ranges/0and1e-2to1e6.txt -t=$(TIME_PER_TEST) $(COMMAND_LINE_ARGUMENTS)
+
+
+
+# Winrand
+InversionRatioOfUniformsWinrand.txt:
+	sleep 2
+	$(BIN_PATH)/InversionRatioOfUniformsWinrand.exe ../ranges/0and1e-2to1e6.txt -t=$(TIME_PER_TEST) $(COMMAND_LINE_ARGUMENTS)
+
+InversionRejectionPatchworkWinrand.txt:
+	sleep 2
+	$(BIN_PATH)/InversionRejectionPatchworkWinrand.exe ../ranges/0and1e-2to1e6.txt -t=$(TIME_PER_TEST) $(COMMAND_LINE_ARGUMENTS)
+
+InversionTableAcceptanceComplementWinrand.txt:
+	sleep 2
+	$(BIN_PATH)/InversionTableAcceptanceComplementWinrand.exe ../ranges/0and1e-2to1e6.txt -t=$(TIME_PER_TEST) $(COMMAND_LINE_ARGUMENTS)
+
+
+
+# Direct/Rejection Numerical Recipes.
+DirectRejectionNr.txt:
+	sleep 2
+	$(BIN_PATH)/DirectRejectionNr.exe ../ranges/0and1e-2to1e6.txt -t=$(TIME_PER_TEST) $(COMMAND_LINE_ARGUMENTS)
+
+
+
+# Inversion/Acceptance-Complement/Normal
+InvAcNorm.txt:
+	sleep 2
+	$(BIN_PATH)/InvAcNorm.exe  ../ranges/0and1e-2to1e6.txt -t=$(TIME_PER_TEST) $(COMMAND_LINE_ARGUMENTS) -threshhold=1e3
+
+InvAcNormSmall.txt:
+	sleep 2
+	$(BIN_PATH)/InvAcNormSmall.exe  ../ranges/0and1e-2to1e6.txt -t=$(TIME_PER_TEST) $(COMMAND_LINE_ARGUMENTS) -threshhold=1e3
+
+
+
+
+# Inversion from the mode/Acceptance-Complement/Normal
+IfmAcNorm.txt:
+	sleep 2
+	$(BIN_PATH)/IfmAcNorm.exe  ../ranges/0and1e-2to1e6.txt -t=$(TIME_PER_TEST) $(COMMAND_LINE_ARGUMENTS) -threshhold=1e3
+
+#CONTINUE
+#IfmAcNormSmall.txt:
+#	sleep 2
+#	$(BIN_PATH)/IfmAcNormSmall.exe  ../ranges/0and1e-2to1e6.txt -t=$(TIME_PER_TEST) $(COMMAND_LINE_ARGUMENTS) -threshhold=1e3
+
+
+
+
+# Inversion/Inversion from the mode/Acceptance-Complement/Normal
+InvIfmAcNorm.txt:
+	sleep 2
+	$(BIN_PATH)/InvIfmAcNorm.exe  ../ranges/0and1e-2to1e6.txt -t=$(TIME_PER_TEST) $(COMMAND_LINE_ARGUMENTS) -threshhold=1e3
+
+#CONTINUE
+#InvIfmAcNormSmall.txt:
+#	sleep 2
+#	$(BIN_PATH)/InvIfmAcNormSmall.exe  ../ranges/0and1e-2to1e6.txt -t=$(TIME_PER_TEST) $(COMMAND_LINE_ARGUMENTS) -threshhold=1e3
+
+
+
+
+# Exponential/Acceptance-Complement/Normal
+ExpAcNorm.txt:
+	sleep 2
+	$(BIN_PATH)/ExpAcNorm.exe  ../ranges/0and1e-2to1e6.txt -t=$(TIME_PER_TEST) $(COMMAND_LINE_ARGUMENTS) -threshhold=1e3
+
+
+
+
+# Exponential/Inversion/Acceptance-Complement
+ExpInvAc.txt:
+	sleep 2
+	$(BIN_PATH)/ExpInvAc.exe  ../ranges/0and1e-2to1e6.txt -t=$(TIME_PER_TEST) $(COMMAND_LINE_ARGUMENTS)
+
+
+
+
+# Exponential/Inversion/Acceptance-Complement/Normal
+ExpInvAcNorm.txt:
+	sleep 2
+	$(BIN_PATH)/ExpInvAcNorm.exe  ../ranges/0and1e-2to1e6.txt -t=$(TIME_PER_TEST) $(COMMAND_LINE_ARGUMENTS) -threshhold=1e3

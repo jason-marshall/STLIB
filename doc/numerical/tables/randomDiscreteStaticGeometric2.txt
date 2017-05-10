@@ -1,0 +1,94 @@
+<table border = "1" rules = "all">
+<tr> <th> Method <th> Option <th> 4 <th> 8 <th> 16 <th> 32 <th> 64 <th> 128 <th> 256 <th> 1,024 <th> 4,096 <th> 16,384 <th> 65,536
+<tr bgcolor="white"> <th rowspan="2"> Linear Search
+<td> 
+<td> 17
+<td> 30
+<td> 44
+<td> 54
+<td> 84
+<td> 128
+<td> 216
+<td> 846
+<td> 3188
+<td> 12720
+<td> 50726
+<tr bgcolor="white">
+<td> Sorted
+<td> 17
+<td> 27
+<td> 35
+<td> 41
+<td> 51
+<td> 72
+<td> 114
+<td> 364
+<td> 1384
+<td> 5438
+<td> 21546
+<tr bgcolor="aliceblue"> <th rowspan="2"> 2-D Search
+<td> 
+<td> 19
+<td> 31
+<td> 38
+<td> 45
+<td> 52
+<td> 62
+<td> 70
+<td> 97
+<td> 147
+<td> 253
+<td> 455
+<tr bgcolor="aliceblue">
+<td> Sorted
+<td> 30
+<td> 39
+<td> 47
+<td> 55
+<td> 61
+<td> 67
+<td> 72
+<td> 87
+<td> 120
+<td> 183
+<td> 305
+<tr bgcolor="white"> <th rowspan="2"> Binary search
+<td> Complete CDF
+<td> 22
+<td> 33
+<td> 41
+<td> 48
+<td> 58
+<td> 66
+<td> 76
+<td> 93
+<td> 108
+<td> 141
+<td> 164
+<tr bgcolor="white">
+<td> Partial, recursive CDF
+<td> 27
+<td> 34
+<td> 41
+<td> 50
+<td> 59
+<td> 67
+<td> 76
+<td> 91
+<td> 113
+<td> 157
+<td> 192
+<tr bgcolor="aliceblue"> <th rowspan="1"> Rejection
+<td> Bins with splitting
+<td> 17
+<td> 17
+<td> 18
+<td> 19
+<td> 23
+<td> 35
+<td> 35
+<td> 35
+<td> 42
+<td> 43
+<td> 49
+</table>

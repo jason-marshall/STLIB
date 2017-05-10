@@ -1,0 +1,1 @@
+SortRankProject.orq ../data/uniform_random.6.ascii random.queries > SortRankProject.random.query_size.timings

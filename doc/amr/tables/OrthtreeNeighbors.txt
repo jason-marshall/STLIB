@@ -1,0 +1,13 @@
+<table border = "1">
+<tr> <th> Dimension <th> 1 <th> 2 <th> 3 <th> 4
+<tr> <th> Time per neighbor
+<td> 134
+<td> 154
+<td> 161
+<td> 168
+<tr> <th> Time per node
+<td> 267
+<td> 605
+<td> 904
+<td> 1174
+</table>

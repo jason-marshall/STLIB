@@ -1,0 +1,63 @@
+
+<html>
+<head>
+<title>DSMTS</title>
+</head>
+<body>
+<h1>Discrete Stochastic Models Test Suite</h1>
+
+<p>
+The <a href="http://dsmts.googlecode.com/">DSMTS</a>
+is a test suite of discrete stochastic models in 
+<a href="http://sbml.org/">SBML</a> format,
+distributed under the 
+<a href="http://www.gnu.org/licenses/lgpl.html">GNU LGPL</a>.
+Version 3.1 of the software
+is included in the Cain distribution in the directory 
+<tt>examples/sbml/dsmts31</tt>. In this chapter we reproduce some of
+its results. Note that Cain does not parse all SBML constructs. After 
+importing the SBML files, we note how to edit the results within Cain
+to obtain valid models. The Cain XML files that correspond to those 
+in the DSMTS are in the directory <tt>examples/cain/dsmts31</tt>.
+</p>
+
+<p>
+General issues with SBML files:
+<ul>
+  <li>
+  Cain assumes that all species amounts are given is substance units
+  (number of molecules). If an SBML model uses concentration units you 
+  will have to correct the initial amounts in the species editor.
+  <li>
+  Reaction propensity functions are typically imported correctly.
+  Furthermore, mass action kinetic laws are often automatically
+  recognized as such. Recall that if a model has only 
+  mass-action kinetic laws then one can use the pre-compiled mass-action
+  solvers. Otherwise, clicking the launch button
+  <img src="launch.png">&nbsp; will result in a custom solver being
+  compiled and then launched.
+  For example, consider the reaction <em>X &rarr; Y</em> with
+  propensity function
+  <em>K*X</em>. In most cases, Cain will recognize this as a mass-action
+  law. The MA (Mass-Action) field will be checked, and the propensity
+  factor will be <em>K</em>.
+  For the second order reaction
+  <em>2 X &rarr; Y</em> with propensity function
+  <em>0.5*K*X*(X-1)</em> the MA field will be checked, and
+  the propensity field will be set to <em>K</em>.
+  However, there are some cases in which Cain
+  will not perform this conversion. (For example, when the rate law
+  has local parameters.) In these cases, one may manually perform the
+  conversion in the reactions editor.
+  <li>
+  SBML events are not imported. For models with events one must use 
+  the time events editor and/or the trigger events editor to add the 
+  events.
+  <li>
+  Cain does not have support for boundary conditions.
+</ul>
+</p>
+
+
+</body>
+</html>

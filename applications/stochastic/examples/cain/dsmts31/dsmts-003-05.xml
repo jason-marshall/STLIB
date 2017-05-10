@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cain version="1.5">
+  <listOfModels>
+    <model id="Dimerisation05" name="Dimerisation model (003), variant 05">
+      <listOfParameters>
+        <parameter expression="0.01" id="k2"/>
+        <parameter expression="0.001" id="k1"/>
+      </listOfParameters>
+      <listOfCompartments>
+        <compartment expression="1" id="Cell"/>
+      </listOfCompartments>
+      <listOfSpecies>
+        <species compartment="Cell" initialAmount="0" id="P2"/>
+      </listOfSpecies>
+      <listOfReactions>
+        <reaction propensity="0.5*k1*(100-(2*P2))*(99-(2*P2))" massAction="false" id="Dimerisation">
+          <listOfReactants>
+            <speciesReference species="P2"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference stoichiometry="2" species="P2"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k2*P2" massAction="false" id="Disassociation">
+          <listOfReactants>
+            <speciesReference species="P2"/>
+          </listOfReactants>
+        </reaction>
+      </listOfReactions>
+    </model>
+  </listOfModels>
+  <listOfMethods>
+    <method equilibrationTime="0.0" startTime="0.0" recordingTime="50.0" id="Reference" category="5" numberOfBins="32" multiplicity="4" method="0" timeDependence="0" numberOfFrames="51" options="0"/>
+    <method equilibrationTime="0.0" startTime="0.0" recordingTime="50.0" id="TimeSeries" category="0" numberOfBins="32" multiplicity="4" method="0" timeDependence="0" numberOfFrames="51" options="0"/>
+  </listOfMethods>
+  <listOfOutput>
+    <statisticsFrames model="Dimerisation05" method="Reference">
+      <frameTimes>
+        0.0 1.0 2.0 3.0 4.0 5.0 6.0 7.0 8.0 9.0 10.0 11.0 12.0 13.0 14.0 15.0 16.0 17.0 18.0 19.0 20.0 21.0 22.0 23.0 24.0 25.0 26.0 27.0 28.0 29.0 30.0 31.0 32.0 33.0 34.0 35.0 36.0 37.0 38.0 39.0 40.0 41.0 42.0 43.0 44.0 45.0 46.0 47.0 48.0 49.0 50.0
+      </frameTimes>
+      <recordedSpecies>
+        0
+      </recordedSpecies>
+      <statistics>
+        0.0 0.0 4.4841170000000004 1.931252 8.1915300000000002 2.407597 11.301506 2.6330450000000001 13.94234 2.744742 16.208221000000002 2.7963909999999998 18.169834000000002 2.814174 19.881252 2.812297 21.384533999999999 2.7989739999999999 22.712885 2.7791489999999999 23.892863999999999 2.7558799999999999 24.945972000000001 2.7310859999999999 25.889793000000001 2.7059790000000001 26.738854 2.6813199999999999 27.505258000000001 2.6575769999999999 28.199169999999999 2.635027 28.829189 2.6138189999999999 29.402639000000001 2.5940180000000002 29.925799000000001 2.575634 30.404078999999999 2.5586389999999999 30.842168000000001 2.5429840000000001 31.244147000000002 2.5286050000000002 31.613589999999999 2.5154269999999999 31.953633 2.5033759999999998 32.267043999999999 2.4923739999999999 32.556272999999997 2.482345 32.823498000000001 2.4732159999999999 33.070656999999997 2.464915 33.299486000000002 2.457376 33.511541000000001 2.450536 33.708218000000002 2.444337 33.890779000000002 2.438723 34.060361999999998 2.4336440000000001 34.217998000000001 2.429052 34.364623000000002 2.424906 34.501086000000001 2.421163 34.628163000000001 2.417789 34.746561 2.414749 34.856924999999997 2.4120119999999998 34.959847000000003 2.409551 35.055869000000001 2.4073389999999999 35.145488999999998 2.4053529999999999 35.229165000000002 2.4035709999999999 35.307318000000002 2.4019740000000001 35.380335000000002 2.4005450000000002 35.448574999999998 2.3992659999999999 35.512368000000002 2.3981240000000001 35.572020000000002 2.3971040000000001 35.627814000000001 2.3961950000000001 35.680010000000003 2.3953850000000001 35.728850999999999 2.3946649999999998
+      </statistics>
+    </statisticsFrames>
+  </listOfOutput>
+  <random seed="2147483648">
+  </random>
+</cain>

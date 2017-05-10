@@ -1,0 +1,222 @@
+
+:
+Total time = 0.188678
+
+Distribute objects with multi-level cells:
+Total time = 0.188627
+
+sfc::distribute() for CellsMultiLevel:
+Initial objects = 1.04858e+06
+maxObjectsPerCell = 83880
+Redistributed objects = 1.04858e+06
+Local cells = 64
+Global cells = 64
+buildReduceBroadcast() = 0.181282
+distributeNoSort() = 0.00488942
+Total time = 0.186198
+
+:
+Total time
+  sum = 0.349281, mean = 0.17464, min = 0.174623, max = 0.174658
+
+Distribute objects with multi-level cells:
+Total time
+  sum = 0.349203, mean = 0.174602, min = 0.174602, max = 0.174602
+
+sfc::distribute() for CellsMultiLevel:
+Initial objects = 1.04858e+06
+maxObjectsPerCell = 83880
+Redistributed objects
+  sum = 2.09715e+06, mean = 1.04858e+06, min = 1.04782e+06, max = 1.04933e+06
+Local cells = 32
+Global cells = 64
+buildReduceBroadcast()
+  sum = 0.329234, mean = 0.164617, min = 0.164616, max = 0.164618
+distributeNoSort()
+  sum = 0.0143501, mean = 0.00717503, min = 0.0071716, max = 0.00717847
+Total time
+  sum = 0.343632, mean = 0.171816, min = 0.171816, max = 0.171816
+
+:
+Total time
+  sum = 0.709685, mean = 0.177421, min = 0.177394, max = 0.177436
+
+Distribute objects with multi-level cells:
+Total time
+  sum = 0.709533, mean = 0.177383, min = 0.177359, max = 0.177406
+
+sfc::distribute() for CellsMultiLevel:
+Initial objects = 1.04858e+06
+maxObjectsPerCell = 83880
+Redistributed objects
+  sum = 4.1943e+06, mean = 1.04858e+06, min = 1.04646e+06, max = 1.05089e+06
+Local cells
+  sum = 96, mean = 24, min = 16, max = 32
+Global cells = 64
+buildReduceBroadcast()
+  sum = 0.663486, mean = 0.165871, min = 0.16586, max = 0.165883
+distributeNoSort()
+  sum = 0.0345299, mean = 0.00863248, min = 0.00861977, max = 0.00864509
+Total time
+  sum = 0.69812, mean = 0.17453, min = 0.174526, max = 0.174535
+
+:
+Total time
+  sum = 1.54208, mean = 0.19276, min = 0.190543, max = 0.193167
+
+Distribute objects with multi-level cells:
+Total time
+  sum = 1.5419, mean = 0.192738, min = 0.190523, max = 0.193153
+
+sfc::distribute() for CellsMultiLevel:
+Initial objects = 1.04858e+06
+maxObjectsPerCell = 83880
+Redistributed objects
+  sum = 8.38861e+06, mean = 1.04858e+06, min = 1.04646e+06, max = 1.05089e+06
+Local cells
+  sum = 160, mean = 20, min = 16, max = 32
+Global cells = 64
+buildReduceBroadcast()
+  sum = 1.4146, mean = 0.176825, min = 0.17682, max = 0.176828
+distributeNoSort()
+  sum = 0.102379, mean = 0.0127974, min = 0.0105834, max = 0.0131996
+Total time
+  sum = 1.51717, mean = 0.189646, min = 0.187442, max = 0.190044
+
+:
+Total time
+  sum = 3.88031, mean = 0.242519, min = 0.241098, max = 0.243479
+
+Distribute objects with multi-level cells:
+Total time
+  sum = 3.87995, mean = 0.242497, min = 0.24107, max = 0.243461
+
+sfc::distribute() for CellsMultiLevel:
+Initial objects = 1.04858e+06
+maxObjectsPerCell = 83880
+Redistributed objects
+  sum = 1.67772e+07, mean = 1.04858e+06, min = 1.04399e+06, max = 1.05161e+06
+Local cells
+  sum = 288, mean = 18, min = 16, max = 32
+Global cells = 64
+buildReduceBroadcast()
+  sum = 3.52863, mean = 0.22054, min = 0.220508, max = 0.220566
+distributeNoSort()
+  sum = 0.292046, mean = 0.0182529, min = 0.0169234, max = 0.0188438
+Total time
+  sum = 3.82104, mean = 0.238815, min = 0.237521, max = 0.239413
+
+:
+Total time
+  sum = 27.5293, mean = 0.86029, min = 0.828651, max = 0.886646
+
+Distribute objects with multi-level cells:
+Total time
+  sum = 27.5287, mean = 0.860271, min = 0.828629, max = 0.886632
+
+sfc::distribute() for CellsMultiLevel:
+Initial objects = 1.04858e+06
+maxObjectsPerCell = 83880
+Redistributed objects
+  sum = 3.35544e+07, mean = 1.04858e+06, min = 1.04117e+06, max = 1.05336e+06
+Local cells
+  sum = 545, mean = 17.0312, min = 16, max = 32
+Global cells = 64
+buildReduceBroadcast()
+  sum = 7.09102, mean = 0.221594, min = 0.221555, max = 0.221616
+distributeNoSort()
+  sum = 16.1981, mean = 0.50619, min = 0.495058, max = 0.512039
+Total time
+  sum = 23.2898, mean = 0.727806, min = 0.71668, max = 0.733665
+
+:
+Total time
+  sum = 102.524, mean = 1.60194, min = 1.52655, max = 1.68003
+
+Distribute objects with multi-level cells:
+Total time
+  sum = 102.523, mean = 1.60192, min = 1.52653, max = 1.68001
+
+sfc::distribute() for CellsMultiLevel:
+Initial objects = 1.04858e+06
+maxObjectsPerCell = 83880
+Redistributed objects
+  sum = 6.71089e+07, mean = 1.04858e+06, min = 1.04083e+06, max = 1.05372e+06
+Local cells
+  sum = 1062, mean = 16.5938, min = 16, max = 32
+Global cells = 64
+buildReduceBroadcast()
+  sum = 25.0878, mean = 0.391997, min = 0.391769, max = 0.392369
+distributeNoSort()
+  sum = 65.4821, mean = 1.02316, min = 0.950849, max = 1.10364
+Total time
+  sum = 90.5715, mean = 1.41518, min = 1.34275, max = 1.4956
+
+:
+Total time
+  sum = 313.427, mean = 2.44865, min = 1.18142, max = 2.80732
+
+Distribute objects with multi-level cells:
+Total time
+  sum = 313.425, mean = 2.44863, min = 1.1814, max = 2.8073
+
+sfc::distribute() for CellsMultiLevel:
+Initial objects = 1.04858e+06
+maxObjectsPerCell = 83880
+Redistributed objects
+  sum = 1.34218e+08, mean = 1.04858e+06, min = 0, max = 2.10744e+06
+Local cells
+  sum = 2089, mean = 16.3203, min = 16, max = 32
+Global cells = 64
+buildReduceBroadcast()
+  sum = 37.2038, mean = 0.290655, min = 0.290602, max = 0.290693
+distributeNoSort()
+  sum = 244.631, mean = 1.91118, min = 0.649782, max = 2.27454
+Total time
+  sum = 281.837, mean = 2.20186, min = 0.940484, max = 2.56519
+
+:
+Total time
+  sum = 1430.65, mean = 5.58849, min = 1.82929, max = 7.13899
+
+Distribute objects with multi-level cells:
+Total time
+  sum = 1430.65, mean = 5.58848, min = 1.82927, max = 7.13897
+
+sfc::distribute() for CellsMultiLevel:
+Initial objects = 1.04858e+06
+maxObjectsPerCell = 83880
+Redistributed objects
+  sum = 2.68435e+08, mean = 1.04858e+06, min = 0, max = 4.21487e+06
+Local cells
+  sum = 4139, mean = 16.168, min = 16, max = 32
+Global cells = 64
+buildReduceBroadcast()
+  sum = 108.869, mean = 0.425268, min = 0.425202, max = 0.425302
+distributeNoSort()
+  sum = 1206.9, mean = 4.71447, min = 1.03458, max = 6.18604
+Total time
+  sum = 1315.78, mean = 5.13976, min = 1.45988, max = 6.6113
+
+:
+Total time
+  sum = 5499.03, mean = 10.7403, min = 2.35146, max = 12.9076
+
+Distribute objects with multi-level cells:
+Total time
+  sum = 5499.02, mean = 10.7403, min = 2.35143, max = 12.9076
+
+sfc::distribute() for CellsMultiLevel:
+Initial objects = 1.04858e+06
+maxObjectsPerCell = 83880
+Redistributed objects
+  sum = 5.36871e+08, mean = 1.04858e+06, min = 0, max = 8.42978e+06
+Local cells
+  sum = 8238, mean = 16.0898, min = 16, max = 32
+Global cells = 64
+buildReduceBroadcast()
+  sum = 287.851, mean = 0.562208, min = 0.562068, max = 0.562432
+distributeNoSort()
+  sum = 4974.71, mean = 9.71623, min = 1.37234, max = 11.8062
+Total time
+  sum = 5262.57, mean = 10.2785, min = 1.9346, max = 12.3684

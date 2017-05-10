@@ -1,0 +1,169 @@
+(************** Content-type: application/mathematica **************
+
+                    Mathematica-Compatible Notebook
+
+This notebook can be used with any Mathematica-compatible
+application, such as Mathematica, MathReader or Publicon. The data
+for the notebook starts with the line containing stars above.
+
+To get the notebook into a Mathematica-compatible application, do
+one of the following:
+
+* Save the data starting with the line of stars above into a file
+  with a name ending in .nb, then open the file inside the
+  application;
+
+* Copy the data starting with the line of stars above to the
+  clipboard, then use the Paste menu command inside the application.
+
+Data for notebooks contains only printable 7-bit ASCII and can be
+sent directly in email or through ftp in text mode.  Newlines can be
+CR, LF or CRLF (Unix, Macintosh or MS-DOS style).
+
+NOTE: If you modify the data for this notebook not in a Mathematica-
+compatible application, you must delete the line below containing
+the word CacheID, otherwise Mathematica-compatible applications may
+try to use invalid cache data.
+
+For more information on notebooks and Mathematica-compatible 
+applications, contact Wolfram Research:
+  web: http://www.wolfram.com
+  email: info@wolfram.com
+  phone: +1-217-398-0700 (U.S.)
+
+Notebook reader applications are available free of charge from 
+Wolfram Research.
+*******************************************************************)
+
+(*CacheID: 232*)
+
+
+(*NotebookFileLineBreakTest
+NotebookFileLineBreakTest*)
+(*NotebookOptionsPosition[      4942,        127]*)
+(*NotebookOutlinePosition[      5570,        149]*)
+(*  CellTagsIndexPosition[      5526,        145]*)
+(*WindowFrame->Normal*)
+
+
+
+Notebook[{
+Cell[BoxData[
+    \(<< Graphics`Graphics`\)], "Input"],
+
+Cell[BoxData[
+    \(\(dataSize = {\[IndentingNewLine]{0.01, 
+            0.02}, \[IndentingNewLine]{0.012599, 
+            0.02}, \[IndentingNewLine]{0.01587, 
+            0.0225}, \[IndentingNewLine]{0.02, 
+            0.025}, \[IndentingNewLine]{0.025198, 
+            0.0275}, \[IndentingNewLine]{0.031748, 
+            0.03}, \[IndentingNewLine]{0.04, 
+            0.0325}, \[IndentingNewLine]{0.0503968, 
+            0.035}, \[IndentingNewLine]{0.063496, 
+            0.0375}, \[IndentingNewLine]{0.08, 
+            0.0375}, \[IndentingNewLine]{0.10079, 
+            0.0425}, \[IndentingNewLine]{0.12699, 
+            0.0425}, \[IndentingNewLine]{0.16, 
+            0.045}\[IndentingNewLine]};\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(dataRatio = 
+        Transpose[{\(Transpose[
+                dataSize]\)[\([1]\)], \(Transpose[
+                  dataSize]\)[\([2]\)]/\(Transpose[
+                  dataSize]\)[\([1]\)]}];\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(dataNumber = {\[IndentingNewLine]{178504/10^5, 
+            0.02^3*10^5}, \[IndentingNewLine]{256454/10^5, 
+            0.02^3*10^5}, \[IndentingNewLine]{411459/10^5, 
+            0.0225^3*10^5}, \[IndentingNewLine]{719462/10^5, 
+            0.025^3*10^5}, \[IndentingNewLine]{1329282/10^5, 
+            0.0275^3*10^5}, \[IndentingNewLine]{2535808/10^5, 
+            0.03^3*10^5}, \[IndentingNewLine]{4913811/10^5, 
+            0.0325^3*10^5}, \[IndentingNewLine]{9574832/10^5, 
+            0.035^3*10^5}, \[IndentingNewLine]{18671713/10^5, 
+            0.0375^3*10^5}, \[IndentingNewLine]{36293819/10^5, 
+            0.0375^3*10^5}, \[IndentingNewLine]{70170869/10^5, 
+            0.0425^3*10^5}, \[IndentingNewLine]{134514214/10^5, 
+            0.0425^3*10^5}, \[IndentingNewLine]{254925019/10^5, 
+            0.045^3*10^5}\[IndentingNewLine]};\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(dataNumberRatio = 
+        Transpose[{\(Transpose[
+                dataNumber]\)[\([1]\)], \(Transpose[
+                  dataNumber]\)[\([2]\)]/\(Transpose[
+                  dataNumber]\)[\([1]\)]}];\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(plotSize = 
+        LogLinearListPlot[
+          dataSize, \[IndentingNewLine]PlotStyle \[Rule] 
+            PointSize[
+              0.02], \[IndentingNewLine]Ticks \[Rule] {{0.01, 0.04, 
+                0.16}, {0.02, 0.03, 0.04}}, 
+          TextStyle \[Rule] {FontSize \[Rule] 11}, 
+          PlotLabel -> "\<Best Cell Size\>"];\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(plotRatio = 
+        LogLinearListPlot[dataRatio, PlotStyle \[Rule] PointSize[0.02], 
+          Ticks \[Rule] {{0.01, 0.04, 0.16}, {0.5, 1, 1.5, 2}}, 
+          TextStyle \[Rule] {FontSize \[Rule] 11}, 
+          PlotLabel -> "\<Best Size Ratio\>"];\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(plotNumber = 
+        LogLogListPlot[dataNumberRatio, PlotStyle \[Rule] PointSize[0.02], 
+          Ticks \[Rule] {{1, 10, 100, 1000}, {0.002, 0.008, 0.032, 0.128, 
+                0.512}}, TextStyle \[Rule] {FontSize \[Rule] 11}, 
+          PlotLabel -> "\<Best Record Ratio\>"];\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(Show[GraphicsArray[{plotSize, plotRatio, plotNumber}], 
+        ImageSize \[Rule] 600];\)\)], "Input"]
+},
+FrontEndVersion->"4.1 for X",
+ScreenRectangle->{{0, 1280}, {0, 1024}},
+WindowSize->{520, 600},
+WindowMargins->{{6, Automatic}, {Automatic, 5}}
+]
+
+(*******************************************************************
+Cached data follows.  If you edit this Notebook file directly, not
+using Mathematica, you must remove the line containing CacheID at
+the top of  the file.  The cache data will then be recreated when
+you save this file from within Mathematica.
+*******************************************************************)
+
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+
+(*NotebookFileOutline
+Notebook[{
+Cell[1705, 50, 54, 1, 27, "Input"],
+Cell[1762, 53, 713, 14, 251, "Input"],
+Cell[2478, 69, 226, 5, 59, "Input"],
+Cell[2707, 76, 883, 14, 251, "Input"],
+Cell[3593, 92, 238, 5, 59, "Input"],
+Cell[3834, 99, 368, 8, 75, "Input"],
+Cell[4205, 109, 286, 5, 75, "Input"],
+Cell[4494, 116, 317, 5, 107, "Input"],
+Cell[4814, 123, 124, 2, 43, "Input"]
+}
+]
+*)
+
+
+
+(*******************************************************************
+End of Mathematica Notebook file.
+*******************************************************************)
+

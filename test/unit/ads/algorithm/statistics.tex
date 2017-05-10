@@ -1,0 +1,81 @@
+
+
+%% AMS-LaTeX Created by Wolfram Mathematica 5.2
+
+\documentclass{article}
+\usepackage{amsmath, amssymb, graphics}
+
+\newcommand{\mathsym}[1]{{}}
+\newcommand{\unicode}{{}}
+
+\begin{document}
+
+\title{Data for statistics.cc}
+\author{}
+\date{}
+\maketitle
+
+\section*{0..9}
+
+\noindent\(\pmb{\text{data}=\text{Table}[i,\{i,0,9\}];}\)
+
+\noindent\(\pmb{\text{size}=\text{Length}[\text{data}];}\)
+
+\noindent\(\pmb{\text{mean}=\text{Mean}[\text{data}]}\)
+
+\noindent\(\frac{9}{2}\)
+
+\noindent\(\pmb{\text{variance}=\text{Variance}[\text{data}]}\)
+
+\noindent\(\frac{55}{6}\)
+
+\noindent\(\pmb{\sigma =\sqrt{\text{variance}}}\)
+
+\noindent\(\sqrt{\frac{55}{6}}\)
+
+\noindent\(\pmb{\text{absoluteDeviation}=}\\
+\pmb{\frac{1}{\text{size}}\text{Sum}[\text{Abs}[\text{data}[[i]]-\text{mean}],\{i,1,\text{size}\}]}\)
+
+\noindent\(\frac{5}{2}\)
+
+\noindent\(\pmb{\text{skew}=\frac{1}{\text{size} \sigma ^3}\text{Sum}\left[(\text{data}[[i]]-\text{mean})^3,\{i,1,\text{size}\}\right]}\)
+
+\noindent\(0\)
+
+\noindent\(\pmb{\text{curtosis}=\frac{1}{\text{size} \sigma ^4}\text{Sum}\left[(\text{data}[[i]]-\text{mean})^4,\{i,1,\text{size}\}\right]}\)
+
+\noindent\(\frac{7911}{5500}\)
+
+\section*{1e0..1e9}
+
+\noindent\(\pmb{\text{data}=\text{Table}\left[10^i,\{i,0,9\}\right];}\)
+
+\noindent\(\pmb{\text{size}=\text{Length}[\text{data}];}\)
+
+\noindent\(\pmb{\text{mean}=\text{Mean}[\text{data}]}\)
+
+\noindent\(\frac{1111111111}{10}\)
+
+\noindent\(\pmb{\text{variance}=\text{Variance}[\text{data}]}\)
+
+\noindent\(\frac{985160244446938521}{10}\)
+
+\noindent\(\pmb{\sigma =\sqrt{\text{variance}}}\)
+
+\noindent\(3 \sqrt{\frac{109462249382993169}{10}}\)
+
+\noindent\(\pmb{\text{absoluteDeviation}=}\\
+\pmb{\frac{1}{\text{size}}\text{Sum}[\text{Abs}[\text{data}[[i]]-\text{mean}],\{i,1,\text{size}\}]}\)
+
+\noindent\(\frac{8888888889}{50}\)
+
+\noindent\(\pmb{\text{skew}=\frac{1}{\text{size} \sigma ^3}\text{Sum}\left[(\text{data}[[i]]-\text{mean})^3,\{i,1,\text{size}\}\right]}\)
+
+\noindent\(\left.\left(704545423434655506 \sqrt{\frac{6}{182437082304988615}}\right)\right/1806127115\)
+
+\noindent\(\pmb{\text{curtosis}=\frac{1}{\text{size} \sigma ^4}\text{Sum}\left[(\text{data}[[i]]-\text{mean})^4,\{i,1,\text{size}\}\right]}\)
+
+\noindent\(653377539998302031538196281/101386018810008196097783300\)
+
+
+\end{document}

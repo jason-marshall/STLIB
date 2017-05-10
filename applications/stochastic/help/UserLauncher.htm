@@ -1,0 +1,183 @@
+
+<html>
+<head>
+<title>Launcher</title>
+</head>
+<body>
+<h1>Launcher</h1>
+
+<p align="center">
+<img src="Launcher.png">
+</p>
+
+<p>
+In this panel you select the number of trajectories that you would
+like to generate and the number of cores to use.  On startup Cain
+detects the number of cores in your computer and sets the parameter to
+this value. You may reduce the number of utilized cores if you want to
+reserve more processing power for other applications. For example,
+this may be a good idea if you want to watch a video while running
+your simulation.
+</p>
+
+<p>
+<b>Launching simulations.</b><br>
+There are two ways to launch simulations; you can use 
+either the launch button <img src="launch.png">&nbsp;
+or the compile and launch button <img src="compile.png">.
+Depending on the method you have selected, the launch button
+<img src="launch.png">&nbsp; will either launch the simulation using
+a C++ solver or a Python solver
+that can handle events. Consider the methods that use C++ solvers.
+If your model uses only mass-action kinetics, then a pre-built
+mass-action solver will be launched. Otherwise, a custom solver
+will be compiled and then launched.
+One may force compilation of a custom solver by clicking the
+compile-and-launch button. Compilation typically takes a few seconds. If you
+entered any propensity functions which are not proper C++ expressions,
+you will be notified of the compilation errors.
+Note that you can set the compilation options through the preferences button
+<img src="preferences-system.png">&nbsp; in the main tool bar.
+The custom solvers are typically a little faster than the pre-built
+mass-action solvers, but the difference is usually not significant.
+However, if you are generating many trajectories it may be
+worthwhile to compile a custom solver.
+The mass-action solvers use a function that can evaluate
+kinetic laws with any stoichiometry. Evaluating this function is not as
+fast as evaluating a specific propensity function.
+</p>
+
+<p>
+<b>Stopping simulations.</b><br>
+When a simulation is running, the fraction of trajectories that have
+been generated is shown in the progress bar. You can abort a running
+simulation with <img src="stop.png">. This will wait for
+each processes to finish generating its current trajectory and then
+exit.  The trajectories that have been generated up to that point will
+be stored.  You can also kill a simulation
+with <img src="cancel.png">.  This will kill the solver
+processes and store the partial results if possible. Note that you can
+repeatedly launch suites of simulations to accumulate more trajectories. You
+don't have to calculate them all in a single run.
+</p>
+
+<p>
+<b>Running from the command line.</b><br>
+You can run simulations from the command line if you want. This may be
+useful if you want to use several computers to generate the output.
+(See the <a href="DeveloperCommand.htm">Command Line Solvers</a>
+section.)  First export a solver with
+<img src="utilities-terminal.png">.  You have the option of
+exporting a custom solver or a generic mass-action solver.
+A custom solver is specific to the selected model. A generic solver may
+be used with any model that has mass-action kinetics.
+Next export ascii input files with the export jobs button
+<img src="filesave.png">. This will write an input file for
+each process; the trajectories will be split between the processes.
+Each file contains a description of the selected model and method
+as well as the number of trajectories.  Suppose you 
+export a solver to <tt>solver.exe</tt>. Then you enter 1000 trajectories
+and 4 processes in the launcher window and export the job with a base name
+of <tt>batch</tt>. This will create the solver inputs: 
+<tt>batch_0.txt</tt>, <tt>batch_1.txt</tt>, <tt>batch_2.txt</tt>, and
+<tt>batch_3.txt</tt>.
+You can generate the trajectories for the first batch with the command:
+<pre>
+./solver.exe &lt;batch_0.txt &gt;trajectories_0.txt
+</pre>
+You can import the simulation results with the import trajectories
+button <img src="fileopen.png">. (Make sure that you have selected
+the correct model and method before doing so.)
+See the <a href="DeveloperFile">File Formats</a> section for specifications of
+the input and output file formats.
+</p>
+
+<p>
+<b>Using Mathematica.</b><br>
+If you select the &quot;Mathematica&quot; method in the methods
+editor, the export jobs button changes to the export to Mathematica
+button <img src="mathematica.png">.
+The Mathematica notebook defines the ODE's that describe the reactions
+and species populations as well as commands for numerically solving
+the set of ODE's and plotting the results. The final section in the
+notebook has commands for saving times series data from the solution in a text
+file. You can import this in Cain with the import trajectories
+button <img src="fileopen.png">.
+</p>
+
+<p>
+<b>Importing statistics.</b><br>
+If you have selected either the &quot;Statistics, Transient
+Behavior&quot; or the &quot;Statistics, Steady State&quot; output
+category in the method editor, then all of the buttons in the
+launcher, except for the import button <img src="fileopen.png">,
+will be disabled. This is because there are no Cain solvers for
+these output categories. They serve as placeholders for externally
+generated solutions. One may import the solutions in a text file.
+See the <a href="UserMethodEditor.htm">Method Editor</a> section
+for details.
+</p>
+
+<p>
+Now we will consider two advanced topics: task granularity and job priority.
+If you are an advanced user conducting computationally expensive simulations,
+then these topics may be of interest. Otherwise, just ignore the two sliders
+in the launcher panel and skip the rest of this section.
+</p>
+
+<p>
+<b>Task granularity.</b><br>
+The first slider in this panel lets you select the task
+granularity. Suppose that you want to generate 20,000 trajectories
+using 2 processing cores. Cain will launch two solvers and then send
+them tasks (requests to generate a certain number of trajectories)
+until all of the trajectories have been generated. Note that there are
+many ways of dividing up the 20,000 trajectories. Of course the
+simplest approach is to request that each core generate 10,000. However,
+this may not give the best performance because one core may be busy
+with other tasks. Also, some trajectories may take longer to simulate
+than others. Dynamic task scheduling often improves performance.  Here
+one breaks the problem of generating all of the trajectories into a
+number of tasks. Cain hands out tasks and waits for the solvers to
+finish with them.  When a solver finishes, it receives another. This
+continues until the job is complete. So how many trajectories should
+comprise a task? If generating a single trajectory is computationally
+expensive, then trajectories should be generated one at a time. This
+minimizes the time at the end of the job when one core has finished
+with all of its tasks, but the other core is still
+working. Unfortunately this strategy does not work well when
+generating a single trajectory is cheap. In this case the overhead of
+handing out tasks could be more expensive than generating the
+trajectories. Now it might be best for a task to be 100 or 1,000
+trajectories.
+</p>
+
+<p>
+The size of the tasks (relative to the whole job size) is the task
+<em>granularity</em>. Small tasks are fine grained; large tasks are
+coarse grained. If one puts the granularity slider to the left, the
+trajectories will be generated one at a time. If one puts it to the
+right, the trajectories will be divided amongst the available cores
+and generated in a single task.  The default position of the slider is
+in the middle. Here the task size is the square root of the number of
+trajectories divided by the number of cores.  For our example above,
+trajectories would be generated 100 at a time. The default granularity
+is fine for most scenarios. However, if you are generating many
+trajectories and each one is expensive, it is probably best to put the slider
+to the left.
+</p>
+
+<p>
+<b>Job priority.</b><br>
+The slider at the bottom of the launcher panel allows you to set
+the priority of the solvers. (Mac OS X and Linux users may be familiar with
+the <a href="http://en.wikipedia.org/wiki/Nice_(Unix)">nice</a> program,
+which allows one to set the priority of a process.) By default, the solvers are
+launched with the lowest possible priority. This way your computer will
+remain responsive. You can continue to work with Cain, check your email, or
+surf the web. If your computer is not busy with other tasks, launching with
+a low priority has a negligible effect on the running time of the simulations.
+</p>
+
+</body>
+</html>

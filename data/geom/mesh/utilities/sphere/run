@@ -1,0 +1,24 @@
+./sphere 1 > trivert1.dat
+python tri2index.py < trivert1.dat > sphere_tess_1.brep
+
+./sphere 2 > trivert2.dat
+python tri2index.py < trivert2.dat > sphere_tess_2.brep
+
+./sphere 3 > trivert3.dat
+python tri2index.py < trivert3.dat > sphere_tess_3.brep
+
+./sphere 4 > trivert4.dat
+python tri2index.py < trivert4.dat > sphere_tess_4.brep
+
+./sphere 5 > trivert5.dat
+python tri2index.py < trivert5.dat > sphere_tess_5.brep
+
+./sphere 6 > trivert6.dat
+python tri2index.py < trivert6.dat > sphere_tess_6.brep
+
+./sphere 7 > trivert7.dat
+python tri2index.py < trivert7.dat > sphere_tess_7.brep
+
+./sphere 8 > trivert8.dat
+python tri2index.py < trivert8.dat > sphere_tess_8.brep
+

@@ -1,0 +1,540 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cain version="1.2">
+  <listOfModels>
+    <model id="HeatShock" name="Heat Shock">
+      <listOfSpecies>
+        <species initialAmount="0" id="S1"/>
+        <species initialAmount="0" id="S2"/>
+        <species initialAmount="0" id="S3"/>
+        <species initialAmount="0" id="S4"/>
+        <species initialAmount="1" id="S5"/>
+        <species initialAmount="4.64567e+06" id="S6"/>
+        <species initialAmount="1324" id="S7"/>
+        <species initialAmount="80" id="S8"/>
+        <species initialAmount="16" id="S9"/>
+        <species initialAmount="3413" id="S10"/>
+        <species initialAmount="29" id="S11"/>
+        <species initialAmount="584" id="S12"/>
+        <species initialAmount="1" id="S13"/>
+        <species initialAmount="22" id="S14"/>
+        <species initialAmount="0" id="S15"/>
+        <species initialAmount="171440" id="S16"/>
+        <species initialAmount="9150" id="S17"/>
+        <species initialAmount="2280" id="S18"/>
+        <species initialAmount="6" id="S19"/>
+        <species initialAmount="596" id="S20"/>
+        <species initialAmount="0" id="S21"/>
+        <species initialAmount="13" id="S22"/>
+        <species initialAmount="3" id="S23"/>
+        <species initialAmount="3" id="S24"/>
+        <species initialAmount="7" id="S25"/>
+        <species initialAmount="0" id="S26"/>
+        <species initialAmount="260" id="S27"/>
+        <species initialAmount="0" id="S28"/>
+      </listOfSpecies>
+      <listOfReactions>
+        <reaction propensity="2.54" massAction="true" id="R1">
+          <listOfReactants>
+            <speciesReference species="S1"/>
+            <speciesReference species="S2"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="S3"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="1" massAction="true" id="R2">
+          <listOfReactants>
+            <speciesReference species="S3"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="S1"/>
+            <speciesReference species="S2"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="0.254" massAction="true" id="R3">
+          <listOfReactants>
+            <speciesReference species="S4"/>
+            <speciesReference species="S1"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="S5"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="1" massAction="true" id="R4">
+          <listOfReactants>
+            <speciesReference species="S5"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="S4"/>
+            <speciesReference species="S1"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="0.0254" massAction="true" id="R5">
+          <listOfReactants>
+            <speciesReference species="S1"/>
+            <speciesReference species="S6"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="S7"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="10" massAction="true" id="R6">
+          <listOfReactants>
+            <speciesReference species="S7"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="S1"/>
+            <speciesReference species="S6"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="254" massAction="true" id="R7">
+          <listOfReactants>
+            <speciesReference species="S4"/>
+            <speciesReference species="S14"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="S15"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="10000" massAction="true" id="R8">
+          <listOfReactants>
+            <speciesReference species="S15"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="S4"/>
+            <speciesReference species="S14"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="0.000254" massAction="true" id="R9">
+          <listOfReactants>
+            <speciesReference species="S16"/>
+            <speciesReference species="S14"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="S17"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="0.01" massAction="true" id="R10">
+          <listOfReactants>
+            <speciesReference species="S17"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="S16"/>
+            <speciesReference species="S14"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="0.000254" massAction="true" id="R11">
+          <listOfReactants>
+            <speciesReference species="S3"/>
+            <speciesReference species="S6"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="S8"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="1" massAction="true" id="R12">
+          <listOfReactants>
+            <speciesReference species="S8"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="S3"/>
+            <speciesReference species="S6"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="0.000254" massAction="true" id="R13">
+          <listOfReactants>
+            <speciesReference species="S5"/>
+            <speciesReference species="S6"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="S9"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="1" massAction="true" id="R14">
+          <listOfReactants>
+            <speciesReference species="S9"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="S5"/>
+            <speciesReference species="S6"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="2.54" massAction="true" id="R15">
+          <listOfReactants>
+            <speciesReference species="S3"/>
+            <speciesReference species="S10"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="S12"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="1" massAction="true" id="R16">
+          <listOfReactants>
+            <speciesReference species="S12"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="S3"/>
+            <speciesReference species="S10"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="2540" massAction="true" id="R17">
+          <listOfReactants>
+            <speciesReference species="S5"/>
+            <speciesReference species="S11"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="S13"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="1000" massAction="true" id="R18">
+          <listOfReactants>
+            <speciesReference species="S13"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="S5"/>
+            <speciesReference species="S11"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="0.0254" massAction="true" id="R19">
+          <listOfReactants>
+            <speciesReference species="S15"/>
+            <speciesReference species="S18"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="S19"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="1" massAction="true" id="R20">
+          <listOfReactants>
+            <speciesReference species="S19"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="S15"/>
+            <speciesReference species="S18"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="6.62" massAction="true" id="R21">
+          <listOfReactants>
+            <speciesReference species="S13"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="S22"/>
+            <speciesReference species="S13"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="0.5" massAction="true" id="R22">
+          <listOfReactants>
+            <speciesReference species="S22"/>
+          </listOfReactants>
+        </reaction>
+        <reaction propensity="20" massAction="true" id="R23">
+          <listOfReactants>
+            <speciesReference species="S22"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="S14"/>
+            <speciesReference species="S22"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="0.03" massAction="true" id="R24">
+          <listOfReactants>
+            <speciesReference species="S14"/>
+          </listOfReactants>
+        </reaction>
+        <reaction propensity="0.03" massAction="true" id="R25">
+          <listOfReactants>
+            <speciesReference species="S17"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="S16"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="0.03" massAction="true" id="R26">
+          <listOfReactants>
+            <speciesReference species="S15"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="S4"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="0.03" massAction="true" id="R27">
+          <listOfReactants>
+            <speciesReference species="S19"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="S4"/>
+            <speciesReference species="S18"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="0.03" massAction="true" id="R28">
+          <listOfReactants>
+            <speciesReference species="S28"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="S4"/>
+            <speciesReference species="S27"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="1.67" massAction="true" id="R29">
+          <listOfReactants>
+            <speciesReference species="S13"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="S23"/>
+            <speciesReference species="S13"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="0.5" massAction="true" id="R30">
+          <listOfReactants>
+            <speciesReference species="S23"/>
+          </listOfReactants>
+        </reaction>
+        <reaction propensity="20" massAction="true" id="R31">
+          <listOfReactants>
+            <speciesReference species="S23"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="S18"/>
+            <speciesReference species="S23"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="0.03" massAction="true" id="R32">
+          <listOfReactants>
+            <speciesReference species="S18"/>
+          </listOfReactants>
+        </reaction>
+        <reaction propensity="0.03" massAction="true" id="R33">
+          <listOfReactants>
+            <speciesReference species="S19"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="S15"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="0.00625" massAction="true" id="R34">
+          <listOfReactants>
+            <speciesReference species="S12"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="S25"/>
+            <speciesReference species="S12"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="0.5" massAction="true" id="R35">
+          <listOfReactants>
+            <speciesReference species="S25"/>
+          </listOfReactants>
+        </reaction>
+        <reaction propensity="7" massAction="true" id="R36">
+          <listOfReactants>
+            <speciesReference species="S25"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="S4"/>
+            <speciesReference species="S25"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="0.03" massAction="true" id="R37">
+          <listOfReactants>
+            <speciesReference species="S4"/>
+          </listOfReactants>
+        </reaction>
+        <reaction propensity="3" massAction="true" id="R38">
+          <listOfReactants>
+            <speciesReference species="S19"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="S18"/>
+            <speciesReference species="S14"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="0.7" massAction="true" id="R39">
+          <listOfReactants>
+            <speciesReference species="S21"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="S20"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="0.5" massAction="true" id="R40">
+          <listOfReactants>
+            <speciesReference species="S28"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="S14"/>
+            <speciesReference species="S27"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="1" massAction="true" id="R41">
+          <listOfReactants>
+            <speciesReference species="S13"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="S24"/>
+            <speciesReference species="S13"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="0.5" massAction="true" id="R42">
+          <listOfReactants>
+            <speciesReference species="S24"/>
+          </listOfReactants>
+        </reaction>
+        <reaction propensity="20" massAction="true" id="R43">
+          <listOfReactants>
+            <speciesReference species="S24"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="S20"/>
+            <speciesReference species="S24"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="0.03" massAction="true" id="R44">
+          <listOfReactants>
+            <speciesReference species="S20"/>
+          </listOfReactants>
+        </reaction>
+        <reaction propensity="0.03" massAction="true" id="R45">
+          <listOfReactants>
+            <speciesReference species="S21"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="S4"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="2.54" massAction="true" id="R46">
+          <listOfReactants>
+            <speciesReference species="S4"/>
+            <speciesReference species="S20"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="S21"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="10000" massAction="true" id="R47">
+          <listOfReactants>
+            <speciesReference species="S21"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="S4"/>
+            <speciesReference species="S20"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="0.43333" massAction="true" id="R48">
+          <listOfReactants>
+            <speciesReference species="S13"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="S26"/>
+            <speciesReference species="S13"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="0.5" massAction="true" id="R49">
+          <listOfReactants>
+            <speciesReference species="S26"/>
+          </listOfReactants>
+        </reaction>
+        <reaction propensity="20" massAction="true" id="R50">
+          <listOfReactants>
+            <speciesReference species="S26"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="S27"/>
+            <speciesReference species="S26"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="0.03" massAction="true" id="R51">
+          <listOfReactants>
+            <speciesReference species="S27"/>
+          </listOfReactants>
+        </reaction>
+        <reaction propensity="0.03" massAction="true" id="R52">
+          <listOfReactants>
+            <speciesReference species="S28"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="S15"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="2.54" massAction="true" id="R53">
+          <listOfReactants>
+            <speciesReference species="S15"/>
+            <speciesReference species="S27"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="S28"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="10000" massAction="true" id="R54">
+          <listOfReactants>
+            <speciesReference species="S28"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="S15"/>
+            <speciesReference species="S27"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="0.03" massAction="true" id="R55">
+          <listOfReactants>
+            <speciesReference species="S5"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="S1"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="0.03" massAction="true" id="R56">
+          <listOfReactants>
+            <speciesReference species="S13"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="S1"/>
+            <speciesReference species="S11"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="0.03" massAction="true" id="R57">
+          <listOfReactants>
+            <speciesReference species="S9"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="S7"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="0.03" massAction="true" id="R58">
+          <listOfReactants>
+            <speciesReference species="S15"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="S14"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="0.03" massAction="true" id="R59">
+          <listOfReactants>
+            <speciesReference species="S19"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="S14"/>
+            <speciesReference species="S18"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="0.03" massAction="true" id="R60">
+          <listOfReactants>
+            <speciesReference species="S28"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="S14"/>
+            <speciesReference species="S27"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="0.03" massAction="true" id="R61">
+          <listOfReactants>
+            <speciesReference species="S21"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="S20"/>
+          </listOfProducts>
+        </reaction>
+      </listOfReactions>
+    </model>
+  </listOfModels>
+  <random seed="2147483648">
+  </random>
+</cain>

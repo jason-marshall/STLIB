@@ -1,0 +1,2252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbml xmlns="http://www.sbml.org/sbml/level2" xmlns:jd="http://www.sys-bio.org/sbml" metaid="metaid_000001" level="2" version="1">
+  <annotation>
+      <jd:header>
+         <VersionHeader SBMLVersion="1.0"></VersionHeader>
+         <ModelHeader Author="Mark Poolman, Oxford Brookes University" ModelTitle="Calvin Cycle" ModelVersion="??"></ModelHeader>
+      </jd:header>
+      <jd:display>
+         <SBMLGraphicsHeader BackGroundColor="15728639"></SBMLGraphicsHeader>
+      </jd:display>
+</annotation>
+  <model metaid="metaid_0000002" id="untitled" name="Poolman2004_CalvinCycle">
+    <notes>
+      <body xmlns="http://www.w3.org/1999/xhtml"><p>This model originates from BioModels Database: A Database of Annotated Published Models. It is copyright (c) 2005-2007 The BioModels Team.<br /> For more information see the <a href="http://www.ebi.ac.uk/biomodels/legal.html">terms of use</a>.</p></body>
+    </notes>
+    <annotation>
+         <jd:notes xmlns:jd="http://www.sys-bio.org/sbml" type="ASCII">
+            <note value="// Calvin cycle model"></note>
+            <note value="// (c) Mark Poolman (mgpoolman@brookes.ac.uk) 1995-2002"></note>
+            <note value="// Based description by Pettersson 1988, Eur. J. Biochem. 175, 661--672"></note>
+            <note value="//"></note>
+            <note value="//Differences are:"></note>
+            <note value="//    1 - Reactions assumed by Pettersson to be in equilibrium have fast mass action kinetics."></note>
+            <note value="//"></note>
+            <note value="//    2 - Introduction of the parameter PGAxpMult to modulate PGA export through TPT."></note>
+            <note value="//"></note>
+            <note value="//    3 - Introduction of Starch phosphorylase reaction."></note>
+            <note value="//"></note>
+            <note value="//"></note>
+            <note value="//This file may be freely copied or translated into other formats provided:"></note>
+            <note value="//"></note>
+            <note value="//    1 - This notice is reproduced in its entirety"></note>
+            <note value="//"></note>
+            <note value="//    2 - Published material making use of (information gained from) this model cites at least:"></note>
+            <note value="//"></note>
+            <note value="// (a) Poolman, 1999, Computer Modelling Applied to the Calvin Cycle, PhD Thesis, Oxford Brookes University"></note>
+            <note value="//"></note>
+            <note value="// and:"></note>
+            <note value="//     (b) Poolman, Fell, and Thomas. 2000, Modelling Photosynthesis and its control,"></note>
+            <note value="//         J. Exp. Bot. 51, 319--328"></note>
+            <note value="//"></note>
+            <note value="//     or"></note>
+            <note value="//"></note>
+            <note value="//     (c) Poolman et al. 2001, Computer modelling and experimental evidence for two steady states in"></note>
+            <note value="//         the photosynthetic Calvin cycle. Eur. J. Biochem. 268, 2810--2816 "></note>
+            <note value="//"></note>
+            <note value="//Further related information may be found at http://mudshark.brookes.ac.uk"></note>
+         </jd:notes>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" >
+<rdf:Description rdf:about="#metaid_0000002">
+<dc:creator rdf:parseType="Resource">
+<rdf:Bag>
+<rdf:li rdf:parseType="Resource">
+<vCard:N rdf:parseType="Resource">
+<vCard:Family>Sauro</vCard:Family>
+<vCard:Given>Herbert</vCard:Given>
+</vCard:N>
+<vCard:EMAIL>Herbert_Sauro@kgi.edu</vCard:EMAIL>
+<vCard:ORG>
+<vCard:Orgname>Keck Graduate Institute</vCard:Orgname>
+</vCard:ORG>
+</rdf:li>
+<rdf:li rdf:parseType="Resource">
+<vCard:N rdf:parseType="Resource">
+<vCard:Family>Poolman</vCard:Family>
+<vCard:Given>Mark</vCard:Given>
+</vCard:N>
+<vCard:EMAIL>mgpoolman@brookes.ac.uk</vCard:EMAIL>
+<vCard:ORG>
+<vCard:Orgname>Oxford Brookes University</vCard:Orgname>
+</vCard:ORG>
+</rdf:li>
+</rdf:Bag>
+</dc:creator>
+<dcterms:created rdf:parseType="Resource">
+<dcterms:W3CDTF>2005-07-28T12:48:16</dcterms:W3CDTF>
+</dcterms:created>
+<dcterms:modified rdf:parseType="Resource">
+<dcterms:W3CDTF>2007-01-04T23:15:41</dcterms:W3CDTF>
+</dcterms:modified>
+<bqmodel:is>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.ebi.ac.uk/biomodels/#BIOMD0000000013"/>
+</rdf:Bag>
+</bqmodel:is>
+<bqmodel:isDescribedBy>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.pubmed.gov/#15073223"/>
+</rdf:Bag>
+</bqmodel:isDescribedBy>
+<bqbiol:is>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.ncbi.nlm.nih.gov/Taxonomy/#4097"/>
+</rdf:Bag>
+</bqbiol:is>
+<bqbiol:isVersionOf>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.geneontology.org/#GO:0015979"/>
+<rdf:li rdf:resource="http://www.geneontology.org/#GO:0019253"/>
+</rdf:Bag>
+</bqbiol:isVersionOf>
+</rdf:Description>
+</rdf:RDF>
+</annotation>
+
+    <listOfCompartments>
+      <compartment metaid="metaid_0000003" id="uVol" size="1">
+        <annotation>
+               <jd:display xmlns:jd="http://www.sys-bio.org/sbml">
+                  <boundingBox h="0" w="0" x="0" y="0"></boundingBox>
+               </jd:display>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" >
+<rdf:Description rdf:about="#metaid_0000003">
+<bqbiol:is>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.geneontology.org/#GO:0009570"/>
+</rdf:Bag>
+</bqbiol:is>
+</rdf:Description>
+</rdf:RDF>
+</annotation>
+
+      </compartment>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species metaid="metaid_0000004" id="x_CO2" compartment="uVol" initialAmount="1" boundaryCondition="true">
+        <annotation>
+               <jd:display xmlns:jd="http://www.sys-bio.org/sbml" borderType="ntRound" edgeColor="0" edgeThickness="1" fillColor="16777215" iconIndex="-1" selectedEdgeColor="255" x="994" y="400">
+                  <font fontColor="0" fontName="Arial" fontSize="8" fontStyle=""></font>
+               </jd:display>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" >
+<rdf:Description rdf:about="#metaid_0000004">
+<bqbiol:is>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.ebi.ac.uk/chebi/#CHEBI:16526"/>
+<rdf:li rdf:resource="http://www.genome.jp/kegg/compound/#C00011"/>
+</rdf:Bag>
+</bqbiol:is>
+</rdf:Description>
+</rdf:RDF>
+</annotation>
+
+      </species>
+      <species metaid="metaid_0000005" id="RuBP_ch" compartment="uVol" initialAmount="0.33644" hasOnlySubstanceUnits="true">
+        <annotation>
+               <jd:display xmlns:jd="http://www.sys-bio.org/sbml" borderType="ntRound" edgeColor="0" edgeThickness="1" fillColor="16777215" iconIndex="-1" selectedEdgeColor="255" x="928" y="365">
+                  <font fontColor="0" fontName="Arial" fontSize="8" fontStyle=""></font>
+               </jd:display>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" >
+<rdf:Description rdf:about="#metaid_0000005">
+<bqbiol:is>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.genome.jp/kegg/compound/#C01182"/>
+</rdf:Bag>
+</bqbiol:is>
+</rdf:Description>
+</rdf:RDF>
+</annotation>
+
+      </species>
+      <species metaid="metaid_0000006" id="PGA_ch" compartment="uVol" initialAmount="3.35479" hasOnlySubstanceUnits="true">
+        <annotation>
+               <jd:display xmlns:jd="http://www.sys-bio.org/sbml" borderType="ntRound" edgeColor="0" edgeThickness="1" fillColor="16777215" iconIndex="-1" selectedEdgeColor="255" x="930" y="518">
+                  <font fontColor="0" fontName="Arial" fontSize="8" fontStyle=""></font>
+               </jd:display>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" >
+<rdf:Description rdf:about="#metaid_0000006">
+<bqbiol:is>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.genome.jp/kegg/compound/#C00197"/>
+</rdf:Bag>
+</bqbiol:is>
+</rdf:Description>
+</rdf:RDF>
+</annotation>
+
+      </species>
+      <species metaid="metaid_0000007" id="ATP_ch" compartment="uVol" initialAmount="0.49806" hasOnlySubstanceUnits="true">
+        <annotation>
+               <jd:display xmlns:jd="http://www.sys-bio.org/sbml" borderType="ntRound" edgeColor="0" edgeThickness="1" fillColor="16777215" iconIndex="-1" selectedEdgeColor="255" x="657" y="761">
+                  <font fontColor="0" fontName="Arial" fontSize="8" fontStyle=""></font>
+               </jd:display>
+               <jd:listOfShadows xmlns:jd="http://www.sys-bio.org/sbml">
+                  <shadow name="___ATP_ch_0" x="839" y="279"></shadow>
+                  <shadow name="___ATP_ch_1" x="864" y="441"></shadow>
+                  <shadow name="___ATP_ch_2" x="23" y="246"></shadow>
+               </jd:listOfShadows>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" >
+<rdf:Description rdf:about="#metaid_0000007">
+<bqbiol:is>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.ebi.ac.uk/chebi/#CHEBI:15422"/>
+<rdf:li rdf:resource="http://www.genome.jp/kegg/compound/#C00002"/>
+</rdf:Bag>
+</bqbiol:is>
+</rdf:Description>
+</rdf:RDF>
+</annotation>
+
+      </species>
+      <species metaid="metaid_0000008" id="BPGA_ch" compartment="uVol" initialAmount="0.14825" hasOnlySubstanceUnits="true">
+        <annotation>
+               <jd:display xmlns:jd="http://www.sys-bio.org/sbml" borderType="ntRound" edgeColor="0" edgeThickness="1" fillColor="16777215" iconIndex="-1" selectedEdgeColor="255" x="703" y="518">
+                  <font fontColor="0" fontName="Arial" fontSize="8" fontStyle=""></font>
+               </jd:display>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" >
+<rdf:Description rdf:about="#metaid_0000008">
+<bqbiol:is>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.genome.jp/kegg/compound/#C00236"/>
+</rdf:Bag>
+</bqbiol:is>
+</rdf:Description>
+</rdf:RDF>
+</annotation>
+
+      </species>
+      <species metaid="metaid_0000009" id="x_NADPH_ch" compartment="uVol" initialAmount="0.21" hasOnlySubstanceUnits="true" boundaryCondition="true">
+        <annotation>
+               <jd:display xmlns:jd="http://www.sys-bio.org/sbml" borderType="ntRound" edgeColor="0" edgeThickness="1" fillColor="16777215" iconIndex="-1" selectedEdgeColor="255" x="649" y="554">
+                  <font fontColor="0" fontName="Arial" fontSize="8" fontStyle=""></font>
+               </jd:display>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" >
+<rdf:Description rdf:about="#metaid_0000009">
+<bqbiol:is>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.ebi.ac.uk/chebi/#CHEBI:16474"/>
+<rdf:li rdf:resource="http://www.genome.jp/kegg/compound/#C00005"/>
+</rdf:Bag>
+</bqbiol:is>
+</rdf:Description>
+</rdf:RDF>
+</annotation>
+
+      </species>
+      <species metaid="metaid_0000010" id="GAP_ch" compartment="uVol" initialAmount="0.01334">
+        <annotation>
+               <jd:display xmlns:jd="http://www.sys-bio.org/sbml" borderType="ntRound" edgeColor="0" edgeThickness="1" fillColor="16777215" iconIndex="-1" selectedEdgeColor="255" x="469" y="515">
+                  <font fontColor="0" fontName="Arial" fontSize="8" fontStyle=""></font>
+               </jd:display>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" >
+<rdf:Description rdf:about="#metaid_0000010">
+<bqbiol:is>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.ebi.ac.uk/chebi/#CHEBI:17138"/>
+<rdf:li rdf:resource="http://www.genome.jp/kegg/compound/#C00118"/>
+</rdf:Bag>
+</bqbiol:is>
+</rdf:Description>
+</rdf:RDF>
+</annotation>
+
+      </species>
+      <species metaid="metaid_0000011" id="Pi_ch" compartment="uVol" initialAmount="1.5662">
+        <annotation>
+               <jd:display xmlns:jd="http://www.sys-bio.org/sbml" borderType="ntRound" edgeColor="0" edgeThickness="1" fillColor="16777215" iconIndex="-1" selectedEdgeColor="255" x="847" y="678">
+                  <font fontColor="0" fontName="Arial" fontSize="8" fontStyle=""></font>
+               </jd:display>
+               <jd:listOfShadows xmlns:jd="http://www.sys-bio.org/sbml">
+                  <shadow name="___Pi_ch_0" x="22" y="140"></shadow>
+                  <shadow name="___Pi_ch_1" x="241" y="124"></shadow>
+                  <shadow name="___Pi_ch_2" x="426" y="428"></shadow>
+                  <shadow name="___Pi_ch_3" x="175" y="633"></shadow>
+                  <shadow name="___Pi_ch_4" x="535" y="554"></shadow>
+                  <shadow name="___Pi_ch_5" x="693" y="25"></shadow>
+               </jd:listOfShadows>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" >
+<rdf:Description rdf:about="#metaid_0000011">
+<bqbiol:is>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.ebi.ac.uk/chebi/#CHEBI:18367"/>
+<rdf:li rdf:resource="http://www.genome.jp/kegg/compound/#C00009"/>
+</rdf:Bag>
+</bqbiol:is>
+</rdf:Description>
+</rdf:RDF>
+</annotation>
+
+      </species>
+      <species metaid="metaid_0000012" id="DHAP_ch" compartment="uVol" initialAmount="0.29345">
+        <annotation>
+               <jd:display xmlns:jd="http://www.sys-bio.org/sbml" borderType="ntRound" edgeColor="0" edgeThickness="1" fillColor="16777215" iconIndex="-1" selectedEdgeColor="255" x="244" y="515">
+                  <font fontColor="0" fontName="Arial" fontSize="8" fontStyle=""></font>
+               </jd:display>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" >
+<rdf:Description rdf:about="#metaid_0000012">
+<bqbiol:is>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.ebi.ac.uk/chebi/#CHEBI:16108"/>
+<rdf:li rdf:resource="http://www.genome.jp/kegg/compound/#C00111"/>
+</rdf:Bag>
+</bqbiol:is>
+</rdf:Description>
+</rdf:RDF>
+</annotation>
+
+      </species>
+      <species metaid="metaid_0000013" id="FBP_ch" compartment="uVol" initialAmount="0.02776">
+        <annotation>
+               <jd:display xmlns:jd="http://www.sys-bio.org/sbml" borderType="ntRound" edgeColor="0" edgeThickness="1" fillColor="16777215" iconIndex="-1" selectedEdgeColor="255" x="354" y="429">
+                  <font fontColor="0" fontName="Arial" fontSize="8" fontStyle=""></font>
+               </jd:display>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" >
+<rdf:Description rdf:about="#metaid_0000013">
+<bqbiol:is>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.ebi.ac.uk/chebi/#CHEBI:16905"/>
+<rdf:li rdf:resource="http://www.genome.jp/kegg/compound/#C05378"/>
+</rdf:Bag>
+</bqbiol:is>
+</rdf:Description>
+</rdf:RDF>
+</annotation>
+
+      </species>
+      <species metaid="metaid_0000014" id="F6P_ch" compartment="uVol" initialAmount="1.36481">
+        <annotation>
+               <jd:display xmlns:jd="http://www.sys-bio.org/sbml" borderType="ntRound" edgeColor="0" edgeThickness="1" fillColor="16777215" iconIndex="-1" selectedEdgeColor="255" x="354" y="327">
+                  <font fontColor="0" fontName="Arial" fontSize="8" fontStyle=""></font>
+               </jd:display>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" >
+<rdf:Description rdf:about="#metaid_0000014">
+<bqbiol:is>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.ebi.ac.uk/chebi/#CHEBI:15946"/>
+<rdf:li rdf:resource="http://www.genome.jp/kegg/compound/#C05345"/>
+</rdf:Bag>
+</bqbiol:is>
+</rdf:Description>
+</rdf:RDF>
+</annotation>
+
+      </species>
+      <species metaid="metaid_0000015" id="E4P_ch" compartment="uVol" initialAmount="0.41021">
+        <annotation>
+               <jd:display xmlns:jd="http://www.sys-bio.org/sbml" borderType="ntRound" edgeColor="0" edgeThickness="1" fillColor="16777215" iconIndex="-1" selectedEdgeColor="255" x="354" y="165">
+                  <font fontColor="0" fontName="Arial" fontSize="8" fontStyle=""></font>
+               </jd:display>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" >
+<rdf:Description rdf:about="#metaid_0000015">
+<bqbiol:is>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.genome.jp/kegg/compound/#C00279"/>
+</rdf:Bag>
+</bqbiol:is>
+</rdf:Description>
+</rdf:RDF>
+</annotation>
+
+      </species>
+      <species metaid="metaid_0000016" id="X5P_ch" compartment="uVol" initialAmount="0.00363">
+        <annotation>
+               <jd:display xmlns:jd="http://www.sys-bio.org/sbml" borderType="ntRound" edgeColor="0" edgeThickness="1" fillColor="16777215" iconIndex="-1" selectedEdgeColor="255" x="828" y="164">
+                  <font fontColor="0" fontName="Arial" fontSize="8" fontStyle=""></font>
+               </jd:display>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" >
+<rdf:Description rdf:about="#metaid_0000016">
+<bqbiol:is>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.genome.jp/kegg/compound/#C00231"/>
+</rdf:Bag>
+</bqbiol:is>
+</rdf:Description>
+</rdf:RDF>
+</annotation>
+
+      </species>
+      <species metaid="metaid_0000017" id="SBP_ch" compartment="uVol" initialAmount="1.56486">
+        <annotation>
+               <jd:display xmlns:jd="http://www.sys-bio.org/sbml" borderType="ntRound" edgeColor="0" edgeThickness="1" fillColor="16777215" iconIndex="-1" selectedEdgeColor="255" x="515" y="70">
+                  <font fontColor="0" fontName="Arial" fontSize="8" fontStyle=""></font>
+               </jd:display>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" >
+<rdf:Description rdf:about="#metaid_0000017">
+<bqbiol:is>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.ebi.ac.uk/chebi/#CHEBI:17969"/>
+<rdf:li rdf:resource="http://www.genome.jp/kegg/compound/#C00447"/>
+</rdf:Bag>
+</bqbiol:is>
+</rdf:Description>
+</rdf:RDF>
+</annotation>
+
+      </species>
+      <species metaid="metaid_0000018" id="S7P_ch" compartment="uVol" initialAmount="0.00541">
+        <annotation>
+               <jd:display xmlns:jd="http://www.sys-bio.org/sbml" borderType="ntRound" edgeColor="0" edgeThickness="1" fillColor="16777215" iconIndex="-1" selectedEdgeColor="255" x="691" y="69">
+                  <font fontColor="0" fontName="Arial" fontSize="8" fontStyle=""></font>
+               </jd:display>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" >
+<rdf:Description rdf:about="#metaid_0000018">
+<bqbiol:is>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.ebi.ac.uk/chebi/#CHEBI:15721"/>
+<rdf:li rdf:resource="http://www.genome.jp/kegg/compound/#C05382"/>
+</rdf:Bag>
+</bqbiol:is>
+</rdf:Description>
+</rdf:RDF>
+</annotation>
+
+      </species>
+      <species metaid="metaid_0000019" id="R5P_ch" compartment="uVol" initialAmount="0.00599">
+        <annotation>
+               <jd:display xmlns:jd="http://www.sys-bio.org/sbml" borderType="ntRound" edgeColor="0" edgeThickness="1" fillColor="16777215" iconIndex="-1" selectedEdgeColor="255" x="932" y="166">
+                  <font fontColor="0" fontName="Arial" fontSize="8" fontStyle=""></font>
+               </jd:display>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" >
+<rdf:Description rdf:about="#metaid_0000019">
+<bqbiol:is>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.ebi.ac.uk/chebi/#CHEBI:17797"/>
+<rdf:li rdf:resource="http://www.genome.jp/kegg/compound/#C00117"/>
+</rdf:Bag>
+</bqbiol:is>
+</rdf:Description>
+</rdf:RDF>
+</annotation>
+
+      </species>
+      <species metaid="metaid_0000020" id="Ru5P_ch" compartment="uVol" initialAmount="0.00235">
+        <annotation>
+               <jd:display xmlns:jd="http://www.sys-bio.org/sbml" borderType="ntRound" edgeColor="0" edgeThickness="1" fillColor="16777215" iconIndex="-1" selectedEdgeColor="255" x="929" y="253">
+                  <font fontColor="0" fontName="Arial" fontSize="8" fontStyle=""></font>
+               </jd:display>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" >
+<rdf:Description rdf:about="#metaid_0000020">
+<bqbiol:is>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.genome.jp/kegg/compound/#C00199"/>
+</rdf:Bag>
+</bqbiol:is>
+</rdf:Description>
+</rdf:RDF>
+</annotation>
+
+      </species>
+      <species metaid="metaid_0000021" id="x_Pi_cyt" compartment="uVol" initialAmount="0.5" boundaryCondition="true">
+        <annotation>
+               <jd:display xmlns:jd="http://www.sys-bio.org/sbml" borderType="ntRound" edgeColor="0" edgeThickness="1" fillColor="16777215" iconIndex="-1" selectedEdgeColor="255" x="844" y="589">
+                  <font fontColor="0" fontName="Arial" fontSize="8" fontStyle=""></font>
+               </jd:display>
+               <jd:listOfShadows xmlns:jd="http://www.sys-bio.org/sbml">
+                  <shadow name="___x_Pi_cyt_0" x="172" y="569"></shadow>
+               </jd:listOfShadows>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" >
+<rdf:Description rdf:about="#metaid_0000021">
+<bqbiol:is>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.ebi.ac.uk/chebi/#CHEBI:18367"/>
+<rdf:li rdf:resource="http://www.genome.jp/kegg/compound/#C00009"/>
+</rdf:Bag>
+</bqbiol:is>
+</rdf:Description>
+</rdf:RDF>
+</annotation>
+
+      </species>
+      <species metaid="metaid_0000022" id="x_GAP_cyt" compartment="uVol" initialAmount="1" boundaryCondition="true">
+        <annotation>
+               <jd:display xmlns:jd="http://www.sys-bio.org/sbml" borderType="ntRound" edgeColor="0" edgeThickness="1" fillColor="16777215" iconIndex="-1" selectedEdgeColor="255" x="458" y="754">
+                  <font fontColor="0" fontName="Arial" fontSize="8" fontStyle=""></font>
+               </jd:display>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" >
+<rdf:Description rdf:about="#metaid_0000022">
+<bqbiol:is>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.ebi.ac.uk/chebi/#CHEBI:17138"/>
+<rdf:li rdf:resource="http://www.genome.jp/kegg/compound/#C00661"/>
+</rdf:Bag>
+</bqbiol:is>
+</rdf:Description>
+</rdf:RDF>
+</annotation>
+
+      </species>
+      <species metaid="metaid_0000023" id="G6P_ch" compartment="uVol" initialAmount="3.1396">
+        <annotation>
+               <jd:display xmlns:jd="http://www.sys-bio.org/sbml" borderType="ntRound" edgeColor="0" edgeThickness="1" fillColor="16777215" iconIndex="-1" selectedEdgeColor="255" x="130" y="328">
+                  <font fontColor="0" fontName="Arial" fontSize="8" fontStyle=""></font>
+               </jd:display>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" >
+<rdf:Description rdf:about="#metaid_0000023">
+<bqbiol:is>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.ebi.ac.uk/chebi/#CHEBI:14314"/>
+<rdf:li rdf:resource="http://www.genome.jp/kegg/compound/#C00668"/>
+</rdf:Bag>
+</bqbiol:is>
+</rdf:Description>
+</rdf:RDF>
+</annotation>
+
+      </species>
+      <species metaid="metaid_0000024" id="x_NADP_ch" compartment="uVol" initialAmount="0.29" boundaryCondition="true">
+        <annotation>
+               <jd:display xmlns:jd="http://www.sys-bio.org/sbml" borderType="ntRound" edgeColor="0" edgeThickness="1" fillColor="16777215" iconIndex="-1" selectedEdgeColor="255" x="535" y="436">
+                  <font fontColor="0" fontName="Arial" fontSize="8" fontStyle=""></font>
+               </jd:display>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" >
+<rdf:Description rdf:about="#metaid_0000024">
+<bqbiol:is>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.ebi.ac.uk/chebi/#CHEBI:18009"/>
+<rdf:li rdf:resource="http://www.genome.jp/kegg/compound/#C00006"/>
+</rdf:Bag>
+</bqbiol:is>
+</rdf:Description>
+</rdf:RDF>
+</annotation>
+
+      </species>
+      <species metaid="metaid_0000025" id="x_PGA_cyt" compartment="uVol" initialAmount="1" boundaryCondition="true">
+        <annotation>
+               <jd:display xmlns:jd="http://www.sys-bio.org/sbml" borderType="ntRound" edgeColor="0" edgeThickness="1" fillColor="16777215" iconIndex="-1" selectedEdgeColor="255" x="919" y="754">
+                  <font fontColor="0" fontName="Arial" fontSize="8" fontStyle=""></font>
+               </jd:display>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" >
+<rdf:Description rdf:about="#metaid_0000025">
+<bqbiol:is>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.genome.jp/kegg/compound/#C00197"/>
+</rdf:Bag>
+</bqbiol:is>
+</rdf:Description>
+</rdf:RDF>
+</annotation>
+
+      </species>
+      <species metaid="metaid_0000026" id="ADP_ch" compartment="uVol" initialAmount="0.00149">
+        <annotation>
+               <jd:display xmlns:jd="http://www.sys-bio.org/sbml" borderType="ntRound" edgeColor="0" edgeThickness="1" fillColor="16777215" iconIndex="-1" selectedEdgeColor="255" x="870" y="790">
+                  <font fontColor="0" fontName="Arial" fontSize="8" fontStyle=""></font>
+               </jd:display>
+               <jd:listOfShadows xmlns:jd="http://www.sys-bio.org/sbml">
+                  <shadow name="___ADP_ch_0" x="834" y="340"></shadow>
+                  <shadow name="___ADP_ch_1" x="799" y="446"></shadow>
+                  <shadow name="___ADP_ch_2" x="40" y="82"></shadow>
+               </jd:listOfShadows>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" >
+<rdf:Description rdf:about="#metaid_0000026">
+<bqbiol:is>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.ebi.ac.uk/chebi/#CHEBI:16761"/>
+<rdf:li rdf:resource="http://www.genome.jp/kegg/compound/#C00008"/>
+</rdf:Bag>
+</bqbiol:is>
+</rdf:Description>
+</rdf:RDF>
+</annotation>
+
+      </species>
+      <species metaid="metaid_0000027" id="x_DHAP_cyt" compartment="uVol" initialAmount="1" boundaryCondition="true">
+        <annotation>
+               <jd:display xmlns:jd="http://www.sys-bio.org/sbml" borderType="ntRound" edgeColor="0" edgeThickness="1" fillColor="16777215" iconIndex="-1" selectedEdgeColor="255" x="241" y="691">
+                  <font fontColor="0" fontName="Arial" fontSize="8" fontStyle=""></font>
+               </jd:display>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" >
+<rdf:Description rdf:about="#metaid_0000027">
+<bqbiol:is>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.ebi.ac.uk/chebi/#CHEBI:16108"/>
+<rdf:li rdf:resource="http://www.genome.jp/kegg/compound/#C00111"/>
+</rdf:Bag>
+</bqbiol:is>
+</rdf:Description>
+</rdf:RDF>
+</annotation>
+
+      </species>
+      <species metaid="metaid_0000028" id="x_Proton_ch" compartment="uVol" initialAmount="1.26e-05" boundaryCondition="true">
+        <annotation>
+               <jd:display xmlns:jd="http://www.sys-bio.org/sbml" borderType="ntRound" edgeColor="0" edgeThickness="1" fillColor="16777215" iconIndex="-1" selectedEdgeColor="255" x="618" y="436">
+                  <font fontColor="0" fontName="Arial" fontSize="8" fontStyle=""></font>
+               </jd:display>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" >
+<rdf:Description rdf:about="#metaid_0000028">
+<bqbiol:is>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.ebi.ac.uk/chebi/#CHEBI:24636"/>
+</rdf:Bag>
+</bqbiol:is>
+</rdf:Description>
+</rdf:RDF>
+</annotation>
+
+      </species>
+      <species metaid="metaid_0000029" id="G1P_ch" compartment="uVol" initialAmount="0.18206">
+        <annotation>
+               <jd:display xmlns:jd="http://www.sys-bio.org/sbml" borderType="ntRound" edgeColor="0" edgeThickness="1" fillColor="16777215" iconIndex="-1" selectedEdgeColor="255" x="130" y="256">
+                  <font fontColor="0" fontName="Arial" fontSize="8" fontStyle=""></font>
+               </jd:display>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" >
+<rdf:Description rdf:about="#metaid_0000029">
+<bqbiol:is>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.ebi.ac.uk/chebi/#CHEBI:16218"/>
+<rdf:li rdf:resource="http://www.genome.jp/kegg/compound/#C00103"/>
+</rdf:Bag>
+</bqbiol:is>
+</rdf:Description>
+</rdf:RDF>
+</annotation>
+
+      </species>
+      <species metaid="metaid_0000030" id="x_Starch_ch" compartment="uVol" initialAmount="1" boundaryCondition="true">
+        <annotation>
+               <jd:display xmlns:jd="http://www.sys-bio.org/sbml" borderType="ntRound" edgeColor="0" edgeThickness="1" fillColor="16777215" iconIndex="-1" selectedEdgeColor="255" x="134" y="78">
+                  <font fontColor="0" fontName="Arial" fontSize="8" fontStyle=""></font>
+               </jd:display>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" >
+<rdf:Description rdf:about="#metaid_0000030">
+<bqbiol:is>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.genome.jp/kegg/compound/#C00369"/>
+</rdf:Bag>
+</bqbiol:is>
+</rdf:Description>
+</rdf:RDF>
+</annotation>
+
+      </species>
+    </listOfSpecies>
+    <listOfParameters>
+      <parameter metaid="metaid_0000052" id="Light_on" value="1"/>
+    </listOfParameters>
+    <listOfReactions>
+      <reaction metaid="metaid_0000031" id="J0" reversible="false">
+        <annotation>
+               <jd:arcSeg xmlns:jd="http://www.sys-bio.org/sbml" fillColor="16777215" lineColor="0" lineThickness="1" selectedLineColor="255">
+                  <pt x="949" y="445"></pt>
+                  <pt x="951" y="409"></pt>
+                  <pt x="950" y="419"></pt>
+                  <pt x="962" y="419"></pt>
+                  <pt x="950" y="419"></pt>
+                  <pt x="948" y="471"></pt>
+                  <pt x="949" y="450"></pt>
+               </jd:arcSeg>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" >
+<rdf:Description rdf:about="#metaid_0000031">
+<bqbiol:isVersionOf>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.ebi.ac.uk/IntEnz/#4.1.1.39"/>
+</rdf:Bag>
+</bqbiol:isVersionOf>
+<bqbiol:is>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.genome.jp/kegg/reaction/#R00024"/>
+</rdf:Bag>
+</bqbiol:is>
+</rdf:Description>
+</rdf:RDF>
+</annotation>
+
+        <listOfReactants>
+          <speciesReference species="RuBP_ch"/>
+          <speciesReference species="x_CO2"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="PGA_ch" stoichiometry="2"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="FBP_ch"/>
+          <modifierSpeciesReference species="SBP_ch"/>
+          <modifierSpeciesReference species="Pi_ch"/>
+          <modifierSpeciesReference species="x_NADPH_ch"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> Light_on </ci>
+                <ci> Rbco_vm </ci>
+                <ci> RuBP_ch </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> RuBP_ch </ci>
+                <apply>
+                  <times/>
+                  <ci> Rbco_km </ci>
+                  <apply>
+                    <plus/>
+                    <cn type="integer"> 1 </cn>
+                    <apply>
+                      <divide/>
+                      <ci> PGA_ch </ci>
+                      <ci> Rbco_KiPGA </ci>
+                    </apply>
+                    <apply>
+                      <divide/>
+                      <ci> FBP_ch </ci>
+                      <ci> Rbco_KiFBP </ci>
+                    </apply>
+                    <apply>
+                      <divide/>
+                      <ci> SBP_ch </ci>
+                      <ci> Rbco_KiSBP </ci>
+                    </apply>
+                    <apply>
+                      <divide/>
+                      <ci> Pi_ch </ci>
+                      <ci> Rbco_KiPi </ci>
+                    </apply>
+                    <apply>
+                      <divide/>
+                      <ci> x_NADPH_ch </ci>
+                      <ci> Rbco_KiNADPH </ci>
+                    </apply>
+                  </apply>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="Rbco_vm" value="340"/>
+            <parameter id="Rbco_km" value="0.02"/>
+            <parameter id="Rbco_KiPGA" value="0.84"/>
+            <parameter id="Rbco_KiFBP" value="0.04"/>
+            <parameter id="Rbco_KiSBP" value="0.075"/>
+            <parameter id="Rbco_KiPi" value="0.9"/>
+            <parameter id="Rbco_KiNADPH" value="0.07"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="metaid_0000032" id="J1">
+        <annotation>
+               <jd:arcSeg xmlns:jd="http://www.sys-bio.org/sbml" fillColor="16777215" lineColor="0" lineThickness="1" selectedLineColor="255">
+                  <pt x="380" y="522"></pt>
+                  <pt x="378" y="523"></pt>
+                  <pt x="378" y="523"></pt>
+               </jd:arcSeg>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" >
+<rdf:Description rdf:about="#metaid_0000032">
+<bqbiol:isVersionOf>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.ebi.ac.uk/IntEnz/#5.3.1.1"/>
+</rdf:Bag>
+</bqbiol:isVersionOf>
+<bqbiol:is>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.genome.jp/kegg/reaction/#R01015"/>
+</rdf:Bag>
+</bqbiol:is>
+</rdf:Description>
+</rdf:RDF>
+</annotation>
+
+        <listOfReactants>
+          <speciesReference species="GAP_ch"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="DHAP_ch"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> TPI_v </ci>
+              <apply>
+                <minus/>
+                <ci> GAP_ch </ci>
+                <apply>
+                  <divide/>
+                  <ci> DHAP_ch </ci>
+                  <ci> q4 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="TPI_v" value="5000000000"/>
+            <parameter id="q4" value="22"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="metaid_0000033" id="J2">
+        <annotation>
+               <jd:arcSeg xmlns:jd="http://www.sys-bio.org/sbml" fillColor="16777215" lineColor="0" lineThickness="1" selectedLineColor="255">
+                  <pt x="372" y="487"></pt>
+                  <pt x="380" y="495"></pt>
+                  <pt x="372" y="502"></pt>
+                  <pt x="355" y="493"></pt>
+                  <pt x="372" y="502"></pt>
+                  <pt x="372" y="472"></pt>
+                  <pt x="372" y="472"></pt>
+               </jd:arcSeg>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" >
+<rdf:Description rdf:about="#metaid_0000033">
+<bqbiol:isVersionOf>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.ebi.ac.uk/IntEnz/#4.1.2.13"/>
+</rdf:Bag>
+</bqbiol:isVersionOf>
+<bqbiol:is>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.genome.jp/kegg/reaction/#R01070"/>
+</rdf:Bag>
+</bqbiol:is>
+</rdf:Description>
+</rdf:RDF>
+</annotation>
+
+        <listOfReactants>
+          <speciesReference species="GAP_ch"/>
+          <speciesReference species="DHAP_ch"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="FBP_ch"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> F_Aldo_v </ci>
+              <apply>
+                <minus/>
+                <apply>
+                  <times/>
+                  <ci> DHAP_ch </ci>
+                  <ci> GAP_ch </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <ci> FBP_ch </ci>
+                  <ci> q5 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="F_Aldo_v" value="5000000000"/>
+            <parameter id="q5" value="7.1"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="metaid_0000034" id="J3">
+        <annotation>
+               <jd:arcSeg xmlns:jd="http://www.sys-bio.org/sbml" fillColor="16777215" lineColor="0" lineThickness="1" selectedLineColor="255">
+                  <pt x="371" y="249"></pt>
+                  <pt x="492" y="200"></pt>
+                  <pt x="371" y="278"></pt>
+                  <pt x="372" y="277"></pt>
+                  <pt x="371" y="278"></pt>
+                  <pt x="371" y="220"></pt>
+                  <pt x="406" y="171"></pt>
+                  <pt x="371" y="220"></pt>
+                  <pt x="372" y="219"></pt>
+               </jd:arcSeg>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" >
+<rdf:Description rdf:about="#metaid_0000034">
+<bqbiol:isVersionOf>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.ebi.ac.uk/IntEnz/#2.2.1.1"/>
+</rdf:Bag>
+</bqbiol:isVersionOf>
+<bqbiol:is>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.genome.jp/kegg/reaction/#R01830"/>
+</rdf:Bag>
+</bqbiol:is>
+</rdf:Description>
+</rdf:RDF>
+</annotation>
+
+        <listOfReactants>
+          <speciesReference species="GAP_ch"/>
+          <speciesReference species="F6P_ch"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="X5P_ch"/>
+          <speciesReference species="E4P_ch"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> F_TKL_v </ci>
+              <apply>
+                <minus/>
+                <apply>
+                  <times/>
+                  <ci> F6P_ch </ci>
+                  <ci> GAP_ch </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> E4P_ch </ci>
+                    <ci> X5P_ch </ci>
+                  </apply>
+                  <ci> q7 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="F_TKL_v" value="5000000000"/>
+            <parameter id="q7" value="0.084"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="metaid_0000035" id="J4">
+        <annotation>
+               <jd:arcSeg xmlns:jd="http://www.sys-bio.org/sbml" fillColor="16777215" lineColor="0" lineThickness="1" selectedLineColor="255">
+                  <pt x="405" y="80"></pt>
+                  <pt x="250" y="53"></pt>
+                  <pt x="372" y="82"></pt>
+                  <pt x="371" y="69"></pt>
+                  <pt x="372" y="82"></pt>
+                  <pt x="438" y="78"></pt>
+                  <pt x="456" y="78"></pt>
+               </jd:arcSeg>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" >
+<rdf:Description rdf:about="#metaid_0000035">
+<bqbiol:isVersionOf>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.ebi.ac.uk/IntEnz/#4.1.2.13"/>
+</rdf:Bag>
+</bqbiol:isVersionOf>
+<bqbiol:is>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.genome.jp/kegg/reaction/#R01829"/>
+</rdf:Bag>
+</bqbiol:is>
+</rdf:Description>
+</rdf:RDF>
+</annotation>
+
+        <listOfReactants>
+          <speciesReference species="DHAP_ch"/>
+          <speciesReference species="E4P_ch"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="SBP_ch"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> E_Aldo_v </ci>
+              <apply>
+                <minus/>
+                <apply>
+                  <times/>
+                  <ci> E4P_ch </ci>
+                  <ci> DHAP_ch </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <ci> SBP_ch </ci>
+                  <ci> q8 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="E_Aldo_v" value="5000000000"/>
+            <parameter id="q8" value="13"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="metaid_0000036" id="J5">
+        <annotation>
+               <jd:arcSeg xmlns:jd="http://www.sys-bio.org/sbml" fillColor="16777215" lineColor="0" lineThickness="1" selectedLineColor="255">
+                  <pt x="859" y="81"></pt>
+                  <pt x="811" y="77"></pt>
+                  <pt x="815" y="78"></pt>
+                  <pt x="615" y="116"></pt>
+                  <pt x="815" y="78"></pt>
+                  <pt x="903" y="84"></pt>
+                  <pt x="893" y="92"></pt>
+                  <pt x="903" y="84"></pt>
+                  <pt x="893" y="92"></pt>
+               </jd:arcSeg>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" >
+<rdf:Description rdf:about="#metaid_0000036">
+<bqbiol:isVersionOf>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.ebi.ac.uk/IntEnz/#2.2.1.1"/>
+</rdf:Bag>
+</bqbiol:isVersionOf>
+<bqbiol:is>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.genome.jp/kegg/reaction/#R01641"/>
+</rdf:Bag>
+</bqbiol:is>
+</rdf:Description>
+</rdf:RDF>
+</annotation>
+
+        <listOfReactants>
+          <speciesReference species="S7P_ch"/>
+          <speciesReference species="GAP_ch"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="R5P_ch"/>
+          <speciesReference species="X5P_ch"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> G_TKL_v </ci>
+              <apply>
+                <minus/>
+                <apply>
+                  <times/>
+                  <ci> GAP_ch </ci>
+                  <ci> S7P_ch </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> X5P_ch </ci>
+                    <ci> R5P_ch </ci>
+                  </apply>
+                  <ci> q10 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="G_TKL_v" value="5000000000"/>
+            <parameter id="q10" value="0.85"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="metaid_0000037" id="J6">
+        <annotation>
+               <jd:arcSeg xmlns:jd="http://www.sys-bio.org/sbml" fillColor="16777215" lineColor="0" lineThickness="1" selectedLineColor="255">
+                  <pt x="949" y="215"></pt>
+                  <pt x="950" y="216"></pt>
+                  <pt x="950" y="216"></pt>
+               </jd:arcSeg>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" >
+<rdf:Description rdf:about="#metaid_0000037">
+<bqbiol:isVersionOf>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.ebi.ac.uk/IntEnz/#5.3.1.6"/>
+</rdf:Bag>
+</bqbiol:isVersionOf>
+<bqbiol:is>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.genome.jp/kegg/reaction/#R01056"/>
+</rdf:Bag>
+</bqbiol:is>
+</rdf:Description>
+</rdf:RDF>
+</annotation>
+
+        <listOfReactants>
+          <speciesReference species="R5P_ch"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Ru5P_ch"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> R5Piso_v </ci>
+              <apply>
+                <minus/>
+                <ci> R5P_ch </ci>
+                <apply>
+                  <divide/>
+                  <ci> Ru5P_ch </ci>
+                  <ci> q11 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="R5Piso_v" value="5000000000"/>
+            <parameter id="q11" value="0.4"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="metaid_0000038" id="J7">
+        <annotation>
+               <jd:arcSeg xmlns:jd="http://www.sys-bio.org/sbml" fillColor="16777215" lineColor="0" lineThickness="1" selectedLineColor="255">
+                  <pt x="887" y="209"></pt>
+                  <pt x="884" y="203"></pt>
+                  <pt x="888" y="215"></pt>
+               </jd:arcSeg>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" >
+<rdf:Description rdf:about="#metaid_0000038">
+<bqbiol:isVersionOf>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.ebi.ac.uk/IntEnz/#5.1.3.1"/>
+</rdf:Bag>
+</bqbiol:isVersionOf>
+<bqbiol:is>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.genome.jp/kegg/reaction/#R01429"/>
+</rdf:Bag>
+</bqbiol:is>
+</rdf:Description>
+</rdf:RDF>
+</annotation>
+
+        <listOfReactants>
+          <speciesReference species="X5P_ch"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Ru5P_ch"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> X5Pepi_v </ci>
+              <apply>
+                <minus/>
+                <ci> X5P_ch </ci>
+                <apply>
+                  <divide/>
+                  <ci> Ru5P_ch </ci>
+                  <ci> q12 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="X5Pepi_v" value="5000000000"/>
+            <parameter id="q12" value="0.67"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="metaid_0000039" id="J8" reversible="false">
+        <annotation>
+               <jd:arcSeg xmlns:jd="http://www.sys-bio.org/sbml" fillColor="16777215" lineColor="0" lineThickness="1" selectedLineColor="255">
+                  <pt x="947" y="638"></pt>
+                  <pt x="920" y="599"></pt>
+                  <pt x="948" y="590"></pt>
+                  <pt x="951" y="543"></pt>
+                  <pt x="948" y="590"></pt>
+                  <pt x="946" y="686"></pt>
+                  <pt x="948" y="695"></pt>
+                  <pt x="946" y="686"></pt>
+                  <pt x="929" y="690"></pt>
+               </jd:arcSeg>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" >
+<rdf:Description rdf:about="#metaid_0000039">
+<bqbiol:isVersionOf>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.geneontology.org/#GO:0051408"/>
+</rdf:Bag>
+</bqbiol:isVersionOf>
+</rdf:Description>
+</rdf:RDF>
+</annotation>
+
+        <listOfReactants>
+          <speciesReference species="x_Pi_cyt"/>
+          <speciesReference species="PGA_ch"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="x_PGA_cyt"/>
+          <speciesReference species="Pi_ch"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="DHAP_ch"/>
+          <modifierSpeciesReference species="GAP_ch"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> PGA_xpMult </ci>
+                <ci> TP_Piap_vm </ci>
+                <ci> PGA_ch </ci>
+              </apply>
+              <apply>
+                <times/>
+                <ci> TP_Piap_kPGA_ch </ci>
+                <apply>
+                  <plus/>
+                  <cn type="integer"> 1 </cn>
+                  <apply>
+                    <times/>
+                    <apply>
+                      <plus/>
+                      <cn type="integer"> 1 </cn>
+                      <apply>
+                        <divide/>
+                        <ci> TP_Piap_kPi_cyt </ci>
+                        <ci> x_Pi_cyt </ci>
+                      </apply>
+                    </apply>
+                    <apply>
+                      <plus/>
+                      <apply>
+                        <divide/>
+                        <ci> Pi_ch </ci>
+                        <ci> TP_Piap_kPi_ch </ci>
+                      </apply>
+                      <apply>
+                        <divide/>
+                        <ci> PGA_ch </ci>
+                        <ci> TP_Piap_kPGA_ch </ci>
+                      </apply>
+                      <apply>
+                        <divide/>
+                        <ci> DHAP_ch </ci>
+                        <ci> TP_Piap_kDHAP_ch </ci>
+                      </apply>
+                      <apply>
+                        <divide/>
+                        <ci> GAP_ch </ci>
+                        <ci> TP_Piap_kGAP_ch </ci>
+                      </apply>
+                    </apply>
+                  </apply>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="PGA_xpMult" value="0.2"/>
+            <parameter id="TP_Piap_vm" value="250"/>
+            <parameter id="TP_Piap_kPGA_ch" value="0.25"/>
+            <parameter id="TP_Piap_kPi_cyt" value="0.74"/>
+            <parameter id="TP_Piap_kPi_ch" value="0.63"/>
+            <parameter id="TP_Piap_kDHAP_ch" value="0.077"/>
+            <parameter id="TP_Piap_kGAP_ch" value="0.075"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="metaid_0000040" id="J9" reversible="false">
+        <annotation>
+               <jd:arcSeg xmlns:jd="http://www.sys-bio.org/sbml" fillColor="16777215" lineColor="0" lineThickness="1" selectedLineColor="255">
+                  <pt x="485" y="633"></pt>
+                  <pt x="500" y="607"></pt>
+                  <pt x="486" y="604"></pt>
+                  <pt x="485" y="582"></pt>
+                  <pt x="486" y="604"></pt>
+                  <pt x="484" y="662"></pt>
+                  <pt x="485" y="670"></pt>
+                  <pt x="484" y="662"></pt>
+                  <pt x="536" y="665"></pt>
+               </jd:arcSeg>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" >
+<rdf:Description rdf:about="#metaid_0000040">
+<bqbiol:isVersionOf>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.geneontology.org/#GO:0051408"/>
+</rdf:Bag>
+</bqbiol:isVersionOf>
+</rdf:Description>
+</rdf:RDF>
+</annotation>
+
+        <listOfReactants>
+          <speciesReference species="x_Pi_cyt"/>
+          <speciesReference species="GAP_ch"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="x_GAP_cyt"/>
+          <speciesReference species="Pi_ch"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="PGA_ch"/>
+          <modifierSpeciesReference species="DHAP_ch"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> TP_Piap_vm </ci>
+                <ci> GAP_ch </ci>
+              </apply>
+              <apply>
+                <times/>
+                <ci> TP_Piap_kGAP_ch </ci>
+                <apply>
+                  <plus/>
+                  <cn type="integer"> 1 </cn>
+                  <apply>
+                    <times/>
+                    <apply>
+                      <plus/>
+                      <cn type="integer"> 1 </cn>
+                      <apply>
+                        <divide/>
+                        <ci> TP_Piap_kPi_cyt </ci>
+                        <ci> x_Pi_cyt </ci>
+                      </apply>
+                    </apply>
+                    <apply>
+                      <plus/>
+                      <apply>
+                        <divide/>
+                        <ci> Pi_ch </ci>
+                        <ci> TP_Piap_kPi_ch </ci>
+                      </apply>
+                      <apply>
+                        <divide/>
+                        <ci> PGA_ch </ci>
+                        <ci> TP_Piap_kPGA_ch </ci>
+                      </apply>
+                      <apply>
+                        <divide/>
+                        <ci> DHAP_ch </ci>
+                        <ci> TP_Piap_kDHAP_ch </ci>
+                      </apply>
+                      <apply>
+                        <divide/>
+                        <ci> GAP_ch </ci>
+                        <ci> TP_Piap_kGAP_ch </ci>
+                      </apply>
+                    </apply>
+                  </apply>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="TP_Piap_vm" value="250"/>
+            <parameter id="TP_Piap_kGAP_ch" value="0.075"/>
+            <parameter id="TP_Piap_kPi_cyt" value="0.74"/>
+            <parameter id="TP_Piap_kPi_ch" value="0.63"/>
+            <parameter id="TP_Piap_kPGA_ch" value="0.25"/>
+            <parameter id="TP_Piap_kDHAP_ch" value="0.077"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="metaid_0000041" id="J10">
+        <annotation>
+               <jd:arcSeg xmlns:jd="http://www.sys-bio.org/sbml" fillColor="16777215" lineColor="0" lineThickness="1" selectedLineColor="255">
+                  <pt x="261" y="333"></pt>
+                  <pt x="259" y="334"></pt>
+                  <pt x="259" y="334"></pt>
+               </jd:arcSeg>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" >
+<rdf:Description rdf:about="#metaid_0000041">
+<bqbiol:isVersionOf>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.ebi.ac.uk/IntEnz/#5.3.1.9"/>
+</rdf:Bag>
+</bqbiol:isVersionOf>
+<bqbiol:is>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.genome.jp/kegg/reaction/#R02740"/>
+</rdf:Bag>
+</bqbiol:is>
+</rdf:Description>
+</rdf:RDF>
+</annotation>
+
+        <listOfReactants>
+          <speciesReference species="F6P_ch"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="G6P_ch"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> PGI_v </ci>
+              <apply>
+                <minus/>
+                <ci> F6P_ch </ci>
+                <apply>
+                  <divide/>
+                  <ci> G6P_ch </ci>
+                  <ci> q14 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="PGI_v" value="5000000000"/>
+            <parameter id="q14" value="2.3"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="metaid_0000042" id="J11">
+        <annotation>
+               <jd:arcSeg xmlns:jd="http://www.sys-bio.org/sbml" fillColor="16777215" lineColor="0" lineThickness="1" selectedLineColor="255">
+                  <pt x="147" y="304"></pt>
+                  <pt x="148" y="306"></pt>
+                  <pt x="148" y="306"></pt>
+               </jd:arcSeg>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" >
+<rdf:Description rdf:about="#metaid_0000042">
+<bqbiol:isVersionOf>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.ebi.ac.uk/IntEnz/#5.4.2.2"/>
+</rdf:Bag>
+</bqbiol:isVersionOf>
+<bqbiol:is>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.genome.jp/kegg/reaction/#R00959"/>
+</rdf:Bag>
+</bqbiol:is>
+</rdf:Description>
+</rdf:RDF>
+</annotation>
+
+        <listOfReactants>
+          <speciesReference species="G6P_ch"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="G1P_ch"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> PGM_v </ci>
+              <apply>
+                <minus/>
+                <ci> G6P_ch </ci>
+                <apply>
+                  <divide/>
+                  <ci> G1P_ch </ci>
+                  <ci> q15 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="PGM_v" value="5000000000"/>
+            <parameter id="q15" value="0.058"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="metaid_0000043" id="J12" reversible="false">
+        <annotation>
+               <jd:arcSeg xmlns:jd="http://www.sys-bio.org/sbml" fillColor="16777215" lineColor="0" lineThickness="1" selectedLineColor="255">
+                  <pt x="783" y="765"></pt>
+                  <pt x="854" y="748"></pt>
+                  <pt x="817" y="763"></pt>
+                  <pt x="829" y="774"></pt>
+                  <pt x="817" y="763"></pt>
+                  <pt x="749" y="767"></pt>
+                  <pt x="751" y="765"></pt>
+               </jd:arcSeg>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" >
+<rdf:Description rdf:about="#metaid_0000043">
+<bqbiol:isVersionOf>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.geneontology.org/#GO:0006176"/>
+</rdf:Bag>
+</bqbiol:isVersionOf>
+</rdf:Description>
+</rdf:RDF>
+</annotation>
+
+        <listOfReactants>
+          <speciesReference species="Pi_ch"/>
+          <speciesReference species="ADP_ch"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="ATP_ch"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> Light_on </ci>
+                <ci> LR_vm </ci>
+                <ci> ADP_ch </ci>
+                <ci> Pi_ch </ci>
+              </apply>
+              <apply>
+                <times/>
+                <apply>
+                  <plus/>
+                  <ci> ADP_ch </ci>
+                  <ci> LR_kmADP </ci>
+                </apply>
+                <apply>
+                  <plus/>
+                  <ci> Pi_ch </ci>
+                  <ci> LR_kmPi </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="LR_vm" value="1500"/>
+            <parameter id="LR_kmADP" value="0.014"/>
+            <parameter id="LR_kmPi" value="0.3"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="metaid_0000044" id="J13" reversible="false">
+        <annotation>
+               <jd:arcSeg xmlns:jd="http://www.sys-bio.org/sbml" fillColor="6587523" lineColor="6587523" lineThickness="1" selectedLineColor="255">
+                  <pt x="951" y="319"></pt>
+                  <pt x="950" y="292"></pt>
+                  <pt x="950" y="301"></pt>
+                  <pt x="909" y="290"></pt>
+                  <pt x="950" y="301"></pt>
+                  <pt x="952" y="337"></pt>
+                  <pt x="952" y="324"></pt>
+                  <pt x="952" y="337"></pt>
+                  <pt x="924" y="336"></pt>
+               </jd:arcSeg>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" >
+<rdf:Description rdf:about="#metaid_0000044">
+<bqbiol:isVersionOf>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.ebi.ac.uk/IntEnz/#2.7.1.19"/>
+</rdf:Bag>
+</bqbiol:isVersionOf>
+<bqbiol:is>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.genome.jp/kegg/reaction/#R01423"/>
+</rdf:Bag>
+</bqbiol:is>
+</rdf:Description>
+</rdf:RDF>
+</annotation>
+
+        <listOfReactants>
+          <speciesReference species="Ru5P_ch"/>
+          <speciesReference species="ATP_ch">
+            <annotation>
+                     <jd:shadowRef xmlns:jd="http://www.sys-bio.org/sbml" shadowRef="___ATP_ch_0"></jd:shadowRef>
+                  </annotation>
+          </speciesReference>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="RuBP_ch"/>
+          <speciesReference species="ADP_ch">
+            <annotation>
+                     <jd:shadowRef xmlns:jd="http://www.sys-bio.org/sbml" shadowRef="___ADP_ch_0"></jd:shadowRef>
+                  </annotation>
+          </speciesReference>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="PGA_ch"/>
+          <modifierSpeciesReference species="Pi_ch"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> Light_on </ci>
+                <ci> Ru5Pk_ch_vm </ci>
+                <ci> Ru5P_ch </ci>
+                <ci> ATP_ch </ci>
+              </apply>
+              <apply>
+                <times/>
+                <apply>
+                  <plus/>
+                  <ci> Ru5P_ch </ci>
+                  <apply>
+                    <times/>
+                    <ci> Ru5Pk_ch_km1 </ci>
+                    <apply>
+                      <plus/>
+                      <cn type="integer"> 1 </cn>
+                      <apply>
+                        <divide/>
+                        <ci> PGA_ch </ci>
+                        <ci> Ru5Pk_ch_KiPGA </ci>
+                      </apply>
+                      <apply>
+                        <divide/>
+                        <ci> RuBP_ch </ci>
+                        <ci> Ru5Pk_ch_KiRuBP </ci>
+                      </apply>
+                      <apply>
+                        <divide/>
+                        <ci> Pi_ch </ci>
+                        <ci> Ru5Pk_ch_KiPi </ci>
+                      </apply>
+                    </apply>
+                  </apply>
+                </apply>
+                <apply>
+                  <plus/>
+                  <apply>
+                    <times/>
+                    <ci> ATP_ch </ci>
+                    <apply>
+                      <plus/>
+                      <cn type="integer"> 1 </cn>
+                      <apply>
+                        <divide/>
+                        <ci> ADP_ch </ci>
+                        <ci> Ru5Pk_ch_KiADP1 </ci>
+                      </apply>
+                    </apply>
+                  </apply>
+                  <apply>
+                    <times/>
+                    <ci> Ru5Pk_ch_km2 </ci>
+                    <apply>
+                      <plus/>
+                      <cn type="integer"> 1 </cn>
+                      <apply>
+                        <divide/>
+                        <ci> ADP_ch </ci>
+                        <ci> Ru5Pk_ch_KiADP2 </ci>
+                      </apply>
+                    </apply>
+                  </apply>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="Ru5Pk_ch_vm" value="10000"/>
+            <parameter id="Ru5Pk_ch_km1" value="0.05"/>
+            <parameter id="Ru5Pk_ch_KiPGA" value="2"/>
+            <parameter id="Ru5Pk_ch_KiRuBP" value="0.7"/>
+            <parameter id="Ru5Pk_ch_KiPi" value="4"/>
+            <parameter id="Ru5Pk_ch_KiADP1" value="2.5"/>
+            <parameter id="Ru5Pk_ch_km2" value="0.05"/>
+            <parameter id="Ru5Pk_ch_KiADP2" value="0.4"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="metaid_0000045" id="J14" reversible="false">
+        <annotation>
+               <jd:arcSeg xmlns:jd="http://www.sys-bio.org/sbml" fillColor="6587523" lineColor="6587523" lineThickness="1" selectedLineColor="255">
+                  <pt x="857" y="525"></pt>
+                  <pt x="880" y="525"></pt>
+                  <pt x="904" y="526"></pt>
+                  <pt x="887" y="491"></pt>
+                  <pt x="904" y="526"></pt>
+                  <pt x="810" y="524"></pt>
+                  <pt x="797" y="523"></pt>
+                  <pt x="810" y="524"></pt>
+                  <pt x="810" y="498"></pt>
+               </jd:arcSeg>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" >
+<rdf:Description rdf:about="#metaid_0000045">
+<bqbiol:isVersionOf>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.ebi.ac.uk/IntEnz/#2.7.2.3"/>
+</rdf:Bag>
+</bqbiol:isVersionOf>
+<bqbiol:is>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.genome.jp/kegg/reaction/#R01512"/>
+</rdf:Bag>
+</bqbiol:is>
+</rdf:Description>
+</rdf:RDF>
+</annotation>
+
+        <listOfReactants>
+          <speciesReference species="PGA_ch"/>
+          <speciesReference species="ATP_ch">
+            <annotation>
+                     <jd:shadowRef xmlns:jd="http://www.sys-bio.org/sbml" shadowRef="___ATP_ch_1"></jd:shadowRef>
+                  </annotation>
+          </speciesReference>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="BPGA_ch"/>
+          <speciesReference species="ADP_ch">
+            <annotation>
+                     <jd:shadowRef xmlns:jd="http://www.sys-bio.org/sbml" shadowRef="___ADP_ch_1"></jd:shadowRef>
+                  </annotation>
+          </speciesReference>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> Light_on </ci>
+              <ci> PGK_v </ci>
+              <apply>
+                <minus/>
+                <apply>
+                  <times/>
+                  <ci> PGA_ch </ci>
+                  <ci> ATP_ch </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> BPGA_ch </ci>
+                    <ci> ADP_ch </ci>
+                  </apply>
+                  <ci> q2 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="PGK_v" value="5000000000"/>
+            <parameter id="q2" value="0.00031"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="metaid_0000046" id="J15" reversible="false">
+        <annotation>
+               <jd:arcSeg xmlns:jd="http://www.sys-bio.org/sbml" fillColor="6587523" lineColor="6587523" lineThickness="1" selectedLineColor="255">
+                  <pt x="109" y="171"></pt>
+                  <pt x="96" y="192"></pt>
+                  <pt x="108" y="189"></pt>
+                  <pt x="129" y="229"></pt>
+                  <pt x="108" y="189"></pt>
+                  <pt x="110" y="153"></pt>
+                  <pt x="109" y="135"></pt>
+                  <pt x="110" y="153"></pt>
+                  <pt x="83" y="123"></pt>
+                  <pt x="110" y="153"></pt>
+                  <pt x="85" y="147"></pt>
+               </jd:arcSeg>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" >
+<rdf:Description rdf:about="#metaid_0000046">
+<bqbiol:isVersionOf>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.ebi.ac.uk/IntEnz/#2.4.1.1"/>
+</rdf:Bag>
+</bqbiol:isVersionOf>
+<bqbiol:is>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.genome.jp/kegg/reaction/#R02111"/>
+</rdf:Bag>
+</bqbiol:is>
+</rdf:Description>
+</rdf:RDF>
+</annotation>
+
+        <listOfReactants>
+          <speciesReference species="ATP_ch">
+            <annotation>
+                     <jd:shadowRef xmlns:jd="http://www.sys-bio.org/sbml" shadowRef="___ATP_ch_2"></jd:shadowRef>
+                  </annotation>
+          </speciesReference>
+          <speciesReference species="G1P_ch"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="x_Starch_ch"/>
+          <speciesReference species="ADP_ch">
+            <annotation>
+                     <jd:shadowRef xmlns:jd="http://www.sys-bio.org/sbml" shadowRef="___ADP_ch_2"></jd:shadowRef>
+                  </annotation>
+          </speciesReference>
+          <speciesReference species="Pi_ch">
+            <annotation>
+                     <jd:shadowRef xmlns:jd="http://www.sys-bio.org/sbml" shadowRef="___Pi_ch_0"></jd:shadowRef>
+                  </annotation>
+          </speciesReference>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="PGA_ch"/>
+          <modifierSpeciesReference species="F6P_ch"/>
+          <modifierSpeciesReference species="FBP_ch"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> StSyn_vm </ci>
+                <ci> G1P_ch </ci>
+                <ci> ATP_ch </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <apply>
+                  <times/>
+                  <apply>
+                    <plus/>
+                    <ci> G1P_ch </ci>
+                    <ci> stsyn_ch_km1 </ci>
+                  </apply>
+                  <apply>
+                    <plus/>
+                    <cn type="integer"> 1 </cn>
+                    <apply>
+                      <divide/>
+                      <ci> ADP_ch </ci>
+                      <ci> stsyn_ch_Ki </ci>
+                    </apply>
+                  </apply>
+                  <apply>
+                    <plus/>
+                    <ci> ATP_ch </ci>
+                    <ci> stsyn_ch_km2 </ci>
+                  </apply>
+                </apply>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> stsyn_ch_km2 </ci>
+                    <ci> Pi_ch </ci>
+                  </apply>
+                  <apply>
+                    <times/>
+                    <ci> stsyn_ch_ka1 </ci>
+                    <ci> PGA_ch </ci>
+                  </apply>
+                </apply>
+                <apply>
+                  <times/>
+                  <ci> stsyn_ch_ka2 </ci>
+                  <ci> F6P_ch </ci>
+                </apply>
+                <apply>
+                  <times/>
+                  <ci> stsyn_ch_ka3 </ci>
+                  <ci> FBP_ch </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="StSyn_vm" value="40"/>
+            <parameter id="stsyn_ch_km1" value="0.08"/>
+            <parameter id="stsyn_ch_Ki" value="10"/>
+            <parameter id="stsyn_ch_km2" value="0.08"/>
+            <parameter id="stsyn_ch_ka1" value="0.1"/>
+            <parameter id="stsyn_ch_ka2" value="0.02"/>
+            <parameter id="stsyn_ch_ka3" value="0.02"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="metaid_0000047" id="J16" reversible="false">
+        <annotation>
+               <jd:arcSeg xmlns:jd="http://www.sys-bio.org/sbml" fillColor="6587523" lineColor="6587523" lineThickness="1" selectedLineColor="255">
+                  <pt x="191" y="175"></pt>
+                  <pt x="194" y="147"></pt>
+                  <pt x="192" y="154"></pt>
+                  <pt x="204" y="139"></pt>
+                  <pt x="192" y="154"></pt>
+                  <pt x="190" y="196"></pt>
+                  <pt x="191" y="197"></pt>
+               </jd:arcSeg>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" >
+<rdf:Description rdf:about="#metaid_0000047">
+<bqbiol:isVersionOf>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.ebi.ac.uk/IntEnz/#2.4.1.1"/>
+</rdf:Bag>
+</bqbiol:isVersionOf>
+<bqbiol:is>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.genome.jp/kegg/reaction/#R02111"/>
+</rdf:Bag>
+</bqbiol:is>
+</rdf:Description>
+</rdf:RDF>
+</annotation>
+
+        <listOfReactants>
+          <speciesReference species="x_Starch_ch"/>
+          <speciesReference species="Pi_ch">
+            <annotation>
+                     <jd:shadowRef xmlns:jd="http://www.sys-bio.org/sbml" shadowRef="___Pi_ch_1"></jd:shadowRef>
+                  </annotation>
+          </speciesReference>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="G1P_ch"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> StPase_Vm </ci>
+                <ci> Pi_ch </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> Pi_ch </ci>
+                <apply>
+                  <times/>
+                  <ci> StPase_km </ci>
+                  <apply>
+                    <plus/>
+                    <cn type="integer"> 1 </cn>
+                    <apply>
+                      <divide/>
+                      <ci> G1P_ch </ci>
+                      <ci> StPase_kiG1P </ci>
+                    </apply>
+                  </apply>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="StPase_Vm" value="40"/>
+            <parameter id="StPase_km" value="5"/>
+            <parameter id="StPase_kiG1P" value="3.12"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="metaid_0000048" id="J17" reversible="false">
+        <annotation>
+               <jd:arcSeg xmlns:jd="http://www.sys-bio.org/sbml" fillColor="6587523" lineColor="6587523" lineThickness="1" selectedLineColor="255">
+                  <pt x="371" y="374"></pt>
+                  <pt x="372" y="398"></pt>
+                  <pt x="371" y="389"></pt>
+                  <pt x="405" y="367"></pt>
+                  <pt x="371" y="389"></pt>
+                  <pt x="371" y="359"></pt>
+                  <pt x="370" y="371"></pt>
+               </jd:arcSeg>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" >
+<rdf:Description rdf:about="#metaid_0000048">
+<bqbiol:isVersionOf>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.ebi.ac.uk/IntEnz/#3.1.3.11"/>
+</rdf:Bag>
+</bqbiol:isVersionOf>
+<bqbiol:is>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.genome.jp/kegg/reaction/#R04780"/>
+</rdf:Bag>
+</bqbiol:is>
+</rdf:Description>
+</rdf:RDF>
+</annotation>
+
+        <listOfReactants>
+          <speciesReference species="FBP_ch"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="F6P_ch"/>
+          <speciesReference species="Pi_ch"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> Light_on </ci>
+                <ci> FBPase_ch_vm </ci>
+                <ci> FBP_ch </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> FBP_ch </ci>
+                <apply>
+                  <times/>
+                  <ci> FBPase_ch_km </ci>
+                  <apply>
+                    <plus/>
+                    <cn type="integer"> 1 </cn>
+                    <apply>
+                      <divide/>
+                      <ci> F6P_ch </ci>
+                      <ci> FBPase_ch_KiF6P </ci>
+                    </apply>
+                    <apply>
+                      <divide/>
+                      <ci> Pi_ch </ci>
+                      <ci> FBPase_ch_KiPi </ci>
+                    </apply>
+                  </apply>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="FBPase_ch_vm" value="200"/>
+            <parameter id="FBPase_ch_km" value="0.03"/>
+            <parameter id="FBPase_ch_KiF6P" value="0.7"/>
+            <parameter id="FBPase_ch_KiPi" value="12"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="metaid_0000049" id="J18" reversible="false">
+        <annotation>
+               <jd:arcSeg xmlns:jd="http://www.sys-bio.org/sbml" fillColor="6587523" lineColor="6587523" lineThickness="1" selectedLineColor="255">
+                  <pt x="269" y="613"></pt>
+                  <pt x="243" y="587"></pt>
+                  <pt x="268" y="585"></pt>
+                  <pt x="267" y="584"></pt>
+                  <pt x="268" y="585"></pt>
+                  <pt x="270" y="641"></pt>
+                  <pt x="270" y="635"></pt>
+                  <pt x="270" y="641"></pt>
+                  <pt x="245" y="633"></pt>
+               </jd:arcSeg>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" >
+<rdf:Description rdf:about="#metaid_0000049">
+<bqbiol:isVersionOf>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.geneontology.org/#GO:0051407"/>
+</rdf:Bag>
+</bqbiol:isVersionOf>
+</rdf:Description>
+</rdf:RDF>
+</annotation>
+
+        <listOfReactants>
+          <speciesReference species="x_Pi_cyt">
+            <annotation>
+                     <jd:shadowRef xmlns:jd="http://www.sys-bio.org/sbml" shadowRef="___x_Pi_cyt_0"></jd:shadowRef>
+                  </annotation>
+          </speciesReference>
+          <speciesReference species="DHAP_ch"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="x_DHAP_cyt"/>
+          <speciesReference species="Pi_ch">
+            <annotation>
+                     <jd:shadowRef xmlns:jd="http://www.sys-bio.org/sbml" shadowRef="___Pi_ch_3"></jd:shadowRef>
+                  </annotation>
+          </speciesReference>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="PGA_ch"/>
+          <modifierSpeciesReference species="GAP_ch"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> TP_Piap_vm </ci>
+                <ci> DHAP_ch </ci>
+              </apply>
+              <apply>
+                <times/>
+                <ci> TP_Piap_kDHAP_ch </ci>
+                <apply>
+                  <plus/>
+                  <cn type="integer"> 1 </cn>
+                  <apply>
+                    <times/>
+                    <apply>
+                      <plus/>
+                      <cn type="integer"> 1 </cn>
+                      <apply>
+                        <divide/>
+                        <ci> TP_Piap_kPi_cyt </ci>
+                        <ci> x_Pi_cyt </ci>
+                      </apply>
+                    </apply>
+                    <apply>
+                      <plus/>
+                      <apply>
+                        <divide/>
+                        <ci> Pi_ch </ci>
+                        <ci> TP_Piap_kPi_ch </ci>
+                      </apply>
+                      <apply>
+                        <divide/>
+                        <ci> PGA_ch </ci>
+                        <ci> TP_Piap_kPGA_ch </ci>
+                      </apply>
+                      <apply>
+                        <divide/>
+                        <ci> DHAP_ch </ci>
+                        <ci> TP_Piap_kDHAP_ch </ci>
+                      </apply>
+                      <apply>
+                        <divide/>
+                        <ci> GAP_ch </ci>
+                        <ci> TP_Piap_kGAP_ch </ci>
+                      </apply>
+                    </apply>
+                  </apply>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="TP_Piap_vm" value="250"/>
+            <parameter id="TP_Piap_kDHAP_ch" value="0.077"/>
+            <parameter id="TP_Piap_kPi_cyt" value="0.74"/>
+            <parameter id="TP_Piap_kPi_ch" value="0.63"/>
+            <parameter id="TP_Piap_kPGA_ch" value="0.25"/>
+            <parameter id="TP_Piap_kGAP_ch" value="0.075"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="metaid_0000050" id="J19" reversible="false">
+        <annotation>
+               <jd:arcSeg xmlns:jd="http://www.sys-bio.org/sbml" fillColor="6587523" lineColor="6587523" lineThickness="1" selectedLineColor="255">
+                  <pt x="610" y="521"></pt>
+                  <pt x="653" y="526"></pt>
+                  <pt x="649" y="521"></pt>
+                  <pt x="651" y="522"></pt>
+                  <pt x="649" y="521"></pt>
+                  <pt x="649" y="488"></pt>
+                  <pt x="649" y="521"></pt>
+                  <pt x="571" y="521"></pt>
+                  <pt x="575" y="493"></pt>
+                  <pt x="571" y="521"></pt>
+                  <pt x="550" y="520"></pt>
+                  <pt x="571" y="521"></pt>
+                  <pt x="576" y="524"></pt>
+               </jd:arcSeg>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" >
+<rdf:Description rdf:about="#metaid_0000050">
+<bqbiol:is>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.genome.jp/kegg/reaction/#R01063"/>
+</rdf:Bag>
+</bqbiol:is>
+<bqbiol:isVersionOf>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.ec-code.org/#1.2.1.13"/>
+</rdf:Bag>
+</bqbiol:isVersionOf>
+</rdf:Description>
+</rdf:RDF>
+</annotation>
+
+        <listOfReactants>
+          <speciesReference species="x_NADPH_ch"/>
+          <speciesReference species="BPGA_ch"/>
+          <speciesReference species="x_Proton_ch"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="x_NADP_ch"/>
+          <speciesReference species="GAP_ch"/>
+          <speciesReference species="Pi_ch">
+            <annotation>
+                     <jd:shadowRef xmlns:jd="http://www.sys-bio.org/sbml" shadowRef="___Pi_ch_4"></jd:shadowRef>
+                  </annotation>
+          </speciesReference>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> Light_on </ci>
+              <ci> G3Pdh_v </ci>
+              <apply>
+                <minus/>
+                <apply>
+                  <times/>
+                  <ci> BPGA_ch </ci>
+                  <ci> x_NADPH_ch </ci>
+                  <ci> x_Proton_ch </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> x_NADP_ch </ci>
+                    <ci> GAP_ch </ci>
+                    <ci> Pi_ch </ci>
+                  </apply>
+                  <ci> q3 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="G3Pdh_v" value="5000000000"/>
+            <parameter id="q3" value="16000000"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="metaid_0000051" id="J20" reversible="false">
+        <annotation>
+               <jd:arcSeg xmlns:jd="http://www.sys-bio.org/sbml" fillColor="6587523" lineColor="6587523" lineThickness="1" selectedLineColor="255">
+                  <pt x="620" y="77"></pt>
+                  <pt x="585" y="77"></pt>
+                  <pt x="596" y="77"></pt>
+                  <pt x="644" y="77"></pt>
+                  <pt x="652" y="72"></pt>
+                  <pt x="644" y="77"></pt>
+                  <pt x="648" y="76"></pt>
+               </jd:arcSeg>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" >
+<rdf:Description rdf:about="#metaid_0000051">
+<bqbiol:is>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.genome.jp/kegg/reaction/#R01845"/>
+</rdf:Bag>
+</bqbiol:is>
+<bqbiol:isVersionOf>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.ec-code.org/#3.1.3.37"/>
+</rdf:Bag>
+</bqbiol:isVersionOf>
+</rdf:Description>
+</rdf:RDF>
+</annotation>
+
+        <listOfReactants>
+          <speciesReference species="SBP_ch"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Pi_ch">
+            <annotation>
+                     <jd:shadowRef xmlns:jd="http://www.sys-bio.org/sbml" shadowRef="___Pi_ch_5"></jd:shadowRef>
+                  </annotation>
+          </speciesReference>
+          <speciesReference species="S7P_ch"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> Light_on </ci>
+                <ci> SBPase_ch_vm </ci>
+                <ci> SBP_ch </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> SBP_ch </ci>
+                <apply>
+                  <times/>
+                  <ci> SBPase_ch_km </ci>
+                  <apply>
+                    <plus/>
+                    <cn type="integer"> 1 </cn>
+                    <apply>
+                      <divide/>
+                      <ci> Pi_ch </ci>
+                      <ci> SBPase_ch_KiPi </ci>
+                    </apply>
+                  </apply>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="SBPase_ch_vm" value="40"/>
+            <parameter id="SBPase_ch_km" value="0.013"/>
+            <parameter id="SBPase_ch_KiPi" value="12"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+    </listOfReactions>
+  </model>
+</sbml>

@@ -1,0 +1,54 @@
+116232 vertices, 0 faces.
+Search_Radius = 4
+Cell size = 1 x 1
+memory usage = 969636
+time = 4.26084
+count = 11150344
+116232 vertices, 0 faces.
+Search_Radius = 4
+Cell size = 1.333 x 1.333
+memory usage = 750180
+time = 3.64483
+count = 11150344
+116232 vertices, 0 faces.
+Search_Radius = 4
+Cell size = 2 x 2
+memory usage = 592932
+time = 2.93921
+count = 11150344
+116232 vertices, 0 faces.
+Search_Radius = 4
+Cell size = 3 x 3
+memory usage = 522660
+time = 3.12457
+count = 11150344
+116232 vertices, 0 faces.
+Search_Radius = 4
+Cell size = 4 x 4
+memory usage = 497892
+time = 3.43414
+count = 11150344
+116232 vertices, 0 faces.
+Search_Radius = 4
+Cell size = 6 x 6
+memory usage = 480036
+time = 4.86328
+count = 11150344
+116232 vertices, 0 faces.
+Search_Radius = 4
+Cell size = 8 x 8
+memory usage = 473700
+time = 5.90481
+count = 11150344
+116232 vertices, 0 faces.
+Search_Radius = 4
+Cell size = 12 x 12
+memory usage = 469092
+time = 9.00666
+count = 11150344
+116232 vertices, 0 faces.
+Search_Radius = 4
+Cell size = 16 x 16
+memory usage = 467436
+time = 11.2085
+count = 11150344

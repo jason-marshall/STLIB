@@ -1,0 +1,71 @@
+<html>
+<head>
+<title>Welcome</title>
+</head>
+<body>
+<p align="right">
+<img src="cain.png">
+</p>
+<h1>Welcome</h1>
+
+<p>
+This is version 1.6 of Cain, developed by Sean Mauch,
+<img src="seanEmail.png">, at the <a href="http://www.cacr.caltech.edu/">
+Center for Advanced Computing Research</a>, at the 
+<a href="http://www.caltech.edu/">California Institute of Technology</a>.
+</p>
+
+<p>
+Cain performs stochastic and deterministic simulations of chemical
+reactions. It can spawn multiple simulation processes to utilize
+multi-core computers. It stores models, methods, and simulation
+output (populations and reaction counts)
+in an XML format. In addition, <a href="http://sbml.org/">SBML</a>
+models can be imported and exported.  The models and methods
+can be read from input files or edited within the program.
+</p>
+
+<p>
+The GUI (Graphical User Interface) is written in
+<a href="http://www.python.org/">Python</a> and uses the
+<a href="http://www.wxpython.org/">wxPython</a> toolkit.
+Most of the solvers are implemented as command line executables, written in
+<a href="http://en.wikipedia.org/wiki/C%2B%2B">C++</a>, which are driven
+by Cain. This makes it easy to launch batch jobs. It also simplifies the
+process of adding new solvers. Cain offers a variety of solvers:
+<ul>
+  <li> Gillespie's direct method.
+  <li> Gillespie's first reaction method.
+  <li> Gibson and Bruck's next reaction method.
+  <li> Tau-leaping.
+  <li> Hybrid direct/tau-leaping.
+  <li> ODE integration.
+</ul>
+</p>
+
+<p>
+The reactions may have mass-action kinetic laws or arbitrary
+propensity functions. For the latter, custom command line executables are
+generated when the simulations are launched. For the former one has the choice
+of generating a custom executable or of using one of the built-in mass-action
+solvers. Compiling and launching the solvers is done internally; you do not
+need to know how to write or compile programs. However, to use the custom
+executables your computer must have compiler software. Without a
+compiler you can only simulate systems with mass-action kinetics.
+</p>
+
+<p>
+In addition to the high performance solvers written in C++, Cain has
+solvers implemented in Python. These are much slower than the other
+solvers, but are able to simulate events.
+</p>
+
+<p>
+Once you have run a simulation to generate trajectories (possible
+realizations of the system) you can visualize the results by plotting
+the species populations or reactions counts. You can also view the
+output in a table or export it to a spreadsheet.
+</p>
+
+</body>
+</html>

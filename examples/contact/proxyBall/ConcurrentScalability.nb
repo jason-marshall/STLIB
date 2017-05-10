@@ -1,0 +1,145 @@
+(* Content-type: application/mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 7.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       145,          7]
+NotebookDataLength[      4619,        136]
+NotebookOptionsPosition[      4199,        118]
+NotebookOutlinePosition[      4559,        134]
+CellTagsIndexPosition[      4516,        131]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"data", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"1", ",", "3.2217"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"2", ",", "2.189"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"4", ",", "1.4225"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"8", ",", ".7466"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"16", ",", ".3849"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"32", ",", ".1899"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"64", ",", ".1055"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"128", ",", ".06207"}], "}"}]}], "}"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.455379538082855*^9, 3.455379583521172*^9}, {
+  3.4553803527113523`*^9, 3.455380353984211*^9}, {3.455387104850029*^9, 
+  3.455387145704414*^9}}],
+
+Cell[BoxData[
+ RowBox[{"LogLogPlot", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"data", "[", 
+      RowBox[{"[", "1", "]"}], "]"}], "[", 
+     RowBox[{"[", "2", "]"}], "]"}], "/", "x"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", "1", ",", 
+     RowBox[{
+      RowBox[{"data", "[", 
+       RowBox[{"[", 
+        RowBox[{"-", "1"}], "]"}], "]"}], "[", 
+      RowBox[{"[", "1", "]"}], "]"}]}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.4553796741496897`*^9, 3.455379692768112*^9}, {
+  3.455379728720656*^9, 3.455379737542766*^9}, {3.455379808709861*^9, 
+  3.455379834733585*^9}}],
+
+Cell[BoxData[
+ RowBox[{"ListLogLogPlot", "[", 
+  RowBox[{"data", ",", 
+   RowBox[{"PlotStyle", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"PointSize", "[", "0.02", "]"}], "}"}]}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.4553796388969316`*^9, 3.4553796441100817`*^9}, {
+  3.455379902588538*^9, 3.4553799736928368`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"Show", "[", 
+  RowBox[{"%%", ",", "%", ",", 
+   RowBox[{"AxesLabel", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"\"\<Cores\>\"", ",", "\"\<Time (sec)\>\""}], "}"}]}]}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.455379756773975*^9, 3.455379760067058*^9}, {
+  3.4553806688724947`*^9, 3.4553806863455477`*^9}, {3.455380726737414*^9, 
+  3.455380735082549*^9}, {3.455380777886897*^9, 3.45538078024621*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"data", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"1", ",", "0.677"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"2", ",", "1.374"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"4", ",", "1.170"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"8", ",", "1.608"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"16", ",", "3.67"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"32", ",", "5.381"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"64", ",", "3.19"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"128", ",", "3.487"}], "}"}]}], "}"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.455379538082855*^9, 3.455379583521172*^9}, {
+  3.4553803527113523`*^9, 3.455380353984211*^9}, {3.455387104850029*^9, 
+  3.455387145704414*^9}, {3.4555638039430637`*^9, 3.455563864627561*^9}, {
+  3.455563993492978*^9, 3.455563997502742*^9}, {3.4555641256306973`*^9, 
+  3.455564126740191*^9}, {3.455564192970479*^9, 3.455564209391617*^9}, {
+  3.455564290618072*^9, 3.455564311515747*^9}, {3.4555644124699306`*^9, 
+  3.455564419754635*^9}, {3.4555645857708073`*^9, 3.45556458769249*^9}, {
+  3.4555866289823112`*^9, 3.455586726773036*^9}, {3.455586833462884*^9, 
+  3.455586835563772*^9}, {3.4555868727440166`*^9, 3.455586879395916*^9}, {
+  3.455586971272414*^9, 3.455586975844829*^9}, {3.4555871508402033`*^9, 
+  3.4555871532927*^9}, {3.455587494120695*^9, 3.4555875078816338`*^9}, {
+  3.455664990341799*^9, 3.455664994074769*^9}}]
+},
+WindowSize->{640, 750},
+WindowMargins->{{Automatic, 39}, {Automatic, 0}},
+ShowSelection->True,
+FrontEndVersion->"7.0 for Mac OS X x86 (32-bit) (November 10, 2008)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[545, 20, 809, 23, 43, "Input"],
+Cell[1357, 45, 597, 17, 27, "Input"],
+Cell[1957, 64, 319, 7, 27, "Input"],
+Cell[2279, 73, 425, 9, 27, "Input"],
+Cell[2707, 84, 1488, 32, 43, "Input"]
+}
+]
+*)
+
+(* End of internal cache information *)

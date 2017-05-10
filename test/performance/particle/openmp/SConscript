@@ -1,0 +1,10 @@
+# -*- python -*-
+
+import sys
+sys.path.append('../..')
+from env import openMP
+
+# Compile.
+sources = Glob('*.cc')
+for source in sources:
+    openMP.Program(source)

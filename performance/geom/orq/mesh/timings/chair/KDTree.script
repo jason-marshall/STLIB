@@ -1,0 +1,7 @@
+KDTree.mesh ../data/chair.01.ascii 8 2 >> KDTree.chair.timings
+KDTree.mesh ../data/chair.02.ascii 8 2 >> KDTree.chair.timings
+KDTree.mesh ../data/chair.04.ascii 8 2 >> KDTree.chair.timings
+KDTree.mesh ../data/chair.08.ascii 8 2 >> KDTree.chair.timings
+KDTree.mesh ../data/chair.16.ascii 8 2 >> KDTree.chair.timings
+#KDTree.mesh ../data/chair.32.ascii 2 >> KDTree.chair.timings
+#KDTree.mesh ../data/chair.64.ascii 2 >> KDTree.chair.timings

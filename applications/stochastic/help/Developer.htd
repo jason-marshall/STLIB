@@ -1,0 +1,109 @@
+<html>
+<head>
+<title>Developer's Guide</title>
+</head>
+<body>
+<h1>Developer's Guide</h1>
+
+<p>
+Cain is written in <a href="http://www.python.org/">Python</a> and uses the
+<a href="http://www.wxpython.org/">wxPython</a> GUI toolkit.
+For plotting simulation results, it uses
+<a href="http://matplotlib.sourceforge.net/">matplotlib</a> and
+<a href="http://numpy.scipy.org/">numpy</a>. Cain utilizes command line
+executables to perform the simulations. These executables read a description
+of the problem (model, method, and number of trajectories)
+from stdin and write the trajectories to stdout. Cain launches the
+executables; it sends the input and captures the output with pipes. When
+launching a job, the user select the number of processes to use. Cain launches
+this number of executables. It asks the pool of solvers to each generate
+trajectories one at a time until the desired number has been collected.
+This allows the user to stop or abort a running simulation and store
+the trajectories that have been generated so far.
+</p>
+
+<p>
+<!--CONTINUE-->
+The source code for Cain, both Python application code and C++ solver
+code is available in
+<a href="http://www.cacr.caltech.edu/~sean/projects/stlib/stlib.html">STLib</a>.
+The Cain application is in <tt>stlib/applications/stochastic</tt>.
+The Python source code is split into the three top-level directories:
+<tt>gui</tt>, <tt>io</tt>, and <tt>state</tt>. The script <tt>Cain.py</tt>
+launches the application. Thus you can launch Cain with the shell command
+<tt>python Cain.py</tt>. The solvers are in the <tt>solvers</tt> directory.
+There is a makefile there. The executables use STLib's stochastic and
+numerical packages, located in <tt>stlib/src</tt>. Consult
+STLib's documentation for information about the stochastic simulation
+methods, random number generators, etc.
+</p>
+
+<p>
+<b>Mac OS X Distribution.</b><br>
+For Mac OS X, Cain is distributed as an application bundle. The Python source
+code and the command line executables are placed in a folder called
+<tt>Cain.app</tt>. From the Finder, this appears as an application called
+Cain. You can make the application bundle by executing
+<tt>make bundle</tt> in <tt>stlib/applications/stochastic</tt>.
+This copies the appropriate content
+into the <tt>Cain.app/Contents/Resources</tt> directory.
+I pack the application bundle and example data files (in
+<tt>stlib/data/stochastic</tt>) into a disk image for easy distribution.
+</p>
+
+<p>
+To make a disk image, use Disk Utility. Click New Image and make a 40
+MB image called Cain. Quit Disk Utility. In the mounted devices,
+changed the name to Cain.  Drag the application bundle to the disk
+image. Rename the data folder &quot;stochastic&quot; to &quot;CainExamples&quot;.
+Remove the folder &quot;CainExamples/sbml/bmd-2007-9-25&quot;. Drag the
+data folder to the disk image.  Finally eject the disk image.
+</p>
+
+<p>
+<b>Microsoft Windows Distribution.</b><br>
+For MS Windows, Cain is distributed as a frozen executable.
+I use <a href="http://www.py2exe.org/">py2exe</a> to accomplish this. (See
+that web site for details on how the Python interpreter and the Python source
+are packed into a stand-alone executable.)
+Execute <tt>make win</tt> in <tt>stlib/applications/stochastic</tt>
+to build the Cain executable in the <tt>dist</tt> directory.
+I use <a href="http://www.jrsoftware.org/">Inno Setup</a> to make an
+installer.
+</p>
+
+<p>
+<b>Microsoft Windows Development Environment.</b><br>
+First get <a href="http://www.mingw.org/wiki/Getting_Started">MinGW</a> 
+by running the MinGW-5.1.6 installer.  Then get 
+<a href="http://www.mingw.org/wiki/MSYS">MSYS</a>. Install MSYS 1.0.11,
+MSYS DTK 1.0.11, and set the environment variable HOME to
+c:\msys\1.0\home\user_name.  Make a .ssh directory in your home
+directory and place your public and private SSH keys there. Then you
+can use the shell commands &quot;ssh-agent $SHELL&quot; followed by
+&quot;ssh-add&quot; to start a shell with SSH authentication.  Next
+install subversion by running the Setup-Subversion-1.6.6.msi
+installer, which will add the svn executable to your path. If you
+don't already have a text editor, you can download 
+<a href="http://notepad-plus.sourceforge.net/uk/site.htm">Notepad++</a>.
+</p>
+
+<p>
+Install <a href="http://www.microsoft.com/express/Express-2010/">Visual Studio 2010
+Express</a>.
+</p>
+
+<p>
+Install the <a href="http://www.enthought.com/">Enthought Python 
+Distribution</a> and then the 
+<a href="http://www.py2exe.org/">py2exe</a> package.
+</p>
+
+<p>
+Install <a href="http://www.jrsoftware.org/isdl.php">Inno Setup</a> and 
+<a href="http://www.istool.org/">ISTool</a>. Install the 
+<a href="http://www.enthought.com/">Enthought Python Distribution</a>.
+</p>
+
+</body>
+</html>

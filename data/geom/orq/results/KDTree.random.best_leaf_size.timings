@@ -1,0 +1,64 @@
+100000 vertices, 0 faces.
+Search_Radius = 0.01
+memory usage = 1710768
+time = 1.32015
+count = 178504
+100000 vertices, 0 faces.
+Search_Radius = 0.012599
+memory usage = 1710768
+time = 1.87411
+count = 256454
+100000 vertices, 0 faces.
+Search_Radius = 0.01587
+memory usage = 1710768
+time = 2.71813
+count = 411459
+100000 vertices, 0 faces.
+Search_Radius = 0.02
+memory usage = 1710768
+time = 3.80042
+count = 719462
+100000 vertices, 0 faces.
+Search_Radius = 0.025198
+memory usage = 1710768
+time = 4.98592
+count = 1329282
+100000 vertices, 0 faces.
+Search_Radius = 0.031748
+memory usage = 1710768
+time = 8.08883
+count = 2535808
+100000 vertices, 0 faces.
+Search_Radius = 0.04
+memory usage = 1055408
+time = 11.5068
+count = 4913811
+100000 vertices, 0 faces.
+Search_Radius = 0.0503968
+memory usage = 1055408
+time = 18.8078
+count = 9574832
+100000 vertices, 0 faces.
+Search_Radius = 0.063496
+memory usage = 1055408
+time = 28.7065
+count = 18671713
+100000 vertices, 0 faces.
+Search_Radius = 0.08
+memory usage = 1055408
+time = 49.5902
+count = 36293819
+100000 vertices, 0 faces.
+Search_Radius = 0.10079
+memory usage = 1055408
+time = 83.1821
+count = 70170869
+100000 vertices, 0 faces.
+Search_Radius = 0.12699
+memory usage = 727728
+time = 135.506
+count = 134514214
+Search_Radius = 0.16
+memory usage = 563888
+time = 232.559
+count = 254925019

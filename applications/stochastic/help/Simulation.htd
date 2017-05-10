@@ -1,0 +1,61 @@
+<html>
+<head>
+<title>Simulation Methods</title>
+</head>
+<body>
+<h1>Simulation Methods</h1>
+
+<p>
+A simulation method may be either deterministic or stochastic. One can obtain a
+deterministic method by modelling the reactions with ordinary differential
+equations. Numerically integrating the equations gives an approximate solution.
+<!--CONTINUE.-->
+</p>
+
+<p>
+The simulations may be performed with exact or approximate methods.
+<a href="http://en.wikipedia.org/wiki/Gillespie_algorithm">Gillespie's
+direct method</a> and Gibson and Bruck's next reaction method
+are both exact methods. Various formulations of both of these methods
+are available. For the direct method, there are a variety of ways of
+generating a discrete deviate, that determines which reaction fires.
+The next reaction method uses a priority queue. Several data structures
+can be used to implement a priority queue. The choice of data structure
+will influence the performance, but not the output.
+</p>
+
+<p>
+Tau-leaping is an approximate, discrete, stochastic method. It is used
+to generate an ensemble of trajectories, each of which is an
+approximate realization of the stochastic process. The tau-leaping
+method takes jumps in time and uses Poisson deviates to determine how
+many times each reaction fires.  One can choose fixed time steps or
+specify a desired accuracy. The latter is the preferred method.  There
+is a hybrid method which combines the direct method and
+tau-leaping. An adaptation of the direct method is used for reactions
+that are slow or involve small populations; the tau-leaping method is
+used for the rest.  This offers improved accuracy and performance for
+the case that some species have small populations. For this hybrid
+method, one specifies the desired accuracy.
+</p>
+
+<p>
+One can model the reactions with a set of ordinary differential equations.
+In this case one assumes that the populations are continuous and
+not discrete (integer). One can numerically integrate the differential
+equations to obtain an approximate solution. Note that since this is a
+deterministic model, it generates a single solution instead of an
+ensemble of trajectories.
+</p>
+
+<p>
+Each of the stochastic simulation methods use discrete, uniform deviates
+(random integers). We use the 
+<a href="http://www.math.sci.hiroshima-u.ac.jp/~m-mat/MT/emt.html">Mersenne Twister 19937</a>
+algorithm to generate these.
+Both of the exact methods also use exponential deviates that determine
+the reaction times. For these we use the ziggurat method.
+</p>
+
+</body>
+</html>

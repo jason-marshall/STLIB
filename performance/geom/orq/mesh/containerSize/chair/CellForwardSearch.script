@@ -1,0 +1,9 @@
+CellXYForwardSearchZ.mesh ../data/chair.08.ascii 1 1 4 >> CellXYForwardSearchZ.chair.cell_size.timings
+CellXYForwardSearchZ.mesh ../data/chair.08.ascii 1.333 1.333 4 >> CellXYForwardSearchZ.chair.cell_size.timings
+CellXYForwardSearchZ.mesh ../data/chair.08.ascii 2 2 4 >> CellXYForwardSearchZ.chair.cell_size.timings
+CellXYForwardSearchZ.mesh ../data/chair.08.ascii 3 3 4 >> CellXYForwardSearchZ.chair.cell_size.timings
+CellXYForwardSearchZ.mesh ../data/chair.08.ascii 4 4 4 >> CellXYForwardSearchZ.chair.cell_size.timings
+CellXYForwardSearchZ.mesh ../data/chair.08.ascii 6 6 4 >> CellXYForwardSearchZ.chair.cell_size.timings
+CellXYForwardSearchZ.mesh ../data/chair.08.ascii 8 8 4 >> CellXYForwardSearchZ.chair.cell_size.timings
+CellXYForwardSearchZ.mesh ../data/chair.08.ascii 12 12 4 >> CellXYForwardSearchZ.chair.cell_size.timings
+CellXYForwardSearchZ.mesh ../data/chair.08.ascii 16 16 4 >> CellXYForwardSearchZ.chair.cell_size.timings

@@ -1,0 +1,93 @@
+
+<html>
+<head>
+<title>Installation on RedHat 5.4 or CentOS 5.4</title>
+</head>
+<body>
+<h1>Installation on RedHat 5.4 or CentOS 5.4</h1>
+
+<!--
+CentOS 5.4 32-bit:
+Install updates.
+Package Manager install: kernel-devel rpm-build
+  Development Libraries and Development Tools
+Download and install dkms-2.1.1.0-1.noarch.rpm
+
+In a terminal:
+  su
+  cd /media/VBOX...
+  sh ./VBoxLinuxAdditions-x86.run
+Installing the VB additions did not appear to work, but it worked upon
+rebooting.
+-->
+
+<p>
+To install Cain, first ensure that you have a C++ compiler and the
+appropriate Python packages. (See below.) Then follow the
+instructions for <a href="InstallationLinux.htm">installation on
+linux/unix</a>.
+</p>
+
+<p>
+First ensure that you have a C++ compiler.
+In the Package Manager install
+<tt>Development Libraries</tt> and <tt>Development Tools</tt>.
+</p>
+
+<p>
+Because <a href="http://www.redhat.com/">RedHat 5.4</a> and
+<a href="http://www.centos.org/">CentOS 5.4</a> are
+&quot;enterprise&quot; Linux distributions, they have an old version
+of Python (version 2.4.3).
+It is recommended that you upgrade to a more recent version.
+The easiest approach is to install the
+<a href="http://www.enthought.com/">Enthought Python Distribution</a>.
+It includes all of the packages that Cain requires. There is a
+free version for those associated with educational institutions.
+Download and save the Enthought
+Python Distribution installer file. You may either install for all users
+or just for your own use. Let's assume the former. (If you do not have
+administrator privileges, you can install EPD in your home directory.)
+In a terminal switch to
+superuser with &quot;su&quot;. Start the installation with something like
+&quot;sh epd-6.0.1-rh5-x86.sh&quot;. During installation you will be
+queried for an installation location.
+Choose something appropriate like &quot;/usr/lib/python2.6&quot;.
+After the installation you will need to prepend the path to EPD python
+to your PATH environment variable.
+To do this execute
+&quot;export PATH=/usr/lib/python2.6/bin:$PATH&quot; in a terminal.
+It will be convenient to add this definition to your .bashrc or
+.bash_profile in your home directory. 
+</p>
+
+
+<p>
+If you want to do things the hard way, it is also possible to use the version
+of python that ships with CentOS 5.4.
+Cain has some minor problems, but still works.
+To get wxPython install 
+<tt>Fedora Core 6, Python 2.4 common-gtk2-unicode</tt> and
+<tt>Fedora Core 6, Python 2.4 gtk2-unicode</tt>
+from the <a href="http://www.wxpython.org/">wxPython</a>
+downloads page. To get numpy and matplotlib you will need to install
+something like the following packages:
+<ul>
+  <li> python-numpy-1.0.1-1.el5.rf.i386.rpm
+  <li> python-dateutil-1.1-3.el5.noarch.rpm
+  <li> pytz-2006p-1.fc6.noarch.rpm
+  <li> python-matplotlib-0.98.5.2-3.el5.i386.rpm
+</ul>
+</p>
+
+<p>
+If you use an old version of python and plot any simulation output you may
+see the following message in the shell:<br>
+<tt>** (python:6182): WARNING **: IPP request failed with status 1030</tt><br>
+I don't know what causes this error.
+After you exit Cain you will need to press Ctrl-c in the shell to get the
+prompt back.
+</p>
+
+</body>
+</html>

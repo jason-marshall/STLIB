@@ -1,0 +1,152 @@
+
+<html>
+<head>
+<title>Plotting Histograms</title>
+</head>
+<body>
+<h1>Plotting Histograms</h1>
+
+<p>
+Open the file <tt>examples/cain/CaoPetzold2006_Schlogl.xml</tt> and
+select the &quot;Schlogl&quot; model and the &quot;Time Series&quot;
+method. Select all of the species and reactions in the recorder panel
+and then generate 10 trajectories. The steady state distribution of
+species populations is bi-modal. In the plot of the trajectories below
+we can see that the trajectory paths separate into two groups.
+</p>
+
+<p align="center">
+<img src="VisualizationTablesSchloglTimeSeriesPlot.jpg">
+</p>
+
+<p>
+We will study how the trajectories separate into a bi-modal
+distribution.  Select the &quot;Histograms Transient&quot; method,
+which records the populations in histograms at 6 frames. Generate
+10,000 trajectories and then
+click the plotting button <img src="plot.png">&nbsp;
+in the simulation output panel to bring up the plot
+configuration window. In this window select the &quot;Histograms&quot;
+tab. At the top of the window see that the &quot;Schlogl, Histograms
+Transient&quot; output is selected. Next choose the
+&quot;Multi-frame&quot; option. (There is only a single species so you
+don't need to select the species to plot.) The plot configuration
+window is shown below.
+</p>
+
+<p align="center">
+<img src="VisualizationPlottingHistogramsConfigurationAll.jpg">
+</p>
+
+<p>
+Click the &quot;Plot together&quot; button to generate the plot shown below.
+</p>
+
+<p align="center">
+<!--Saved as PNG. Reduced from 8 to 6 inches and saved as JPG.-->
+<img src="VisualizationPlottingHistogramsSchloglAll.jpg">
+</p>
+
+<p>
+Note that the plot range is set to include the tall, thin histogram that shows
+the initial condition at <i>t = 0</i>. With this plot range we
+cannot distinguish the features of the other histograms. We can take a
+closer look at them by clicking the zoom button in the plotting window
+and selecting a rectangular area. Below is a closer look at the rest
+of the histograms.
+</p>
+
+<p align="center">
+<!--Saved as PNG. Reduced from 8 to 6 inches and saved as JPG.-->
+<img src="VisualizationPlottingHistogramsSchloglZoom.jpg">
+</p>
+
+<p>
+We can exclude the histogram for the initial value by deselecting the
+&quot;Show&quot; field for the <i>t = 0</i> row in the frame table of
+the plot configuration window. Next left click the &quot;Line Color&quot;
+column header to assign new hues to the remaining selected
+frames. Then left click the &quot;Filled&quot; and the &quot;Fill
+Color&quot; column headers to turn on filling and match the fill color
+to the line color. Right click the &quot;Alpha&quot; header until all
+of these values are reduced to 0.2. This will give us a faint fill
+color and allow us to see all of the lines. Finally, fill in the title
+and axes labels. The resulting plot configuration window is shown below.
+</p>
+
+<p align="center">
+<img src="VisualizationPlottingHistogramsConfigurationNonzero.jpg">
+</p>
+
+<p>
+Click the &quot;Plot together&quot; button to generate the figure
+shown below. We see that at <i>t = 2</i> the trajectories have not yet
+separated into two groups. We can see the distribution become bi-modal
+as time advances. It appears the distribution is rapidly converging to the
+steady state, however this is not the case. In the subsequent sections
+we will see that determining the steady state solution requires some care.
+</p>
+
+<p align="center">
+<!--Saved as PNG. Reduced from 8 to 6 inches and saved as JPG.-->
+<img src="VisualizationPlottingHistogramsSchloglNonzero.jpg">
+</p>
+
+<p>
+Since the Schlogl problem is tricky, we will consider a simpler
+problem for introducing visualization of a steady state solution.
+Open the file <tt>examples/cain/ImmigrationDeath.xml</tt>. This
+problem is examined in the
+<a href="ExamplesImmigrationDeath.htm">Immigration Death</a> section
+of the <a href="Examples.htm">Examples</a> chapter.
+To determine the steady state distribution we will record the state in a time
+averaged histogram. First select &quot;ImmigrationDeath10&quot;
+from the model list, for which the initial population has been set to 10.
+Then select &quot;SteadyState&quot; from the list of methods.
+From the simulation parameters in the method editor you can see that
+the system is allowed to equilibrate for 100 seconds and then the
+state is recorded for 10,000 seconds. Generate 4 trajectories and then
+go to the plot configuration window. Clear the title and axes label
+from the previous example if necessary. The
+&quot;Histograms&quot; tab in this window is shown below. 
+</p>
+
+<p align="center">
+<img src="VisualizationPlottingHistogramsConfImDeDefault.jpg">
+</p>
+
+<p>
+Note that since this is an average value histogram, the
+&quot;Multi-frame&quot; option is disabled. The
+&quot;Multi-species&quot; option is selected, but there is no need to
+select a frame. Click the &quot;Plot together&quot; button to generate
+the figure shown below.
+</p>
+
+<p align="center">
+<!--Saved as PNG. Reduced from 8 to 6 inches and saved as JPG.-->
+<img src="VisualizationPlottingHistogramsPlotImDeDefault.jpg">
+</p>
+
+<p>
+Let's customize the plot a bit. In the plot configuration window set
+the line color to black by right-clicking the column header. Increase
+the line width to 2 by left-clicking that column header. Specify that
+the region under the line should be filled, set the fill color to green
+by clicking on the color cell and set the alpha value to 0.5. Turn off
+the legend (there is a single species). Fill in the plot title and
+axes labels. Set the title color to blue and the axes label colors to
+red. The resulting plot configuration window and plot are shown below.
+</p>
+
+<p align="center">
+<img src="VisualizationPlottingHistogramsConfImDeCustom.jpg">
+</p>
+
+<p align="center">
+<!--Saved as PNG. Reduced from 8 to 6 inches and saved as JPG.-->
+<img src="VisualizationPlottingHistogramsPlotImDeCustom.jpg">
+</p>
+
+</body>
+</html>

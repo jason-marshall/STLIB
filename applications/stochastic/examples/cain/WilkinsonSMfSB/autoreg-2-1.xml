@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cain version="1.2">
+  <listOfModels>
+    <model id="AutoRegulatoryNetwork" name="Auto-regulatory network">
+      <listOfSpecies>
+        <species initialAmount="10" id="Gene"/>
+        <species initialAmount="0" name="P2.Gene" id="P2Gene"/>
+        <species initialAmount="0" id="Rna"/>
+        <species initialAmount="0" id="P"/>
+        <species initialAmount="0" id="P2"/>
+      </listOfSpecies>
+      <listOfReactions>
+        <reaction propensity="1" massAction="true" id="RepressionBinding" name="Repression binding">
+          <listOfReactants>
+            <speciesReference species="Gene"/>
+            <speciesReference species="P2"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="P2Gene"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="10" massAction="true" id="ReverseRepressionBinding" name="Reverse repression binding">
+          <listOfReactants>
+            <speciesReference species="P2Gene"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="Gene"/>
+            <speciesReference species="P2"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="0.01" massAction="true" id="Transcription">
+          <listOfReactants>
+            <speciesReference species="Gene"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="Gene"/>
+            <speciesReference species="Rna"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="10" massAction="true" id="Translation">
+          <listOfReactants>
+            <speciesReference species="Rna"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="Rna"/>
+            <speciesReference species="P"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="1" massAction="true" id="Dimerisation">
+          <listOfReactants>
+            <speciesReference stoichiometry="2" species="P"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="P2"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="1" massAction="true" id="Dissociation">
+          <listOfReactants>
+            <speciesReference species="P2"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference stoichiometry="2" species="P"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="0.1" massAction="true" id="RnaDegradation" name="RNA Degradation">
+          <listOfReactants>
+            <speciesReference species="Rna"/>
+          </listOfReactants>
+        </reaction>
+        <reaction propensity="0.01" massAction="true" id="ProteinDegradation" name="Protein degradation">
+          <listOfReactants>
+            <speciesReference species="P"/>
+          </listOfReactants>
+        </reaction>
+      </listOfReactions>
+    </model>
+  </listOfModels>
+  <listOfMethods>
+    <method category="0" numberOfBins="32" multiplicity="4" equilibrationTime="0.0" id="Direct" method="0" timeDependence="0" startTime="0.0" recordingTime="5000.0" numberOfFrames="101" options="0"/>
+  </listOfMethods>
+  <random seed="2147483648">
+  </random>
+</cain>

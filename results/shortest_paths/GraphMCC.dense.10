@@ -1,0 +1,5 @@
+../time/GraphMCC.dense 100 10 > ../results/GraphMCC.dense.10
+../time/GraphMCC.dense 200 10 >> ../results/GraphMCC.dense.10
+../time/GraphMCC.dense 400 10 >> ../results/GraphMCC.dense.10
+../time/GraphMCC.dense 800 10 >> ../results/GraphMCC.dense.10
+../time/GraphMCC.dense 1600 10 >> ../results/GraphMCC.dense.10

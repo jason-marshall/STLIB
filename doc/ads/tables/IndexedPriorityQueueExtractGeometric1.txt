@@ -1,0 +1,171 @@
+<table border = "1" rules = "rows">
+<tr> <th> Method <th> Option <th> 2 <th> 4 <th> 8 <th> 16 <th> 32 <th> 64 <th> 128 <th> 256 <th> 512 <th> 1024
+<tr> <th rowspan="3"> Linear search
+<td> Simple
+<td> 13
+<td> 20
+<td> 34
+<td> 62
+<td> 118
+<td> 228
+<td> 452
+<td> 908
+<td> 1816
+<td> 3652
+<tr>
+<td> Unrolled
+<td> 12
+<td> 14
+<td> 24
+<td> 41
+<td> 62
+<td> 104
+<td> 178
+<td> 327
+<td> 615
+<td> 1211
+<tr>
+<td> Pointer
+<td> 13
+<td> 21
+<td> 34
+<td> 51
+<td> 76
+<td> 118
+<td> 197
+<td> 354
+<td> 664
+<td> 1289
+<tr> <th rowspan="4"> Partition
+<td> Fixed Size
+<td> 27
+<td> 38
+<td> 57
+<td> 73
+<td> 105
+<td> 133
+<td> 151
+<td> 175
+<td> 211
+<td> 247
+<tr>
+<td> Size Adaptive
+<td> 27
+<td> 43
+<td> 81
+<td> 70
+<td> 71
+<td> 78
+<td> 82
+<td> 93
+<td> 112
+<td> 139
+<tr>
+<td> Cost Adaptive
+<td> 25
+<td> 36
+<td> 56
+<td> 62
+<td> 68
+<td> 84
+<td> 87
+<td> 96
+<td> 108
+<td> 125
+<tr>
+<td> Propensities
+<td> 35
+<td> 42
+<td> 53
+<td> 64
+<td> 73
+<td> 85
+<td> 98
+<td> 112
+<td> 131
+<td> 157
+<tr> <th rowspan="3"> Binary Heap
+<td> Pointer
+<td> 12
+<td> 29
+<td> 52
+<td> 76
+<td> 84
+<td> 103
+<td> 122
+<td> 148
+<td> 167
+<td> 194
+<tr>
+<td> Pair
+<td> 12
+<td> 23
+<td> 51
+<td> 68
+<td> 75
+<td> 93
+<td> 106
+<td> 123
+<td> 146
+<td> 159
+<tr>
+<td> GibsonBruck
+<td> 20
+<td> 42
+<td> 74
+<td> 81
+<td> 98
+<td> 123
+<td> 143
+<td> 168
+<td> 200
+<td> 222
+<tr> <th rowspan="4"> Hashing
+<td> Chaining
+<td> 31
+<td> 35
+<td> 37
+<td> 40
+<td> 40
+<td> 41
+<td> 43
+<td> 45
+<td> 48
+<td> 52
+<tr>
+<td> Chaining Vector
+<td> 38
+<td> 45
+<td> 49
+<td> 61
+<td> 50
+<td> 51
+<td> 54
+<td> 55
+<td> 58
+<td> 63
+<tr>
+<td> Chaining Generic Vector
+<td> 54
+<td> 63
+<td> 68
+<td> 72
+<td> 70
+<td> 70
+<td> 70
+<td> 70
+<td> 70
+<td> 74
+<tr>
+<td> Chaining Generic List
+<td> 127
+<td> 137
+<td> 144
+<td> 150
+<td> 149
+<td> 159
+<td> 175
+<td> 175
+<td> 176
+<td> 184
+</table>

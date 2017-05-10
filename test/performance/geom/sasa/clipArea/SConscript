@@ -1,0 +1,15 @@
+# -*- python -*-
+
+import os.path
+
+import sys
+sys.path.append('../../..')
+from env import cuda, cudart
+
+# Compile.
+Import('useCuda')
+if useCuda:
+    clipAreaKernel = cuda.CudaObject('clipAreaKernel.o', 'clipAreaKernel.cu')
+    clipAreaGpu = cudart.Object('clipAreaGpu.cc')
+    clipAreaCpu = cudart.Object('clipAreaCpu.cc')
+    cudart.Program(['clipArea.cc', clipAreaGpu, clipAreaCpu, clipAreaKernel])

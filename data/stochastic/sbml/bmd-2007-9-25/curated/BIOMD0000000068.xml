@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbml xmlns="http://www.sbml.org/sbml/level2" metaid="metaid_0000001" level="2" version="1">
+  <model metaid="metaid_0000002" id="Curien2003_MetThr_synthesis" name="Curien2003_MetThr_synthesis">
+    <notes>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+<p align="left">
+ <font face="Arial, Helvetica, sans-serif">
+ <b>
+<a href="http://www.sbml.org/">SBML</a> level 2 code generated for the JWS Online project by Jacky Snoep using <a href="http://pysces.sourceforge.net/">PySCeS</a>
+<br></br>
+Run this model online at <a href="http://jjj.biochem.sun.ac.za/">http://jjj.biochem.sun.ac.za</a>
+<br></br>
+To cite JWS Online please refer to: Olivier, B.G. and Snoep, J.L. (2004) <a href="http://bioinformatics.oupjournals.org/cgi/content/abstract/20/13/2143">Web-based 
+modelling using JWS Online</a>, Bioinformatics, 20:2143-2144
+ </b>
+ </font>
+</p>
+<p>
+<u>Biomodels Curation</u> The model simulates the flux for TS and CGS under conditions given in Table 2 and reproduces the dotted lines given in Table 3 of the paper. There is a typo in the equation for the apparent specificity constant for Phser, Kts (equation13). This was changed after communication with the authors to be: Kts = 5.9E-4+6.2E-2*pow(AdoMet,2.9)/(pow(32,2.9)+pow(AdoMet,2.9)). The model was successfully tested on Jarnac.
+</p>
+<p>This model originates from BioModels Database: A Database of Annotated Published Models. It is copyright (c) 2005-2007 The BioModels Team.<br /> For more information see the <a href="http://www.ebi.ac.uk/biomodels/legal.html">terms of use</a>.</p>
+</body>
+    </notes>
+    <annotation>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" >
+<rdf:Description rdf:about="#metaid_0000002">
+<dc:creator rdf:parseType="Resource">
+<rdf:Bag>
+<rdf:li rdf:parseType="Resource">
+<vCard:N rdf:parseType="Resource">
+<vCard:Family>Dharuri</vCard:Family>
+<vCard:Given>Harish</vCard:Given>
+</vCard:N>
+<vCard:EMAIL>hdharuri@cds.caltech.edu</vCard:EMAIL>
+<vCard:ORG>
+<vCard:Orgname>California Institute of Technology</vCard:Orgname>
+</vCard:ORG>
+</rdf:li>
+<rdf:li rdf:parseType="Resource">
+<vCard:N rdf:parseType="Resource">
+<vCard:Family>Snoep</vCard:Family>
+<vCard:Given>Jacky L</vCard:Given>
+</vCard:N>
+<vCard:EMAIL>jls@sun.ac.za</vCard:EMAIL>
+<vCard:ORG>
+<vCard:Orgname>Stellenbosh University</vCard:Orgname>
+</vCard:ORG>
+</rdf:li>
+</rdf:Bag>
+</dc:creator>
+<dcterms:created rdf:parseType="Resource">
+<dcterms:W3CDTF>2006-08-30T22:46:53</dcterms:W3CDTF>
+</dcterms:created>
+<dcterms:modified rdf:parseType="Resource">
+<dcterms:W3CDTF>2007-04-29T22:49:15</dcterms:W3CDTF>
+</dcterms:modified>
+<bqmodel:is>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.ebi.ac.uk/biomodels/#BIOMD0000000068"/>
+</rdf:Bag>
+</bqmodel:is>
+<bqmodel:isDescribedBy>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.pubmed.gov/#14622248"/>
+</rdf:Bag>
+</bqmodel:isDescribedBy>
+<bqbiol:hasPart>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.geneontology.org/#GO:0019283"/>
+<rdf:li rdf:resource="http://www.geneontology.org/#GO:0009088"/>
+</rdf:Bag>
+</bqbiol:hasPart>
+<bqbiol:hasPart>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.genome.jp/kegg/pathway/#map00260"/>
+<rdf:li rdf:resource="http://www.genome.jp/kegg/pathway/#map00271"/>
+</rdf:Bag>
+</bqbiol:hasPart>
+<bqbiol:is>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.taxonomy.org/#3702"/>
+</rdf:Bag>
+</bqbiol:is>
+</rdf:Description>
+</rdf:RDF>
+</annotation>
+
+    <listOfUnitDefinitions>
+      <unitDefinition metaid="metaid_0000013" id="substance" name="micromole">
+        <listOfUnits>
+          <unit kind="mole" scale="-6" multiplier="1" offset="0"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition metaid="metaid_0000014" id="microM" name="microM">
+        <listOfUnits>
+          <unit kind="mole" scale="-6" multiplier="1" offset="0"/>
+          <unit kind="litre" exponent="-1" multiplier="1" offset="0"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition metaid="metaid_0000015" id="sec_inverse" name="sec_inverse">
+        <listOfUnits>
+          <unit kind="second" exponent="-1" multiplier="1" offset="0"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition metaid="metaid_0000016" id="microM_per_second" name="microM_per_second">
+        <listOfUnits>
+          <unit kind="mole" scale="-6" multiplier="1" offset="0"/>
+          <unit kind="litre" exponent="-1" multiplier="1" offset="0"/>
+          <unit kind="second" exponent="-1" multiplier="1" offset="0"/>
+        </listOfUnits>
+      </unitDefinition>
+    </listOfUnitDefinitions>
+    <listOfCompartments>
+      <compartment metaid="metaid_0000003" id="compartment" name="Cell" size="1">
+        <annotation>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" >
+<rdf:Description rdf:about="#metaid_0000003">
+<bqbiol:is>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.geneontology.org/#GO:0005623"/>
+</rdf:Bag>
+</bqbiol:is>
+</rdf:Description>
+</rdf:RDF>
+</annotation>
+
+      </compartment>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species metaid="metaid_0000004" id="Phser" name="Phosphohomoserine" compartment="compartment" initialConcentration="0">
+        <annotation>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" >
+<rdf:Description rdf:about="#metaid_0000004">
+<bqbiol:is>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.ebi.ac.uk/chebi/#CHEBI:15961"/>
+<rdf:li rdf:resource="http://www.genome.jp/kegg/compound/#C01102"/>
+</rdf:Bag>
+</bqbiol:is>
+</rdf:Description>
+</rdf:RDF>
+</annotation>
+
+      </species>
+      <species metaid="metaid_0000005" id="Thr" name="Threonine" compartment="compartment" initialConcentration="0" boundaryCondition="true">
+        <annotation>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" >
+<rdf:Description rdf:about="#metaid_0000005">
+<bqbiol:is>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.ebi.ac.uk/chebi/#CHEBI:16857"/>
+<rdf:li rdf:resource="http://www.genome.jp/kegg/compound/#C00188"/>
+</rdf:Bag>
+</bqbiol:is>
+</rdf:Description>
+</rdf:RDF>
+</annotation>
+
+      </species>
+      <species metaid="metaid_0000006" id="Cystathionine" name="Cystathionine" compartment="compartment" initialConcentration="0" boundaryCondition="true">
+        <annotation>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" >
+<rdf:Description rdf:about="#metaid_0000006">
+<bqbiol:is>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.ebi.ac.uk/chebi/#CHEBI:17482"/>
+<rdf:li rdf:resource="http://www.genome.jp/kegg/compound/#C02291"/>
+</rdf:Bag>
+</bqbiol:is>
+</rdf:Description>
+</rdf:RDF>
+</annotation>
+
+      </species>
+      <species metaid="metaid_0000007" id="Hser" name="Homoserine" compartment="compartment" initialConcentration="0" boundaryCondition="true">
+        <annotation>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" >
+<rdf:Description rdf:about="#metaid_0000007">
+<bqbiol:is>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.ebi.ac.uk/chebi/#CHEBI:15699"/>
+<rdf:li rdf:resource="http://www.genome.jp/kegg/compound/#C00263"/>
+</rdf:Bag>
+</bqbiol:is>
+</rdf:Description>
+</rdf:RDF>
+</annotation>
+
+      </species>
+      <species metaid="metaid_0000008" id="Phi" name="Inorganic phosphate" compartment="compartment" initialConcentration="10000" boundaryCondition="true">
+        <annotation>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" >
+<rdf:Description rdf:about="#metaid_0000008">
+<bqbiol:is>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.ebi.ac.uk/chebi/#CHEBI:18367"/>
+<rdf:li rdf:resource="http://www.genome.jp/kegg/compound/#C00009"/>
+</rdf:Bag>
+</bqbiol:is>
+</rdf:Description>
+</rdf:RDF>
+</annotation>
+
+      </species>
+      <species metaid="metaid_0000009" id="Cys" name="Cysteine" compartment="compartment" initialConcentration="15" boundaryCondition="true">
+        <annotation>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" >
+<rdf:Description rdf:about="#metaid_0000009">
+<bqbiol:is>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.ebi.ac.uk/chebi/#CHEBI:17561"/>
+<rdf:li rdf:resource="http://www.genome.jp/kegg/compound/#C00097"/>
+</rdf:Bag>
+</bqbiol:is>
+</rdf:Description>
+</rdf:RDF>
+</annotation>
+
+      </species>
+    </listOfSpecies>
+    <listOfReactions>
+      <reaction metaid="metaid_0000010" id="v1" name="Phosphohomoserine synthesis">
+        <annotation>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" >
+<rdf:Description rdf:about="#metaid_0000010">
+<bqbiol:isVersionOf>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.ec-code.org/#2.7.1.39"/>
+<rdf:li rdf:resource="http://www.geneontology.org/#GO:0004413"/>
+</rdf:Bag>
+</bqbiol:isVersionOf>
+<bqbiol:is>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.genome.jp/kegg/reaction/#R01775"/>
+</rdf:Bag>
+</bqbiol:is>
+</rdf:Description>
+</rdf:RDF>
+</annotation>
+
+        <listOfReactants>
+          <speciesReference species="Hser"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Phser"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> compartment </ci>
+              <ci> V0 </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="V0" value="1" units="microM_per_second"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="metaid_0000011" id="vCys" name="Cystathionine gamma-synthase">
+        <annotation>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" >
+<rdf:Description rdf:about="#metaid_0000011">
+<bqbiol:isVersionOf>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.ec-code.org/#2.5.1.48"/>
+<rdf:li rdf:resource="http://www.geneontology.org/#GO:0003962"/>
+</rdf:Bag>
+</bqbiol:isVersionOf>
+</rdf:Description>
+</rdf:RDF>
+</annotation>
+
+        <listOfReactants>
+          <speciesReference species="Phser"/>
+          <speciesReference species="Cys"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Cystathionine"/>
+          <speciesReference species="Phi"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> CGS </ci>
+                <apply>
+                  <divide/>
+                  <ci> kcat2 </ci>
+                  <apply>
+                    <plus/>
+                    <cn type="integer"> 1 </cn>
+                    <apply>
+                      <divide/>
+                      <ci> KmCYS </ci>
+                      <ci> Cys </ci>
+                    </apply>
+                  </apply>
+                </apply>
+                <ci> Phser </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> Phser </ci>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> KmPHSER </ci>
+                    <apply>
+                      <plus/>
+                      <cn type="integer"> 1 </cn>
+                      <apply>
+                        <divide/>
+                        <ci> Phi </ci>
+                        <ci> Ki2 </ci>
+                      </apply>
+                    </apply>
+                  </apply>
+                  <apply>
+                    <plus/>
+                    <cn type="integer"> 1 </cn>
+                    <apply>
+                      <divide/>
+                      <ci> KmCYS </ci>
+                      <ci> Cys </ci>
+                    </apply>
+                  </apply>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="CGS" name="Cystathionine gamma-synthase" value="0.7" units="microM"/>
+            <parameter id="kcat2" value="30" units="microM"/>
+            <parameter id="KmCYS" value="460" units="microM"/>
+            <parameter id="KmPHSER" value="2500" units="microM"/>
+            <parameter id="Ki2" value="2000" units="microM"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="metaid_0000012" id="vThr" name="Threonine Synthase">
+        <annotation>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" >
+<rdf:Description rdf:about="#metaid_0000012">
+<bqbiol:isVersionOf>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.ec-code.org/#4.2.3.1"/>
+<rdf:li rdf:resource="http://www.geneontology.org/#GO:0004795"/>
+</rdf:Bag>
+</bqbiol:isVersionOf>
+<bqbiol:is>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.genome.jp/kegg/reaction/#R01466"/>
+</rdf:Bag>
+</bqbiol:is>
+</rdf:Description>
+</rdf:RDF>
+</annotation>
+
+        <listOfReactants>
+          <speciesReference species="Phser"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Thr"/>
+          <speciesReference species="Phi"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> TS </ci>
+                <apply>
+                  <plus/>
+                  <cn type="e-notation"> 5.9 <sep/> -4 </cn>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <cn> 0.062 </cn>
+                      <apply>
+                        <power/>
+                        <ci> AdoMet </ci>
+                        <cn> 2.9 </cn>
+                      </apply>
+                    </apply>
+                    <apply>
+                      <plus/>
+                      <apply>
+                        <power/>
+                        <cn type="integer"> 32 </cn>
+                        <cn> 2.9 </cn>
+                      </apply>
+                      <apply>
+                        <power/>
+                        <ci> AdoMet </ci>
+                        <cn> 2.9 </cn>
+                      </apply>
+                    </apply>
+                  </apply>
+                </apply>
+                <ci> Phser </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <ci> Phi </ci>
+                  <ci> Ki3 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="TS" name="Threonine synthase" value="5" units="microM"/>
+            <parameter id="AdoMet" name="S-adenosylmethionine" value="20" units="microM"/>
+            <parameter id="Ki3" value="1000" units="microM"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+    </listOfReactions>
+  </model>
+</sbml>

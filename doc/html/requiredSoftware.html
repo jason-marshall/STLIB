@@ -1,0 +1,133 @@
+<html>
+<head>
+<title>Required Software</title>
+<link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+
+<body>
+<h1 align=center>Required Software</h1>
+
+<a href="index.html">Back</a>
+
+<p>
+In order to use STLib, you will need some third-party software.
+<a href="http://www.boost.org/">Boost</a> is required for most packages. 
+Note that you don't need the compiled Boost libraries, just the headers.
+<a href="https://github.com/philsquared/Catch">Catch</a> is required
+for some unit tests. This is a pure header library, so
+no compilation is required.
+Both the <code>geom/shape</code> package and the implicit
+tau-leaping in <code>stochastic</code> use 
+<a href="http://eigen.tuxfamily.org/">Eigen</a>.
+</p>
+
+<p>
+In order to compile sources that use STLib, these libraries must be in
+your include path. Here we give instructions for putting them in 
+<code>include</code> in your home directory.
+</p>
+
+<p>
+For Catch, get the latest
+<a href="http://builds.catch-lib.net">single header version</a>.
+Right click on <code>Latest Master build</code> and save the linked
+file to your <code>Downloads</code> folder. Then move the file to
+<code>include</code>.
+<pre>
+$ cd ~/include
+$ cp ~/Downloads/catch.hpp .
+</pre>
+</p>
+
+<p>
+Download the latest version of Boost and unpack it. Then copy the
+header files to <code>include</code>.
+<pre>
+$ cp -R ~/Downloads/boost_1_56_0/boost .
+</pre>
+</p>
+
+<p>
+Download the latest version of Eigen and unpack it. Then copy the
+header files to <code>include</code>.
+<pre>
+$ cp -R ~/Downloads/eigen-eigen-1306d75b4a21/Eigen .
+</pre>
+</p>
+
+
+<h1 align=center>MS Windows</h1>
+
+<p>
+If you develop on MS Windows, then using STLib should be fairly easy. Just 
+put it in a convenient location and put <code>path/to/stlib</code> in your
+include path when you compile. You will likely also need the
+Boost++ headers. The rest of this section is documentation for myself.
+I describe how to set up a development environment on Windows.
+</p>
+
+<p>
+Install the Visual Studio Express Windows Desktop application. (This requires
+less disk space than the other applications.)
+Install the following:
+Windows PowerShell 4.0, Microsoft MPI, Python 2.7, SCons, Git, and SourceTree.
+Add <code>C:\Program Files\Microsoft SDKs\MPI\Lib\x86</code> (or the
+<code>x64</code> directory for 64-bit architectures) and 
+<code>C:\Python27\Scripts</code> to the system <code>Path</code> 
+environment variable.
+</p>
+
+
+<p>
+Install Boost++. I recommend grabbing one of the installers with pre-compiled
+binaries instead of installing from source. Suppose that it is installed in
+<code>C:\local\boost_1_58_0</code>. Add the library directory to the system
+<code>Path</code> environment variable. For example, you might add the
+<code>C:\local\boost_1_58_0\lib32-msvc-12.0</code> directory. In your home
+directory, create an <code>include</code> directory. There, add a junction
+to the Boost++ include directory. To do this, click the <code>Start</code>
+button and then right-click on <code>Command Prompt</code> and select
+<code>Run as administrator</code>. Navigate to the <code>include</code>
+directory and execute the following command.
+<pre>
+C:\Users\Sean\include>mklink /D boost C:\local\boost_1_58_0\boost
+</pre>
+</p>
+
+<p>
+Download the single header file for Catch and put <code>catch.hpp</code>
+in the <code>include</code> directory.
+Download Eigen. Copy the <code>Eigen</code> directory, which contains the
+header files, to the 
+<code>include</code> directory in your home directory.
+</p>
+
+<p>
+After cloning stlib with SourceTree, add a junction to stlib in your 
+<code>include</code> directory.
+<pre>
+C:\Users\Sean\include>mklink /D stlib C:\Users\Sean\dev\stlib\stlib
+</pre>
+</p>
+
+<!-- I can't get the debugger to work.
+<p>
+To get debugging software, install the Windows Software Development Kit
+for Windows 8.1. During the installation, deselect all components except 
+the debugging one.
+</p>
+-->
+
+<p>
+Incidentally, don't try using SharpKeys to swap the control, alt, and Windows 
+keys. The program can override keys, but it can't swap them.
+</p>
+
+</body>
+<hr>
+<address>
+<a href="https://bitbucket.org/seanmauch/stlib">https://bitbucket.org/seanmauch/stlib</a>
+/ at(seanmauch, dot(me, com))
+</address>
+</html>
+

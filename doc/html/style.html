@@ -1,0 +1,318 @@
+<html>
+<head>
+<title>C++ Style and Conventions</title>
+<link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+
+<body>
+<h1 align=center>C++ Style and Conventions</h1>
+
+<a href="index.html">Back</a>
+
+<!--------------------------------------------------------------------------->
+<h2>Resources</h2>
+
+<p>
+&quot;The Elements of C++ Style&quot; by Misfeldt, Bumgardner,
+and Gray has advice on formatting as well as many coding tips. Consult
+&quot;C++ Coding Standards&quot; by Sutter and Alexandrescu and
+&quot;Effective C++&quot; by Meyers for coding best practices.
+&quot;Large Scale C++ Software Design&quot; by Lakos is a very useful
+guide, (though a few sections are now a little dated).
+</p>
+
+<p>
+Read the <a href="http://www.python.org/dev/peps/pep-0008/">Style Guide
+for Python Code</a> for a concise set of recommendations.
+</p>
+
+<!--------------------------------------------------------------------------->
+<h2>File Structure</h2>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h3>Header Files</h3>
+
+<p>
+Header files have a <tt>.h</tt> or <tt>.hh</tt> suffix and the following
+structure. The first line tells emacs to use
+C++ mode. Next comes documentation of the file in Doxygen format. Include
+header files in the order: local, third-party, and then standard library files.
+The inclusion of <tt>Bar.ipp</tt>
+is only done if there is an inline definition file.
+<pre>
+// -*- C++ -*-
+
+/*! 
+  \file foo/Bar.h
+  \brief Concise explanation of what is implemented in this file.
+*/
+
+#if !defined(__foo_Bar_h__)
+#define __foo_Bar_h__
+
+// Local includes.
+// Third-party includes.
+// Standard library includes.
+
+namespace foo {
+
+// Class definitions and function declarations.
+
+} // namespace foo
+
+#define __foo_Bar_ipp__
+#include "Bar.ipp"
+#undef __foo_Bar_ipp__
+
+#endif
+</pre>
+</p>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h3>Inline Definition Files</h3>
+
+<p>
+Inline definition files have the <tt>.ipp</tt> suffix. They have an include
+guard because their definitions should only be accessed through the associated
+header file.
+<pre>
+// -*- C++ -*-
+
+#if !defined(__foo_Bar_ipp__)
+#error This file is an implementation detail of the class Bar.
+#endif
+
+namespace foo {
+
+// Inline function definitions.
+
+} // namespace foo
+</pre>
+</p>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h3>Compilation Units</h3>
+
+<p>
+Compilation units have a <tt>.cc</tt> suffix and the following structure.
+<pre>
+// -*- C++ -*-
+
+#include "Bar.h"
+// Other includes.
+
+namespace foo {
+
+// Function definitions.
+
+} // namespace foo
+</pre>
+</p>
+
+
+<!--------------------------------------------------------------------------->
+<h2>Formatting</h2>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h3>Artistic Style</h3>
+
+<p>
+The code is automatically formatted with
+<a href="http://astyle.sourceforge.net/astyle.html">Artistic Style</a>.
+To install <tt>astyle</tt> on your computer download the appropriate
+package and unpack it.
+<pre>
+gunzip astyle.tar.gz
+tar xvf astyle_1.24_macosx.tar
+</pre>
+Then compile the command line program with a command like the
+following.
+<pre>
+cd astyle/build/mac
+make
+</pre>
+Finally move the executable to an appropriate location.
+<pre>
+sudo mv bin/astyle /usr/local/bin
+</pre>
+The configuration file is <tt>doc/astyle.txt</tt>. The conventions
+defined there are outlined in the rest of this section.
+</p>
+
+<p>
+To avoid
+frustration you will want to configure you source code editor to use
+the same conventions.  If you use some version of emacs, place the
+following definitions in your configuration file.
+(For <a href="http://aquamacs.org/">Aquamacs</a> users this file is
+<tt>~/Library/Preferences/Aquamacs Emacs/Preferences.el</tt>. Otherwise
+it is <tt>~/.emacs</tt>.)
+</p>
+
+<pre>
+(setq c-basic-offset 2) ; Use two spaces for indentation.
+(setq c-offsets-alist 
+      '((innamespace . 0))) ; No indentation for namespaces.
+(setq-default indent-tabs-mode nil) ; Don't use tabs to indent.
+; Draw tabs with the same color as trailing whitespace
+(add-hook 'font-lock-mode-hook
+ '(lambda ()
+    (font-lock-add-keywords
+      nil
+       '(("\t" 0 'trailing-whitespace prepend))
+    )
+  )
+)
+</pre>
+
+<p>
+One of the definitions above tells emacs to use only spaces for
+indenting code. (By default it will use a combination of tabs and
+spaces.) Using tabs is problematic because different editors may
+display tabs with differing number of spaces. Thus code that appears
+formatted for one user may not be for another. If you encounter a file
+with tabs, select all of the text and use <tt>M-x untabify</tt> to
+convert the tabs to spaces.
+</p>
+
+<!--CONTINUE Document using the makefile to format all code when that
+is implemented.-->
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h3>Width</h3>
+
+<p>
+Format your code so that lines are no more than 79 characters wide. Don't
+increase the width of your text editor even if you
+prefer to use more characters so that long formulas will fit on a single line.
+80 characters is the most common width; when others read your code the lines
+will wrap and it will look like a mess.
+</p>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h3>Indentation</h3>
+
+<p>
+Use two spaces to indent blocks of code. For vi use the following command
+to set this convention.
+<pre>
+:set cindent shiftwidth=2
+</pre>
+</p>
+
+<p>
+Don't use indentation following namespace declarations. Otherwise almost all
+of your code will be indented.
+<pre>
+namespace foo {
+class Bar {
+   ...
+};
+}
+</pre>
+</p>
+
+<p>
+Use two indentation levels for initializers lists in constructors. This sets
+the initialization list apart from the function body.
+<pre>
+class Foo {
+    Foo(const std::size_t size) :
+            _size(size),
+            _data() {
+        allocateMemory();
+    }
+};
+</pre>
+</p>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h3>Brace Placement</h3>
+
+<p>
+Place the opening brace on the line that controls entry into a block.
+The closing brace is on its own line following the end of the block.
+For function definitions, place the opening brace on its own line.
+<pre>
+void
+foo()
+{
+   if (...) {
+      ...
+   }
+   else {
+      ...
+   }
+   while (...) {
+      ...
+   }
+}
+</pre>
+</p>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h3>White Space</h3>
+
+<p>
+Use a space in the following places.
+<ul>
+  <li> Put a space after <tt>if</tt>, <tt>for</tt>, <tt>while</tt>, and
+  <tt>do</tt>. This makes it look different than a function call.
+  <li> Put a space before and after binary operators such as =, ==, +, -, *,
+  and /.
+</ul>
+</p>
+
+<!--------------------------------------------------------------------------->
+<h2>Naming Conventions</h2>
+
+<p>
+<ul>
+  <li> Use uppercase and underscores for macros.
+  <li> Use upper camel for classes, structures, constants, enumerations,
+  and types.
+  <li> Use lower camel for namespaces, functions, and variables.
+  <li> Use an underscore prefix for private member variables. Don't use an
+  underscore for public member variables.
+  <li> Use a leading underscore for template parameters to avoid name clashes.
+</ul>
+<pre>
+#define DEBUG_GEOM
+
+const std::size_t SpaceDimension = 3;
+
+class BoundingBoxTree {
+public:
+    typedef std::tr1::array&lt;double, SpaceDimension&gt; Point;
+    enum {MaxLevel = 10};
+private:
+    std::vector&lt;Point&gt; _centers;
+   ...
+}
+
+template&lt;typename _T, std::size_t _Dimension&gt;
+bool makeBoundingBox(const std::vector&lt;std::tr1::array&lt;_T, _Dimension&gt; &gt; coordinates) {
+    ...
+}
+</pre>
+</p>
+
+<!--------------------------------------------------------------------------->
+<h2><code>std::endl</code> vs. <code>\n</code></h2>
+
+The difference between using <code>std::endl</code> and
+<code>\n</code> is that the former flushes the buffer after writing
+the newline character. There is no difference in content.  Use
+<code>std::endl</code> when you want the buffer to be flushed, for
+example when you are displaying output in a command line program.
+Otherwise use <code>\n</code> as flushing the buffer unecessarily
+might (but probably won't) affect the performance.
+
+</body>
+<hr>
+<address>
+<a href="https://bitbucket.org/seanmauch/stlib">https://bitbucket.org/seanmauch/stlib</a>
+/ at(seanmauch, dot(me, com))
+</address>
+</html>
+

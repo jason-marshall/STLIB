@@ -1,0 +1,18 @@
+# -*- python -*-
+
+import sys
+sys.path.append('../..')
+from env import serial, avx, sse2
+
+# Compile.
+target = 'cpuid'
+serial.Program(target, [serial.Object('cpuid.cc'),
+                        serial.Object('print.cc'),
+                        serial.Object('print_AVX.cc'),
+                        serial.Object('print_SSE2.cc')])
+
+# Run.
+serial.Run(source=target)
+
+Import('errors')
+errors.append(Glob('*.err'))

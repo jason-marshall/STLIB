@@ -1,0 +1,181 @@
+
+:
+Total time = 0.39268
+
+Distribute objects with uniform cells:
+Number of objects = 1.04858e+06
+Number of levels = 3
+Number of cells = 512
+Build the local cells = 0.112495
+Partition the cells = 0.223596
+Distribute the cells and objects = 0.0564783
+Total time = 0.392621
+
+:
+Total time
+  sum = 0.886301, mean = 0.44315, min = 0.443127, max = 0.443173
+
+Distribute objects with uniform cells:
+Number of objects
+  sum = 2.09715e+06, mean = 1.04858e+06, min = 1.04782e+06, max = 1.04933e+06
+Number of levels = 3
+Number of cells = 256
+Build the local cells
+  sum = 0.263661, mean = 0.13183, min = 0.131817, max = 0.131844
+Partition the cells
+  sum = 0.493018, mean = 0.246509, min = 0.246501, max = 0.246517
+Distribute the cells and objects
+  sum = 0.129464, mean = 0.064732, min = 0.0647228, max = 0.0647411
+Total time
+  sum = 0.886221, mean = 0.443111, min = 0.443105, max = 0.443116
+
+:
+Total time
+  sum = 1.80732, mean = 0.451831, min = 0.451408, max = 0.452379
+
+Distribute objects with uniform cells:
+Number of objects
+  sum = 4.1943e+06, mean = 1.04858e+06, min = 1.04646e+06, max = 1.05089e+06
+Number of levels = 3
+Number of cells = 128
+Build the local cells
+  sum = 0.550175, mean = 0.137544, min = 0.137516, max = 0.137571
+Partition the cells
+  sum = 0.989841, mean = 0.24746, min = 0.24741, max = 0.247508
+Distribute the cells and objects
+  sum = 0.267048, mean = 0.0667619, min = 0.0663206, max = 0.0672611
+Total time
+  sum = 1.80724, mean = 0.45181, min = 0.451396, max = 0.452329
+
+:
+Total time
+  sum = 3.86949, mean = 0.483686, min = 0.48115, max = 0.484574
+
+Distribute objects with uniform cells:
+Number of objects
+  sum = 8.38861e+06, mean = 1.04858e+06, min = 1.04755e+06, max = 1.04919e+06
+Number of levels = 4
+Number of cells
+  sum = 4096, mean = 512, min = 511, max = 513
+Build the local cells
+  sum = 1.07574, mean = 0.134468, min = 0.133959, max = 0.134844
+Partition the cells
+  sum = 2.17882, mean = 0.272353, min = 0.271991, max = 0.272783
+Distribute the cells and objects
+  sum = 0.614518, mean = 0.0768148, min = 0.0742674, max = 0.0778231
+Total time
+  sum = 3.86937, mean = 0.483671, min = 0.481141, max = 0.484567
+
+:
+Total time
+  sum = 10.7078, mean = 0.669239, min = 0.666637, max = 0.670963
+
+Distribute objects with uniform cells:
+Number of objects
+  sum = 1.67772e+07, mean = 1.04858e+06, min = 1.0468e+06, max = 1.05065e+06
+Number of levels = 4
+Number of cells
+  sum = 4096, mean = 256, min = 255, max = 257
+Build the local cells
+  sum = 2.60454, mean = 0.162784, min = 0.160432, max = 0.164283
+Partition the cells
+  sum = 6.36247, mean = 0.397655, min = 0.395921, max = 0.399966
+Distribute the cells and objects
+  sum = 1.7397, mean = 0.108731, min = 0.105996, max = 0.11045
+Total time
+  sum = 10.7076, mean = 0.669226, min = 0.666623, max = 0.670952
+
+:
+Total time
+  sum = 40.8529, mean = 1.27665, min = 1.21277, max = 1.3123
+
+Distribute objects with uniform cells:
+Number of objects
+  sum = 3.35544e+07, mean = 1.04858e+06, min = 1.04361e+06, max = 1.05317e+06
+Number of levels = 4
+Number of cells
+  sum = 4096, mean = 128, min = 127, max = 129
+Build the local cells
+  sum = 8.7011, mean = 0.27191, min = 0.173068, max = 0.308739
+Partition the cells
+  sum = 12.523, mean = 0.391344, min = 0.374393, max = 0.470255
+Distribute the cells and objects
+  sum = 19.6268, mean = 0.613337, min = 0.569377, max = 0.629191
+Total time
+  sum = 40.8525, mean = 1.27664, min = 1.21276, max = 1.31229
+
+:
+Total time
+  sum = 154.696, mean = 2.41713, min = 2.22399, max = 2.52405
+
+Distribute objects with uniform cells:
+Number of objects
+  sum = 6.71089e+07, mean = 1.04858e+06, min = 1.04747e+06, max = 1.04956e+06
+Number of levels = 5
+Number of cells
+  sum = 32768, mean = 512, min = 510, max = 516
+Build the local cells
+  sum = 24.2514, mean = 0.378927, min = 0.227625, max = 0.459408
+Partition the cells
+  sum = 38.108, mean = 0.595438, min = 0.482046, max = 0.744176
+Distribute the cells and objects
+  sum = 92.333, mean = 1.4427, min = 1.27329, max = 1.55204
+Total time
+  sum = 154.696, mean = 2.41712, min = 2.22398, max = 2.52404
+
+:
+Total time
+  sum = 501.837, mean = 3.9206, min = 3.62787, max = 4.10905
+
+Distribute objects with uniform cells:
+Number of objects
+  sum = 1.34218e+08, mean = 1.04858e+06, min = 1.04567e+06, max = 1.0507e+06
+Number of levels = 5
+Number of cells
+  sum = 32768, mean = 256, min = 253, max = 258
+Build the local cells
+  sum = 43.5696, mean = 0.340387, min = 0.186497, max = 0.39947
+Partition the cells
+  sum = 59.7936, mean = 0.467138, min = 0.402535, max = 0.613804
+Distribute the cells and objects
+  sum = 398.467, mean = 3.11302, min = 2.82623, max = 3.30717
+Total time
+  sum = 501.836, mean = 3.92059, min = 3.62786, max = 4.10904
+
+:
+Total time
+  sum = 2095.79, mean = 8.18668, min = 7.44882, max = 8.5591
+
+Distribute objects with uniform cells:
+Number of objects
+  sum = 2.68435e+08, mean = 1.04858e+06, min = 1.04202e+06, max = 1.05265e+06
+Number of levels = 5
+Number of cells
+  sum = 32768, mean = 128, min = 126, max = 130
+Build the local cells
+  sum = 129.763, mean = 0.506888, min = 0.281419, max = 0.614193
+Partition the cells
+  sum = 167.706, mean = 0.655101, min = 0.488049, max = 0.857874
+Distribute the cells and objects
+  sum = 1798.31, mean = 7.02464, min = 6.28091, max = 7.41475
+Total time
+  sum = 2095.79, mean = 8.18667, min = 7.44881, max = 8.55909
+
+:
+Total time
+  sum = 9895.38, mean = 19.3269, min = 17.5365, max = 20.3997
+
+Distribute objects with uniform cells:
+Number of objects
+  sum = 5.36871e+08, mean = 1.04858e+06, min = 1.04718e+06, max = 1.04973e+06
+Number of levels = 6
+Number of cells
+  sum = 262144, mean = 512, min = 502, max = 523
+Build the local cells
+  sum = 283.046, mean = 0.552824, min = 0.263353, max = 0.706742
+Partition the cells
+  sum = 500.343, mean = 0.977232, min = 0.796952, max = 1.16614
+Distribute the cells and objects
+  sum = 9111.96, mean = 17.7968, min = 15.9994, max = 18.9061
+Total time
+  sum = 9895.37, mean = 19.3269, min = 17.5365, max = 20.3997

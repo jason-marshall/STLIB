@@ -1,0 +1,51 @@
+
+<html>
+<head>
+<title>First Reaction Method</title>
+</head>
+<body>
+<h1>First Reaction Method</h1>
+
+<p>
+Gillespie's first reaction method generates a uniform random deviate for
+each reaction at each time step.  These uniform deviates are used to compute
+exponential deviates which are the times at which each reaction will next fire.
+By selecting the minimum of these times, one identifies the time and 
+the index of the first reaction to fire.  The algorithm for a single step
+is given below.
+<ol>
+<li> for <em>m</em> in <em>[1..M]</em>:
+  <ol>
+    <li> Compute a<sub>m</sub> from <em>X</em>.
+    <li> Generate a unit, uniform random number <em>r</em>.
+    <li> <em>&tau;<sub>m</sub> = -</em>ln<em>(r) / a<sub>m</sub></em>
+  </ol>
+<li> <em>&tau; = </em>min<em><sub>m</sub> &tau;<sub>m</sub></em>
+<li> <em>&mu; =</em> index of the minimum <em>&tau;<sub>m</sub></em>
+<li> <em>t = t + &tau;</em>
+<li> <em>X = X + V<sub>&mu;</sub></em>
+</ol>
+</p>
+
+<p>
+As with the direct method, using an efficient exponential deviate generator
+will improve the performance. But with the first reaction method an
+exponential deviate is generated for each reaction, so using a good generator
+is critical. One can also improve the efficiency by only
+computing those propensities that have changed. For this one needs a reaction
+influence data structure. The implementation of the first reaction method in
+Cain uses these optimizations.
+</p>
+
+<p>
+The first reaction method is not as efficient as the direct method. Taking a
+step has linear complexity in the number of reactions and it requires
+more random numbers than the direct method. For small problems it has
+acceptable performance, but it is not efficient for large problems.
+The first reaction method may be adapted
+to re-use the reaction times instead of regenerating them at each step.
+This method is introduced next.
+</p>
+
+</body>
+</html>

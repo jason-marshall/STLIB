@@ -1,0 +1,10 @@
+#!/bin/csh -f
+#PBS -l nodes=8:core4:ppn=1
+#PBS -l walltime=00:10:00
+#
+# Direct stdout/err as desired.
+#PBS -o 032.out
+#PBS -e 032.err
+#
+cd $HOME/Development/stlib/test/performance/release/particle/mpi
+time mpirun -np 8 ./random -p=100000 -s=1000 -m=periodic >$HOME/032.txt

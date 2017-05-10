@@ -1,0 +1,69 @@
+<html>
+<head>
+<title>Parameter Editor</title>
+</head>
+<body>
+<h1>Parameter Editor</h1>
+
+<p align="center">
+<img src="ParameterEditor.png">
+</p>
+
+<p>
+Model parameters are constants that you can use in the expressions for the
+species initial amounts and the reaction propensities. The <tt>ID</tt>
+field is required, but the name is optional (and hidden by default).
+For the value you can enter
+a number or any Python expression. You can use the standard mathematical
+functions and constants as well as other parameters to define the values.
+You will get an error message if the parameters cannot be evaluated.
+Below is an example of a valid set of parameters.
+<!--CONTINUE: Tables are not currently rendered correctly.
+<table border="1">
+<tr><th>ID<th>Value<th>Name
+  <tr><td>R<td>sqrt(10)<td>Radius
+  <tr><td>Area<td>pi * R**2<td>
+  <tr><td>Volume<td>H * Area<td>
+  <tr><td>H<td>5.5<td>Height
+</table>
+-->
+</p>
+
+<pre><b>
+ID        Value        Name</b>
+-----------------------------
+R         sqrt(10)     Radius
+Area      pi * R**2
+Volume    H * Area
+H         5.5          Height</pre>
+
+
+<p>
+It is permitted to use the mathematical constants <tt>pi</tt> and <tt>e</tt>
+as parameter identifiers. In this case, the values you assign to them
+will override their natural values. You may also use the names of Python
+built-in functions and math functions as parameter identifiers.
+However, to avoid confusion it best to avoid such names.
+The following set of parameters are valid, but misleading.
+Below <tt>lambda</tt> has the value <tt>cos(6)</tt>.
+<!--CONTINUE: Tables are not currently rendered correctly.
+<table border="1">
+  <tr><th>ID<th>Value
+  <tr><td>pi<td>3
+  <tr><td>e<td>2
+  <tr><td>sin<td>pi * e
+  <tr><td>lambda<td>cos(sin)
+</table>
+-->
+</p>
+
+<pre><b>
+ID        Value</b>
+---------------
+pi        3
+e         2
+sin       pi * e
+lambda    cos(sin)</pre>
+
+</body>
+</html>

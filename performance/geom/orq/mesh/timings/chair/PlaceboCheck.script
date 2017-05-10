@@ -1,0 +1,7 @@
+PlaceboCheck.mesh ../data/chair.01.ascii 41 36 >> PlaceboCheck.chair.timings
+PlaceboCheck.mesh ../data/chair.02.ascii 81 36 >> PlaceboCheck.chair.timings
+PlaceboCheck.mesh ../data/chair.04.ascii 161 29 >> PlaceboCheck.chair.timings
+PlaceboCheck.mesh ../data/chair.08.ascii 321 27 >> PlaceboCheck.chair.timings
+PlaceboCheck.mesh ../data/chair.16.ascii 641 26 >> PlaceboCheck.chair.timings
+PlaceboCheck.mesh ../data/chair.32.ascii 1281 25 >> PlaceboCheck.chair.timings
+#PlaceboCheck.mesh ../data/chair.64.ascii 2561 25 >> PlaceboCheck.chair.timings

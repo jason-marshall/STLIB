@@ -1,0 +1,77 @@
+<html>
+<head>
+<title>Exporting Data</title>
+</head>
+<body>
+<h1>Exporting Data</h1>
+
+<p>
+Clicking the data export button <img src="filesave.png">&nbsp;
+in the simulation output panel will bring up the data export
+configuration window shown below.
+</p>
+
+<p align="center">
+<!--Resize to fit the window contents before capturing.-->
+<img src="VisualizationDataExportWindowTimeSeries.jpg">
+</p>
+
+<p>
+The data export configuration window is similar in functionality to
+the plotting configuration window presented in the 
+<a href="VisualizationPlottingTimeSeries.htm">Plotting Time Series Data</a>
+section. It consists of two tabs, one for time
+series output and one for histogram output. First we will consider the
+former. At the top of the window is a drop-down box for choosing
+the simulation output to export.
+</p>
+
+<p>
+Below the output selection are two rows
+of radio buttons. In the first row one selects whether to plot species
+populations, cumulative reaction counts, binned reaction counts,
+or all reaction events. For a given output type, not all of these
+categories are relevent. For example one may export the reaction
+events only if all reaction events were recorded during the simulation.
+In the second row of radio buttons
+one selects whether to plot trajectories or statistics. For the latter
+the mean and optionally the standard deviation of the trajectory
+curves are plotted.
+</p>
+
+<p>
+Next is a grid which lists either the species or reactions in the
+column headers. Here one may select the items to export. If one is 
+exporting statistics one may choose which means, and optionally 
+which standard deviations, to export.
+Clicking on a grid cell will toggle the state. Left/right clicking
+on a column header will select/deselect all of the items.
+</p>
+
+<p>
+At the bottom of the data export configuration window one may select 
+the delimiter for data fields in a row. Choosing a comma will result 
+in a <a href="http://en.wikipedia.org/wiki/Comma-separated_values">CSV</a>
+file (comma-separated values) with a default file extension of 
+<tt>.csv</tt>. Choosing either a space or tab will result in a text 
+file with a default file extension of <tt>.txt</tt>. Any of these 
+file formats may be imported into spreadsheet programs like
+<a href="http://www.openoffice.org/product/calc.html">Calc</a>,
+<a href="http://www.apple.com/iwork/numbers/">Numbers</a>, or
+<a href="http://office.microsoft.com/excel/">Excel</a>.
+</p>
+
+<p>
+For the histogram data tab there are no radio buttons for selecting
+the data type to export. All of the histograms for the selected
+species are written. This tab of the data export configuration window
+is shown below.
+</p>
+
+<p align="center">
+<!--Resize to fit the window contents before capturing.-->
+<img src="VisualizationDataExportWindowHistograms.jpg">
+</p>
+
+</body>
+</html>

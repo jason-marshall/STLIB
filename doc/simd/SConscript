@@ -1,0 +1,12 @@
+# -*- python -*-
+
+import sys
+sys.path.append('..')
+from doxygen import doxygen
+
+doxygen.Doxyfile('Doxyfile', ['../main.cfg', 'local.cfg'])
+target = '../html/simd/index.html'
+Default([target])
+sources = Glob('../../stlib/simd/*.h')
+doxygen.Doxygen([target, 'simd.tag'], ['Doxyfile'] + sources)
+Clean(target, ['../html/simd', 'simd.tag'])

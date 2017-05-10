@@ -1,0 +1,79 @@
+<table border = "1" rules = "rows">
+<tr> <th> Species <th> <th> 4 <th> 8 <th> 16 <th> 32 <th> 64 <th> 128 <th> 256 <th> 512 <th> 1024 <th> 2048 <th> 4096 <th> 8192 <th> 16384
+<tr> <th> Reactions <th> <th> 8 <th> 16 <th> 32 <th> 64 <th> 128 <th> 256 <th> 512 <th> 1024 <th> 2048 <th> 4096 <th> 8192 <th> 16384 <th> 32768 
+<tr> <th rowspan="1"> Linear search
+<td> Immediate update, guarded
+<td> 124
+<td> 136
+<td> 144
+<td> 170
+<td> 244
+<td> 348
+<td> 565
+<td> 990
+<td> 1860
+<td> 3600
+<td> 7050
+<td> 14100
+<td> 27600
+<tr> <th rowspan="1"> Binary search
+<td> Full CDF
+<td> 114
+<td> 128
+<td> 154
+<td> 206
+<td> 306
+<td> 485
+<td> 820
+<td> 1490
+<td> 2820
+<td> 5400
+<td> 10700
+<td> 21300
+<td> 42200
+<tr> <th rowspan="1"> Double Linear search
+<td> Immediate update, guarded
+<td> 122
+<td> 128
+<td> 134
+<td> 142
+<td> 166
+<td> 180
+<td> 215
+<td> 230
+<td> 255
+<td> 295
+<td> 405
+<td> 800
+<td> 1130
+<tr> <th rowspan="1"> Binary search
+<td> Partial recursive CDF
+<td> 154
+<td> 186
+<td> 222
+<td> 254
+<td> 290
+<td> 352
+<td> 390
+<td> 425
+<td> 460
+<td> 525
+<td> 660
+<td> 1080
+<td> 1460
+<tr> <th rowspan="1"> Rejection with binning
+<td> Splitting
+<td> 130
+<td> 132
+<td> 130
+<td> 140
+<td> 154
+<td> 162
+<td> 180
+<td> 186
+<td> 188
+<td> 200
+<td> 266
+<td> 625
+<td> 940
+</table>

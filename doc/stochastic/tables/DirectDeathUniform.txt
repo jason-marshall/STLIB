@@ -1,0 +1,148 @@
+<table border = "1" rules = "all">
+<tr> <th> Species <th> <th> 4 <th> 8 <th> 16 <th> 32 <th> 64 <th> 128 <th> 256 <th> 1,024 <th> 4,096 <th> 16,384 <th> 65,536
+<tr> <th> Reactions <th> <th> 4 <th> 8 <th> 16 <th> 32 <th> 64 <th> 128 <th> 256 <th> 1,024 <th> 4,096 <th> 16,384 <th> 65,536
+<tr> <th> Method <th> Option <th> <th> <th> <th> <th> <th> <th> <th> <th> <th> <th>
+<tr bgcolor="#CFFFFF"> <th rowspan="4"> Linear Search
+<td> Delayed update
+<td> 130
+<td> 143
+<td> 159
+<td> 193
+<td> 263
+<td> 387
+<td> 650
+<td> 2224
+<td> 8523
+<td> 33766
+<td> 135330
+<tr bgcolor="#CFFFFF">
+<td> Immediate update
+<td> 102
+<td> 109
+<td> 115
+<td> 128
+<td> 159
+<td> 201
+<td> 310
+<td> 913
+<td> 3317
+<td> 13018
+<td> 52146
+<tr bgcolor="#CFFFFF">
+<td> Complete sort
+<td> 79
+<td> 86
+<td> 94
+<td> 106
+<td> 141
+<td> 182
+<td> 295
+<td> 907
+<td> 2786
+<td> 9069
+<td> 36223
+<tr bgcolor="#CFFFFF">
+<td> Bubble sort
+<td> 104
+<td> 111
+<td> 116
+<td> 127
+<td> 158
+<td> 203
+<td> 313
+<td> 930
+<td> 2813
+<td> 9116
+<td> 36434
+<tr bgcolor="#CFCFFF"> <th rowspan="3"> 2-D Search
+<td> Default
+<td> 81
+<td> 85
+<td> 90
+<td> 96
+<td> 111
+<td> 112
+<td> 129
+<td> 165
+<td> 240
+<td> 383
+<td> 983
+<tr bgcolor="#CFCFFF">
+<td> Complete sort
+<td> 81
+<td> 87
+<td> 90
+<td> 97
+<td> 112
+<td> 112
+<td> 133
+<td> 169
+<td> 247
+<td> 395
+<td> 1082
+<tr bgcolor="#CFCFFF">
+<td> Bubble sort
+<td> 87
+<td> 96
+<td> 117
+<td> 112
+<td> 147
+<td> 136
+<td> 166
+<td> 210
+<td> 283
+<td> 475
+<td> 1224
+<tr bgcolor="#FFCFFF"> <th rowspan="3"> Binary Search
+<td> Complete CDF
+<td> 113
+<td> 126
+<td> 129
+<td> 166
+<td> 209
+<td> 290
+<td> 465
+<td> 1480
+<td> 5413
+<td> 21112
+<td> 84136
+<tr bgcolor="#FFCFFF">
+<td> Complete CDF, sorted
+<td> 139
+<td> 155
+<td> 176
+<td> 189
+<td> 230
+<td> 271
+<td> 369
+<td> 923
+<td> 3292
+<td> 12473
+<td> 50276
+<tr bgcolor="#FFCFFF">
+<td> Partial, recursive CDF
+<td> 128
+<td> 142
+<td> 154
+<td> 170
+<td> 193
+<td> 200
+<td> 229
+<td> 274
+<td> 344
+<td> 436
+<td> 939
+<tr bgcolor="#FFCFCF"> <th rowspan="1"> Rejection
+<td> Bins with splitting
+<td> 205
+<td> 171
+<td> 166
+<td> 158
+<td> 175
+<td> 171
+<td> 220
+<td> 405
+<td> 1110
+<td> 1602
+<td> 47020
+</table>

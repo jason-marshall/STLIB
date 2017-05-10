@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cain version="1.2">
+  <listOfModels>
+    <model id="Death">
+      <listOfSpecies>
+        <species initialAmount="1000000" id="X"/>
+      </listOfSpecies>
+      <listOfReactions>
+        <reaction propensity="1.0" massAction="true" id="Death">
+          <listOfReactants>
+            <speciesReference species="X"/>
+          </listOfReactants>
+        </reaction>
+      </listOfReactions>
+    </model>
+    <model id="Death S10">
+      <listOfSpecies>
+        <species initialAmount="1000000" id="S1"/>
+        <species initialAmount="1000000" id="S2"/>
+        <species initialAmount="1000000" id="S3"/>
+        <species initialAmount="1000000" id="S4"/>
+        <species initialAmount="1000000" id="S5"/>
+        <species initialAmount="1000000" id="S6"/>
+        <species initialAmount="1000000" id="S7"/>
+        <species initialAmount="1000000" id="S8"/>
+        <species initialAmount="1000000" id="S9"/>
+        <species initialAmount="1000000" id="S10"/>
+      </listOfSpecies>
+      <listOfReactions>
+        <reaction propensity="1.0" massAction="true" id="R1">
+          <listOfReactants>
+            <speciesReference species="S1"/>
+          </listOfReactants>
+        </reaction>
+        <reaction propensity="1.0" massAction="true" id="R2">
+          <listOfReactants>
+            <speciesReference species="S2"/>
+          </listOfReactants>
+        </reaction>
+        <reaction propensity="1.0" massAction="true" id="R3">
+          <listOfReactants>
+            <speciesReference species="S3"/>
+          </listOfReactants>
+        </reaction>
+        <reaction propensity="1.0" massAction="true" id="R4">
+          <listOfReactants>
+            <speciesReference species="S4"/>
+          </listOfReactants>
+        </reaction>
+        <reaction propensity="1.0" massAction="true" id="R5">
+          <listOfReactants>
+            <speciesReference species="S5"/>
+          </listOfReactants>
+        </reaction>
+        <reaction propensity="1.0" massAction="true" id="R6">
+          <listOfReactants>
+            <speciesReference species="S6"/>
+          </listOfReactants>
+        </reaction>
+        <reaction propensity="1.0" massAction="true" id="R7">
+          <listOfReactants>
+            <speciesReference species="S7"/>
+          </listOfReactants>
+        </reaction>
+        <reaction propensity="1.0" massAction="true" id="R8">
+          <listOfReactants>
+            <speciesReference species="S8"/>
+          </listOfReactants>
+        </reaction>
+        <reaction propensity="1.0" massAction="true" id="R9">
+          <listOfReactants>
+            <speciesReference species="S9"/>
+          </listOfReactants>
+        </reaction>
+        <reaction propensity="1.0" massAction="true" id="R10">
+          <listOfReactants>
+            <speciesReference species="S10"/>
+          </listOfReactants>
+        </reaction>
+      </listOfReactions>
+    </model>
+    <model id="Death S2">
+      <listOfSpecies>
+        <species initialAmount="1000000" id="S1"/>
+        <species initialAmount="1000000" id="S2"/>
+      </listOfSpecies>
+      <listOfReactions>
+        <reaction propensity="1.0" massAction="true" id="R1">
+          <listOfReactants>
+            <speciesReference species="S1"/>
+          </listOfReactants>
+        </reaction>
+        <reaction propensity="1.0" massAction="true" id="R2">
+          <listOfReactants>
+            <speciesReference species="S2"/>
+          </listOfReactants>
+        </reaction>
+      </listOfReactions>
+    </model>
+  </listOfModels>
+  <listOfMethods>
+    <method category="0" solverParameter="0.01" numberOfBins="32" multiplicity="4" equilibrationTime="0.0" id="Tau-Leaping" method="3" timeDependence="0" startTime="0.0" recordingTime="1.0" numberOfFrames="11" options="0"/>
+    <method category="0" numberOfBins="32" multiplicity="4" equilibrationTime="0.0" id="Direct" method="0" timeDependence="0" startTime="0.0" recordingTime="1.0" numberOfFrames="11" options="0"/>
+    <method category="0" solverParameter="0.01" numberOfBins="32" multiplicity="4" equilibrationTime="0.0" id="Hybrid" method="5" timeDependence="0" startTime="0.0" recordingTime="1.0" numberOfFrames="11" options="0"/>
+    <method category="2" solverParameter="1e-08" numberOfBins="32" multiplicity="4" equilibrationTime="0.0" id="ODE" method="0" timeDependence="0" startTime="0.0" recordingTime="1.0" numberOfFrames="11" options="0"/>
+    <method category="0" numberOfBins="32" multiplicity="4" equilibrationTime="0.0" id="Next Reaction" method="1" timeDependence="0" startTime="0.0" recordingTime="1.0" numberOfFrames="11" options="0"/>
+  </listOfMethods>
+  <random seed="2147483648">
+  </random>
+</cain>

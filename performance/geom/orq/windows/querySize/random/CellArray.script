@@ -1,0 +1,7 @@
+CellArray.orq ../data/uniform_random.6.ascii 0.01 0.01 0.01 random.queries > CellArray.random.query_size.timings
+CellArray.orq ../data/uniform_random.6.ascii 0.01414 0.01414 0.01414 random.queries >> CellArray.random.query_size.timings
+CellArray.orq ../data/uniform_random.6.ascii 0.02 0.02 0.02 random.queries >> CellArray.random.query_size.timings
+CellArray.orq ../data/uniform_random.6.ascii 0.02828 0.02828 0.02828 random.queries >> CellArray.random.query_size.timings
+CellArray.orq ../data/uniform_random.6.ascii 0.04 0.04 0.04 random.queries >> CellArray.random.query_size.timings
+CellArray.orq ../data/uniform_random.6.ascii 0.05657 0.05657 0.05657 random.queries >> CellArray.random.query_size.timings
+CellArray.orq ../data/uniform_random.6.ascii 0.08 0.08 0.08 random.queries >> CellArray.random.query_size.timings

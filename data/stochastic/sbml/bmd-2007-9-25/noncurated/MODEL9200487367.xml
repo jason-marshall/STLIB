@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbml xmlns="http://www.sbml.org/sbml/level2" metaid="metaid_0000001" level="2" version="1">
+  <model metaid="metaid_0000002" id="LeBeau_IP3R_Phosphorylation" name="LeBeau1999_IP3R_Phosphorylation">
+    <notes>
+      <body xmlns="http://www.w3.org/1999/xhtml"><p>This model originates from BioModels Database: A Database of Annotated Published Models. It is copyright (c) 2005-2007 The BioModels Team.<br /> For more information see the <a href="http://www.ebi.ac.uk/biomodels/legal.html">terms of use</a>.</p></body>
+    </notes>
+    <annotation>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" >
+<rdf:Description rdf:about="#metaid_0000002">
+<dc:creator rdf:parseType="Resource">
+<rdf:Bag>
+<rdf:li rdf:parseType="Resource">
+<vCard:N rdf:parseType="Resource">
+<vCard:Family>Dharuri</vCard:Family>
+<vCard:Given>Harish</vCard:Given>
+</vCard:N>
+<vCard:EMAIL>hdharuri@cds.caltech.edu</vCard:EMAIL>
+<vCard:ORG>
+<vCard:Orgname>California Institute of Technology</vCard:Orgname>
+</vCard:ORG>
+</rdf:li>
+</rdf:Bag>
+</dc:creator>
+<dcterms:created rdf:parseType="Resource">
+<dcterms:W3CDTF>2006-06-01T09:44:14</dcterms:W3CDTF>
+</dcterms:created>
+<dcterms:modified rdf:parseType="Resource">
+<dcterms:W3CDTF>2006-09-29T22:51:48</dcterms:W3CDTF>
+</dcterms:modified>
+<bqmodel:is>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.ebi.ac.uk/biomodels/#MODEL9200487367"/>
+</rdf:Bag>
+</bqmodel:is>
+<bqmodel:isDescribedBy>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.pubmed.gov/#10352035"/>
+</rdf:Bag>
+</bqmodel:isDescribedBy>
+</rdf:Description>
+</rdf:RDF>
+</annotation>
+
+    <listOfCompartments>
+      <compartment metaid="metaid_0000010" id="compartment" size="1"/>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species metaid="metaid_0000011" id="S" compartment="compartment" initialConcentration="0"/>
+      <species metaid="metaid_0000012" id="O" compartment="compartment" initialConcentration="0"/>
+      <species metaid="metaid_0000013" id="I1" compartment="compartment" initialConcentration="0"/>
+      <species metaid="metaid_0000015" id="I2" compartment="compartment" initialConcentration="1"/>
+      <species metaid="metaid_0000016" id="c" compartment="compartment" initialConcentration="0"/>
+    </listOfSpecies>
+    <listOfParameters>
+      <parameter metaid="metaid_0000003" id="k1" value="0" constant="false"/>
+      <parameter metaid="metaid_0000004" id="alpha1" value="40"/>
+      <parameter metaid="metaid_0000005" id="beta1" value="0.8"/>
+      <parameter metaid="metaid_0000006" id="k4" value="0" constant="false"/>
+      <parameter metaid="metaid_0000007" id="alpha4" value="0.06"/>
+      <parameter metaid="metaid_0000008" id="p" value="0" constant="false"/>
+      <parameter metaid="metaid_0000009" id="beta4" value="0.01"/>
+      <parameter metaid="metaid_0000029" id="T" name="time" value="0" constant="false"/>
+      <parameter metaid="metaid_0000032" id="time_constant" value="100"/>
+    </listOfParameters>
+    <listOfRules>
+      <assignmentRule metaid="metaid_0000017" variable="S">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <minus/>
+            <cn type="integer"> 1 </cn>
+            <apply>
+              <plus/>
+              <ci> O </ci>
+              <ci> I1 </ci>
+              <ci> I2 </ci>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule metaid="metaid_0000018" variable="k1">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <apply>
+              <times/>
+              <ci> alpha1 </ci>
+              <apply>
+                <power/>
+                <ci> c </ci>
+                <cn type="integer"> 3 </cn>
+              </apply>
+            </apply>
+            <apply>
+              <plus/>
+              <apply>
+                <power/>
+                <ci> beta1 </ci>
+                <cn type="integer"> 3 </cn>
+              </apply>
+              <apply>
+                <power/>
+                <ci> c </ci>
+                <cn type="integer"> 3 </cn>
+              </apply>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <rateRule metaid="metaid_0000030" variable="T">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <cn type="integer"> 1 </cn>
+        </math>
+      </rateRule>
+      <assignmentRule metaid="metaid_0000031" variable="p">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <cn> 0.6 </cn>
+            <apply>
+              <minus/>
+              <cn type="integer"> 1 </cn>
+              <apply>
+                <exp/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <minus/>
+                    <ci> T </ci>
+                  </apply>
+                  <ci> time_constant </ci>
+                </apply>
+              </apply>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule metaid="metaid_0000019" variable="k4">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <apply>
+              <times/>
+              <ci> alpha4 </ci>
+              <ci> p </ci>
+            </apply>
+            <apply>
+              <plus/>
+              <ci> beta4 </ci>
+              <ci> p </ci>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+    </listOfRules>
+    <listOfReactions>
+      <reaction metaid="metaid_0000020" id="Shut_to_Open">
+        <listOfReactants>
+          <speciesReference species="S"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="O"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <minus/>
+              <apply>
+                <times/>
+                <ci> k1 </ci>
+                <ci> p </ci>
+                <ci> S </ci>
+              </apply>
+              <apply>
+                <times/>
+                <ci> kminus1 </ci>
+                <ci> O </ci>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="kminus1" value="0.88"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="metaid_0000021" id="Open_to_Inactivated1" reversible="false">
+        <listOfReactants>
+          <speciesReference species="O"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="I1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> k2 </ci>
+              <ci> O </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="k2" value="0.5"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="metaid_0000022" id="Inactivated1_to_Shut" reversible="false">
+        <listOfReactants>
+          <speciesReference species="I1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="S"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> k3 </ci>
+              <ci> I1 </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="k3" value="0.5"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="metaid_0000023" id="Inactivated1_to_Inactivated2" reversible="false">
+        <listOfReactants>
+          <speciesReference species="I1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="I2"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> k4 </ci>
+              <ci> I1 </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="metaid_0000024" id="Inactivated2_to_Shut" reversible="false">
+        <listOfReactants>
+          <speciesReference species="I2"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="S"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> k5 </ci>
+              <ci> I2 </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="k5" value="0.02"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="metaid_0000025" id="Jrel" reversible="false">
+        <listOfProducts>
+          <speciesReference species="c"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="O"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kflux </ci>
+              <apply>
+                <power/>
+                <ci> O </ci>
+                <cn type="integer"> 4 </cn>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="kflux" value="28"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="metaid_0000026" id="Jpump" reversible="false">
+        <listOfReactants>
+          <speciesReference species="c"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> Vp </ci>
+                <apply>
+                  <power/>
+                  <ci> c </ci>
+                  <cn type="integer"> 2 </cn>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <apply>
+                  <power/>
+                  <ci> Kp </ci>
+                  <cn type="integer"> 2 </cn>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> c </ci>
+                  <cn type="integer"> 2 </cn>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="Vp" value="0.2"/>
+            <parameter id="Kp" value="0.54"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="metaid_0000027" id="Jinflux" reversible="false">
+        <listOfProducts>
+          <speciesReference species="c"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <ci> Jleak </ci>
+          </math>
+          <listOfParameters>
+            <parameter id="Jleak" value="0.025"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+    </listOfReactions>
+  </model>
+</sbml>

@@ -1,0 +1,531 @@
+
+<html>
+<head>
+<title>Solvers</title>
+</head>
+<body>
+<h1>Solvers</h1>
+
+<p>
+In this section we enumerate and briefly describe each of Cain's solvers.
+See the <a href="Simulation.htm">Simulation Methods</a> section for more details
+and derivations. In the <a href="UserMethod.htm">method editor</a> the
+solvers are grouped according to four heirarchical categories: time
+dependence, simulation output, algorithm, and option. One choose a
+solver by selecting items from each of these in turn.
+</p>
+
+<a name="TimeDependence"><h2>Time Dependence</h2></a>
+
+<p>
+The first category differentiates between time homogeneous and time
+inhomogeneous systems. In a time homogenous problem the reaction
+propensities do not have explicit time dependence. Time inhomogenous
+problems typically arise when the volume or temperature have a
+prescribed time dependence. This implies that the reaction rates will
+explicitly depend on time. Cain has many solvers for time homogeneous
+problems, but few for time inhomogenous ones. While conceptually very
+similar, one uses different algorithms for the two cases.  Thus in
+choosing a solver one first selects the time dependence category.
+</p>
+
+<a name="SimulationOutput"><h2>Simulation Output</h2></a>
+
+<p>
+Next one selects the desired simulation output. The various kinds of output
+are described in the <a href="UserMethod.htm">Method Editor</a> section.
+To recap, one can either collect time series or histogram data.
+For time series data one can either record the state at uniformly spaced
+time frames or one can record every reaction event. Although Cain is
+primarily for stochastic simulations, it does offer a few simple deterministic
+solvers. These generate time series data and are grouped in a separate
+category. When the species populations are recorded in histograms,
+the mean and standard deviation are also recorded. This is useful because
+unless the bin width is unity one can only approximately calculate these
+statistics from the histogram data.
+For histogram output one can either study transient or steady
+state behavior. For the former one records the state at uniformly spaced
+frames in time. For the latter one averages the populations over
+a specified time interval. Thus, in summary there are five simulation output
+categories:
+<ul>
+  <li>
+  <tt>Time Series, Uniform</tt>.
+  Here one takes snapshots of the state of uniformly spaced frames in time.
+  One can use either exact methods like the
+  <a href="SimulationDirect.htm">direct method</a>,
+  <a href="SimulationFirst.htm">first reaction method</a>, and
+  <a href="SimulationNext.htm">next reaction method</a>,
+  or approximate methods such as 
+  <a href="SimulationTau.htm">tau-leaping</a> and
+  <a href="SimulationHybrid.htm">hybrid direct/tau-leaping</a>.
+  Recently there has been much research in optimized exact methods.
+  (See reference [<a href="Bibliography.htm#mauch2009">Mauch 2009</a>]
+  for an analysis.) Thus we
+  offer many different formulations of the direct and next reaction methods.
+  You may experiment to see how the various formulations perform. However,
+  the default formulation has good performance for most problems.
+  <li>
+  <tt>Time Series, All Reactions</tt>.
+  Recording every reaction event is useful when one wants a visual
+  representation of the amount of noise in a system. By contrast, when one
+  records the state at frames one does not get a picture of the magnitude of
+  the random fluctuations. Note that recording every reaction is expensive,
+  and plotting the results is even more so. For this output option we use
+  the 2-D search formulation of the direct method.
+  <li>
+  <tt>Time Series, Deterministic</tt>.
+  Deterministic systems are modeled with a set of ordinary differential
+  equations. Cain uses <a href="SimulationOde.htm">numerical integration</a>
+  to approximately solve the system. The state is recorded at uniformly
+  spaced time frames.
+  <li>
+  <tt>Histograms, Transient Behavior</tt>.
+  If one records the state at time frames one can of course plot the
+  trajectories. One can also analyze the species populations at these
+  frames. One can compute the mean and standard deviation of the population
+  or one can plot the distribution of populations in a histogram. Obtaining
+  accurate statistics or distribution data usually requires generating many
+  trajectories. In this case, the state information may require a lot of
+  storage capacity. It is more economical to dynamically update population
+  statistics and a histograms of the species populations as the trajectories
+  are being generated. For this output category populations statistics and
+  histogram data is stored at uniformly spaced frames in time. To generate
+  the trajectories we use the 2-D search formulation of the direct method.
+  <li>
+  <tt>Histograms, Steady State</tt>.
+  If one records every reaction event, one can analyze the steady state
+  behavior of a system. One could take the time average of the species
+  populations to determine the mean and standard deviation of the steady
+  state populations. One could also record the time weighted populations
+  in a histogram to determine the distribution of steady state populations.
+  However, storing every reaction event typically requires a lot of storage.
+  It is more efficient to dynamically update statistics and histogram data
+  as the trajectories are generated. For this output option the time averaged
+  statistics and histogram data is collected. Again we use the 2-D search
+  formulation of the direct method to generate the trajectories.
+</ul>
+</p>
+<!--CONTINUE Show little plots for each output option.-->
+
+<a name="Algorithms"><h2>Algorithms</h2></a>
+
+<p>
+The third category in selecting a solvers is the simulation algorithm.
+There are algorithms for exact and approximate stochastic simulation.
+Below is a list with some implementation details.
+</p>
+
+<ul>
+  <li>
+  <tt>Direct</tt>.
+  Gillespie's
+  <a href="SimulationDirect.htm">direct method</a>
+  [<a href="Bibliography.htm#gillespie1976">Gillespie 1976</a>]
+  [<a href="Bibliography.htm#gillespie1977">Gillespie 1977</a>].
+  A reaction dependency graph 
+  [<a href="Bibliography.htm#gibson2000">Gibson 2000</a>]
+  is used to minimize the cost of recomputing propensities.
+  Unless otherwise indicated, the sum of the propensities and associated
+  quantities are dynamically updated. 
+  At each step the time increment is determined by drawing an exponential
+  deviate. The mean of the distribution is the sum of the propensities.
+  The reaction is chosen by
+  generating a discrete deviate whose weighted probability mass function
+  is the set of reaction propensities. There are many options for
+  generating the discrete deviate. The 2-D search formulation is the default
+  method.
+  <li>
+  <tt>Next Reaction</tt>.
+  Gibson and Bruck's
+  <a href="SimulationNext.htm">next reaction method</a>
+  [<a href="Bibliography.htm#gibson2000">Gibson 2000</a>] stores reaction
+  times in a priority queue. There are several options for implementing
+  this data structure.
+  <li>
+  <tt>First Reaction</tt>.
+  Gillespie's
+  <a href="SimulationFirst.htm">first reaction method</a>
+  [<a href="Bibliography.htm#gillespie1976">Gillespie 1976</a>]
+  [<a href="Bibliography.htm#gillespie1977">Gillespie 1977</a>].
+  <li>
+  <tt>Tau-Leaping</tt>.
+  We implement explicit <a href="SimulationTau.htm">tau-leaping</a>
+  with the step size selection presented
+  in reference [<a href="Bibliography.htm#cao2006a">Cao 2006a</a>].
+  <li>
+  <tt>Hybrid Direct/Tau-Leaping</tt>.
+  This hybrid algorithm uses the direct method for the volatile (low
+  population) species and tau-leaping for the rest.
+  <li>
+  <tt>ODE, Integrate Reactions</tt>.
+  For <a href="SimulationOde.htm">ODE integration</a>
+  we use 
+  <a href="http://en.wikipedia.org/wiki/Runge-Kutta">Runge-Kutta</a>
+  schemes.
+</ul>
+
+
+<a name="Options"><h2>Options</h2></a>
+
+<p>
+Below is a list of the available solvers grouped according to the
+heirarchical categories.
+Each of the solvers use sparse arrays for the state change vectors
+[<a href="Bibliography.htm#li2006">Li 2006</a>].
+The methods that require exponential deviates use the ziggurat method 
+[<a href="Bibliography.htm#marsaglia2000">Marsaglia 2000</a>].
+<ul>
+  <li>
+  <h3><tt>Time Homogeneous</tt></h3>
+  <ul>
+    <li>
+    <h4><tt>Time Series, Uniform</tt></h4>
+    <ul>
+      <li>
+      <h5><tt>Direct</tt></h5>
+      The computational complexities for generating discrete deviates
+      and for modifying propensities are indicated for each method in
+      terms of the number of reactions <em>M</em>.
+      <ul>
+	<li>
+	<tt>2-D search</tt>
+	- Generate O(<em>M<sup>1/2</sup></em>). Modify O(1).
+	The propensities are stored in a 2-D table that stores the sum of each
+	row. The number of rows (and hence the number of columns) is
+	O(<em>M<sup>1/2</sup></em>). The discrete deviate is generated by
+	first determining the appropriate row with a linear search and then
+	performing a linear search within that row
+	[<a href="Bibliography.htm#mauch2009">Mauch 2009</a>]. 
+	<li>
+	<tt>2-D search, sorted</tt>
+	- Generate O(<em>M<sup>1/2</sup></em>). Modify O(1).
+	The propensities are periodically ordered so the larger values have
+	smaller
+	<a href="http://en.wikipedia.org/wiki/Manhattan_distance">Manhattan
+	distance</a> from the lower corner of the table than smaller
+	values
+	[<a href="Bibliography.htm#mauch2009">Mauch 2009</a>].
+	For some problems this may reduce the costs of
+	searching.
+	<li>
+	<tt>2-D search, bubble sort</tt>
+	- Generate O(<em>M<sup>1/2</sup></em>). Modify O(1).
+	The propensities are dynamically ordered each time they are modified
+	[<a href="Bibliography.htm#mauch2009">Mauch 2009</a>].
+	<li>
+	<tt>Composition rejection</tt>
+	- Generate O(1).  Modify O(1).
+	Propensities are placed in groups. In each
+	group the propensities differ by at most a factor of two. A deviate
+	is generated by a linear search on the groups followed by selecting
+	a reaction within a group with the method of rejection.
+	This solver implements a slightly modified version of the composition
+	rejection method presented in [<a href="slepoy2008">Slepoy 2008</a>].
+	<li>
+	<tt>Binary search, full CMF</tt>
+	- Generate O(log <em>M</em>). Modify O(<em>M</em>).
+	The cumulative mass function (CMF) is stored in an array. This allows
+	one to generate a discrete deviate with a binary search on that array.
+	At each time step the CMF is regenerated. This is an implementation
+	of the logarithmic direct method [<a href="li2006">Li 2006</a>].
+	<li>
+	<tt>Binary search, sorted CMF</tt>
+	- Generate O(log <em>M</em>). Modify O(<em>M</em>).
+	In this solver the reactions are arranged in descending order
+	according to the sum of the propensities of the influencing
+	reactions
+        [<a href="Bibliography.htm#mauch2009">Mauch 2009</a>].
+        This minimizes the portion of the CMF that one has
+	to recompute after firing a reaction and updating the
+        influenced propensities.
+        <li>
+        <tt>Binary search, recursive CMF</tt>
+        - Generate O(log <em>M</em>). Modify O(log <em>M</em>).
+        Instead of storing the full CMF, a partial, recursive CMF is used.
+        This approach is equivalent to the method presented in
+        [<a href="gibson2000">Gibson 2000</a>]. A deviate can be generated
+        with a binary search. Modifying a propensity affects at most
+        log<sub>2</sub> <em>M</em> elements of the partial, recursive CMF.
+        <li>
+        <tt>Linear search</tt>
+        - Generate O(<em>M</em>). Modify O(1).
+        We use a linear search on the PMF to generate a deviate. The sum of
+        the propensities is dynamically updated.
+        <li>
+        <tt>Linear search, delayed update</tt>
+        - Generate O(<em>M</em>). Modify O(1).
+        This solver recomputes the sum of the propensities at each time step
+        as done in the original formulation of the direct method
+        [<a href="Bibliography.htm#gillespie1977">Gillespie 1977</a>].
+        <li>
+        <tt>Linear search, sorted</tt>
+        - Generate O(<em>M</em>). Modify O(1).
+        The propensities are periodically sorted in descending order
+        [<a href="Bibliography.htm#mccollum2005">McCollum 2005</a>].
+        <li>
+        <tt>Linear search, bubble sort</tt>
+        - Generate O(<em>M</em>). Modify O(1).
+        The propensities are dynamically ordered by using swaps each time
+        a propensity is modified
+        [<a href="Bibliography.htm#mauch2009">Mauch 2009</a>].
+      </ul>
+      <li>
+      <h5><tt>Next Reaction</tt></h5>
+      Each formulation below uses a different data structure to
+      implement the priority queue. The computational complexities for
+      removing an element and modifying an element are given in terms
+      of the number of reactions <em>M</em>.
+      <ul>
+        <li>
+	<tt>Hashing</tt>
+	- Pop O(1). Modify O(1).
+	The indexed priority queue is implemented with a hash table
+	[<a href="Bibliography.htm#cormen2001">Cormen 2001</a>,
+	<a href="Bibliography.htm#mauch2009">Mauch 2009</a>]. We use hashing
+	with chaining,
+	which means that each bin in the hash table contains a list of
+	elements. The hash function is a linear function of the putative
+	reaction times, truncated to an integer to obtain a bin index.
+	The hash function is dynamically adapted to obtain the target load.
+	(The <em>load</em> is the average number of elements in each bin.)
+	<li>
+	<tt>Binary heap, pointer</tt>
+	- Pop O(log <em>M</em>). Modify O(log <em>M</em>).
+	This solver uses a binary heap that is implemented with an array
+	of pointers to the putative reaction times. This is the data structure
+	used in [<a href="Bibliography.htm#gibson2000">Gibson 2000</a>].
+	<li>
+	<tt>Binary heap, pair</tt>
+	- Pop O(log <em>M</em>). Modify O(log <em>M</em>).
+	We use a binary heap implemented with an array of index/time pairs
+	[<a href="Bibliography.htm#mauch2009">Mauch 2009</a>].
+	The pair version of the binary heap typically has better performance
+	than the pointer version on 64-bit architectures. Vice versa for
+	32-bit architectures.
+	<li>
+	<tt>Partition</tt>
+	- Pop O(<em>M<sup>1/2</sup></em>). Modify O(<em>M<sup>1/2</sup></em>).
+	A splitting value is used to divide the reactions two categories
+	[<a href="Bibliography.htm#mauch2009">Mauch 2009</a>].
+	The splitting value is chosen so that initially there are
+	O(<em>M<sup>1/2</sup></em>) reactions in the lower partition.
+	The remainder are in the upper partition. In determining the minimum
+	putative reaction time, one only has to examine reactions in the
+	lower partition. When the lower partition is empty, a new splitting
+	value is chosen.
+	<li>
+	<tt>Linear search</tt>
+	- Pop O(<em>M</em>). Modify O(1).
+	The putative reaction times are stored in an array. We use a linear
+	search to find the minimum
+	[<a href="Bibliography.htm#mauch2009">Mauch 2009</a>].
+      </ul>
+      <li>
+      <h5><tt>First Reaction</tt></h5>
+      Gillespie's first reaction method
+      [<a href="Bibliography.htm#gillespie1976">Gillespie 1976</a>]
+      [<a href="Bibliography.htm#gillespie1977">Gillespie 1977</a>].
+      <ul>
+	<li>
+	<tt>Simple</tt>
+	- A simple implementation of the method.
+	<li>
+	<tt>Reaction influence</tt>
+	- We use the reaction influence data structure to minimize recomputing
+	the propensities.
+	<li>
+	<tt>Absolute time</tt>
+	- We use absolute times instead of waiting times for each reaction.
+	This allows us to reduce the number of exponential deviates used.
+	After firing a reaction, we only generate new reaction times for the
+	influenced reactions.
+      </ul>
+      <li>
+      <h5><tt>Tau-Leaping</tt></h5>
+      All of the tau-leaping solvers have first order accuracy. They differ in
+      how they calculate the expected propensities, whether they correct
+      negative populations, and how they calculate the time step. For calculating
+      the expected propensities one may use a first, second, or fourth order
+      Runge-Kutta scheme. (The first and second order schemes are commonly
+      called forward and midpoint, respectively.)
+      While all yield a first order stochastic method, using
+      a higher order scheme is typically more efficient. Use the adaptive step
+      size solvers unless you are studying the effect of step size. With a fixed
+      step size it is difficult to predict the accuracy of the simulation.
+      With the adaptive step size solvers you may choose whether or not to
+      correct negative populations. Without correction, some portion of the
+      simulations may fail.
+      <ul>
+	<li>
+	<tt>Runge-Kutta, 4th order</tt>
+	<li>
+	<tt>Midpoint</tt>
+	<li>
+	<tt>Forward</tt>
+	<li>
+	<tt>Runge-Kutta, 4th order, no correction</tt>
+	<li>
+	<tt>Midpoint, no correction</tt>
+	<li>
+	<tt>Forward, no correction</tt>
+	<li>
+	<tt>Runge-Kutta, 4th order, fixed step size</tt>
+	<li>
+	<tt>Midpoint, fixed step size</tt>
+	<li>
+	<tt>Forward, fixed step size</tt>
+      </ul>
+      <li>
+      <h5><tt>Hybrid Direct/Tau-Leaping</tt></h5>
+      With these solvers you can choose the scheme for calculating the expected
+      propensities.
+      <ul>
+	<li>
+	<tt>Runge-Kutta, 4th order</tt>
+	<li>
+	<tt>Midpoint</tt>
+	<li>
+	<tt>Forward</tt>
+      </ul>
+    </ul>
+    <li>
+    <h4><tt>Time Series, All Reactions</tt></h4>
+    The direct method with a 2-D search is used when recording each reaction
+    event.
+    <ul>
+      <li>
+      <h5><tt>Direct</tt></h5>
+      <ul>
+	<li>
+	<tt>2-D search</tt>
+      </ul>
+    </ul>
+    <li>
+    <h4><tt>Time Series, Deterministic</tt></h4>
+    When generating a single deterministic trajectory one can either use a
+    built-in solver or export the problem to a Mathematica notebook.
+    The solvers use
+    <a href="http://en.wikipedia.org/wiki/Runge-Kutta">Runge-Kutta</a>
+    schemes. For ordinary work, use the
+    adaptive step size
+    <a href="http://en.wikipedia.org/wiki/Cash-Karp">Cash-Karp</a> variant,
+    which is a fifth order method. The rest of the solvers are only useful
+    in studying how the order and step size affect the solution.
+    <ul>
+      <li>
+      <h5><tt>ODE, Integrate Reactions</tt></h5>
+      <ul>
+	<li>
+	<tt>Runge-Kutta, Cash-Karp</tt>
+	<li>
+	<tt>Runge-Kutta, Cash-Karp, fixed step size</tt>
+	<li>
+	<tt>Runge-Kutta, 4th order, fixed step size</tt>
+	<li>
+	<tt>Midpoint, fixed step size</tt>
+	<li>
+	<tt>Forward, fixed step size</tt>
+      </ul>
+      <li>
+      <h5><tt>Mathematica</tt></h5>
+      <ul>
+	<li>
+	<tt>NDSolve</tt>
+      </ul>
+    </ul>
+    <li>
+    <h4><tt>Histograms, Transient Behavior</tt></h4>
+    <ul>
+      <li>
+      <h5><tt>Direct</tt></h5>
+      <ul>
+	<li>
+	<tt>2-D search</tt>
+      </ul>
+    </ul>
+    <li>
+    <h4><tt>Histograms, Steady State</tt></h4>
+    By recording the average value of species populations you can determine
+    the steady state solution (if it exists).
+    <ul>
+      <li>
+      <h5><tt>Direct</tt></h5>
+      Each of the following use the direct method with a 2-D search.
+      <ul>
+	<li>
+	<tt>Elapsed time</tt> - 
+	This is the most efficient method for most problems. The algorithm
+	keeps track of when species change values in order to minimize the cost
+	of recording the populations.
+	<li>
+	<tt>Time steps</tt> - 
+	This is the traditional method. The species populations are recorded
+	at every time step.
+	<li>
+	<tt>All possible states</tt> - 
+	This is an implementation of the all possible states method
+	[<a href="Bibliography.htm#lipshtat2007">Lipshtat 2007</a>].
+	It is usually less efficient than the traditional method.
+      </ul>
+    </ul>
+  </ul>
+  <li>
+  <h3><tt>Time Inhomogeneous</tt></h3>
+  <ul>
+    <li>
+    <h4><tt>Time Series, Uniform</tt></h4>
+    <ul>
+      <li>
+      <h5><tt>Direct</tt></h5>
+      <ul>
+	<li>
+	<h6><tt>Constant propensities</tt></h6>
+      </ul>
+    </ul>
+    <li>
+    <h4><tt>Time Series, All Reactions</tt></h4>
+    <ul>
+      <li>
+      <h5><tt>Direct</tt></h5>
+      <ul>
+	<li>
+	<h6><tt>Constant propensities</tt></h6>
+      </ul>
+    </ul>
+    <li>
+    <h4><tt>Time Series, Deterministic</tt></h4>
+    <ul>
+      <li>
+      <h5><tt>ODE, Integrate Reactions</tt></h5>
+      <ul>
+	<li>
+	<h6><tt>Runge-Kutta, Cash-Karp</tt></h6>
+      </ul>
+    </ul>
+    <li>
+    <h4><tt>Histograms, Transient Behavior</tt></h4>
+    <ul>
+      <li>
+      <h5><tt>Direct</tt></h5>
+      <ul>
+	<li>
+	<h6><tt>Constant propensities</tt></h6>
+      </ul>
+    </ul>
+    <li>
+    <h4><tt>Histograms, Stead State</tt></h4>
+    <ul>
+      <li>
+      <h5><tt>Direct</tt></h5>
+      <ul>
+	<li>
+	<h6><tt>Constant propensities</tt></h6>
+      </ul>
+    </ul>
+ </ul>
+</ul>
+</p>
+
+</body>
+</html>

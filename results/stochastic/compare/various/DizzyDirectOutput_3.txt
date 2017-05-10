@@ -1,0 +1,10 @@
+warning:  there is a problem with class file "apple.applescript.AppleScriptEngine"
+warning:  there is a problem with class file "apple.applescript.AppleScriptEngineFactory$1"
+warning:  there is a problem with class file "apple.applescript.AppleScriptEngineFactory"
+# time, ADP, ATP, AggP, DiH, HCom, HSE, HSETriH, HSF1, Hsp90, MCom, MisP, NatP, ROS, TriH, X
+0, 1000.0000, 1.000000E4, 0, 0, 5900.000, 1.000000, 0, 100.0000, 3.000000E5, 0, 0, 6.000000E6, 100.0000, 0, 0
+100.0000, 943.0000, 1.005700E4, 0, 0, 6000.000, 1.000000, 0, 0, 1.767300E4, 2.815520E5, 0, 5.719450E6, 100.0000, 0, 109.0000
+
+real 14.25
+user 13.97
+sys 0.15

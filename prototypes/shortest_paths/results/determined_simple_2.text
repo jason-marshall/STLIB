@@ -1,0 +1,57 @@
+Testing for ideal and actual determined fraction of vertices.
+Using the simple correctness criterion.
+
+Ratio of largest to smallest edge weight = 2.
+
+GRID GRAPHS:
+
+For the 20 x 20 rectangular grid graph: 400 vertices, 1520 edges.
+ideal fraction =  0.995012468828  actual fraction =  0.878854625551
+
+For the 40 x 40 rectangular grid graph: 1600 vertices, 6240 edges.
+ideal fraction =  0.991320520769  actual fraction =  0.83937007874
+
+For the 60 x 60 rectangular grid graph: 3600 vertices, 14160 edges.
+ideal fraction =  0.977723444716  actual fraction =  0.790641476274
+
+For the 80 x 80 rectangular grid graph: 6400 vertices, 25280 edges.
+ideal fraction =  0.987195310089  actual fraction =  0.781700464207
+
+For the 100 x 100 rectangular grid graph: 10000 vertices, 39600 edges.
+ideal fraction =  0.972759996109  actual fraction =  0.767854400246
+
+
+SPARSE GRAPHS:
+
+For the sparse graph: 200 vertices, 800 edges.
+ideal fraction =  0.990049751244  actual fraction =  0.900452488688
+
+For the sparse graph: 400 vertices, 1600 edges.
+ideal fraction =  0.995012468828  actual fraction =  0.791666666667
+
+For the sparse graph: 600 vertices, 2400 edges.
+ideal fraction =  0.986820428336  actual fraction =  0.786089238845
+
+For the sparse graph: 800 vertices, 3200 edges.
+ideal fraction =  0.963811821472  actual fraction =  0.783333333333
+
+For the sparse graph: 1000 vertices, 4000 edges.
+ideal fraction =  0.969902912621  actual fraction =  0.778037383178
+
+
+COMPLETE GRAPHS:
+
+For the complete graph: 50 vertices, 2450 edges.
+ideal fraction =  1.0  actual fraction =  1.0
+
+For the complete graph: 100 vertices, 9900 edges.
+ideal fraction =  1.0  actual fraction =  1.0
+
+For the complete graph: 150 vertices, 22350 edges.
+ideal fraction =  1.0  actual fraction =  1.0
+
+For the complete graph: 200 vertices, 39800 edges.
+ideal fraction =  1.0  actual fraction =  1.0
+
+For the complete graph: 250 vertices, 62250 edges.
+ideal fraction =  1.0  actual fraction =  1.0

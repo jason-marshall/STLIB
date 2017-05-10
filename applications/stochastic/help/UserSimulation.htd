@@ -1,0 +1,74 @@
+<html>
+<head>
+<title>Simulation Output</title>
+</head>
+<body>
+<h1>Simulation Output</h1>
+
+<p align="center">
+<img src="SimulationOutput.png">
+</p>
+
+<p>
+Information about the simulation output is displayed in the final frame.
+The outputs are grouped according to the model and method used to generate
+them. After selecting an item, the following operations are available in
+the toolbar:
+<ul>
+  <li> <img src="cancel.png">&nbsp; Delete the output.
+  
+  <li> <img src="up.png">&nbsp; Move the selection up in the list.
+  
+  <li> <img src="down.png">&nbsp; Move the selection down in the
+  list.
+  
+  <li> <img src="plot.png">&nbsp; Open the plot configuration window
+  which allows one to choose the output and kind of plot to generate.
+  
+  <li> <img src="gnuplot.png">&nbsp; Export the selected output as
+  a <a href="http://www.gnuplot.info/">gnuplot</a> data file and
+  script. Note that working with the plot configuration window is
+  likely more convenient, but some may prefer to work with gnuplot.
+  This option will create the files <tt>x.dat</tt> and
+  <tt>x.gnu</tt> for a specified base name <tt>x</tt>. You can use
+  gnuplot to generate graphs 
+  with the shell command &quot;gnuplot x.gnu&quot;. For trajectory output
+  this will create
+  the files <tt>x-Populations.jpg</tt> and <tt>x-Reactions.jpg</tt>
+  that plot the populations and reaction counts, respectively. It will
+  also create plots for each species and each reaction.
+  For histogram output it will generate graphs of each histogram.
+  <!--CONTINUE Move these options from the preferences to a dialog
+  that is show when one click the gnuplot button.-->
+  Note that you can set some plotting options through the preferences button
+  <img src="preferences-system.png">&nbsp; in the main tool bar.
+
+  <li> <img src="x-office-spreadsheet.png">&nbsp; Display the
+  species populations or reaction counts in a table.
+
+  <li> <img src="HistogramDistance.png">&nbsp; Calculate the
+  distance between histograms. This button opens a frame that allows you to
+  select individual histograms or sets of histograms.
+
+  <li> <img src="pValue.png">&nbsp; Test the hypothesis that two species
+  populations have the same mean. This button opens the p-value
+  analysis window. One may select species (in the same or different
+  simulation outputs) and statistically test the null hypothesis
+  that the means are equal. See the
+  <a href="DsmtsBirthDeath.htm">Birth-Death</a> section in the
+  <a href="Dsmts.htm">DSMTS</a> chapter for an example.
+
+  <li> <img src="filesave.png">&nbsp; Open the data export
+  configuration window. One may export data as
+  comma-separated values
+  (<a href="http://en.wikipedia.org/wiki/Comma-separated_values">CSV</a>)
+  or as a text file.
+  These can be imported into spreadsheet programs like
+  <a href="http://www.openoffice.org/product/calc.html">Calc</a>,
+  <a href="http://www.apple.com/iwork/numbers/">Numbers</a>, or
+  <a href="http://office.microsoft.com/excel/">Excel</a>.
+</ul>
+</p>
+
+</body>
+</html>

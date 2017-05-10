@@ -1,0 +1,63 @@
+
+<html>
+<head>
+<title>FAQ</title>
+</head>
+<body>
+<h1>FAQ</h1>
+
+<p>
+<b>Why is this program called Cain?</b><br>
+I couldn't think of a Catchy And Informative Name.
+</p>
+
+<p>
+<b>Where can I get the latest version of Cain?</b><br>
+<a href="http://cain.sourceforge.net/">http://cain.sourceforge.net/</a>
+</p>
+
+<p>
+<b>I found an error. What should I do?</b><br>
+Don't panic! Send an email to <img src="seanEmail.png">.  Please include
+any relevant data files and a description of what causes the problem. If
+Cain wrote a file called <tt>ErrorLog.txt</tt>, include that as well.
+</p>
+
+<p>
+<b>I have a question or feature request. Who should I contact?</b><br>
+<img src="seanEmail.png">
+</p>
+
+<p>
+<b>Why can't I add species, reactions, etc. to a blank model?</b><br>
+You must add a model in the models list (upper left panel) before you
+define the species, reactions, etc. that define it. Note that if no
+model is selected in the models list, then the buttons which add, delete,
+move, and sort the models elements are disabled.
+</p>
+
+<p>
+<b>Why can't I edit the model or the method?</b><br>
+You have generated output using that model or that method.  Once you
+have done this, Cain will not let you modify them. If it did, the
+model or method would no longer correspond to the generated output. If
+you delete the output you will be able to edit the model or method.
+If you want to keep the output, clone the model or method.
+</p>
+
+<p>
+<b>The simulation completes, but why are there no
+trajectories?</b><br>
+If all of the simulations fail, then no trajectories will be
+generated. The completion window will indicate how many trajectories
+were successfully generated and how many failed. One of the common
+causes of failure is exceeding the maximum number of allowed steps. If
+this is the case, try leaving the &quot;Maximum steps&quot; field
+blank in the method editor. (Alternatively, you may enter a sufficiently
+large value.) If you are using an approximate method like tau-leaping
+a simulation may fail if a species population becomes negative. In
+this case, try reducing the error tolerance or the step size.
+</p>
+
+</body>
+</html>

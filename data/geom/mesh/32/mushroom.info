@@ -1,0 +1,30 @@
+mushroom_triang.txt
+-------------------
+
+Triangulated and scaled version of mushroom.off.
+
+Source: Geomview distribution
+URL: http://www.geomview.org/
+Copyright: ?
+
+CEBAP = {
+    object[
+        vertices[         226],
+        facets[           448],
+        edges[            672],
+        borderedges[      0],
+        orientation[      1],
+        holes[            0],
+        components[       1],
+        genus[            0],
+        expectedcontours[ 54],
+        percentcontours[  8],
+        expectedintersections[        1406],
+        expectedfrontintersections[   164],
+        expectedcontourintersections[ 4],
+        vertexdegree[ 226, min[5], max[16],
+                mean[5.9469], var[1.0237], 1344.0000, 8224.0000],
+        edgesperfacet[448, min[3], max[3],
+                mean[3.0000], var[0.0000], 1344.0000, 4032.0000],
+    ]
+}

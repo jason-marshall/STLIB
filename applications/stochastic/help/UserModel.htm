@@ -1,0 +1,76 @@
+
+<html>
+<head>
+<title>Models List</title>
+</head>
+<body>
+<h1>Models List</h1>
+
+<p>
+The simplest exercise in using stochastic simulation software is to
+generate trajectories for a given model using a given simulation
+method. Beyond this, one may want to compare different models, or
+different simulation methods. For example, one might investigate how
+changing a rate parameter affects the output. Or one might compare how
+an approximate method like <a href="SimulationTau.htm">tau-leaping</a>
+with an exact method such as the <a href="SimulationDirect.htm">direct
+method</a>. To accomodate these use cases, Cain maintains lists of
+the models and methods that have been defined during a session. These
+lists are shown in the first two panels of the application window.
+</p>
+
+<p align="center">
+<img src="ModelList.png">
+</p>
+
+<p>
+The models list panel, shown above, lists the models by their identifiers.
+You must select a model before editing it or launching a simulation;
+do this by clicking on its identifier in the list.
+The species, reactions, etc. for the model will be shown in the model
+editor, which is comprised of the panels in the bottom two rows
+of the application window.
+A model identifier can be any string, but must be
+unique. You can edit the names by clicking twice (not double clicking,
+but clicking twice in succesion) on a list item. When
+a simulation is run, the identifiers for the model and the method
+are listed in the output panel in the upper right corner of the
+application window. Thus you can identify the model and method used
+to generate each output (which could be time series data or histograms).
+</p>
+
+<p>
+Note that you cannot edit or a delete a model that has dependent
+output. Otherwise the stored model would no longer correspond to that
+used to generate the simulation results. If you want to delete a
+model, you must delete any dependent simulation output first. If you
+want to modify a model that has dependent output, clone the model to
+obtain a copy with a distinct identifier.  You may, however, change
+the model or the method names at any time; the simulation output will
+be updated to reflect the change.
+</p>
+
+<p>
+The following actions are available from the models list toolbar:
+<ul>
+  <li><img src="add.png">&nbsp;
+  Add a new model.
+  <li><img src="editcopy.png">&nbsp;
+  Add a clone of the selected model.
+  <li><img src="chess-board.png">&nbsp;
+  Add a duplicated version of the selected model. This duplicates the species
+  and reactions to form a larger system, which is useful for testing the
+  scalability of methods. You can choose the multiplicity (how many times to
+  duplicate) and whether to multiply the propensity functions by unit
+  random numbers.
+  <li><img src="cancel.png">&nbsp;
+  Delete the selected model.
+  <li><img src="up.png">&nbsp;
+  Move the selected model up in the list.
+  <li><img src="down.png">&nbsp;
+  Move the selected model down in the list.
+</ul>
+</p>
+
+</body>
+</html>

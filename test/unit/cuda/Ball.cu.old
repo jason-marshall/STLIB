@@ -1,0 +1,202 @@
+// -*- C++ -*-
+
+#include "cuda/Ball.h"
+#include "cuda/equality.h"
+#include "cuda/check.h"
+
+#include <cassert>
+
+#ifndef __CUDA_ARCH__
+#include <vector>
+#endif
+
+__device__
+bool
+constructor() {
+   geom::Ball<float, 3> a = {{{0, 0, 0}}, 1};
+   if (a.center != ext::make_array<float>(0., 0., 0.)) {
+      return false;
+   }
+   if (a.radius != 1) {
+      return false;
+   }
+   return true;
+}
+
+
+__global__
+void
+test(bool* result) {
+   bool r = true;
+   r &= constructor();
+   *result = r;
+}
+
+
+int
+main() {
+   //---------------------------------------------------------------------------
+   // CUDA
+   {
+      bool result;
+      bool* resultDev;
+      CUDA_CHECK(cudaMalloc((void**)&resultDev, sizeof(bool)));
+      test<<<1, 1>>>(resultDev);
+      CUDA_CHECK(cudaMemcpy(&result, resultDev, sizeof(bool),
+                            cudaMemcpyDeviceToHost));
+      assert(result);
+   }
+
+   using numerical::areEqual;
+   using geom::makeBall;
+
+   typedef float Number;
+   typedef geom::Ball<Number, 3> Ball;
+   typedef Ball::Point Point;
+#ifndef __CUDA_ARCH__
+   {
+      // Default constructor
+      Ball x;
+      std::cout << "Ball() = " << x << "\n";
+   }
+   {
+      // Initializer list.
+      const Point c = {{1, 2, 3}};
+      const Number r = 1;
+      const Ball x = {c, r};
+      std::cout << "Ball((1,2,3),1) = " << x << "\n";
+
+      // copy constructor
+      const Ball y(x);
+      assert(y == x);
+      std::cout << "copy = " << y << "\n";
+
+      // assignment operator
+      const Ball z = x;
+      assert(z == x);
+      std::cout << "assignment = " << z << "\n";
+
+      // Accessors.
+      assert(x.center == c);
+      assert(x.radius == r);
+      std::cout << "Accessors: " << "\n"
+      << "center = " << x.center << "\n"
+      << "radius = " << x.radius << "\n";
+   }
+#endif
+   // == operator
+   {
+      Ball a = {{{1., 2., 3.}}, 1};
+      Ball b = {{{2., 3., 5.}}, 1};
+      assert(!(a == b));
+   }
+   {
+      Ball a = {{{1., 2., 3.}}, 1};
+      Ball b = {{{1., 2., 3.}}, 2};
+      assert(!(a == b));
+   }
+   {
+      Ball a = {{{1., 2., 3.}}, 1};
+      Ball b = {{{1., 2., 3.}}, 1};
+      assert(a == b);
+   }
+   // != operator
+   {
+      Ball a = {{{1., 2., 3.}}, 1};
+      Ball b = {{{2., 3., 5.}}, 1};
+      assert(a != b);
+   }
+   {
+      Ball a = {{{1., 2., 3.}}, 1};
+      Ball b = {{{1., 2., 3.}}, 2};
+      assert(a != b);
+   }
+   {
+      Ball a = {{{1., 2., 3.}}, 1};
+      Ball b = {{{1., 2., 3.}}, 1};
+      assert(!(a != b));
+   }
+   // bound()
+   {
+      Ball ball = {{{1., 2., 3.}}, 1};
+      geom::BBox<Number, 3> box = bound(ball);
+      assert(box.lower == ext::make_array<Number>(0., 1., 2.));
+      assert(box.upper == ext::make_array<Number>(2., 3., 4.));
+   }
+#ifndef __CUDA_ARCH__
+   {
+      std::vector<Ball> balls;
+      balls.push_back(makeBall(ext::make_array<Number>(1., 2., 3.), Number(1)));
+      {
+         geom::BBox<Number, 3> box;
+         box.bound(balls.begin(), balls.end());
+         assert(box.lower == ext::make_array<Number>(0., 1., 2.));
+         assert(box.upper == ext::make_array<Number>(2., 3., 4.));
+      }
+      balls.push_back(makeBall(ext::make_array<Number>(2., 3., 5.), Number(1)));
+      {
+         geom::BBox<Number, 3> box;
+         box.bound(balls.begin(), balls.end());
+         assert(box.lower == ext::make_array<Number>(0., 1., 2.));
+         assert(box.upper == ext::make_array<Number>(3., 4., 6.));
+      }
+   }
+#endif
+   // doIntersect()
+   {
+      Ball a = {{{0., 0., 0.}}, 1};
+      Ball b = {{{1., 0., 0.}}, 1};
+      assert(doIntersect(a, b));
+   }
+   {
+      Ball a = {{{0., 0., 0.}}, 1};
+      Ball b = {{{3., 0., 0.}}, 1};
+      assert(! doIntersect(a, b));
+   }
+
+   // closestPoint()
+   {
+      Ball ball = {{{0., 0., 0.}}, 2};
+      Point x = {{0, 0, 0}};
+      Point closest;
+      assert(areEqual(closestPoint(ball, x, &closest), Number(-2)));
+      assert(areEqual(closest, ext::make_array<Number>(2., 0., 0.)));
+   }
+   {
+      Ball ball = {{{0., 0., 0.}}, 2};
+      Point x = {{0.5, 0, 0}};
+      Point closest;
+      assert(areEqual(closestPoint(ball, x, &closest), Number(-1.5)));
+      assert(areEqual(closest, ext::make_array<Number>(2., 0., 0.)));
+   }
+   {
+      Ball ball = {{{0., 0., 0.}}, 2};
+      Point x = {{4, 0, 0}};
+      Point closest;
+      assert(areEqual(closestPoint(ball, x, &closest), Number(2)));
+      assert(areEqual(closest, ext::make_array<Number>(2., 0., 0.)));
+   }
+   {
+      Ball ball = {{{1., 2., 3.}}, 2};
+      Point x = {{1, 2, 3}};
+      Point closest;
+      assert(areEqual(closestPoint(ball, x, &closest), Number(-2)));
+      assert(areEqual(closest, ext::make_array<Number>(3., 2., 3.)));
+   }
+   {
+      Ball ball = {{{1., 2., 3.}}, 2};
+      Point x = {{1.5, 2, 3}};
+      Point closest;
+      assert(areEqual(closestPoint(ball, x, &closest), Number(-1.5)));
+      assert(areEqual(closest, ext::make_array<Number>(3., 2., 3.)));
+   }
+   {
+      Ball ball = {{{1., 2., 3.}}, 2};
+      Point x = {{5, 2, 3}};
+      Point closest;
+      assert(areEqual(closestPoint(ball, x, &closest), Number(2)));
+      assert(areEqual(closest, ext::make_array<Number>(3., 2., 3.)));
+   }
+
+   return 0;
+}

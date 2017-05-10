@@ -1,0 +1,12 @@
+# -*- python -*-
+
+import sys
+sys.path.append('..')
+from doxygen import doxygen
+
+doxygen.Doxyfile('Doxyfile', ['../main.cfg', 'local.cfg'])
+target = '../html/shortest_paths/index.html'
+Default([target])
+sources = Glob('../../stlib/shortest_paths/*.h') + ['../ads/ads.tag']
+doxygen.Doxygen([target, 'shortest_paths.tag'], ['Doxyfile'] + sources)
+Clean(target, ['../html/shortest_paths', 'shortest_paths.tag'])

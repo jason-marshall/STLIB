@@ -1,0 +1,3 @@
+# -*- python -*-
+
+SConscript([str(x) for x in Glob('*/SConscript')])

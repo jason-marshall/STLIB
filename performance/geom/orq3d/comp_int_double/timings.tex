@@ -1,0 +1,79 @@
+\documentclass{article}
+
+\begin{document}
+
+
+\section{Less Than Comparison: ints and doubles}
+
+
+\paragraph{}
+I wrote codes which make a vector of random numbers and compare each
+element of the vector with a fixed value using the less than operator.
+I timed the execution times for a vector of integers and of doubles.
+Below is the portion of the code that was timed.  
+
+\begin{verbatim}
+i = v.begin();
+while ( i != i_end )
+  if ( *(i++) < val )
+    ++count;
+\end{verbatim}
+
+The timing data for vectors from length 10 to 10 million is shown in
+Table~\ref{int_vs_double}.  The time is in seconds.  For large vectors, 
+using doubles takes about 1.7 times as long as using ints.
+
+\begin{table}[h!]
+\begin{center}
+\begin{tabular}{|l|l|l|}
+\hline
+size &  int &           double \\
+\hline
+\hline
+$10^1$ &   5e-06 &         4e-06 \\
+\hline
+$10^2$ &   5e-06 &         7e-06 \\
+\hline
+$10^3$ &   3.4e-05 &       5.2e-05 \\
+\hline
+$10^4$ &   0.00036 &       0.000587 \\
+\hline
+$10^5$ &   0.004239 &      0.01048 \\
+\hline
+$10^6$ &   0.059782 &      0.102269 \\
+\hline
+$10^7$ &   0.466847 &      0.993225 \\
+\hline
+\end{tabular}
+\caption{Less Than Comparison for ints and doubles}
+\label{int_vs_double}
+\end{center}
+\end{table}
+
+
+
+\end{document}
+
+% $Log$
+% Revision 1.1  2006/06/28 22:42:31  sean
+% Fixed compilation issues with GCC 4.0.
+%
+% Revision 1.1.1.1  2005/09/15 20:00:30  sean
+% Original
+%
+% Revision 1.1.1.1  2005/02/01 23:48:49  sean
+% Original import.
+%
+% Revision 1.1  2003/07/29 19:55:24  sean
+% Changed to geom namespace.
+%
+% Revision 1.1  2003/03/26 18:18:21  sean
+% Updated for compgeom library.
+%
+% Revision 1.2  2001/04/11 14:42:06  sean
+% Fixed a typo.
+%
+% Revision 1.1  2001/04/10 23:24:45  sean
+% Original Document.
+%
+

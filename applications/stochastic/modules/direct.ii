@@ -1,0 +1,37 @@
+// -*- C++ -*-
+
+// This is not a module. It is included in other files.
+
+namespace stochastic {
+
+  template<typename _Solver>
+  _Solver*
+  newSolverDirect(std::size_t numberOfSpecies,
+		  std::size_t numberOfReactions,
+		  const int packedReactions[], 
+		  const double propensityFactors[]);
+  %template(newSolver) newSolverDirect<Direct>;
+
+  template<typename _Solver>
+  void
+  deleteSolver(_Solver* solver);
+  %template(deleteSolver) deleteSolver<Direct>;
+
+  template<typename _Solver>
+  void
+  getMt19937State(const _Solver* solver, unsigned state[]);
+  %template(getMt19937State) getMt19937State<Direct>;
+
+  template<typename _Solver>
+  void
+  setMt19937State(_Solver* solver, const unsigned state[]);
+  %template(setMt19937State) setMt19937State<Direct>;
+
+  template<typename _Solver>
+  int
+  generateTrajectory(_Solver* solver, const int initialPopulationsArray[],
+		     double startTime, std::size_t maximumAllowedSteps,
+		     std::size_t numberOfFrames, const double frameTimes[],
+		     int framePopulations[], std::size_t frameReactionCounts[]);
+  %template(generateTrajectory) generateTrajectory<Direct>;
+}

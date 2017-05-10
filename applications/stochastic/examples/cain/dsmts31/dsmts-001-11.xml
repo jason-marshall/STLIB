@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cain version="1.5">
+  <listOfModels>
+    <model id="BirthDeath11" name="Birth-death model (001), variant 01">
+      <listOfParameters>
+        <parameter expression="0.11" id="Mu"/>
+        <parameter expression="0.1" id="Lambda"/>
+      </listOfParameters>
+      <listOfCompartments>
+        <compartment expression="1" id="Cell"/>
+      </listOfCompartments>
+      <listOfSpecies>
+        <species compartment="Cell" initialAmount="200" id="X"/>
+      </listOfSpecies>
+      <listOfReactions>
+        <reaction propensity="Lambda" massAction="true" id="Birth">
+          <listOfReactants>
+            <speciesReference species="X"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference stoichiometry="2" species="X"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="Mu" massAction="true" id="Death">
+          <listOfReactants>
+            <speciesReference species="X"/>
+          </listOfReactants>
+        </reaction>
+      </listOfReactions>
+    </model>
+  </listOfModels>
+  <listOfMethods>
+    <method equilibrationTime="0.0" startTime="0.0" recordingTime="50.0" id="Reference" category="5" numberOfBins="32" multiplicity="4" method="0" timeDependence="0" numberOfFrames="51" options="0"/>
+    <method equilibrationTime="0.0" startTime="0.0" recordingTime="50.0" id="TimeSeries" category="0" numberOfBins="32" multiplicity="4" method="0" timeDependence="0" numberOfFrames="51" options="0"/>
+    <method equilibrationTime="0.0" startTime="0.0" recordingTime="50.0" id="Histogram" category="3" numberOfBins="32" multiplicity="4" method="0" timeDependence="0" numberOfFrames="1" options="0"/>
+  </listOfMethods>
+  <listOfOutput>
+    <statisticsFrames model="BirthDeath11" method="Reference">
+      <frameTimes>
+        0.0 1.0 2.0 3.0 4.0 5.0 6.0 7.0 8.0 9.0 10.0 11.0 12.0 13.0 14.0 15.0 16.0 17.0 18.0 19.0 20.0 21.0 22.0 23.0 24.0 25.0 26.0 27.0 28.0 29.0 30.0 31.0 32.0 33.0 34.0 35.0 36.0 37.0 38.0 39.0 40.0 41.0 42.0 43.0 44.0 45.0 46.0 47.0 48.0 49.0 50.0
+      </frameTimes>
+      <recordedSpecies>
+        0
+      </recordedSpecies>
+      <statistics>
+        100.0 0.0 99.501249999999999 3.2282441049999999 99.004980000000003 4.5483447540000004 98.511200000000002 5.5497252179999998 98.019869999999997 6.3843081069999998 97.531000000000006 7.1111897739999996 97.044550000000001 7.760805371 96.560540000000003 8.3513082809999997 96.078940000000003 8.8945769989999999 95.59975 9.3988946159999998 95.12294 9.8703196500000008 94.648510000000002 10.31344268 94.176450000000003 10.73184979 93.70675 11.128400600000001 93.239379999999997 11.50542046 92.774349999999998 11.86484724 92.311629999999994 12.20829226 91.851230000000001 12.537132850000001 91.393119999999996 12.852548390000001 90.937299999999993 13.155569160000001 90.483739999999997 13.447081470000001 90.032449999999997 13.72787675 89.583410000000001 13.998649929999999 89.136610000000005 14.26002454 88.692040000000006 14.51256008 88.249690000000001 14.75675777 87.809539999999998 14.9930684 87.371589999999998 15.22190855 86.935820000000007 15.443652419999999 86.502229999999997 15.658649369999999 86.070800000000006 15.867214629999999 85.64152 16.069639070000001 85.214380000000006 16.266191930000002 84.789370000000005 16.457123079999999 84.366479999999996 16.642668059999998 83.945700000000002 16.823043720000001 83.527019999999993 16.998446990000001 83.110429999999994 17.169068119999999 82.695909999999998 17.335085809999999 82.283469999999994 17.496665400000001 81.873080000000002 17.65396556 81.464730000000003 17.807127789999999 81.058419999999998 17.956296949999999 80.654139999999998 18.10159938 80.25188 18.2431631 79.851619999999997 18.381101709999999 79.453360000000004 18.515531320000001 79.057079999999999 18.646554640000002 78.662790000000001 18.774274949999999 78.270449999999997 18.89878568 77.880080000000007 19.020181390000001
+      </statistics>
+    </statisticsFrames>
+  </listOfOutput>
+  <random seed="2147483648">
+  </random>
+</cain>

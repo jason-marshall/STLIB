@@ -1,0 +1,15 @@
+# -*- python -*-
+
+import sys
+sys.path.append('..')
+from doxygen import doxygen
+
+doxygen.Doxyfile('Doxyfile', ['../main.cfg', 'local.cfg'])
+target = '../html/numerical/index.html'
+Default([target])
+# Don't include geom.tag as that would create a dependency cycle.
+sources = Glob('../../stlib/numerical/*.h') + Glob('../../stlib/numerical/*/*.h') \
+    + Glob('../../stlib/numerical/*/*/*.h') \
+    + ['../ads/ads.tag', '../container/container.tag']
+doxygen.Doxygen([target, 'numerical.tag'], ['Doxyfile'] + sources)
+Clean(target, ['../html/numerical', 'numerical.tag'])

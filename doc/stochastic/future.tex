@@ -1,0 +1,89 @@
+\documentclass{article}
+
+\begin{document}
+
+We will develop concurrent algorithms for explicit $\tau$-leaping and then
+for the implicit algorithm.  The problem of using concurrency to run a 
+large suite of simulations is already well understood (and implemented 
+in StochKit).  When one wants to collect
+statistics from an ensemble, the best approach is to schedule sequential
+simulations on the available processors.  Instead, we address the problem
+of using concurrency to improve the performance of a single simulation.
+This capability is useful when one wants to interactively explore the parameter
+space for a problem.  Here, one is not concerned with efficiently running
+a large number of simulations.  One wants to try some initial condition or rate 
+constants and quickly run a few simulations.  Then, based on the results,
+one may try different parameters.  
+
+
+We will use a hybrid threading/message passing approach using OpenMP
+and MPI.  Based on the target architecture, the user will be able to
+choose whether to use threading, message passing, or both.  This
+approach will have the flexibility to efficiently utilize many kinds
+of machines.  On SMP (symmetric multi-processor) workstations one
+would use only threading.  Most modern clusters have multi-processor
+nodes connected with a network.  Here one would use both threading to
+distribute work among the processors of a single node and message
+passing to distribute work among nodes.  (As the nodes do not share
+memory, one needs message passing between them.  However, for
+problems with fine grain concurrency, threading is typically
+more efficient than message passing within a node.)  Finally, since
+many personal computers now have multiple processors, one could use
+the threading enabled version to take advantage of this additional
+computing power.
+
+
+While developing a concurrent application with MPI often involves 
+significant code development and restructuring, using threads
+with OpenMP typically requires minimal changes to a sequential code.
+In fact, well designed programs using OpenMP can be compiled into 
+either sequential or concurrent applications \cite{chandra}.  Thus, 
+supporting both threads and message passing is less complicated than
+one would expect.
+
+
+We have designed the concurrent algorithm for explicit $\tau$-leaping,
+but so far have only implemented the message passing portion.
+Concurrency has little to offer for small problems (a few reactions).  
+Since only a small amount of computation is done at each time
+step, there is no point in trying to distribute this work.  Starting
+with moderate-sized problems (tens or hundreds of reactions) we expect
+that threading will yeild performance benefits.  Message passing is only 
+effective for large problems (hundreds or thousands of reactions).
+Distributing the reactions incurrs a communication overhead.  This cost
+is worth paying only when there are many reactions to distribute.
+
+The concurrent algorithm for implicit $\tau$-leaping will be analogous
+to that for the explicit method.  The difference is the implicit 
+solve for the species populations.  This amounts to solving a sparse 
+linear system, which is a well-studied problem in concurrent computing.
+We will be able to apply standard algorithms 
+\cite{vandevelde}
+\cite{quinn}
+to achieve an efficient 
+implementation using threading and message passing.  
+
+
+%===========================================================================
+\begin{thebibliography}{10}
+
+\bibitem{vandevelde}
+Eric F. Van de Velde
+\newblock {\em Concurrent Scientific Computing}. 
+\newblock {\em Springer Verlag}, 1994.
+
+\bibitem{quinn}
+Michael J. Quinn
+\newblock {\em Parallel Programming in C with MPI and OpenMP}. 
+\newblock {\em McGraw Hill}, 2004.
+
+\bibitem{chandra}
+Rohit Chandra, Leonardo Dagum, Dave Kohr, Dror Mayden, Jeff McDonald, Ramesh Menon
+\newblock {\em Parallel Programming in OpenMP}. 
+\newblock {\em Morgan Kaufmann}, 2001.
+
+\end{thebibliography}
+
+\end{document}
+
+End of file.

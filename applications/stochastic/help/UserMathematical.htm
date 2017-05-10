@@ -1,0 +1,31 @@
+
+<html>
+<head>
+<title>Mathematical Expressions</title>
+</head>
+<body>
+<h1>Mathematical Expressions</h1>
+
+<p>
+Each of the species initial amounts, the propensity factors for mass-action
+kinetic laws, and the parameter values are interpreted as Python expressions.
+Python supports the standard
+<a href="http://docs.python.org/lib/typesnumeric.html">
+numerical operations</a>. Additionally you can use the functions and constants
+defined in the 
+<a href="http://docs.python.org/lib/module-math.html">math module</a>.
+</p>
+
+<p>
+For kinetic laws which are not mass-action, the propensity function
+must be a valid C++ expression. Both Python and C++ use the C math library,
+so the syntax is almost the same. One difference to note: C++ does not
+support the power operator <tt>x**y</tt>. Use <tt>pow(x, y)</tt> instead.
+You can use any of standard math functions without the <tt>std</tt>
+namespace qualification as well as the constants <tt>pi</tt> and <tt>e</tt>.
+Of course you can also use the model parameters. Use the species identifiers
+to denote the species populations.
+</p>
+
+</body>
+</html>

@@ -1,0 +1,13 @@
+# -*- python -*-
+
+import sys
+sys.path.append('..')
+from doxygen import doxygen
+
+doxygen.Doxyfile('Doxyfile', ['../main.cfg', 'local.cfg'])
+target = '../html/lorg/index.html'
+Default([target])
+sources = Glob('../../stlib/lorg/*.h') \
+    + ['../ads/ads.tag', '../geom/geom.tag', '../ext/ext.tag']
+doxygen.Doxygen([target, 'lorg.tag'], ['Doxyfile'] + sources)
+Clean(target, ['../html/lorg', 'lorg.tag'])

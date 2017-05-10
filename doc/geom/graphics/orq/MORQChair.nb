@@ -1,0 +1,795 @@
+(************** Content-type: application/mathematica **************
+
+                    Mathematica-Compatible Notebook
+
+This notebook can be used with any Mathematica-compatible
+application, such as Mathematica, MathReader or Publicon. The data
+for the notebook starts with the line containing stars above.
+
+To get the notebook into a Mathematica-compatible application, do
+one of the following:
+
+* Save the data starting with the line of stars above into a file
+  with a name ending in .nb, then open the file inside the
+  application;
+
+* Copy the data starting with the line of stars above to the
+  clipboard, then use the Paste menu command inside the application.
+
+Data for notebooks contains only printable 7-bit ASCII and can be
+sent directly in email or through ftp in text mode.  Newlines can be
+CR, LF or CRLF (Unix, Macintosh or MS-DOS style).
+
+NOTE: If you modify the data for this notebook not in a Mathematica-
+compatible application, you must delete the line below containing
+the word CacheID, otherwise Mathematica-compatible applications may
+try to use invalid cache data.
+
+For more information on notebooks and Mathematica-compatible 
+applications, contact Wolfram Research:
+  web: http://www.wolfram.com
+  email: info@wolfram.com
+  phone: +1-217-398-0700 (U.S.)
+
+Notebook reader applications are available free of charge from 
+Wolfram Research.
+*******************************************************************)
+
+(*CacheID: 232*)
+
+
+(*NotebookFileLineBreakTest
+NotebookFileLineBreakTest*)
+(*NotebookOptionsPosition[     19635,        622]*)
+(*NotebookOutlinePosition[     20283,        645]*)
+(*  CellTagsIndexPosition[     20239,        641]*)
+(*WindowFrame->Normal*)
+
+
+
+Notebook[{
+Cell["MORQChair.nb", "Text"],
+
+Cell[BoxData[
+    \(<< Graphics`Graphics`\)], "Input"],
+
+Cell[BoxData[
+    \(\(numRecords = {1782, 7200, 28968, 116232, 465672, 
+          1864200};\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(numReturned = {65412, 265104, 864296, 3192056, 12220376, 
+          47768216};\)\)], "Input"],
+
+Cell[CellGroupData[{
+
+Cell["Compare All", "Section"],
+
+Cell["Sequential Scan", "Text"],
+
+Cell[BoxData[
+    \(\(time[
+          1] = {0.195, 3.453, 98.72, Indeterminate, Indeterminate, 
+              Indeterminate}/numReturned*1*^6;\)\)], "Input"],
+
+Cell["Projection", "Text"],
+
+Cell[BoxData[
+    \(\(time[
+          2] = {0.061, 0.48, 3.86, 33.01, 322.0, Indeterminate}/
+            numReturned*1*^6;\)\)], "Input"],
+
+Cell["Point-in-box", "Text"],
+
+Cell[BoxData[
+    \(\(time[
+          3] = {0.045, 0.366, 2.94, 25.78, 205.9, Indeterminate}/
+            numReturned*1*^6;\)\)], "Input"],
+
+Cell["kd-tree", "Text"],
+
+Cell[BoxData[
+    \(\(time[
+          4] = {0.081, 0.383, 1.94, 9.58, 46.7, Indeterminate}/
+            numReturned*1*^6;\)\)], "Input"],
+
+Cell["kd-tree domain check", "Text"],
+
+Cell[BoxData[
+    \(\(time[
+          5] = {0.101, 0.475, 2.50, 12.66, 63.0, Indeterminate}/
+            numReturned*1*^6;\)\)], "Input"],
+
+Cell["octree", "Text"],
+
+Cell[BoxData[
+    \(\(time[
+          6] = {0.035, 0.164, 0.78, 3.12, 13.4, 56}/
+            numReturned*1*^6;\)\)], "Input"],
+
+Cell["cell array", "Text"],
+
+Cell[BoxData[
+    \(\(time[
+          7] = {0.024, 0.102, 0.37, 1.41, 5.6, Indeterminate}/
+            numReturned*1*^6;\)\)], "Input"],
+
+Cell["sparse cells", "Text"],
+
+Cell[BoxData[
+    \(\(time[
+          8] = {0.025, 0.108, 0.40, 1.50, 5.9, 25}/
+            numReturned*1*^6;\)\)], "Input"],
+
+Cell["cells binary", "Text"],
+
+Cell[BoxData[
+    \(\(time[
+          9] = {0.028, 0.121, 0.49, 1.89, 8.1, 34}/
+            numReturned*1*^6;\)\)], "Input"],
+
+Cell["cells forward", "Text"],
+
+Cell[BoxData[
+    \(\(time[
+          10] = {0.019, 0.081, 0.31, 1.24, 5.0, 21}/
+            numReturned*1*^6;\)\)], "Input"],
+
+Cell["cells f. s. keys", "Text"],
+
+Cell[BoxData[
+    \(\(time[
+          11] = {0.013, 0.055, 0.23, 0.93, 3.8, 17}/
+            numReturned*1*^6;\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(\(\(Transpose[{numRecords, numReturned, time[1], time[2], time[3], 
+                time[4], time[5], time[6], time[7], time[8], time[9], 
+                time[10], time[11]}] // N\) // TableForm\) // 
+        AccountingForm\) // TextForm\)], "Input"],
+
+Cell["Sequential Scan", "Text"],
+
+Cell[BoxData[
+    \(\(memory[
+          1] = {7140, 28812, 115884, Indeterminate, Indeterminate, 
+            Indeterminate}/numRecords;\)\)], "Input"],
+
+Cell["Projection", "Text"],
+
+Cell[BoxData[
+    \(\(memory[2] = {21420, 86436, 347652, 1394820, 5588100, Indeterminate}/
+          numRecords;\)\)], "Input"],
+
+Cell["Point-in-box", "Text"],
+
+Cell[BoxData[
+    \(\(memory[3] = {49980, 201684, 811188, 3254580, 13038900, Indeterminate}/
+          numRecords;\)\)], "Input"],
+
+Cell["kd-tree", "Text"],
+
+Cell[BoxData[
+    \(\(memory[4] = {17416, 69808, 279760, 1120336, 4484176, Indeterminate}/
+          numRecords;\)\)], "Input"],
+
+Cell["kd-tree domain check", "Text"],
+
+Cell[BoxData[
+    \(\(memory[5] = {17416, 69808, 279760, 1120336, 4484176, Indeterminate}/
+          numRecords;\)\)], "Input"],
+
+Cell["octree", "Text"],
+
+Cell[BoxData[
+    \(\(memory[6] = {62708, 272212, 1160492, 4520452, 17979204, 72681460}/
+          numRecords;\)\)], "Input"],
+
+Cell["cell array", "Text"],
+
+Cell[BoxData[
+    \(\(memory[
+          7] = {32328, 206412, 1446540, 10760556, 82850988, Indeterminate}/
+          numRecords;\)\)], "Input"],
+
+Cell["sparse cells", "Text"],
+
+Cell[BoxData[
+    \(\(memory[8] = {14360, 63088, 252976, 1013680, 4058800, 16243888}/
+          numRecords;\)\)], "Input"],
+
+Cell["cells binary", "Text"],
+
+Cell[BoxData[
+    \(\(memory[9] = {8836, 34684, 137884, 550300, 2199196, 8793244}/
+          numRecords;\)\)], "Input"],
+
+Cell["cells forward", "Text"],
+
+Cell[BoxData[
+    \(\(memory[10] = {16764, 66372, 264708, 1057860, 4230084, 16918212}/
+          numRecords;\)\)], "Input"],
+
+Cell["cells f. s. keys", "Text"],
+
+Cell[BoxData[
+    \(\(memory[11] = {63132, 252168, 1009224, 4039272, 16163112, 64665768}/
+          numRecords;\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(\(\(Transpose[{numRecords, memory[1], memory[2], memory[3], 
+                memory[4], memory[5], memory[6], memory[7], memory[8], 
+                memory[9], memory[10], memory[11]}] // N\) // TableForm\) // 
+        AccountingForm\) // TextForm\)], "Input"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Trees", "Section"],
+
+Cell[BoxData[
+    \(\(time[
+          1] = {0.035, 0.164, 0.78, 3.12, 13.4, 56}/
+            numReturned*1*^6;\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(time[
+          2] = {0.081, 0.383, 1.94, 9.58, 46.7}/
+            numReturned[\([{1, 2, 3, 4, 5}]\)]*1*^6;\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(time[
+          3] = {0.101, 0.475, 2.50, 12.66, 63.0}/
+            numReturned[\([{1, 2, 3, 4, 5}]\)]*1*^6;\)\)], "Input"],
+
+Cell[BoxData[
+    \(time[1]\)], "Input"],
+
+Cell[BoxData[
+    \(\(data[1] = Transpose[{numReturned, time[1]}];\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(data[2] = 
+        Transpose[{numReturned[\([{1, 2, 3, 4, 5}]\)], 
+            time[2]}];\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(data[3] = 
+        Transpose[{numReturned[\([{1, 2, 3, 4, 5}]\)], 
+            time[3]}];\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(pointPlot = 
+        LogLogListPlot[
+          Join[data[1], data[2], 
+            data[3]], \[IndentingNewLine]PlotStyle \[Rule] 
+            PointSize[
+              0.02], \[IndentingNewLine]Ticks \[Rule] {{}, {0.5, 1, 2, 4}}, 
+          TextStyle \[Rule] {FontSize \[Rule] 12}, 
+          PlotLabel -> "\<Execution Time\>"];\)\)], "Input"],
+
+Cell[BoxData[
+    \(For[i = 1, 
+      i \[LessEqual] 
+        3, \(i++\), \[IndentingNewLine]\(plot[i] = 
+          LogLogListPlot[data[i], PlotJoined \[Rule] True, 
+            PlotStyle \[Rule] Hue[i/3]];\)\[IndentingNewLine]]\)], "Input"],
+
+Cell[BoxData[
+    \(\(timePlot = Show[pointPlot, plot[1], plot[2], plot[3]];\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(memory[1] = {62708, 272212, 1160492, 4520452, 17979204, 72681460}/
+          numRecords;\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(memory[2] = {17416, 69808, 279760, 1120336, 4484176}/
+          numRecords[\([{1, 2, 3, 4, 5}]\)];\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(data[1] = Transpose[{numRecords, memory[1]}];\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(data[2] = 
+        Transpose[{numRecords[\([{1, 2, 3, 4, 5}]\)], 
+            memory[2]}];\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(pointPlot = 
+        LogLogListPlot[
+          Join[data[1], data[2]], \[IndentingNewLine]PlotStyle \[Rule] 
+            PointSize[
+              0.02], \[IndentingNewLine]Ticks \[Rule] {{}, {10, 20, 40}}, 
+          TextStyle \[Rule] {FontSize \[Rule] 12}, 
+          PlotLabel -> "\<Memory Usage\>"];\)\)], "Input"],
+
+Cell[BoxData[
+    \(For[i = 1, 
+      i \[LessEqual] 
+        2, \(i++\), \[IndentingNewLine]\(plot[i] = 
+          LogLogListPlot[data[i], PlotJoined \[Rule] True, 
+            PlotStyle \[Rule] Hue[i/3]];\)\[IndentingNewLine]]\)], "Input"],
+
+Cell[BoxData[
+    \(\(memoryPlot = Show[pointPlot, plot[1], plot[2]];\)\)], "Input"],
+
+Cell["Save as MORQChairTree.eps", "Text"],
+
+Cell[BoxData[
+    \(\(Show[GraphicsArray[{timePlot, memoryPlot}], 
+        ImageSize \[Rule] 400];\)\)], "Input"],
+
+Cell["Save as MORQChairTreeLegend.eps", "Text"],
+
+Cell[BoxData[
+    \(\(Show[
+        Graphics[{\[IndentingNewLine]Thickness[0.1], \[IndentingNewLine]Hue[
+              3/3], \[IndentingNewLine]Line[{{0, 0}, {1, 
+                  0}}], \[IndentingNewLine]GrayLevel[
+              0], \[IndentingNewLine]Text["\<kd-tree, d.\>", {1.5, 
+                0}, {\(-1\), 0}], \[IndentingNewLine]Hue[
+              2/3], \[IndentingNewLine]Line[{{0, 1}, {1, 
+                  1}}], \[IndentingNewLine]GrayLevel[
+              0], \[IndentingNewLine]Text["\<kd-tree\>", {1.5, 1}, {\(-1\), 
+                0}], \[IndentingNewLine]Hue[
+              1/3], \[IndentingNewLine]Line[{{0, 2}, {1, 
+                  2}}], \[IndentingNewLine]GrayLevel[
+              0], \[IndentingNewLine]Text["\<octree\>", {1.5, 2}, {\(-1\), 
+                0}]\[IndentingNewLine]}], ImageSize \[Rule] 120, 
+        AspectRatio \[Rule] 0.4, 
+        PlotRange \[Rule] {{\(-0.5\), 10}, {\(-0.5\), 2.5}}, 
+        TextStyle \[Rule] {FontSize \[Rule] 12}];\)\)], "Input"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Cells", "Section"],
+
+Cell[BoxData[
+    \(\(time[
+          1] = {0.024, 0.102, 0.37, 1.41, 5.6}/
+            numReturned[\([{1, 2, 3, 4, 5}]\)]*1*^6;\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(time[
+          2] = {0.025, 0.108, 0.40, 1.50, 5.9, 25}/
+            numReturned*1*^6;\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(time[
+          3] = {0.028, 0.121, 0.49, 1.89, 8.1, 34}/
+            numReturned*1*^6;\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(time[
+          4] = {0.019, 0.081, 0.31, 1.24, 5.0, 21}/
+            numReturned*1*^6;\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(time[
+          5] = {0.013, 0.055, 0.23, 0.93, 3.8, 17}/
+            numReturned*1*^6;\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(data[1] = 
+        Transpose[{numReturned[\([{1, 2, 3, 4, 5}]\)], 
+            time[1]}];\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(data[2] = Transpose[{numReturned, time[2]}];\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(data[3] = Transpose[{numReturned, time[3]}];\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(data[4] = Transpose[{numReturned, time[4]}];\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(data[5] = Transpose[{numReturned, time[5]}];\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(pointPlot = 
+        LogLogListPlot[
+          Join[data[1], data[2], data[3], data[4], 
+            data[5]], \[IndentingNewLine]PlotStyle \[Rule] 
+            PointSize[
+              0.02], \[IndentingNewLine]Ticks \[Rule] {{}, {0.25, 0.5}}, 
+          TextStyle \[Rule] {FontSize \[Rule] 12}, 
+          PlotLabel -> "\<Execution Time\>"];\)\)], "Input"],
+
+Cell[BoxData[
+    \(For[i = 1, 
+      i \[LessEqual] 
+        5, \(i++\), \[IndentingNewLine]\(plot[i] = 
+          LogLogListPlot[data[i], PlotJoined \[Rule] True, 
+            PlotStyle \[Rule] Hue[i/5]];\)\[IndentingNewLine]]\)], "Input"],
+
+Cell[BoxData[
+    \(\(timePlot = 
+        Show[pointPlot, plot[1], plot[2], plot[3], plot[4], 
+          plot[5]];\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(memory[1] = {32328, 206412, 1446540, 10760556, 82850988}/
+          numRecords[\([{1, 2, 3, 4, 5}]\)];\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(memory[2] = {14360, 63088, 252976, 1013680, 4058800, 16243888}/
+          numRecords;\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(memory[3] = {8836, 34684, 137884, 550300, 2199196, 8793244}/
+          numRecords;\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(memory[4] = {16764, 66372, 264708, 1057860, 4230084, 16918212}/
+          numRecords;\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(memory[5] = {63132, 252168, 1009224, 4039272, 16163112, 64665768}/
+          numRecords;\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(data[1] = 
+        Transpose[{numRecords[\([{1, 2, 3, 4, 5}]\)], 
+            memory[1]}];\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(data[2] = Transpose[{numRecords, memory[2]}];\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(data[3] = Transpose[{numRecords, memory[3]}];\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(data[4] = Transpose[{numRecords, memory[4]}];\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(data[5] = Transpose[{numRecords, memory[5]}];\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(pointPlot = 
+        LogLogListPlot[
+          Join[data[1], data[2], data[3], data[4], 
+            data[5]], \[IndentingNewLine]PlotStyle \[Rule] 
+            PointSize[
+              0.02], \[IndentingNewLine]Ticks \[Rule] {{}, {10, 100}}, 
+          TextStyle \[Rule] {FontSize \[Rule] 12}, 
+          PlotLabel -> "\<Memory Usage\>"];\)\)], "Input"],
+
+Cell[BoxData[
+    \(For[i = 1, 
+      i \[LessEqual] 
+        5, \(i++\), \[IndentingNewLine]\(plot[i] = 
+          LogLogListPlot[data[i], PlotJoined \[Rule] True, 
+            PlotStyle \[Rule] Hue[i/5]];\)\[IndentingNewLine]]\)], "Input"],
+
+Cell[BoxData[
+    \(\(memoryPlot = 
+        Show[pointPlot, plot[1], plot[2], plot[3], plot[4], 
+          plot[5]];\)\)], "Input"],
+
+Cell["Save as MORQChairCell.eps", "Text"],
+
+Cell[BoxData[
+    \(\(Show[GraphicsArray[{timePlot, memoryPlot}], 
+        ImageSize \[Rule] 400];\)\)], "Input"],
+
+Cell["Save as MORQChairCellLegend.eps", "Text"],
+
+Cell[BoxData[
+    \(\(Show[
+        Graphics[{\[IndentingNewLine]Thickness[0.06], \[IndentingNewLine]Hue[
+              5/5], \[IndentingNewLine]Line[{{0, 0}, {1, 
+                  0}}], \[IndentingNewLine]GrayLevel[
+              0], \[IndentingNewLine]Text["\<cell f. s. k.\>", {1.5, 
+                0}, {\(-1\), 0}], \[IndentingNewLine]Hue[
+              4/5], \[IndentingNewLine]Line[{{0, 1}, {1, 
+                  1}}], \[IndentingNewLine]GrayLevel[
+              0], \[IndentingNewLine]Text["\<cell f. s.\>", {1.5, 
+                1}, {\(-1\), 0}], \[IndentingNewLine]Hue[
+              3/5], \[IndentingNewLine]Line[{{0, 2}, {1, 
+                  2}}], \[IndentingNewLine]GrayLevel[
+              0], \[IndentingNewLine]Text["\<cell b. s.\>", {1.5, 
+                2}, {\(-1\), 0}], \[IndentingNewLine]Hue[
+              2/5], \[IndentingNewLine]Line[{{0, 3}, {1, 
+                  3}}], \[IndentingNewLine]GrayLevel[
+              0], \[IndentingNewLine]Text["\<sparse cell\>", {1.5, 
+                3}, {\(-1\), 0}], \[IndentingNewLine]Hue[
+              1/5], \[IndentingNewLine]Line[{{0, 4}, {1, 
+                  4}}], \[IndentingNewLine]GrayLevel[
+              0], \[IndentingNewLine]Text["\<cell\>", {1.5, 4}, {\(-1\), 
+                0}]\[IndentingNewLine]}], ImageSize \[Rule] 150, 
+        AspectRatio \[Rule] 0.5, 
+        PlotRange \[Rule] {{\(-0.5\), 10}, {\(-1\), 5}}, 
+        TextStyle \[Rule] {FontSize \[Rule] 12}];\)\)], "Input"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Compare", "Section"],
+
+Cell[BoxData[
+    \(\(time[
+          1] = {0.035, 0.164, 0.78, 3.12, 13.4, 56}/
+            numReturned*1*^6;\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(time[
+          2] = {0.025, 0.108, 0.40, 1.50, 5.9, 25}/
+            numReturned*1*^6;\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(time[
+          3] = {0.019, 0.081, 0.31, 1.24, 5.0, 21}/
+            numReturned*1*^6;\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(data[1] = Transpose[{numReturned, time[1]}];\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(data[2] = Transpose[{numReturned, time[2]}];\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(data[3] = Transpose[{numReturned, time[3]}];\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(pointPlot = 
+        LogLogListPlot[
+          Join[data[1], data[2], 
+            data[3]], \[IndentingNewLine]PlotStyle \[Rule] 
+            PointSize[0.02], \[IndentingNewLine]Ticks \[Rule] {{}, {0.5, 1}}, 
+          TextStyle \[Rule] {FontSize \[Rule] 12}, 
+          PlotLabel -> "\<Execution Time\>"];\)\)], "Input"],
+
+Cell[BoxData[
+    \(For[i = 1, 
+      i \[LessEqual] 
+        3, \(i++\), \[IndentingNewLine]\(plot[i] = 
+          LogLogListPlot[data[i], PlotJoined \[Rule] True, 
+            PlotStyle \[Rule] Hue[i/3]];\)\[IndentingNewLine]]\)], "Input"],
+
+Cell[BoxData[
+    \(\(timePlot = Show[pointPlot, plot[1], plot[2], plot[3]];\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(memory[1] = {62708, 272212, 1160492, 4520452, 17979204, 72681460}/
+          numRecords;\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(memory[2] = {14360, 63088, 252976, 1013680, 4058800, 16243888}/
+          numRecords;\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(memory[3] = {16764, 66372, 264708, 1057860, 4230084, 16918212}/
+          numRecords;\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(data[1] = Transpose[{numRecords, memory[1]}];\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(data[2] = Transpose[{numRecords, memory[2]}];\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(data[3] = Transpose[{numRecords, memory[3]}];\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(pointPlot = 
+        LogLogListPlot[
+          Join[data[1], data[2], 
+            data[3]], \[IndentingNewLine]PlotStyle \[Rule] 
+            PointSize[
+              0.02], \[IndentingNewLine]Ticks \[Rule] {{}, {5, 10, 20, 40}}, 
+          TextStyle \[Rule] {FontSize \[Rule] 12}, 
+          PlotLabel -> "\<Memory Usage\>"];\)\)], "Input"],
+
+Cell[BoxData[
+    \(For[i = 1, 
+      i \[LessEqual] 
+        3, \(i++\), \[IndentingNewLine]\(plot[i] = 
+          LogLogListPlot[data[i], PlotJoined \[Rule] True, 
+            PlotStyle \[Rule] Hue[i/3]];\)\[IndentingNewLine]]\)], "Input"],
+
+Cell[BoxData[
+    \(\(memoryPlot = Show[pointPlot, plot[1], plot[2], plot[3]];\)\)], "Input"],
+
+Cell["Save as MORQChairCompare.eps", "Text"],
+
+Cell[BoxData[
+    \(\(Show[GraphicsArray[{timePlot, memoryPlot}], 
+        ImageSize \[Rule] 400];\)\)], "Input"],
+
+Cell["Save as MORQChairCompareLegend.eps", "Text"],
+
+Cell[BoxData[
+    \(\(Show[
+        Graphics[{\[IndentingNewLine]Thickness[0.1], \[IndentingNewLine]Hue[
+              3/3], \[IndentingNewLine]Line[{{0, 0}, {1, 
+                  0}}], \[IndentingNewLine]GrayLevel[
+              0], \[IndentingNewLine]Text["\<cell f. s.\>", {1.5, 
+                0}, {\(-1\), 0}], \[IndentingNewLine]Hue[
+              2/3], \[IndentingNewLine]Line[{{0, 1}, {1, 
+                  1}}], \[IndentingNewLine]GrayLevel[
+              0], \[IndentingNewLine]Text["\<sparse cell\>", {1.5, 
+                1}, {\(-1\), 0}], \[IndentingNewLine]Hue[
+              1/3], \[IndentingNewLine]Line[{{0, 2}, {1, 
+                  2}}], \[IndentingNewLine]GrayLevel[
+              0], \[IndentingNewLine]Text["\<octree\>", {1.5, 2}, {\(-1\), 
+                0}]\[IndentingNewLine]}], ImageSize \[Rule] 120, 
+        AspectRatio \[Rule] 0.4, 
+        PlotRange \[Rule] {{\(-0.5\), 10}, {\(-0.5\), 2.5}}, 
+        TextStyle \[Rule] {FontSize \[Rule] 12}];\)\)], "Input"]
+}, Open  ]]
+},
+FrontEndVersion->"4.1 for X",
+ScreenRectangle->{{0, 1280}, {0, 1024}},
+WindowSize->{673, 944},
+WindowMargins->{{3, Automatic}, {Automatic, 0}},
+Magnification->1.5
+]
+
+(*******************************************************************
+Cached data follows.  If you edit this Notebook file directly, not
+using Mathematica, you must remove the line containing CacheID at
+the top of  the file.  The cache data will then be recreated when
+you save this file from within Mathematica.
+*******************************************************************)
+
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+
+(*NotebookFileOutline
+Notebook[{
+Cell[1705, 50, 28, 0, 46, "Text"],
+Cell[1736, 52, 54, 1, 39, "Input"],
+Cell[1793, 55, 106, 2, 62, "Input"],
+Cell[1902, 59, 115, 2, 62, "Input"],
+
+Cell[CellGroupData[{
+Cell[2042, 65, 30, 0, 87, "Section"],
+Cell[2075, 67, 31, 0, 46, "Text"],
+Cell[2109, 69, 157, 3, 108, "Input"],
+Cell[2269, 74, 26, 0, 46, "Text"],
+Cell[2298, 76, 137, 3, 85, "Input"],
+Cell[2438, 81, 28, 0, 46, "Text"],
+Cell[2469, 83, 138, 3, 85, "Input"],
+Cell[2610, 88, 23, 0, 46, "Text"],
+Cell[2636, 90, 136, 3, 85, "Input"],
+Cell[2775, 95, 36, 0, 46, "Text"],
+Cell[2814, 97, 137, 3, 85, "Input"],
+Cell[2954, 102, 22, 0, 46, "Text"],
+Cell[2979, 104, 125, 3, 85, "Input"],
+Cell[3107, 109, 26, 0, 46, "Text"],
+Cell[3136, 111, 135, 3, 85, "Input"],
+Cell[3274, 116, 28, 0, 46, "Text"],
+Cell[3305, 118, 124, 3, 85, "Input"],
+Cell[3432, 123, 28, 0, 46, "Text"],
+Cell[3463, 125, 124, 3, 85, "Input"],
+Cell[3590, 130, 29, 0, 46, "Text"],
+Cell[3622, 132, 125, 3, 85, "Input"],
+Cell[3750, 137, 32, 0, 46, "Text"],
+Cell[3785, 139, 125, 3, 85, "Input"],
+Cell[3913, 144, 273, 4, 131, "Input"],
+Cell[4189, 150, 31, 0, 46, "Text"],
+Cell[4223, 152, 151, 3, 85, "Input"],
+Cell[4377, 157, 26, 0, 46, "Text"],
+Cell[4406, 159, 127, 2, 85, "Input"],
+Cell[4536, 163, 28, 0, 46, "Text"],
+Cell[4567, 165, 129, 2, 85, "Input"],
+Cell[4699, 169, 23, 0, 46, "Text"],
+Cell[4725, 171, 127, 2, 85, "Input"],
+Cell[4855, 175, 36, 0, 46, "Text"],
+Cell[4894, 177, 127, 2, 85, "Input"],
+Cell[5024, 181, 22, 0, 46, "Text"],
+Cell[5049, 183, 125, 2, 85, "Input"],
+Cell[5177, 187, 26, 0, 46, "Text"],
+Cell[5206, 189, 142, 3, 85, "Input"],
+Cell[5351, 194, 28, 0, 46, "Text"],
+Cell[5382, 196, 122, 2, 85, "Input"],
+Cell[5507, 200, 28, 0, 46, "Text"],
+Cell[5538, 202, 119, 2, 85, "Input"],
+Cell[5660, 206, 29, 0, 46, "Text"],
+Cell[5692, 208, 123, 2, 85, "Input"],
+Cell[5818, 212, 32, 0, 46, "Text"],
+Cell[5853, 214, 126, 2, 39, "Input"],
+Cell[5982, 218, 282, 4, 85, "Input"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[6301, 227, 24, 0, 87, "Section"],
+Cell[6328, 229, 125, 3, 39, "Input"],
+Cell[6456, 234, 144, 3, 39, "Input"],
+Cell[6603, 239, 145, 3, 39, "Input"],
+Cell[6751, 244, 40, 1, 44, "Input"],
+Cell[6794, 247, 81, 1, 44, "Input"],
+Cell[6878, 250, 126, 3, 44, "Input"],
+Cell[7007, 255, 126, 3, 44, "Input"],
+Cell[7136, 260, 365, 8, 100, "Input"],
+Cell[7504, 270, 241, 5, 100, "Input"],
+Cell[7748, 277, 91, 1, 44, "Input"],
+Cell[7842, 280, 125, 2, 44, "Input"],
+Cell[7970, 284, 135, 2, 44, "Input"],
+Cell[8108, 288, 82, 1, 44, "Input"],
+Cell[8193, 291, 127, 3, 44, "Input"],
+Cell[8323, 296, 339, 7, 100, "Input"],
+Cell[8665, 305, 241, 5, 100, "Input"],
+Cell[8909, 312, 84, 1, 54, "Input"],
+Cell[8996, 315, 41, 0, 57, "Text"],
+Cell[9040, 317, 113, 2, 54, "Input"],
+Cell[9156, 321, 47, 0, 57, "Text"],
+Cell[9206, 323, 991, 17, 420, "Input"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[10234, 345, 24, 0, 86, "Section"],
+Cell[10261, 347, 143, 3, 38, "Input"],
+Cell[10407, 352, 124, 3, 38, "Input"],
+Cell[10534, 357, 124, 3, 38, "Input"],
+Cell[10661, 362, 124, 3, 38, "Input"],
+Cell[10788, 367, 124, 3, 38, "Input"],
+Cell[10915, 372, 126, 3, 38, "Input"],
+Cell[11044, 377, 81, 1, 38, "Input"],
+Cell[11128, 380, 81, 1, 38, "Input"],
+Cell[11212, 383, 81, 1, 38, "Input"],
+Cell[11296, 386, 81, 1, 38, "Input"],
+Cell[11380, 389, 380, 8, 84, "Input"],
+Cell[11763, 399, 241, 5, 84, "Input"],
+Cell[12007, 406, 129, 3, 38, "Input"],
+Cell[12139, 411, 139, 2, 38, "Input"],
+Cell[12281, 415, 122, 2, 38, "Input"],
+Cell[12406, 419, 119, 2, 38, "Input"],
+Cell[12528, 423, 122, 2, 38, "Input"],
+Cell[12653, 427, 125, 2, 38, "Input"],
+Cell[12781, 431, 127, 3, 38, "Input"],
+Cell[12911, 436, 82, 1, 38, "Input"],
+Cell[12996, 439, 82, 1, 38, "Input"],
+Cell[13081, 442, 82, 1, 38, "Input"],
+Cell[13166, 445, 82, 1, 38, "Input"],
+Cell[13251, 448, 376, 8, 84, "Input"],
+Cell[13630, 458, 241, 5, 84, "Input"],
+Cell[13874, 465, 131, 3, 38, "Input"],
+Cell[14008, 470, 41, 0, 45, "Text"],
+Cell[14052, 472, 113, 2, 38, "Input"],
+Cell[14168, 476, 47, 0, 45, "Text"],
+Cell[14218, 478, 1466, 25, 544, "Input"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[15721, 508, 26, 0, 86, "Section"],
+Cell[15750, 510, 125, 3, 84, "Input"],
+Cell[15878, 515, 124, 3, 84, "Input"],
+Cell[16005, 520, 124, 3, 84, "Input"],
+Cell[16132, 525, 81, 1, 38, "Input"],
+Cell[16216, 528, 81, 1, 38, "Input"],
+Cell[16300, 531, 81, 1, 38, "Input"],
+Cell[16384, 534, 344, 7, 153, "Input"],
+Cell[16731, 543, 241, 5, 107, "Input"],
+Cell[16975, 550, 91, 1, 61, "Input"],
+Cell[17069, 553, 125, 2, 84, "Input"],
+Cell[17197, 557, 122, 2, 84, "Input"],
+Cell[17322, 561, 122, 2, 84, "Input"],
+Cell[17447, 565, 82, 1, 38, "Input"],
+Cell[17532, 568, 82, 1, 38, "Input"],
+Cell[17617, 571, 82, 1, 38, "Input"],
+Cell[17702, 574, 364, 8, 153, "Input"],
+Cell[18069, 584, 241, 5, 107, "Input"],
+Cell[18313, 591, 93, 1, 61, "Input"],
+Cell[18409, 594, 44, 0, 45, "Text"],
+Cell[18456, 596, 113, 2, 61, "Input"],
+Cell[18572, 600, 50, 0, 45, "Text"],
+Cell[18625, 602, 994, 17, 406, "Input"]
+}, Open  ]]
+}
+]
+*)
+
+
+
+(*******************************************************************
+End of Mathematica Notebook file.
+*******************************************************************)
+

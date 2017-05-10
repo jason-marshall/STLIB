@@ -1,0 +1,9 @@
+<table border = "1">
+<tr> <th> Nodes <th> 64 <th> 512 <th> 4,096 <th> 32,768 <th> 262,144
+<tr> <th> Time
+<td> 37
+<td> 65
+<td> 101
+<td> 328
+<td> 815
+</table>

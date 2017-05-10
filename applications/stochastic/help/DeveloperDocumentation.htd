@@ -1,0 +1,29 @@
+<html>
+<head>
+<title>Documentation</title>
+</head>
+<body>
+<h1>Documentation</h1>
+
+<p>
+<a href="http://www.helpblocks.com/">HelpBlocks</a> is used to build
+wxWidgets HTML help files. The sources are in the <tt>help</tt>
+directory and have the extension <tt>htd</tt>. One can edit the sources
+with the HelpBlocks application or with any text editor. One needs the
+HelpBlocks program to build zipped wxWidgets help files that are
+stored <tt>cain.htb</tt>.
+</p>
+
+<p>
+There is no automatic way to convert the archive of HTML files into a
+PDF document. Thus I have written an index of the files in
+<tt>index.html</tt>. If you add a new section to the
+documentation you will need to update this file.
+I use Adobe Acrobat Pro to convert this HTML file to the PDF
+version of the documentation. When creating the PDF document click the
+&quot;Capture Multiple Levels&quot; button and select
+&quot;Entire site&quot;. 
+</p>
+
+</body>
+</html>

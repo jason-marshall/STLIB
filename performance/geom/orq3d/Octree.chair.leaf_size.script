@@ -1,0 +1,6 @@
+Octree.mesh ../data/chair.08.ascii 2 4 >> Octree.chair.leaf_size.timings
+Octree.mesh ../data/chair.08.ascii 4 4 >> Octree.chair.leaf_size.timings
+Octree.mesh ../data/chair.08.ascii 8 4 >> Octree.chair.leaf_size.timings
+Octree.mesh ../data/chair.08.ascii 16 4 >> Octree.chair.leaf_size.timings
+Octree.mesh ../data/chair.08.ascii 32 4 >> Octree.chair.leaf_size.timings
+Octree.mesh ../data/chair.08.ascii 64 4 >> Octree.chair.leaf_size.timings

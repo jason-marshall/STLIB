@@ -1,0 +1,3 @@
+X=0;
+Immigration,->X,1.0;
+Death,X->,0.1;

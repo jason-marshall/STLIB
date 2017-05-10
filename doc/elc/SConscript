@@ -1,0 +1,14 @@
+# -*- python -*-
+
+import sys
+sys.path.append('..')
+from doxygen import doxygen
+
+doxygen.Doxyfile('Doxyfile', ['../main.cfg', 'local.cfg'])
+target = '../html/elc/index.html'
+Default([target])
+sources = Glob('../../stlib/elc/*.h') \
+          + ['../ads/ads.tag', '../container/container.tag', '../ext/ext.tag',
+             '../geom/geom.tag']
+doxygen.Doxygen([target, 'elc.tag'], ['Doxyfile'] + sources)
+Clean(target, ['../html/elc', 'elc.tag'])

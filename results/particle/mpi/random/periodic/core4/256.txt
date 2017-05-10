@@ -1,0 +1,45 @@
+_Dimension = 3, numParticles = 100000
+
+Initial extents = 8 8 8 
+Initial lengths = 1 1 1 
+Code range = 0 2
+
+Lower corner = 0 0 0 
+Lengths = 1 1 1 
+Cell lengths = 0.00571429 0.00571429 0.00571429 
+Num levels = 8
+Cell extents = 175 175 175 
+Num cells capacity = 16777216
+
+Starting imbalance = 0.0038287
+Partition count = 1
+Reorder count = 1
+Repair count = 100
+
+Time totals:
+,Reorder,Partition,Distribute,X Pattern,X Particles,Neighbors
+Average,0.114078,0.103068,4.61831,0.402365,1.66045,1.03891
+Min,0.100987,0.05292,4.45747,0.273292,0.937936,0.726746
+Max,0.131225,0.23238,4.76045,0.501641,2.7335,1.28812
+
+Count totals:
+,Min cell length,Max cell length,Occupancy,X Sent/Recv
+Average,0.00571429,0.00571429,4.81708,3.1315e+06
+Min,0.00571429,0.00571429,4.78355,2.71366e+06
+Max,0.00571429,0.00571429,4.84742,3.55424e+06
+
+Time per operation:
+,Reorder,Partition,Distribute,X Pattern,Neighbors
+Average,0.114078,0.103068,4.61831,0.201182,0.519453
+Min,0.100987,0.05292,4.45747,0.136646,0.363373
+Max,0.131225,0.23238,4.76045,0.250821,0.644059
+
+Time per step:
+,X Particles,X Sent/Recv
+Average,0.0166045,31315
+Min,0.00937936,27136.6
+Max,0.027335,35542.4
+
+Move particles per step = 0.00863042
+Interactions per particle per step = 10.0002
+Count neighbors per step = 0.0512637

@@ -1,0 +1,148 @@
+<table border = "1" rules = "all">
+<tr> <th> Species <th> <th> 4 <th> 8 <th> 16 <th> 32 <th> 64 <th> 128 <th> 256 <th> 1,024 <th> 4,096 <th> 16,384 <th> 65,536
+<tr> <th> Reactions <th> <th> 8 <th> 16 <th> 32 <th> 64 <th> 128 <th> 256 <th> 512 <th> 2,048 <th> 8,192 <th> 32,768 <th> 131,072
+<tr> <th> Algorithm <th> Option <th> <th> <th> <th> <th> <th> <th> <th> <th> <th> <th>
+<tr bgcolor="#CFFFFF"> <th rowspan="4"> Linear Search
+<td> Delayed update
+<td> 81
+<td> 102
+<td> 132
+<td> 196
+<td> 331
+<td> 592
+<td> 1119
+<td> 4279
+<td> 16803
+<td> 67369
+<td> 268093
+<tr bgcolor="#CFFFFF">
+<td> Immediate update
+<td> 79
+<td> 88
+<td> 101
+<td> 125
+<td> 185
+<td> 297
+<td> 520
+<td> 1893
+<td> 7057
+<td> 28262
+<td> 110795
+<tr bgcolor="#CFFFFF">
+<td> Complete sort
+<td> 76
+<td> 84
+<td> 92
+<td> 105
+<td> 142
+<td> 222
+<td> 362
+<td> 1209
+<td> 4558
+<td> 18016
+<td> 73294
+<tr bgcolor="#CFFFFF">
+<td> Bubble sort
+<td> 75
+<td> 85
+<td> 91
+<td> 106
+<td> 142
+<td> 222
+<td> 361
+<td> 1205
+<td> 4498
+<td> 18035
+<td> 73501
+<tr bgcolor="#CFCFFF"> <th rowspan="3"> 2-D Search
+<td> Default
+<td> 82
+<td> 88
+<td> 95
+<td> 102
+<td> 111
+<td> 126
+<td> 144
+<td> 194
+<td> 278
+<td> 597
+<td> 1340
+<tr bgcolor="#CFCFFF">
+<td> Complete sort
+<td> 86
+<td> 94
+<td> 98
+<td> 104
+<td> 112
+<td> 131
+<td> 146
+<td> 189
+<td> 258
+<td> 614
+<td> 1361
+<tr bgcolor="#CFCFFF">
+<td> Bubble sort
+<td> 86
+<td> 101
+<td> 106
+<td> 115
+<td> 123
+<td> 139
+<td> 159
+<td> 201
+<td> 278
+<td> 675
+<td> 1497
+<tr bgcolor="#FFCFFF"> <th rowspan="3"> Binary Search
+<td> Complete CDF
+<td> 83
+<td> 103
+<td> 132
+<td> 177
+<td> 269
+<td> 443
+<td> 777
+<td> 2765
+<td> 10561
+<td> 42072
+<td> 168450
+<tr bgcolor="#FFCFFF">
+<td> Complete CDF, sorted
+<td> 83
+<td> 102
+<td> 118
+<td> 140
+<td> 176
+<td> 254
+<td> 353
+<td> 886
+<td> 2944
+<td> 12687
+<td> 50888
+<tr bgcolor="#FFCFFF">
+<td> Partial, recursive CDF
+<td> 123
+<td> 138
+<td> 149
+<td> 164
+<td> 177
+<td> 191
+<td> 219
+<td> 270
+<td> 326
+<td> 549
+<td> 1057
+<tr bgcolor="#FFCFCF"> <th rowspan="1"> Rejection
+<td> Composition
+<td> 206
+<td> 206
+<td> 206
+<td> 207
+<td> 212
+<td> 223
+<td> 234
+<td> 251
+<td> 265
+<td> 501
+<td> 973
+</table>

@@ -1,0 +1,585 @@
+# -*- Makefile -*-
+
+BIN_PATH = ../../../../../../performance/numerical/random/discrete/static
+DATA_PATH = ../../../../../../data/stochastic/scripts
+TABLE_PATH = ../../../../../../doxygen/numerical/tables
+SLEEP_TIME = 1
+
+ECHO = /bin/echo
+
+# The default target.
+default: $(TARGET)
+
+export: $(TARGET)
+	cp $(TARGET) $(TABLE_PATH)
+
+clean: 
+	$(RM) *~
+
+distclean: 
+	$(MAKE) clean 
+	$(RM) $(TARGET) *.txt
+
+again: 
+	$(MAKE) distclean 
+	$(MAKE) 
+
+$(TARGET): \
+LinearSearch_1.txt \
+LinearSearch_2.txt \
+LinearSearch_3.txt \
+LinearSearch_4.txt \
+LinearSearch_5.txt \
+LinearSearch_6.txt \
+LinearSearch_7.txt \
+LinearSearch_8.txt \
+LinearSearch_9.txt \
+LinearSearch_10.txt \
+LinearSearch_11.txt \
+LinearSearchSorted_1.txt \
+LinearSearchSorted_2.txt \
+LinearSearchSorted_3.txt \
+LinearSearchSorted_4.txt \
+LinearSearchSorted_5.txt \
+LinearSearchSorted_6.txt \
+LinearSearchSorted_7.txt \
+LinearSearchSorted_8.txt \
+LinearSearchSorted_9.txt \
+LinearSearchSorted_10.txt \
+LinearSearchSorted_11.txt \
+2DSearch_1.txt \
+2DSearch_2.txt \
+2DSearch_3.txt \
+2DSearch_4.txt \
+2DSearch_5.txt \
+2DSearch_6.txt \
+2DSearch_7.txt \
+2DSearch_8.txt \
+2DSearch_9.txt \
+2DSearch_10.txt \
+2DSearch_11.txt \
+2DSearchSorted_1.txt \
+2DSearchSorted_2.txt \
+2DSearchSorted_3.txt \
+2DSearchSorted_4.txt \
+2DSearchSorted_5.txt \
+2DSearchSorted_6.txt \
+2DSearchSorted_7.txt \
+2DSearchSorted_8.txt \
+2DSearchSorted_9.txt \
+2DSearchSorted_10.txt \
+2DSearchSorted_11.txt \
+BinarySearch_1.txt \
+BinarySearch_2.txt \
+BinarySearch_3.txt \
+BinarySearch_4.txt \
+BinarySearch_5.txt \
+BinarySearch_6.txt \
+BinarySearch_7.txt \
+BinarySearch_8.txt \
+BinarySearch_9.txt \
+BinarySearch_10.txt \
+BinarySearch_11.txt \
+BinarySearchRecursiveCdf_1.txt \
+BinarySearchRecursiveCdf_2.txt \
+BinarySearchRecursiveCdf_3.txt \
+BinarySearchRecursiveCdf_4.txt \
+BinarySearchRecursiveCdf_5.txt \
+BinarySearchRecursiveCdf_6.txt \
+BinarySearchRecursiveCdf_7.txt \
+BinarySearchRecursiveCdf_8.txt \
+BinarySearchRecursiveCdf_9.txt \
+BinarySearchRecursiveCdf_10.txt \
+BinarySearchRecursiveCdf_11.txt \
+RejectionBinsSplitting_1.txt \
+RejectionBinsSplitting_2.txt \
+RejectionBinsSplitting_3.txt \
+RejectionBinsSplitting_4.txt \
+RejectionBinsSplitting_5.txt \
+RejectionBinsSplitting_6.txt \
+RejectionBinsSplitting_7.txt \
+RejectionBinsSplitting_8.txt \
+RejectionBinsSplitting_9.txt \
+RejectionBinsSplitting_10.txt \
+RejectionBinsSplitting_11.txt \
+CompositionRejection_1.txt \
+CompositionRejection_2.txt \
+CompositionRejection_3.txt \
+CompositionRejection_4.txt \
+CompositionRejection_5.txt \
+CompositionRejection_6.txt \
+CompositionRejection_7.txt \
+CompositionRejection_8.txt \
+CompositionRejection_9.txt \
+CompositionRejection_10.txt \
+CompositionRejection_11.txt 
+	$(RM) $@
+	$(ECHO) "<table border = \"1\" rules = \"all\">" >>$@
+	$(ECHO) "<tr> <th> Method <th> Option <th> 4 <th> 8 <th> 16 <th> 32 <th> 64 <th> 128 <th> 256 <th> 1,024 <th> 4,096 <th> 16,384 <th> 65,536" >>$@
+	$(ECHO) "<tr bgcolor=\"white\"> <th rowspan=\"2\"> Linear Search" >>$@
+	$(ECHO) "<td> " >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 LinearSearch_1.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 LinearSearch_2.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 LinearSearch_3.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 LinearSearch_4.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 LinearSearch_5.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 LinearSearch_6.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 LinearSearch_7.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 LinearSearch_8.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 LinearSearch_9.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 LinearSearch_10.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 LinearSearch_11.txt >>$@
+	$(ECHO) "<tr bgcolor=\"white\">" >>$@
+	$(ECHO) "<td> Sorted" >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 LinearSearchSorted_1.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 LinearSearchSorted_2.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 LinearSearchSorted_3.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 LinearSearchSorted_4.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 LinearSearchSorted_5.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 LinearSearchSorted_6.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 LinearSearchSorted_7.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 LinearSearchSorted_8.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 LinearSearchSorted_9.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 LinearSearchSorted_10.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 LinearSearchSorted_11.txt >>$@
+	$(ECHO) "<tr bgcolor=\"aliceblue\"> <th rowspan=\"2\"> 2-D Search" >>$@
+	$(ECHO) "<td> " >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 2DSearch_1.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 2DSearch_2.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 2DSearch_3.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 2DSearch_4.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 2DSearch_5.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 2DSearch_6.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 2DSearch_7.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 2DSearch_8.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 2DSearch_9.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 2DSearch_10.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 2DSearch_11.txt >>$@
+	$(ECHO) "<tr bgcolor=\"aliceblue\">" >>$@
+	$(ECHO) "<td> Sorted" >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 2DSearchSorted_1.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 2DSearchSorted_2.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 2DSearchSorted_3.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 2DSearchSorted_4.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 2DSearchSorted_5.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 2DSearchSorted_6.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 2DSearchSorted_7.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 2DSearchSorted_8.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 2DSearchSorted_9.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 2DSearchSorted_10.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 2DSearchSorted_11.txt >>$@
+	$(ECHO) "<tr bgcolor=\"white\"> <th rowspan=\"2\"> Binary search" >>$@
+	$(ECHO) "<td> Complete CDF" >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 BinarySearch_1.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 BinarySearch_2.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 BinarySearch_3.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 BinarySearch_4.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 BinarySearch_5.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 BinarySearch_6.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 BinarySearch_7.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 BinarySearch_8.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 BinarySearch_9.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 BinarySearch_10.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 BinarySearch_11.txt >>$@
+	$(ECHO) "<tr bgcolor=\"white\">" >>$@
+	$(ECHO) "<td> Partial, recursive CDF" >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 BinarySearchRecursiveCdf_1.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 BinarySearchRecursiveCdf_2.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 BinarySearchRecursiveCdf_3.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 BinarySearchRecursiveCdf_4.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 BinarySearchRecursiveCdf_5.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 BinarySearchRecursiveCdf_6.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 BinarySearchRecursiveCdf_7.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 BinarySearchRecursiveCdf_8.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 BinarySearchRecursiveCdf_9.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 BinarySearchRecursiveCdf_10.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 BinarySearchRecursiveCdf_11.txt >>$@
+	$(ECHO) "<tr bgcolor=\"aliceblue\"> <th rowspan=\"2\"> Rejection" >>$@
+	$(ECHO) "<td> Bins with splitting" >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 RejectionBinsSplitting_1.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 RejectionBinsSplitting_2.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 RejectionBinsSplitting_3.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 RejectionBinsSplitting_4.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 RejectionBinsSplitting_5.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 RejectionBinsSplitting_6.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 RejectionBinsSplitting_7.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 RejectionBinsSplitting_8.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 RejectionBinsSplitting_9.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 RejectionBinsSplitting_10.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 RejectionBinsSplitting_11.txt >>$@
+	$(ECHO) "<tr bgcolor=\"aliceblue\">" >>$@
+	$(ECHO) "<td> Composition" >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 CompositionRejection_1.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 CompositionRejection_2.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 CompositionRejection_3.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 CompositionRejection_4.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 CompositionRejection_5.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 CompositionRejection_6.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 CompositionRejection_7.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 CompositionRejection_8.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 CompositionRejection_9.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 CompositionRejection_10.txt >>$@
+	$(ECHO) -n "<td> " >>$@
+	tail -n 1 CompositionRejection_11.txt >>$@
+	$(ECHO) "</table>" >>$@
+
+
+
+LinearSearch_1.txt: P_1.txt
+	$(BIN_PATH)/LinearSearch.exe $< >>$@
+	sleep $(SLEEP_TIME)
+LinearSearch_2.txt: P_2.txt
+	$(BIN_PATH)/LinearSearch.exe $< >>$@
+	sleep $(SLEEP_TIME)
+LinearSearch_3.txt: P_3.txt
+	$(BIN_PATH)/LinearSearch.exe $< >>$@
+	sleep $(SLEEP_TIME)
+LinearSearch_4.txt: P_4.txt
+	$(BIN_PATH)/LinearSearch.exe $< >>$@
+	sleep $(SLEEP_TIME)
+LinearSearch_5.txt: P_5.txt
+	$(BIN_PATH)/LinearSearch.exe $< >>$@
+	sleep $(SLEEP_TIME)
+LinearSearch_6.txt: P_6.txt
+	$(BIN_PATH)/LinearSearch.exe $< >>$@
+	sleep $(SLEEP_TIME)
+LinearSearch_7.txt: P_7.txt
+	$(BIN_PATH)/LinearSearch.exe $< >>$@
+	sleep $(SLEEP_TIME)
+LinearSearch_8.txt: P_8.txt
+	$(BIN_PATH)/LinearSearch.exe $< >>$@
+	sleep $(SLEEP_TIME)
+LinearSearch_9.txt: P_9.txt
+	$(BIN_PATH)/LinearSearch.exe $< >>$@
+	sleep $(SLEEP_TIME)
+LinearSearch_10.txt: P_10.txt
+	$(BIN_PATH)/LinearSearch.exe $< >>$@
+	sleep $(SLEEP_TIME)
+LinearSearch_11.txt: P_11.txt
+	$(BIN_PATH)/LinearSearch.exe $< >>$@
+	sleep $(SLEEP_TIME)
+
+LinearSearchSorted_1.txt: P_1.txt
+	$(BIN_PATH)/LinearSearchSorted.exe $< >>$@
+	sleep $(SLEEP_TIME)
+LinearSearchSorted_2.txt: P_2.txt
+	$(BIN_PATH)/LinearSearchSorted.exe $< >>$@
+	sleep $(SLEEP_TIME)
+LinearSearchSorted_3.txt: P_3.txt
+	$(BIN_PATH)/LinearSearchSorted.exe $< >>$@
+	sleep $(SLEEP_TIME)
+LinearSearchSorted_4.txt: P_4.txt
+	$(BIN_PATH)/LinearSearchSorted.exe $< >>$@
+	sleep $(SLEEP_TIME)
+LinearSearchSorted_5.txt: P_5.txt
+	$(BIN_PATH)/LinearSearchSorted.exe $< >>$@
+	sleep $(SLEEP_TIME)
+LinearSearchSorted_6.txt: P_6.txt
+	$(BIN_PATH)/LinearSearchSorted.exe $< >>$@
+	sleep $(SLEEP_TIME)
+LinearSearchSorted_7.txt: P_7.txt
+	$(BIN_PATH)/LinearSearchSorted.exe $< >>$@
+	sleep $(SLEEP_TIME)
+LinearSearchSorted_8.txt: P_8.txt
+	$(BIN_PATH)/LinearSearchSorted.exe $< >>$@
+	sleep $(SLEEP_TIME)
+LinearSearchSorted_9.txt: P_9.txt
+	$(BIN_PATH)/LinearSearchSorted.exe $< >>$@
+	sleep $(SLEEP_TIME)
+LinearSearchSorted_10.txt: P_10.txt
+	$(BIN_PATH)/LinearSearchSorted.exe $< >>$@
+	sleep $(SLEEP_TIME)
+LinearSearchSorted_11.txt: P_11.txt
+	$(BIN_PATH)/LinearSearchSorted.exe $< >>$@
+	sleep $(SLEEP_TIME)
+
+2DSearch_1.txt: P_1.txt
+	$(BIN_PATH)/2DSearch.exe $< >>$@
+	sleep $(SLEEP_TIME)
+2DSearch_2.txt: P_2.txt
+	$(BIN_PATH)/2DSearch.exe $< >>$@
+	sleep $(SLEEP_TIME)
+2DSearch_3.txt: P_3.txt
+	$(BIN_PATH)/2DSearch.exe $< >>$@
+	sleep $(SLEEP_TIME)
+2DSearch_4.txt: P_4.txt
+	$(BIN_PATH)/2DSearch.exe $< >>$@
+	sleep $(SLEEP_TIME)
+2DSearch_5.txt: P_5.txt
+	$(BIN_PATH)/2DSearch.exe $< >>$@
+	sleep $(SLEEP_TIME)
+2DSearch_6.txt: P_6.txt
+	$(BIN_PATH)/2DSearch.exe $< >>$@
+	sleep $(SLEEP_TIME)
+2DSearch_7.txt: P_7.txt
+	$(BIN_PATH)/2DSearch.exe $< >>$@
+	sleep $(SLEEP_TIME)
+2DSearch_8.txt: P_8.txt
+	$(BIN_PATH)/2DSearch.exe $< >>$@
+	sleep $(SLEEP_TIME)
+2DSearch_9.txt: P_9.txt
+	$(BIN_PATH)/2DSearch.exe $< >>$@
+	sleep $(SLEEP_TIME)
+2DSearch_10.txt: P_10.txt
+	$(BIN_PATH)/2DSearch.exe $< >>$@
+	sleep $(SLEEP_TIME)
+2DSearch_11.txt: P_11.txt
+	$(BIN_PATH)/2DSearch.exe $< >>$@
+	sleep $(SLEEP_TIME)
+
+2DSearchSorted_1.txt: P_1.txt
+	$(BIN_PATH)/2DSearchSorted.exe $< >>$@
+	sleep $(SLEEP_TIME)
+2DSearchSorted_2.txt: P_2.txt
+	$(BIN_PATH)/2DSearchSorted.exe $< >>$@
+	sleep $(SLEEP_TIME)
+2DSearchSorted_3.txt: P_3.txt
+	$(BIN_PATH)/2DSearchSorted.exe $< >>$@
+	sleep $(SLEEP_TIME)
+2DSearchSorted_4.txt: P_4.txt
+	$(BIN_PATH)/2DSearchSorted.exe $< >>$@
+	sleep $(SLEEP_TIME)
+2DSearchSorted_5.txt: P_5.txt
+	$(BIN_PATH)/2DSearchSorted.exe $< >>$@
+	sleep $(SLEEP_TIME)
+2DSearchSorted_6.txt: P_6.txt
+	$(BIN_PATH)/2DSearchSorted.exe $< >>$@
+	sleep $(SLEEP_TIME)
+2DSearchSorted_7.txt: P_7.txt
+	$(BIN_PATH)/2DSearchSorted.exe $< >>$@
+	sleep $(SLEEP_TIME)
+2DSearchSorted_8.txt: P_8.txt
+	$(BIN_PATH)/2DSearchSorted.exe $< >>$@
+	sleep $(SLEEP_TIME)
+2DSearchSorted_9.txt: P_9.txt
+	$(BIN_PATH)/2DSearchSorted.exe $< >>$@
+	sleep $(SLEEP_TIME)
+2DSearchSorted_10.txt: P_10.txt
+	$(BIN_PATH)/2DSearchSorted.exe $< >>$@
+	sleep $(SLEEP_TIME)
+2DSearchSorted_11.txt: P_11.txt
+	$(BIN_PATH)/2DSearchSorted.exe $< >>$@
+	sleep $(SLEEP_TIME)
+
+BinarySearch_1.txt: P_1.txt
+	$(BIN_PATH)/BinarySearch.exe $< >>$@
+	sleep $(SLEEP_TIME)
+BinarySearch_2.txt: P_2.txt
+	$(BIN_PATH)/BinarySearch.exe $< >>$@
+	sleep $(SLEEP_TIME)
+BinarySearch_3.txt: P_3.txt
+	$(BIN_PATH)/BinarySearch.exe $< >>$@
+	sleep $(SLEEP_TIME)
+BinarySearch_4.txt: P_4.txt
+	$(BIN_PATH)/BinarySearch.exe $< >>$@
+	sleep $(SLEEP_TIME)
+BinarySearch_5.txt: P_5.txt
+	$(BIN_PATH)/BinarySearch.exe $< >>$@
+	sleep $(SLEEP_TIME)
+BinarySearch_6.txt: P_6.txt
+	$(BIN_PATH)/BinarySearch.exe $< >>$@
+	sleep $(SLEEP_TIME)
+BinarySearch_7.txt: P_7.txt
+	$(BIN_PATH)/BinarySearch.exe $< >>$@
+	sleep $(SLEEP_TIME)
+BinarySearch_8.txt: P_8.txt
+	$(BIN_PATH)/BinarySearch.exe $< >>$@
+	sleep $(SLEEP_TIME)
+BinarySearch_9.txt: P_9.txt
+	$(BIN_PATH)/BinarySearch.exe $< >>$@
+	sleep $(SLEEP_TIME)
+BinarySearch_10.txt: P_10.txt
+	$(BIN_PATH)/BinarySearch.exe $< >>$@
+	sleep $(SLEEP_TIME)
+BinarySearch_11.txt: P_11.txt
+	$(BIN_PATH)/BinarySearch.exe $< >>$@
+	sleep $(SLEEP_TIME)
+
+BinarySearchRecursiveCdf_1.txt: P_1.txt
+	$(BIN_PATH)/BinarySearchRecursiveCdf.exe $< >>$@
+	sleep $(SLEEP_TIME)
+BinarySearchRecursiveCdf_2.txt: P_2.txt
+	$(BIN_PATH)/BinarySearchRecursiveCdf.exe $< >>$@
+	sleep $(SLEEP_TIME)
+BinarySearchRecursiveCdf_3.txt: P_3.txt
+	$(BIN_PATH)/BinarySearchRecursiveCdf.exe $< >>$@
+	sleep $(SLEEP_TIME)
+BinarySearchRecursiveCdf_4.txt: P_4.txt
+	$(BIN_PATH)/BinarySearchRecursiveCdf.exe $< >>$@
+	sleep $(SLEEP_TIME)
+BinarySearchRecursiveCdf_5.txt: P_5.txt
+	$(BIN_PATH)/BinarySearchRecursiveCdf.exe $< >>$@
+	sleep $(SLEEP_TIME)
+BinarySearchRecursiveCdf_6.txt: P_6.txt
+	$(BIN_PATH)/BinarySearchRecursiveCdf.exe $< >>$@
+	sleep $(SLEEP_TIME)
+BinarySearchRecursiveCdf_7.txt: P_7.txt
+	$(BIN_PATH)/BinarySearchRecursiveCdf.exe $< >>$@
+	sleep $(SLEEP_TIME)
+BinarySearchRecursiveCdf_8.txt: P_8.txt
+	$(BIN_PATH)/BinarySearchRecursiveCdf.exe $< >>$@
+	sleep $(SLEEP_TIME)
+BinarySearchRecursiveCdf_9.txt: P_9.txt
+	$(BIN_PATH)/BinarySearchRecursiveCdf.exe $< >>$@
+	sleep $(SLEEP_TIME)
+BinarySearchRecursiveCdf_10.txt: P_10.txt
+	$(BIN_PATH)/BinarySearchRecursiveCdf.exe $< >>$@
+	sleep $(SLEEP_TIME)
+BinarySearchRecursiveCdf_11.txt: P_11.txt
+	$(BIN_PATH)/BinarySearchRecursiveCdf.exe $< >>$@
+	sleep $(SLEEP_TIME)
+
+RejectionBinsSplitting_1.txt: P_1.txt
+	$(BIN_PATH)/RejectionBinsSplitting.exe $< >>$@
+	sleep $(SLEEP_TIME)
+RejectionBinsSplitting_2.txt: P_2.txt
+	$(BIN_PATH)/RejectionBinsSplitting.exe $< >>$@
+	sleep $(SLEEP_TIME)
+RejectionBinsSplitting_3.txt: P_3.txt
+	$(BIN_PATH)/RejectionBinsSplitting.exe $< >>$@
+	sleep $(SLEEP_TIME)
+RejectionBinsSplitting_4.txt: P_4.txt
+	$(BIN_PATH)/RejectionBinsSplitting.exe $< >>$@
+	sleep $(SLEEP_TIME)
+RejectionBinsSplitting_5.txt: P_5.txt
+	$(BIN_PATH)/RejectionBinsSplitting.exe $< >>$@
+	sleep $(SLEEP_TIME)
+RejectionBinsSplitting_6.txt: P_6.txt
+	$(BIN_PATH)/RejectionBinsSplitting.exe $< >>$@
+	sleep $(SLEEP_TIME)
+RejectionBinsSplitting_7.txt: P_7.txt
+	$(BIN_PATH)/RejectionBinsSplitting.exe $< >>$@
+	sleep $(SLEEP_TIME)
+RejectionBinsSplitting_8.txt: P_8.txt
+	$(BIN_PATH)/RejectionBinsSplitting.exe $< >>$@
+	sleep $(SLEEP_TIME)
+RejectionBinsSplitting_9.txt: P_9.txt
+	$(BIN_PATH)/RejectionBinsSplitting.exe $< >>$@
+	sleep $(SLEEP_TIME)
+RejectionBinsSplitting_10.txt: P_10.txt
+	$(BIN_PATH)/RejectionBinsSplitting.exe $< >>$@
+	sleep $(SLEEP_TIME)
+RejectionBinsSplitting_11.txt: P_11.txt
+	$(BIN_PATH)/RejectionBinsSplitting.exe $< >>$@
+	sleep $(SLEEP_TIME)
+
+CompositionRejection_1.txt: P_1.txt
+	$(BIN_PATH)/CompositionRejection.exe $< >>$@
+	sleep $(SLEEP_TIME)
+CompositionRejection_2.txt: P_2.txt
+	$(BIN_PATH)/CompositionRejection.exe $< >>$@
+	sleep $(SLEEP_TIME)
+CompositionRejection_3.txt: P_3.txt
+	$(BIN_PATH)/CompositionRejection.exe $< >>$@
+	sleep $(SLEEP_TIME)
+CompositionRejection_4.txt: P_4.txt
+	$(BIN_PATH)/CompositionRejection.exe $< >>$@
+	sleep $(SLEEP_TIME)
+CompositionRejection_5.txt: P_5.txt
+	$(BIN_PATH)/CompositionRejection.exe $< >>$@
+	sleep $(SLEEP_TIME)
+CompositionRejection_6.txt: P_6.txt
+	$(BIN_PATH)/CompositionRejection.exe $< >>$@
+	sleep $(SLEEP_TIME)
+CompositionRejection_7.txt: P_7.txt
+	$(BIN_PATH)/CompositionRejection.exe $< >>$@
+	sleep $(SLEEP_TIME)
+CompositionRejection_8.txt: P_8.txt
+	$(BIN_PATH)/CompositionRejection.exe $< >>$@
+	sleep $(SLEEP_TIME)
+CompositionRejection_9.txt: P_9.txt
+	$(BIN_PATH)/CompositionRejection.exe $< >>$@
+	sleep $(SLEEP_TIME)
+CompositionRejection_10.txt: P_10.txt
+	$(BIN_PATH)/CompositionRejection.exe $< >>$@
+	sleep $(SLEEP_TIME)
+CompositionRejection_11.txt: P_11.txt
+	$(BIN_PATH)/CompositionRejection.exe $< >>$@
+	sleep $(SLEEP_TIME)

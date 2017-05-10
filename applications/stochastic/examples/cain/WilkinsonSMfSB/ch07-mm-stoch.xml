@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cain version="1.2">
+  <listOfModels>
+    <model id="MMKineticsStoch" name="Michaelis-Menten Kinetics (stochastic)">
+      <listOfSpecies>
+        <species initialAmount="301" id="S"/>
+        <species initialAmount="120" id="E"/>
+        <species initialAmount="0" id="SE"/>
+        <species initialAmount="0" id="P"/>
+      </listOfSpecies>
+      <listOfReactions>
+        <reaction propensity="0.00166" massAction="true" id="Binding">
+          <listOfReactants>
+            <speciesReference species="S"/>
+            <speciesReference species="E"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="SE"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="0.0001" massAction="true" id="Dissociation">
+          <listOfReactants>
+            <speciesReference species="SE"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="S"/>
+            <speciesReference species="E"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="0.1" massAction="true" id="Conversion">
+          <listOfReactants>
+            <speciesReference species="SE"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="P"/>
+            <speciesReference species="E"/>
+          </listOfProducts>
+        </reaction>
+      </listOfReactions>
+    </model>
+  </listOfModels>
+  <listOfMethods>
+    <method category="0" numberOfBins="32" multiplicity="4" equilibrationTime="0.0" id="Direct" method="0" timeDependence="0" startTime="0.0" recordingTime="50.0" numberOfFrames="101" options="0"/>
+  </listOfMethods>
+  <random seed="2147483648">
+  </random>
+</cain>

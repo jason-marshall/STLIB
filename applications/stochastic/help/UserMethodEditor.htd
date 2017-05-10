@@ -1,0 +1,147 @@
+<html>
+<head>
+<title>Method Editor</title>
+</head>
+<body>
+<h1>Method Editor</h1>
+
+<p align="center">
+<img src="MethodEditor.png">
+</p>
+
+<p>
+In this panel you edit the simulation
+method. (See the <a href="UserSolvers.htm">Solvers</a> section
+for a description of each available solver.)
+First select the time dependence category:
+<ul>
+  <li> <tt>Time Homogeneous</tt> - 
+  For time homogeneous problems, the reaction rates
+  may depend upon the species populations, but do not explicitly depend on
+  time. Most of Cain's solvers belong to this category. Use may choose
+  between exact methods (direct, next reaction, etc.) and approximate
+  methods (tau-leaping, hybrid, etc.).
+  <li> <tt>Time Inhomogeneous</tt> - 
+  Although time inhomogeneous problems are not much more conceptually
+  difficult, they are more costly to simulate. Sources
+  of inhomogeneity may include time-varying volume or temperature (both affect
+  reaction rates). Note that although Gillespie's direct method is
+  used, the solution is not exact. We use the approximation that the
+  reaction propensities are assumed to be constant between reaction events.
+  <li> <tt>Use Events</tt> -
+  One must use this category if the model has events. Simulating
+  models with events is more costly. Additionally, the solvers in this
+  category are implemented in Python, instead of C++. Thus, these
+  solvers are significantly slower than solvers in the other
+  categories. Note that time inhomogeneities are allowed; the reaction
+  propensities, parameters, and compartment volumes may be functions
+  of time. However, the solutions for time inhomogeneous problems are
+  approximate because, again, we make the assumption that reaction
+  propensities are constant between reaction events.
+</ul>
+</p>
+
+<p>
+Next select the output category. Simulations may generate several types of
+output:
+<ul>
+  <li> <tt>Time Series, Uniform</tt> - Generate stochastic trajectories.
+  Record the populations and reaction counts at uniformly spaced intervals
+  in time.
+  <li> <tt>Time Series, All Reactions</tt> - Generate stochastic trajectories.
+  Record every reaction event. Use this output choice when you want a detailed
+  view of a small number of trajectories. Choose the time interval so
+  the number of reactions is not too large.
+  <li> <tt>Time Series, Deterministic</tt> - Generate a single, deterministic
+  trajectory by numerically integrating a set of ordinary differential
+  equations. Record the populations and reaction counts at uniformly spaced
+  intervals in time. Note that in this case the populations and reaction counts
+  are real numbers instead of integers.
+  <li> <tt>Histograms, Transient Behavior</tt> - Generate stochastic
+  trajectories. Record the populations in histograms at uniformly spaced
+  intervals in time. 
+  Recording the species populations in histograms gives you more quantitative
+  information about a system than recording and plotting trajectories.
+  <li> <tt>Histograms, Steady State</tt> - 
+  Record the average population values in
+  histograms. You may choose to start each simulation by letting the system
+  equilibrate for a specified time interval. This does not affect the time
+  during which the state is recorded. Average value histograms are useful for
+  determining the steady state probability distributions for the species
+  populations.
+  <li> <tt>Statistics, Transient Behavior</tt> - Record the mean and
+  standard deviation of the species population at each frame. There is
+  no solver in Cain that only records statistics. The Cain solvers for
+  transient behavior either record trajectories, or they record both
+  statistics and histograms of species populations. Thus, this acts as a
+  placeholder for some external solver. If one generates a solution
+  with another application (or records an analytical solution), then
+  one may import it in a text file. Each line in the file records the
+  statistics for a single time frame. The mean and standard deviation
+  for each recorded species are listed. See the
+  <a href="Dsmts.htm">DSMTS</a> chapter for examples.
+  <li> <tt>Histograms, Steady State</tt> - 
+  Record the mean and standard deviation of the time-averaged species
+  populations. This is a placeholder that is used for importing
+  externally-generated steady state solutions. The imported text file
+  lists the mean and standard deviation for the recorded species on
+  a single line.
+</ul>
+</p>
+
+<p>
+In the third field select the
+algorithm to generate the desired output.  For each method there is a
+choice of options which may affect the performance or accuracy.
+</p>
+
+<p>
+In the right column, one sets the simulation parameters.
+Three values control the simulation time interval: start time, equilibration
+time, and recording time. The start time, as the name suggests, is the point
+in time at which the simulation starts. For time homogeneous problems one
+would typically choose zero. For time inhomogeneous problems one might want
+to choose a nonzero value. The equilibration time is the length of time
+that the simulation is advanced before recording results. One would choose a
+nonzero value if one were studying the steady state behavior of a system.
+For instance, a system may exhibit oscillatory behavior, but may 
+take a certain amount of time to establish these oscillations.
+The recording time is the length of time to simulate and record the state.
+</p>
+
+<p>
+Next you can select the maximum number of allowed steps when generating a
+trajectory. Usually one would leave this field blank to indicate that there
+is no set limit. However, this field may be useful if you don't know the
+appropriate time scale for your simulation. Then you can set a limit on the
+number of steps. If any of the trajectories reach this limit, the simulation
+will abort with an error message.
+</p>
+
+<p>
+If you have elected to record the state at frames, you choose the
+number of frames to record. If not, the frames field is disabled. The
+first frame is at the beginning of the recording time, and the last is
+at the end. If you are only interested in the the final populations or
+the final reaction counts, choose the number of frames to be one. For
+this special case, the state will be recorded only at the end time. If
+you are recording the output in histograms, you select the number of
+bins to use in each. A histogram is an empirical probability
+distribution for a species population. The computational cost of
+converging these probablity distributions is related to the number of
+bins. Choose a number of bins that is appropriate for the
+amount of time you are willing to spend generating trajectories. Next
+select the histogram multiplicity. The state is recorded in multiple
+histogram arrays. This allows one to estimate the error in the
+resulting distributions. Increasing the histogram multiplicity allows
+one to more accurately estimate this error. However this also
+increases the memory requirements for the solvers. The default value
+of four is usually a reasonable compromise. If you are not interested
+in estimating the error in the probability distributions,
+you may set the histogram multiplicity to unity. Some
+simulation methods require a parameter such as allowed error or step
+size. This quantity is entered in the final box.
+</p>
+
+</body>
+</html>

@@ -1,0 +1,968 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cain version="1.2">
+  <listOfModels>
+    <model id="Proctor2007_ubiquitine">
+      <listOfParameters>
+        <parameter expression="1e-05" id="k74"/>
+        <parameter expression="1e-08" id="k71"/>
+        <parameter expression="2e-06" id="k2"/>
+        <parameter expression="0.0002" id="k61r"/>
+        <parameter expression="0.01" id="k1"/>
+        <parameter expression="4e-06" id="k3"/>
+        <parameter expression="1e-05" id="k67"/>
+        <parameter expression="0.001" id="k73"/>
+        <parameter expression="1e-08" id="k72"/>
+        <parameter expression="0.0002" id="k62"/>
+        <parameter expression="0.001" id="k63"/>
+        <parameter expression="0.01" id="k65"/>
+        <parameter expression="1.7e-05" id="k61"/>
+        <parameter expression="0.001" id="k64"/>
+        <parameter expression="1e-05" id="k66"/>
+        <parameter expression="1e-05" id="k68"/>
+        <parameter expression="0" id="k69"/>
+      </listOfParameters>
+      <listOfCompartments>
+        <compartment id="cytosol" size="1.0"/>
+      </listOfCompartments>
+      <listOfSpecies>
+        <species compartment="cytosol" initialAmount="500" id="NatP"/>
+        <species compartment="cytosol" initialAmount="0" id="MisP"/>
+        <species compartment="cytosol" initialAmount="500" id="Ub"/>
+        <species compartment="cytosol" initialAmount="100" id="E1"/>
+        <species compartment="cytosol" initialAmount="100" id="E2"/>
+        <species compartment="cytosol" initialAmount="100" id="E3"/>
+        <species compartment="cytosol" initialAmount="200" id="DUB"/>
+        <species compartment="cytosol" initialAmount="100" id="Proteasome"/>
+        <species compartment="cytosol" initialAmount="10" id="ROS"/>
+        <species compartment="cytosol" initialAmount="0" id="E1_Ub"/>
+        <species compartment="cytosol" initialAmount="0" id="E2_Ub"/>
+        <species compartment="cytosol" initialAmount="0" id="E3_MisP"/>
+        <species compartment="cytosol" initialAmount="0" id="MisP_Ub"/>
+        <species compartment="cytosol" initialAmount="0" id="MisP_Ub2"/>
+        <species compartment="cytosol" initialAmount="0" id="MisP_Ub3"/>
+        <species compartment="cytosol" initialAmount="0" id="MisP_Ub4"/>
+        <species compartment="cytosol" initialAmount="0" id="MisP_Ub5"/>
+        <species compartment="cytosol" initialAmount="0" id="MisP_Ub6"/>
+        <species compartment="cytosol" initialAmount="0" id="MisP_Ub7"/>
+        <species compartment="cytosol" initialAmount="0" id="MisP_Ub8"/>
+        <species compartment="cytosol" initialAmount="0" id="MisP_Ub4_Proteasome"/>
+        <species compartment="cytosol" initialAmount="0" id="MisP_Ub5_Proteasome"/>
+        <species compartment="cytosol" initialAmount="0" id="MisP_Ub6_Proteasome"/>
+        <species compartment="cytosol" initialAmount="0" id="MisP_Ub7_Proteasome"/>
+        <species compartment="cytosol" initialAmount="0" id="MisP_Ub8_Proteasome"/>
+        <species compartment="cytosol" initialAmount="10000" id="ATP"/>
+        <species compartment="cytosol" initialAmount="1000" id="ADP"/>
+        <species compartment="cytosol" initialAmount="1000" id="AMP"/>
+        <species compartment="cytosol" initialAmount="1" id="Source"/>
+        <species compartment="cytosol" initialAmount="0" id="degUb4"/>
+        <species compartment="cytosol" initialAmount="0" id="degUb5"/>
+        <species compartment="cytosol" initialAmount="0" id="degUb6"/>
+        <species compartment="cytosol" initialAmount="0" id="degUb7"/>
+        <species compartment="cytosol" initialAmount="0" id="degUb8"/>
+        <species compartment="cytosol" initialAmount="0" id="totMisP"/>
+        <species compartment="cytosol" initialAmount="0" id="refNatP"/>
+        <species compartment="cytosol" initialAmount="0" id="AggP"/>
+        <species compartment="cytosol" initialAmount="0" id="SeqAggP"/>
+        <species compartment="cytosol" initialAmount="0" id="AggP_Proteasome"/>
+      </listOfSpecies>
+      <listOfReactions>
+        <reaction propensity="k1" massAction="true" id="ProteinSynthesis">
+          <listOfReactants>
+            <speciesReference species="Source"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="NatP"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k2" massAction="true" id="Misfolding">
+          <listOfReactants>
+            <speciesReference species="NatP"/>
+            <speciesReference species="ROS"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="MisP"/>
+            <speciesReference species="ROS"/>
+            <speciesReference species="totMisP"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k3" massAction="true" id="Refolding">
+          <listOfReactants>
+            <speciesReference species="MisP"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="NatP"/>
+            <speciesReference species="refNatP"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k61" massAction="true" id="MisPE3Binding">
+          <listOfReactants>
+            <speciesReference species="MisP"/>
+            <speciesReference species="E3"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="E3_MisP"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k61r" massAction="true" id="MisPE3Release">
+          <listOfReactants>
+            <speciesReference species="E3_MisP"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="MisP"/>
+            <speciesReference species="E3"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="(k62*E1*Ub*ATP)/(5000+ATP)" massAction="false" id="E1UbBinding">
+          <listOfReactants>
+            <speciesReference species="E1"/>
+            <speciesReference species="Ub"/>
+            <speciesReference species="ATP"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="E1_Ub"/>
+            <speciesReference species="AMP"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k63" massAction="true" id="E2UbBinding">
+          <listOfReactants>
+            <speciesReference species="E2"/>
+            <speciesReference species="E1_Ub"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="E2_Ub"/>
+            <speciesReference species="E1"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k64" massAction="true" id="Monoubiquitination">
+          <listOfReactants>
+            <speciesReference species="E2_Ub"/>
+            <speciesReference species="E3_MisP"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="MisP_Ub"/>
+            <speciesReference species="E2"/>
+            <speciesReference species="E3"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k65" massAction="true" id="Polyubiquitination1">
+          <listOfReactants>
+            <speciesReference species="MisP_Ub"/>
+            <speciesReference species="E2_Ub"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="MisP_Ub2"/>
+            <speciesReference species="E2"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k65" massAction="true" id="Polyubiquitination2">
+          <listOfReactants>
+            <speciesReference species="MisP_Ub2"/>
+            <speciesReference species="E2_Ub"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="MisP_Ub3"/>
+            <speciesReference species="E2"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k65" massAction="true" id="Polyubiquitination3">
+          <listOfReactants>
+            <speciesReference species="MisP_Ub3"/>
+            <speciesReference species="E2_Ub"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="MisP_Ub4"/>
+            <speciesReference species="E2"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k65" massAction="true" id="Polyubiquitination4">
+          <listOfReactants>
+            <speciesReference species="MisP_Ub4"/>
+            <speciesReference species="E2_Ub"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="MisP_Ub5"/>
+            <speciesReference species="E2"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k65" massAction="true" id="Polyubiquitination5">
+          <listOfReactants>
+            <speciesReference species="MisP_Ub5"/>
+            <speciesReference species="E2_Ub"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="MisP_Ub6"/>
+            <speciesReference species="E2"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k65" massAction="true" id="Polyubiquitination6">
+          <listOfReactants>
+            <speciesReference species="MisP_Ub6"/>
+            <speciesReference species="E2_Ub"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="MisP_Ub7"/>
+            <speciesReference species="E2"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k65" massAction="true" id="Polyubiquitination7">
+          <listOfReactants>
+            <speciesReference species="MisP_Ub7"/>
+            <speciesReference species="E2_Ub"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="MisP_Ub8"/>
+            <speciesReference species="E2"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k66" massAction="true" id="Deubiqutination1">
+          <listOfReactants>
+            <speciesReference species="MisP_Ub8"/>
+            <speciesReference species="DUB"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="MisP_Ub7"/>
+            <speciesReference species="DUB"/>
+            <speciesReference species="Ub"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k66" massAction="true" id="Deubiqutination2">
+          <listOfReactants>
+            <speciesReference species="MisP_Ub7"/>
+            <speciesReference species="DUB"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="MisP_Ub6"/>
+            <speciesReference species="DUB"/>
+            <speciesReference species="Ub"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k66" massAction="true" id="Deubiqutination3">
+          <listOfReactants>
+            <speciesReference species="MisP_Ub6"/>
+            <speciesReference species="DUB"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="MisP_Ub5"/>
+            <speciesReference species="DUB"/>
+            <speciesReference species="Ub"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k66" massAction="true" id="Deubiqutination4">
+          <listOfReactants>
+            <speciesReference species="MisP_Ub5"/>
+            <speciesReference species="DUB"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="MisP_Ub4"/>
+            <speciesReference species="DUB"/>
+            <speciesReference species="Ub"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k66" massAction="true" id="Deubiqutination5">
+          <listOfReactants>
+            <speciesReference species="MisP_Ub4"/>
+            <speciesReference species="DUB"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="MisP_Ub3"/>
+            <speciesReference species="DUB"/>
+            <speciesReference species="Ub"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k66" massAction="true" id="Deubiqutination6">
+          <listOfReactants>
+            <speciesReference species="MisP_Ub3"/>
+            <speciesReference species="DUB"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="MisP_Ub2"/>
+            <speciesReference species="DUB"/>
+            <speciesReference species="Ub"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k66" massAction="true" id="Deubiqutination7">
+          <listOfReactants>
+            <speciesReference species="MisP_Ub2"/>
+            <speciesReference species="DUB"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="MisP_Ub"/>
+            <speciesReference species="DUB"/>
+            <speciesReference species="Ub"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k66" massAction="true" id="Deubiqutination8">
+          <listOfReactants>
+            <speciesReference species="MisP_Ub"/>
+            <speciesReference species="DUB"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="MisP"/>
+            <speciesReference species="DUB"/>
+            <speciesReference species="Ub"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k67" massAction="true" id="ProteasomeBinding1">
+          <listOfReactants>
+            <speciesReference species="MisP_Ub4"/>
+            <speciesReference species="Proteasome"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="MisP_Ub4_Proteasome"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k67" massAction="true" id="ProteasomeBinding2">
+          <listOfReactants>
+            <speciesReference species="MisP_Ub5"/>
+            <speciesReference species="Proteasome"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="MisP_Ub5_Proteasome"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k67" massAction="true" id="ProteasomeBinding3">
+          <listOfReactants>
+            <speciesReference species="MisP_Ub6"/>
+            <speciesReference species="Proteasome"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="MisP_Ub6_Proteasome"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k67" massAction="true" id="ProteasomeBinding4">
+          <listOfReactants>
+            <speciesReference species="MisP_Ub7"/>
+            <speciesReference species="Proteasome"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="MisP_Ub7_Proteasome"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k67" massAction="true" id="ProteasomeBinding5">
+          <listOfReactants>
+            <speciesReference species="MisP_Ub8"/>
+            <speciesReference species="Proteasome"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="MisP_Ub8_Proteasome"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k68" massAction="true" id="DeubiquitinationBoundMisP5">
+          <listOfReactants>
+            <speciesReference species="MisP_Ub8_Proteasome"/>
+            <speciesReference species="DUB"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="MisP_Ub7_Proteasome"/>
+            <speciesReference species="Ub"/>
+            <speciesReference species="DUB"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k68" massAction="true" id="DeubiquitinationBoundMisP4">
+          <listOfReactants>
+            <speciesReference species="MisP_Ub7_Proteasome"/>
+            <speciesReference species="DUB"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="MisP_Ub6_Proteasome"/>
+            <speciesReference species="Ub"/>
+            <speciesReference species="DUB"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k68" massAction="true" id="DeubiquitinationBoundMisP3">
+          <listOfReactants>
+            <speciesReference species="MisP_Ub6_Proteasome"/>
+            <speciesReference species="DUB"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="MisP_Ub5_Proteasome"/>
+            <speciesReference species="Ub"/>
+            <speciesReference species="DUB"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k68" massAction="true" id="DeubiquitinationBoundMisP2">
+          <listOfReactants>
+            <speciesReference species="MisP_Ub5_Proteasome"/>
+            <speciesReference species="DUB"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="MisP_Ub4_Proteasome"/>
+            <speciesReference species="Ub"/>
+            <speciesReference species="DUB"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k68" massAction="true" id="DeubiquitinationBoundMisP1">
+          <listOfReactants>
+            <speciesReference species="MisP_Ub4_Proteasome"/>
+            <speciesReference species="DUB"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="MisP_Ub3"/>
+            <speciesReference species="Proteasome"/>
+            <speciesReference species="Ub"/>
+            <speciesReference species="DUB"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="(k69*MisP_Ub4_Proteasome*ATP)/(5000+ATP)" massAction="false" id="ProteasomeActivity1">
+          <listOfReactants>
+            <speciesReference species="MisP_Ub4_Proteasome"/>
+            <speciesReference species="ATP"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference stoichiometry="4" species="Ub"/>
+            <speciesReference species="Proteasome"/>
+            <speciesReference species="ADP"/>
+            <speciesReference species="degUb4"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="(k69*MisP_Ub5_Proteasome*ATP)/(5000+ATP)" massAction="false" id="ProteasomeActivity2">
+          <listOfReactants>
+            <speciesReference species="MisP_Ub5_Proteasome"/>
+            <speciesReference species="ATP"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference stoichiometry="5" species="Ub"/>
+            <speciesReference species="Proteasome"/>
+            <speciesReference species="ADP"/>
+            <speciesReference species="degUb5"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="(k69*MisP_Ub6_Proteasome*ATP)/(5000+ATP)" massAction="false" id="ProteasomeActivity3">
+          <listOfReactants>
+            <speciesReference species="MisP_Ub6_Proteasome"/>
+            <speciesReference species="ATP"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference stoichiometry="6" species="Ub"/>
+            <speciesReference species="Proteasome"/>
+            <speciesReference species="ADP"/>
+            <speciesReference species="degUb6"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="(k69*MisP_Ub7_Proteasome*ATP)/(5000+ATP)" massAction="false" id="ProteasomeActivity4">
+          <listOfReactants>
+            <speciesReference species="MisP_Ub7_Proteasome"/>
+            <speciesReference species="ATP"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference stoichiometry="7" species="Ub"/>
+            <speciesReference species="Proteasome"/>
+            <speciesReference species="ADP"/>
+            <speciesReference species="degUb7"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="(k69*MisP_Ub8_Proteasome*ATP)/(5000+ATP)" massAction="false" id="ProteasomeActivity5">
+          <listOfReactants>
+            <speciesReference species="MisP_Ub8_Proteasome"/>
+            <speciesReference species="ATP"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference stoichiometry="8" species="Ub"/>
+            <speciesReference species="Proteasome"/>
+            <speciesReference species="ADP"/>
+            <speciesReference species="degUb8"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k71" massAction="true" id="Aggregation1">
+          <listOfReactants>
+            <speciesReference stoichiometry="2" species="MisP"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="AggP"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k71" massAction="true" id="Aggregation2">
+          <listOfReactants>
+            <speciesReference species="MisP"/>
+            <speciesReference species="AggP"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference stoichiometry="2" species="AggP"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k72" massAction="true" id="Aggregation3">
+          <listOfReactants>
+            <speciesReference stoichiometry="2" species="MisP_Ub"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="AggP"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k72" massAction="true" id="Aggregation4">
+          <listOfReactants>
+            <speciesReference stoichiometry="2" species="MisP_Ub2"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="AggP"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k72" massAction="true" id="Aggregation5">
+          <listOfReactants>
+            <speciesReference stoichiometry="2" species="MisP_Ub3"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="AggP"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k72" massAction="true" id="Aggregation6">
+          <listOfReactants>
+            <speciesReference stoichiometry="2" species="MisP_Ub4"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="AggP"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k72" massAction="true" id="Aggregation7">
+          <listOfReactants>
+            <speciesReference stoichiometry="2" species="MisP_Ub5"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="AggP"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k72" massAction="true" id="Aggregation8">
+          <listOfReactants>
+            <speciesReference stoichiometry="2" species="MisP_Ub6"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="AggP"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k72" massAction="true" id="Aggregation9">
+          <listOfReactants>
+            <speciesReference stoichiometry="2" species="MisP_Ub7"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="AggP"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k72" massAction="true" id="Aggregation10">
+          <listOfReactants>
+            <speciesReference stoichiometry="2" species="MisP_Ub8"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="AggP"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k72" massAction="true" id="Aggregation11">
+          <listOfReactants>
+            <speciesReference species="MisP_Ub"/>
+            <speciesReference species="MisP"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="AggP"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k72" massAction="true" id="Aggregation12">
+          <listOfReactants>
+            <speciesReference species="MisP_Ub2"/>
+            <speciesReference species="MisP"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="AggP"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k72" massAction="true" id="Aggregation13">
+          <listOfReactants>
+            <speciesReference species="MisP_Ub3"/>
+            <speciesReference species="MisP"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="AggP"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k72" massAction="true" id="Aggregation14">
+          <listOfReactants>
+            <speciesReference species="MisP_Ub4"/>
+            <speciesReference species="MisP"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="AggP"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k72" massAction="true" id="Aggregation15">
+          <listOfReactants>
+            <speciesReference species="MisP_Ub5"/>
+            <speciesReference species="MisP"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="AggP"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k72" massAction="true" id="Aggregation16">
+          <listOfReactants>
+            <speciesReference species="MisP_Ub6"/>
+            <speciesReference species="MisP"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="AggP"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k72" massAction="true" id="Aggregation17">
+          <listOfReactants>
+            <speciesReference species="MisP_Ub7"/>
+            <speciesReference species="MisP"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="AggP"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k72" massAction="true" id="Aggregation18">
+          <listOfReactants>
+            <speciesReference species="MisP_Ub8"/>
+            <speciesReference species="MisP"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="AggP"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k72" massAction="true" id="Aggregation19">
+          <listOfReactants>
+            <speciesReference species="MisP_Ub"/>
+            <speciesReference species="AggP"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference stoichiometry="2" species="AggP"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k72" massAction="true" id="Aggregation20">
+          <listOfReactants>
+            <speciesReference species="MisP_Ub2"/>
+            <speciesReference species="AggP"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference stoichiometry="2" species="AggP"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k72" massAction="true" id="Aggregation21">
+          <listOfReactants>
+            <speciesReference species="MisP_Ub3"/>
+            <speciesReference species="AggP"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference stoichiometry="2" species="AggP"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k72" massAction="true" id="Aggregation22">
+          <listOfReactants>
+            <speciesReference species="MisP_Ub4"/>
+            <speciesReference species="AggP"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference stoichiometry="2" species="AggP"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k72" massAction="true" id="Aggregation23">
+          <listOfReactants>
+            <speciesReference species="MisP_Ub5"/>
+            <speciesReference species="AggP"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference stoichiometry="2" species="AggP"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k72" massAction="true" id="Aggregation24">
+          <listOfReactants>
+            <speciesReference species="MisP_Ub6"/>
+            <speciesReference species="AggP"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference stoichiometry="2" species="AggP"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k72" massAction="true" id="Aggregation25">
+          <listOfReactants>
+            <speciesReference species="MisP_Ub7"/>
+            <speciesReference species="AggP"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference stoichiometry="2" species="AggP"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k72" massAction="true" id="Aggregation26">
+          <listOfReactants>
+            <speciesReference species="MisP_Ub8"/>
+            <speciesReference species="AggP"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference stoichiometry="2" species="AggP"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k72" massAction="true" id="Aggregation27">
+          <listOfReactants>
+            <speciesReference species="MisP_Ub"/>
+            <speciesReference species="MisP_Ub2"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="AggP"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k72" massAction="true" id="Aggregation28">
+          <listOfReactants>
+            <speciesReference species="MisP_Ub"/>
+            <speciesReference species="MisP_Ub3"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="AggP"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k72" massAction="true" id="Aggregation29">
+          <listOfReactants>
+            <speciesReference species="MisP_Ub"/>
+            <speciesReference species="MisP_Ub4"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="AggP"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k72" massAction="true" id="Aggregation30">
+          <listOfReactants>
+            <speciesReference species="MisP_Ub"/>
+            <speciesReference species="MisP_Ub5"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="AggP"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k72" massAction="true" id="Aggregation31">
+          <listOfReactants>
+            <speciesReference species="MisP_Ub"/>
+            <speciesReference species="MisP_Ub6"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="AggP"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k72" massAction="true" id="Aggregation32">
+          <listOfReactants>
+            <speciesReference species="MisP_Ub"/>
+            <speciesReference species="MisP_Ub7"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="AggP"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k72" massAction="true" id="Aggregation33">
+          <listOfReactants>
+            <speciesReference species="MisP_Ub"/>
+            <speciesReference species="MisP_Ub8"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="AggP"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k72" massAction="true" id="Aggregation34">
+          <listOfReactants>
+            <speciesReference species="MisP_Ub2"/>
+            <speciesReference species="MisP_Ub3"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="AggP"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k72" massAction="true" id="Aggregation35">
+          <listOfReactants>
+            <speciesReference species="MisP_Ub2"/>
+            <speciesReference species="MisP_Ub4"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="AggP"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k72" massAction="true" id="Aggregation36">
+          <listOfReactants>
+            <speciesReference species="MisP_Ub2"/>
+            <speciesReference species="MisP_Ub5"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="AggP"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k72" massAction="true" id="Aggregation37">
+          <listOfReactants>
+            <speciesReference species="MisP_Ub2"/>
+            <speciesReference species="MisP_Ub6"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="AggP"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k72" massAction="true" id="Aggregation38">
+          <listOfReactants>
+            <speciesReference species="MisP_Ub2"/>
+            <speciesReference species="MisP_Ub7"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="AggP"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k72" massAction="true" id="Aggregation39">
+          <listOfReactants>
+            <speciesReference species="MisP_Ub2"/>
+            <speciesReference species="MisP_Ub8"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="AggP"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k72" massAction="true" id="Aggregation40">
+          <listOfReactants>
+            <speciesReference species="MisP_Ub3"/>
+            <speciesReference species="MisP_Ub4"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="AggP"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k72" massAction="true" id="Aggregation41">
+          <listOfReactants>
+            <speciesReference species="MisP_Ub3"/>
+            <speciesReference species="MisP_Ub5"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="AggP"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k72" massAction="true" id="Aggregation42">
+          <listOfReactants>
+            <speciesReference species="MisP_Ub3"/>
+            <speciesReference species="MisP_Ub6"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="AggP"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k72" massAction="true" id="Aggregation43">
+          <listOfReactants>
+            <speciesReference species="MisP_Ub3"/>
+            <speciesReference species="MisP_Ub7"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="AggP"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k72" massAction="true" id="Aggregation44">
+          <listOfReactants>
+            <speciesReference species="MisP_Ub3"/>
+            <speciesReference species="MisP_Ub8"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="AggP"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k72" massAction="true" id="Aggregation45">
+          <listOfReactants>
+            <speciesReference species="MisP_Ub4"/>
+            <speciesReference species="MisP_Ub5"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="AggP"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k72" massAction="true" id="Aggregation46">
+          <listOfReactants>
+            <speciesReference species="MisP_Ub4"/>
+            <speciesReference species="MisP_Ub6"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="AggP"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k72" massAction="true" id="Aggregation47">
+          <listOfReactants>
+            <speciesReference species="MisP_Ub4"/>
+            <speciesReference species="MisP_Ub7"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="AggP"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k72" massAction="true" id="Aggregation48">
+          <listOfReactants>
+            <speciesReference species="MisP_Ub4"/>
+            <speciesReference species="MisP_Ub8"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="AggP"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k72" massAction="true" id="Aggregation49">
+          <listOfReactants>
+            <speciesReference species="MisP_Ub5"/>
+            <speciesReference species="MisP_Ub6"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="AggP"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k72" massAction="true" id="Aggregation50">
+          <listOfReactants>
+            <speciesReference species="MisP_Ub5"/>
+            <speciesReference species="MisP_Ub7"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="AggP"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k72" massAction="true" id="Aggregation51">
+          <listOfReactants>
+            <speciesReference species="MisP_Ub5"/>
+            <speciesReference species="MisP_Ub8"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="AggP"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k72" massAction="true" id="Aggregation52">
+          <listOfReactants>
+            <speciesReference species="MisP_Ub6"/>
+            <speciesReference species="MisP_Ub7"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="AggP"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k72" massAction="true" id="Aggregation53">
+          <listOfReactants>
+            <speciesReference species="MisP_Ub6"/>
+            <speciesReference species="MisP_Ub8"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="AggP"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k72" massAction="true" id="Aggregation54">
+          <listOfReactants>
+            <speciesReference species="MisP_Ub7"/>
+            <speciesReference species="MisP_Ub8"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="AggP"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k73" massAction="true" id="SequesteringOfAggregates">
+          <listOfReactants>
+            <speciesReference species="AggP"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="SeqAggP"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="k74" massAction="true" id="ProteasomeInhibtion">
+          <listOfReactants>
+            <speciesReference species="AggP"/>
+            <speciesReference species="Proteasome"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference species="AggP_Proteasome"/>
+          </listOfProducts>
+        </reaction>
+      </listOfReactions>
+    </model>
+  </listOfModels>
+  <listOfMethods>
+    <method category="0" numberOfBins="32" multiplicity="4" equilibrationTime="0.0" id="Direct" method="0" timeDependence="0" startTime="0.0" recordingTime="10.0" numberOfFrames="101" options="0"/>
+  </listOfMethods>
+  <random seed="2147483648">
+  </random>
+</cain>

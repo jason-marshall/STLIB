@@ -1,0 +1,103 @@
+Testing for determined fraction of vertices with Dijkstra's algorithm.
+Ratio of largest to smallest edge weight = infinity.
+
+GRID GRAPHS:
+The number of vertices:
+100 ,
+400 ,
+1600 ,
+6400 ,
+25600 ,
+Ratio of largest to smallest edge weight =  2
+0.967852257182 ,
+0.963933892372 ,
+0.971269048483 ,
+0.969914563682 ,
+0.969741119045 ,
+Ratio of largest to smallest edge weight =  10
+0.872004675628 ,
+0.885787435994 ,
+0.872374343586 ,
+0.891352660439 ,
+0.891084108634 ,
+Ratio of largest to smallest edge weight =  infinity
+0.812391430226 ,
+0.845603959186 ,
+0.83958993927 ,
+0.828560581855 ,
+0.831108931882 ,
+
+
+SPARSE GRAPHS: 4 edges
+The number of vertices:
+100 ,
+200 ,
+400 ,
+800 ,
+1600 ,
+Ratio of largest to smallest edge weight =  2
+0.963149078727 ,
+0.982553729456 ,
+0.980982730263 ,
+0.975591227203 ,
+0.97484532853 ,
+Ratio of largest to smallest edge weight =  10
+0.86660268714 ,
+0.855113636364 ,
+0.870014097355 ,
+0.837342315985 ,
+0.854501706242 ,
+Ratio of largest to smallest edge weight =  infinity
+0.843221743454 ,
+0.742120814183 ,
+0.78431372549 ,
+0.771763639867 ,
+0.773470638231 ,
+
+
+SPARSE GRAPHS: 32 edges
+Ratio of largest to smallest edge weight =  2
+0.961336415213 ,
+0.97938745231 ,
+0.979364045869 ,
+0.971273975744 ,
+0.96774000055 ,
+Ratio of largest to smallest edge weight =  10
+0.735808792147 ,
+0.79592702588 ,
+0.780841183495 ,
+0.78671523733 ,
+0.790820901606 ,
+Ratio of largest to smallest edge weight =  infinity
+0.579297042435 ,
+0.526629740094 ,
+0.543003303847 ,
+0.531917793646 ,
+0.539876140146 ,
+
+
+COMPLETE GRAPHS:
+The number of vertices:
+10 ,
+20 ,
+40 ,
+80 ,
+160 ,
+Ratio of largest to smallest edge weight =  2
+1.0
+1.0
+1.0
+1.0
+1.0
+Ratio of largest to smallest edge weight =  10
+0.666666666667
+0.905263157895
+0.812820512821
+0.851265822785
+0.897405660377
+Ratio of largest to smallest edge weight =  infinity
+0.711111111111
+0.510526315789
+0.470512820513
+0.541772151899
+0.451808176101

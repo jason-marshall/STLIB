@@ -1,0 +1,658 @@
+\documentclass[letterpaper]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+%\usepackage{graphicx}
+%\pagestyle{empty}
+
+\title{A Concurrent Algorithm for the $\tau$-Leap Method}
+\author{Sean Mauch}
+
+\begin{document}
+
+
+%============================================================================
+\maketitle
+
+\abstract{
+In this preliminary report, we present a concurrent algorithm for the
+$\tau$-leap method presented in ``Approximate accelerated stochastic
+simulation of chemically reacting systems'' by Daniel T. Gillespie.
+Concurrency is acheived by distributing the
+reactions among the processes.  We analyze the computational
+complexity of the sequential and the concurrent algorithm.  We
+indicate how to implement the concurrent algorithm on a distributed
+memory multi-computer using MPI (the Message-Passing Interface).
+}
+
+%============================================================================
+\section{Sequential Algorithm}
+
+
+We consider the $\tau$-leap method presented in \cite{gillespie}.  For 
+ease of exposition, we will cover the basic method 
+(which is analogous to Euler stepping) and not the estimated-midpoint
+method (which is analogous to second-order Runge-Kutta).  The latter is
+very similar to the former.  Once we have developed the concurrent 
+algorithm for the basic method, the extension to the 
+estimated-midpoint method will be clear.
+Table~\ref{variablesInMethod} summarizes the variables in the 
+basic $\tau$-leap method.
+
+\begin{table}[h]
+\[
+\begin{array}{|l|l|l|l|}
+\hline %---------------------------------------------------------------------
+\text{\bf{Variable}} & \text{\bf{Type}} & \text{\bf{Size}} & \text{\bf{Function}} \\
+\hline %---------------------------------------------------------------------
+\mathbf{a} = \mathbf{a}(\mathbf{X}) & 
+\text{Floating point} &
+M &
+\text{Propensity function} \\
+\hline %---------------------------------------------------------------------
+a_0 = \sum_{j=1}^M a_j(\mathbf{x}) & 
+\text{Floating point} &
+1 &
+\text{Propensity sum} \\
+\hline %---------------------------------------------------------------------
+b_{ji} = \frac{\partial a_j(\mathbf{x})}{\partial x_i} &
+\text{Floating point} &
+N M &
+\text{Propensity function derivatives} \\
+\hline %---------------------------------------------------------------------
+v &
+\text{Integer} &
+N M &
+\text{State-change vectors} \\
+\hline %---------------------------------------------------------------------
+\boldsymbol{\xi} = v^{T} \mathbf{a} & 
+\text{Floating point} &
+N &
+\text{Expected state change in unit time} \\
+\hline %---------------------------------------------------------------------
+\tau = \min_{j} \frac{\epsilon a_0}{\sum_i b_{ji} \xi_i} & 
+\text{Floating point} &
+1 &
+\text{Time leap} \\
+\hline %---------------------------------------------------------------------
+k_j = k_j(a_j, \tau) & 
+\text{Integer} &
+M &
+\text{Poisson random variables} \\
+\hline %---------------------------------------------------------------------
+\boldsymbol{\lambda} = v^T \mathbf{k} & 
+\text{Integer} &
+N &
+\text{State change} \\
+\hline %---------------------------------------------------------------------
+\mathbf{X} = \mathbf{X} + \boldsymbol{\lambda} & 
+\text{Integer} &
+N &
+\text{State of the system} \\
+\hline %---------------------------------------------------------------------
+\end{array}
+\]
+\caption{The variables in the basic $\tau$-leap method.}
+\label{variablesInMethod}
+\end{table}
+
+
+
+We convert the description in \cite{gillespie} to  
+pseudo-code.  One step of the algorithm is shown in 
+Figure~\ref{sequential}.
+
+\begin{figure}[h]
+\begin{tabbing}
+11\=22\=33\=\kill\\
+a0 = 0\\
+for j in [0..M):\\
+\>a[j] = computePropensity(x, j)\\
+\>a0 += a[j]\\
+for i in [0..N):\\
+\>$\xi$[i] = 0\\
+\>for j in [0..M):\\
+\>\>$\xi$[i] += a[j] * v[j][i]\\
+\>\>b[j][i] = computePropensityDerivative(x, j, i)\\
+$\tau$ = $\infty$\\
+for j in [0..M):\\
+\>denominator = 0\\
+\>for i in [0..N):\\
+\>\>denominator += b[j][i] * $\xi$[i]\\
+\>trial = $\epsilon$ * a0 / denominator\\
+\>if trial $< \tau$:\\
+\>\>$\tau$ = trial\\
+for j in [0..M):\\
+\>k[j] = computePoisson(a[j], $\tau$)\\
+for i in [0..N):\\
+\>$\lambda$[i] = 0\\
+\>for j in [0..M):\\
+\>\>$\lambda$[i] += v[j][i] * k[j]\\
+for i in [0..N):\\
+\>x[i] = x[i] + $\lambda$[i]\\
+t += $\tau$
+\end{tabbing}
+\caption{One step in the basic $\tau$-leap method.}
+\label{sequential}
+\end{figure}
+
+
+
+Let $T_a$ be the cost of an arithmetic operation (integer or floating point) 
+and $T_c$ be the cost of a conditional.
+Let $T_p$ be the cost of computing a Poisson random variable.  
+In Table~\ref{sequentialComplexity} we 
+detail the computational cost in a single step of the basic $\tau$-leap
+method on a per variable basis.  (There the variable names match those in
+the pseudo-code.)
+
+\begin{table}[h]
+\[
+\begin{array}{|l|l|l|}
+\hline %---------------------------------------------------------------------
+\text{\bf{Variable}} & \text{\bf{Size}} & \text{\bf{Computational Cost}} \\
+\hline %---------------------------------------------------------------------
+\text{a} &
+M &
+\mathcal{O}(M) T_a\\
+\hline %---------------------------------------------------------------------
+\text{a0} & 
+1 &
+M T_a \\
+\hline %---------------------------------------------------------------------
+\text{b} &
+N M &
+\mathcal{O}(N M) \\
+\hline %---------------------------------------------------------------------
+v &
+N M &
+ \\
+\hline %---------------------------------------------------------------------
+\xi &
+N &
+N M T_a \\
+\hline %---------------------------------------------------------------------
+\tau & 
+1 &
+N M T_a + M T_c \\
+\hline %---------------------------------------------------------------------
+\text{k} & 
+M &
+M T_p \\
+\hline %---------------------------------------------------------------------
+\lambda & 
+N &
+N M T_a \\
+\hline %---------------------------------------------------------------------
+\text{x} & 
+N &
+N T_a \\
+\hline %---------------------------------------------------------------------
+\end{array}
+\]
+\caption{Computational complexity for one step in the sequential algorithm for
+	the basic $\tau$-leap method.}
+\label{sequentialComplexity}
+\end{table}
+
+
+We see that the computation of b, $\xi$, $\tau$, $\lambda$, and k are
+likely the most expensive parts of the algorithm.  The first four all
+have a computational cost that is $\mathcal{O}(N M)$.  The computation
+of $\xi$, $\tau$, and $\lambda$ involves only matrix-vector or
+vector-vector multiplication.  The cost to compute b depends on the
+propensity functions.  The cost of computing k depends on the time
+$T_p$ required to compute a Poisson random variable.  Certainly 
+$T_p \gg T_a$.  If $T_p \gg N T_a$ then computing k will be the dominant
+cost in the algorithm.  If, on the other hand, $T_p \ll N T_a$ then
+computing b, $\xi$, $\tau$, and $\lambda$ will be the costliest parts.
+
+
+
+
+
+
+%----------------------------------------------------------------------------
+\subsection{Using Sparse Arrays}
+
+
+In most scenarios, each reaction involves only a few species.  Thus the 
+state-change vectors v and the propensity function derivatives b will
+be sparse.  That is, most of the elements will be 
+zero; there are only $\mathcal{O}(M)$ nonzero elements.  For large $M$,
+using a sparse array data structure would offer significant computational
+and storage benefits.  Table~\ref{sequentialComplexitySparse} shows
+the storage requirements and computational cost when using sparse arrays.
+
+There are many choices for sparse array data structures.  A good candidate
+for the $\tau$-leap method is index/offset compression.  
+% CONTINUE: cite
+For the b
+array one would use offsets in the reaction dimension and index compression
+in the species dimension.  This results in storage requirements of
+$\mathcal{O}(M)$.  Since we use v by taking the matrix-vector product of
+$\mathrm{v}^T$ and either k or a, we would use the opposite compression 
+strategy.  We would use offsets in the species dimension and index
+compression in the reaction dimension.  This results in a storage requirement 
+of $\mathcal{O}(N + M)$.  
+
+
+
+
+
+\begin{table}[h]
+\[
+\begin{array}{|l|l|l|}
+\hline %---------------------------------------------------------------------
+\text{\bf{Variable}} & \text{\bf{Storage}} & \text{\bf{Computational Cost}} \\
+\hline %---------------------------------------------------------------------
+\text{a} &
+M &
+\mathcal{O}(M) T_a\\
+\hline %---------------------------------------------------------------------
+\text{a0} & 
+1 &
+M T_a \\
+\hline %---------------------------------------------------------------------
+\text{b} &
+\mathcal{O}(M) &
+\mathcal{O}(M) \\
+\hline %---------------------------------------------------------------------
+v &
+\mathcal{O}(N + M) &
+ \\
+\hline %---------------------------------------------------------------------
+\xi &
+N &
+\mathcal{O}(N + M) T_a \\
+\hline %---------------------------------------------------------------------
+\tau & 
+1 &
+\mathcal{O}(M) T_a + M T_c \\
+\hline %---------------------------------------------------------------------
+\text{k} & 
+M &
+M T_p \\
+\hline %---------------------------------------------------------------------
+\lambda & 
+N &
+\mathcal{O}(N + M) T_a \\
+\hline %---------------------------------------------------------------------
+\text{x} & 
+N &
+N T_a \\
+\hline %---------------------------------------------------------------------
+\end{array}
+\]
+\caption{Computational complexity for one step in the sequential algorithm for
+	the basic $\tau$-leap method using sparse arrays.}
+\label{sequentialComplexitySparse}
+\end{table}
+
+
+When $M$ is large and one uses sparse arrays for v and b, the computation
+of k (the Poisson random variables) is the most expensive part of the 
+algorithm.
+
+
+
+
+
+
+
+
+%============================================================================
+\section{Concurrent Algorithm: Reaction Distributed}
+
+We consider a concurrent algorithm for the basic $\tau$-leap method on 
+$P$ processes.  We will distribute the $M$ reactions over the processes.
+This yields a simple distribution of the data and a simple communication 
+strategy.  (There is less to be gained in attempting to distribute the 
+$N$ species.  They are coupled due to the reactions, so distributing would
+be more difficult and the communication cost would be higher.)  
+
+In short, we distribute the reaction data and duplicate the species data.
+To compute species data, each process computes the contribution from its 
+set of reactions and then communicates with the other processes to 
+accumulate the results.  Let 
+$0 = p_0 \leq p_1 \leq \cdots \leq p_{P-1} \leq p_P = M$ be a partition of
+the $M$ reactions.  Assume the partition divides the reactions into groups
+of size approximately $M / P$.  If the computational costs associated with
+each reaction were roughly equal, this approach would be sufficient to 
+effectively distribute the computational load.  If this were not the case,
+one would consider the different computational costs per reaction in
+partitioning them.
+
+For our partition, the process with rank $r \in [0..P)$ holds 
+the data for reactions in the range $[p_r..p_{r+1})$.
+Specifically: In the sequential algorithm, the variables a and k are 1-D
+arrays over the range $[0..M)$ and the variables b and $\xi$ are 2-D 
+arrays over the range $[0..M) \times [0..N)$.  For the concurrent algorithm,
+in process $r$, a and k have the range $[p_r..p_{r+1})$ and the variables 
+b and $\xi$ have the range $[p_r..p_{r+1}) \times [0..N)$.
+
+
+
+The pseudo-code for one step of the concurrent algorithm in process $r$ 
+is shown in Figure~\ref{concurrent}.
+We use the MPI function Allreduce() 
+\cite{mpi}
+to sum and find the minimum across the 
+processes.  Note that the concurrent algorithm is little different than the
+sequential one.  Other than the communication calls, the only difference
+is that the loops over $[0..M)$ are replaced by loops over
+$[p_r..p_{r+1})$.
+
+
+
+
+\begin{figure}[p]
+\begin{tabbing}
+11\=22\=33\=\kill\\
+a0 = 0\\
+for j in $[p_r..p_{r+1})$:\\
+\>a[j] = computePropensity(x, j)\\
+\>a0 += a[j]\\
+for i in [0..N):\\
+\>$\xi$[i] = 0\\
+\>for j in $[p_r..p_{r+1})$:\\
+\>\>$\xi$[i] += a[j] * v[j][i]\\
+\>\>b[j][i] = computePropensityDerivative(x, j, i)\\
+communicator.Allreduce(MPI::IN\_PLACE, \&a0, 1, MPI::DOUBLE, MPI::SUM)\\
+communicator.Allreduce(MPI::IN\_PLACE, \&$\xi$, N, MPI::DOUBLE, MPI::SUM)\\
+$\tau$ = $\infty$\\
+for j in $[p_r..p_{r+1})$:\\
+\>denominator = 0\\
+\>for i in [0..N):\\
+\>\>denominator += b[j][i] * $\xi$[i]\\
+\>trial = $\epsilon$ * a0 / denominator\\
+\>if trial $< \tau$:\\
+\>\>$\tau$ = trial\\
+communicator.Allreduce(MPI::IN\_PLACE, \&$\tau$, 1, MPI::DOUBLE, MPI::MIN)\\
+for j in $[p_r..p_{r+1})$:\\
+\>k[j] = computePoisson(a[j], $\tau$)\\
+for i in [0..N):\\
+\>$\lambda$[i] = 0\\
+\>for j in $[p_r..p_{r+1})$:\\
+\>\>$\lambda$[i] += v[j][i] * k[j]\\
+communicator.Allreduce(MPI::IN\_PLACE, \&$\lambda$, N, MPI::DOUBLE, MPI::SUM)\\
+for i in [0..N):\\
+\>x[i] = x[i] + $\lambda$[i]\\
+t += $\tau$
+\end{tabbing}
+\caption{One step in the concurent algorithm for the basic $\tau$-leap method.}
+\label{concurrent}
+\end{figure}
+
+
+
+%----------------------------------------------------------------------------
+\subsection{Using Dense Arrays}
+
+
+
+First we consider the algorithm using dense arrays for b and v.
+We employ a simple model for analyzing the cost of communications.
+Let $T_l$ be the communication latency and $T_n^{-1}$ be the band
+width in numbers (integer or floating point) per second.  The cost of
+sending or receiving a message of length $m$ is $T_l + m T_n$.  
+Table~\ref{concurrentComplexityDense} shows the computational and 
+communication costs on a per
+variable basis for one step of the basic $\tau$-leap algorithm.
+
+\begin{table}[h]
+\[
+\begin{array}{|l|l|l|l|l|}
+\hline %---------------------------------------------------------------------
+\text{\bf{Var.}} & 
+\text{\bf{Dist.}} & 
+\text{\bf{Size}} & 
+\text{\bf{Computation}} & 
+\text{\bf{Communication}} \\
+\hline %---------------------------------------------------------------------
+\text{a} &
+\text{Yes} &
+M / P &
+\mathcal{O}(M) &
+\\
+\hline %---------------------------------------------------------------------
+\text{a0} & 
+\text{No} &
+1 &
+&
+(T_l + T_n) \mathcal{O}(\log P) \\
+\hline %---------------------------------------------------------------------
+\text{b} &
+\text{Yes} &
+N M / P &
+\mathcal{O}(N M / P) &
+\\
+\hline %---------------------------------------------------------------------
+v &
+\text{Yes} &
+N M / P &
+&
+\\
+\hline %---------------------------------------------------------------------
+\xi &
+\text{No} &
+N &
+N M T_a / P &
+(T_l + N T_n) \mathcal{O}(\log P) \\
+\hline %---------------------------------------------------------------------
+\tau & 
+\text{No} &
+1 &
+N M T_a / P + M T_c / P &
+(T_l + T_n) \mathcal{O}(\log P) \\
+\hline %---------------------------------------------------------------------
+\text{k} & 
+\text{Yes} &
+M / P &
+M T_p / P&
+\\
+\hline %---------------------------------------------------------------------
+\lambda & 
+\text{No} &
+N &
+N M T_a / P &
+(T_l + N T_n) \mathcal{O}(\log P) \\
+\hline %---------------------------------------------------------------------
+\text{x} & 
+\text{No} &
+N &
+N T_a&
+\\
+\hline %---------------------------------------------------------------------
+\end{array}
+\]
+\caption{Computational and communication complexity for one step in the 
+	concurrent algorithm for
+	the basic $\tau$-leap method using dense arrays.}
+\label{concurrentComplexityDense}
+\end{table}
+
+
+We see that the cost of the expensive parts of the sequential computation 
+(namely b, $\xi$, $\tau$, $\lambda$, and k) have all been reduced by a factor 
+of $P$.  This is an ideal reduction in the amount of computation each process 
+must perform.  However, the concurrent algorithm does have the additional
+communication cost.  There are four instances during a time step that 
+a variable is accumulated or minimized over the processes.  (By combining
+a0 and $\xi$ into a single array, one could reduce this to three instances.)
+For most architectures, this is implemented in MPI with the 
+recursive-doubling algorithm
+\cite{vandevelde}.  Hence the $\mathcal{O}(\log P)$ factor in the complexity.
+
+
+%----------------------------------------------------------------------------
+\subsection{Using Sparse Arrays}
+
+
+For simulations with a large number of species and reactions, one would
+use sparse arrays for b and v.
+Table~\ref{concurrentComplexitySparse} modifies the computational 
+complexity for this case.  The communication costs are unaffected.
+
+
+\begin{table}[h]
+\[
+\begin{array}{|l|l|l|l|l|}
+\hline %---------------------------------------------------------------------
+\text{\bf{Var.}} & 
+\text{\bf{Dist.}} & 
+\text{\bf{Storage}} & 
+\text{\bf{Computation}} & 
+\text{\bf{Communication}} \\
+\hline %---------------------------------------------------------------------
+\text{a} &
+\text{Yes} &
+M / P &
+\mathcal{O}(M) &
+\\
+\hline %---------------------------------------------------------------------
+\text{a0} & 
+\text{No} &
+1 &
+&
+(T_l + T_n) \mathcal{O}(\log P) \\
+\hline %---------------------------------------------------------------------
+\text{b} &
+\text{Yes} &
+\mathcal{O}(M / P) &
+\mathcal{O}(M / P) &
+\\
+\hline %---------------------------------------------------------------------
+v &
+\text{Yes} &
+\mathcal{O}(N + M / P) &
+&
+\\
+\hline %---------------------------------------------------------------------
+\xi &
+\text{No} &
+N &
+\mathcal{O}(N + M / P) T_a &
+(T_l + N T_n) \mathcal{O}(\log P) \\
+\hline %---------------------------------------------------------------------
+\tau & 
+\text{No} &
+1 &
+\mathcal{O}(N + M / P) T_a + M T_c / P &
+(T_l + T_n) \mathcal{O}(\log P) \\
+\hline %---------------------------------------------------------------------
+\text{k} & 
+\text{Yes} &
+M / P &
+M T_p / P&
+\\
+\hline %---------------------------------------------------------------------
+\lambda & 
+\text{No} &
+N &
+\mathcal{O}(N + M / P) T_a &
+(T_l + N T_n) \mathcal{O}(\log P) \\
+\hline %---------------------------------------------------------------------
+\text{x} & 
+\text{No} &
+N &
+N T_a&
+\\
+\hline %---------------------------------------------------------------------
+\end{array}
+\]
+\caption{Computational and communication complexity for one step in the 
+         concurrent algorithm for the basic $\tau$-leap method using 
+         sparse arrays.}
+\label{concurrentComplexitySparse}
+\end{table}
+
+
+Since computing a Poisson random variable is much more expensive than 
+a single arithmetic operation ($T_p \gg T_a$), computing k is now the 
+dominant cost.
+
+
+
+%----------------------------------------------------------------------------
+\subsection{Overlapping Communication and Computation}
+
+
+The pseudo-code in Figure~\ref{concurrent} uses the MPI function 
+Allreduce(), which is a blocking communication.  That is, the function 
+does not return until the communications are complete.  A common practice
+in concurrent computing is using non-blocking communications which allow
+a process to continue computing while the communication is taking place.  
+Unfortunately, this methodology has little to offer for the $\tau$-leap
+method.  One could restructure the algorithm to compute b while 
+communicating a0 and $\xi$.  However, nothing can be done about communicating
+$\tau$ and $\lambda$.  b and $\xi$ are needed to compute $\tau$, while
+$\tau$ is needed to compute k.  k is needed to compute $\lambda$, while 
+$\lambda$ is needed to update x.  Thus there is no opportunity for 
+utilizing non-blocking communications.
+
+
+
+
+
+%----------------------------------------------------------------------------
+\subsection{Performance Prognostications}
+
+
+It is a little dubious to make scalability predictions based on the 
+complexity analysis alone.  Thus the following assesments are definitely 
+not guaranteed.  First assume that $N$ and $M$ are fairly small.  
+Then the communication
+cost is dominated by the latency, i.e. $T_l \gg N T_n$.  By comparing
+the costs of computation and communication, we expect good scalability
+when $N M T_a / T_l \gtrapprox P \log P$  Since the communication latency will 
+be much greater than $T_a$, the condition is probably not satisfied for any
+$P > 1$.  Therefore, the concurrent algorithm has little to offer for 
+simulations with small numbers of species and reactions.
+
+
+If the number of species and reactions is large, then one would utilize 
+sparse arrays.  Computing the Poisson random variables is then the dominant
+cost.  The condition for good scalability is
+$M T_p / P \gtrapprox (T_l + N T_n) \log P$. 
+If the number of species is large enough that the latency cost is 
+negligible, then this condition simplifies to
+$M T_p / (N T_n) \gtrapprox P \log P$.  
+Since typically $M > N$ and $T_p > T_n$, 
+the concurrent algorithm shows promise for improving the performance.  
+
+Using the concurrent algorithm offers a modest decrease in the 
+storage requirement per process.  For simulations with large 
+numbers of species and reactions one would utilize sparse arrays and 
+hence need $\mathcal{O}(N + M)$ storage for the sequential algorithm.
+For the concurrent algorithm, this is reduced to $\mathcal{O}(N + M / P)$.
+This would be important only if each process had at least $\mathcal{O}(N)$ 
+storage but did not have $\mathcal{O}(N + M)$ storage.
+
+As a postscript: One would expect near-perfect speed-up on a shared-memory
+multi-computer.  This is because the reduction of the data owned by the 
+different processes is much less costly than with message passing.
+
+
+
+
+%===========================================================================
+\begin{thebibliography}{10}
+
+\bibitem{gillespie}
+Daniel T. Gillespie
+\newblock {\em Approximate accelerated stochastic simulation of chemically reacting systems}. 
+\newblock {\em J. Chemical Physics}, Vol. 115, No. 4, 1716--1733, 2001.
+
+\bibitem{mpi}
+William Gropp, Ewing Lusk, Athony Skjellum
+\newblock {\em Using MPI: Portable Parallel Programming with the Message-Passing Interface}. 
+\newblock {\em The MIT Press}, 1999.
+
+\bibitem{vandevelde}
+Eric F. Van de Velde
+\newblock {\em Concurrent Scientific Computing}. 
+\newblock {\em Springer Verlag}, 1994.
+
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,6 @@
+KDTree.orq ../data/sphere.6.ascii 2 ../data/sphere.queries > KDTree.sphere.query_size.timings
+KDTree.orq ../data/sphere.6.ascii 4 ../data/sphere.queries >> KDTree.sphere.query_size.timings
+KDTree.orq ../data/sphere.6.ascii 8 ../data/sphere.queries >> KDTree.sphere.query_size.timings
+KDTree.orq ../data/sphere.6.ascii 16 ../data/sphere.queries >> KDTree.sphere.query_size.timings
+KDTree.orq ../data/sphere.6.ascii 32 ../data/sphere.queries >> KDTree.sphere.query_size.timings
+KDTree.orq ../data/sphere.6.ascii 64 ../data/sphere.queries >> KDTree.sphere.query_size.timings

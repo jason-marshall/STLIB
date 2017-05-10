@@ -1,0 +1,222 @@
+# -*- Makefile -*-
+
+# This makefile contains definitions and rules that are common to all 
+# makefiles in the source code sub-directories.  This file is included in 
+# makefiles in these directories.  The variable RELATIVE_PATH should be 
+# defined before inclusion, this is the path relative to this location.  
+# If the test code writes output, TEST_OUTPUT can be defined to clean up 
+# those files.
+
+# Add header files and libraries from the home directory.
+CXXINCLUDE += -I$(HOME)/include
+#LINKERFLAGS += -L$(HOME)/lib
+
+
+# Add the location of the stlib.  You may need to edit this value.
+CXXINCLUDE += -I$(RELATIVE_PATH)/../src
+
+# If we are using the boost library.
+ifdef BOOST
+CXXINCLUDE += -I$(RELATIVE_PATH)/../src/third-party/boost/tr1 -I$(RELATIVE_PATH)/../src/third-party
+CXXFLAGS += -DBOOST
+LINKERFLAGS += -DBOOST
+endif
+
+# You probably won't need to edit below here.
+
+# The default compiler.  Override by setting with CXX=...
+CXX = g++
+CXXFLAGS += $(CXXINCLUDE)
+# Activate all debugging code. 
+CXXFLAGS += -DSTLIB_DEBUG
+
+ifeq ($(CXX),g++)
+# Use 64 bit by default.
+ifeq ($(BITS),32)
+CXXFLAGS += -m32
+LINKERFLAGS += -m32
+else
+CXXFLAGS += -m64
+LINKERFLAGS += -m64
+endif
+CXXFLAGS += -g -ansi -pedantic -Wall -Wstrict-aliasing=2
+ifeq ($(OPTIMIZE),yes)
+CXXFLAGS += -O3 -funroll-loops
+endif
+ifeq ($(STRICT_ALIASING),yes)
+# CONTINUE: This breaks some of the code.
+CXXFLAGS += -fstrict-aliasing
+endif
+ifeq ($(OPENMP),yes)
+CXXFLAGS += -fopenmp
+LINKERFLAGS += -lgomp
+endif
+endif
+
+ifeq ($(CXX),g++-4.2)
+#CXXFLAGS += -std=c++09
+ifeq ($(BITS),32)
+CXXFLAGS += -m32
+LINKERFLAGS += -m32
+else
+CXXFLAGS += -m64
+LINKERFLAGS += -m64
+endif
+CXXFLAGS += -g -ansi -pedantic -Wall -Wstrict-aliasing=2
+ifeq ($(OPTIMIZE),yes)
+CXXFLAGS += -O3 -funroll-loops
+endif
+ifeq ($(STRICT_ALIASING),yes)
+# CONTINUE: Does this break some of the code?
+CXXFLAGS += -fstrict-aliasing
+endif
+ifeq ($(OPENMP),yes)
+CXXFLAGS += -fopenmp
+#LINKERFLAGS += -lgomp
+CXXINCLUDE += -I/opt/local/include/gcc42
+endif
+endif
+
+ifeq ($(CXX),g++-dp-4.2)
+ifeq ($(BITS),32)
+CXXFLAGS += -m32
+LINKERFLAGS += -m32
+else
+CXXFLAGS += -m64
+LINKERFLAGS += -m64
+endif
+CXXFLAGS += -g -ansi -pedantic -Wall -Wstrict-aliasing=2
+ifeq ($(OPTIMIZE),yes)
+CXXFLAGS += -O3 -funroll-loops
+endif
+ifeq ($(STRICT_ALIASING),yes)
+# CONTINUE: Does this break some of the code?
+CXXFLAGS += -fstrict-aliasing
+endif
+ifeq ($(OPENMP),yes)
+CXXFLAGS += -fopenmp
+LINKERFLAGS += -lgomp
+CXXINCLUDE += -I/opt/local/include/gcc42
+endif
+endif
+
+ifeq ($(CXX),g++-mp-4.3)
+CXXFLAGS += -std=c++0x
+ifeq ($(BITS),32)
+CXXFLAGS += -m32
+LINKERFLAGS += -m32
+else
+CXXFLAGS += -m64
+LINKERFLAGS += -m64
+endif
+CXXFLAGS += -g -ansi -pedantic -Wall -Wstrict-aliasing=2
+ifeq ($(OPTIMIZE),yes)
+CXXFLAGS += -O3 -funroll-loops
+endif
+ifeq ($(STRICT_ALIASING),yes)
+# CONTINUE: Does this break some of the code?
+CXXFLAGS += -fstrict-aliasing
+endif
+ifeq ($(OPENMP),yes)
+CXXFLAGS += -fopenmp
+#LINKERFLAGS += -lgomp
+#CXXINCLUDE += -I/opt/local/include/gcc42
+endif
+endif
+
+ifeq ($(CXX),icc)
+# CONTINUE: Switch to 64-bit.
+CXXFLAGS += -g -strict_ansi
+ifeq ($(OPTIMIZE),yes)
+CXXFLAGS += -O3 -Zp16 -ip -ansi_alias
+endif
+ifeq ($(OPENMP),yes)
+CXXFLAGS += -openmp
+LINKERFLAGS += -openmp
+endif
+endif
+
+# PGI compiler.
+ifeq ($(CXX),pgCC)
+# CONTINUE: Switch to 64-bit.
+CXXFLAGS += -g
+ifeq ($(OPTIMIZE),yes)
+CXXFLAGS += -O3 -fastsse -Minline
+endif
+ifeq ($(OPENMP),yes)
+CXXFLAGS += -mp
+LINKERFLAGS += -lpgmp -lpgthread
+endif
+endif
+
+# PathScale compiler.
+ifeq ($(CXX),pathCC)
+# CONTINUE: Switch to 64-bit.
+CXXFLAGS += -g -ansi 
+ifeq ($(OPTIMIZE),yes)
+CXXFLAGS += -O3 -INLINE:aggressive=ON -OPT:alias=typed
+endif
+ifeq ($(OPENMP),yes)
+CXXFLAGS += -mp
+LINKERFLAGS += -lopenmp
+endif
+endif
+
+# IBM XL compiler
+ifeq ($(CXX),xlC)
+# CONTINUE: Switch to 64-bit.
+ifeq ($(OPTIMIZE),yes)
+CXXFLAGS += -qcache=auto -O3 -qstrict -qstrict_induction -qinline -qmaxmem=8192 -qansialias -qhot -qunroll=yes
+endif
+endif
+
+
+SOURCES = $(wildcard *.cc)
+DEPENDENCIES = $(SOURCES:.cc=.d)
+TARGETS = $(SOURCES:.cc=.exe)
+TESTS = $(SOURCES:.cc=.run)
+
+.SUFFIXES:
+#.SUFFIXES: .cc .d .o .exe .run
+.SUFFIXES: .cc .d .o .exe
+
+# The default target.  Compile the test code.
+all: $(TARGETS)
+
+clean: 
+	$(RM) *.o *.d *~ core* *.stackdump $(TEST_OUTPUT)
+
+distclean: 
+	$(MAKE) clean 
+	$(RM) $(TARGETS)
+
+again: 
+	$(MAKE) distclean 
+	$(MAKE) 
+
+.DUMMY: run
+run: $(TARGETS)
+	python $(RELATIVE_PATH)/TestRunner.py
+
+# Implicit rules.
+
+.cc.d: 
+	$(CXX) -MM $(CXXFLAGS) $< > $@.$$$$; \
+  sed 's,\($*\)\.o[ :]*,\1.o $@ : ,g' < $@.$$$$ > $@; \
+  $(RM) $@.$$$$
+
+ifneq ($(MAKECMDGOALS),clean)
+ifneq ($(MAKECMDGOALS),distclean)
+-include $(DEPENDENCIES)
+endif
+endif
+
+.cc.o: 
+	$(CXX) $(CXXFLAGS) -c $< 
+
+.o.exe:
+	$(CXX) $(LINKERFLAGS) -o $@ $<
+
+#.exe.run:
+#	@if ./$< >/dev/null; \
+#          then echo "Success with $<"; else echo "Failure with $<"; fi

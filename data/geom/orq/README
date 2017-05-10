@@ -1,0 +1,42 @@
+Execute the command
+	python make_chairs.py
+to make the chair data files:
+chair.01.ascii
+chair.02.ascii
+chair.04.ascii
+chair.08.ascii
+chair.16.ascii
+chair.32.ascii
+chair.64.ascii
+
+It will take a few minutes to finish.  The largest file is 91
+megabytes.  The data files are vertices that lie on the surface of a
+chair.  The file format is for a triangle mesh surface:
+
+<number of vertices>
+<number of triangle faces>
+<x coordinate> <y coordinate> <z coordinate>
+...
+<x coordinate> <y coordinate> <z coordinate>
+<vertex index> <vertex index> <vertex index> 
+...
+<vertex index> <vertex index> <vertex index> 
+
+There is only vertex information in the file, so the number of faces 
+is zero.
+
+
+Execute the command
+	python make_uniform_random.py
+to make the files containing uniform randomly distributed points.  They 
+contain from 10^2 to 10^7 points.
+uniform_random.2.ascii
+uniform_random.3.ascii
+uniform_random.4.ascii
+uniform_random.5.ascii
+uniform_random.6.ascii
+uniform_random.7.ascii
+
+It will take a few minutes to finish.  The largest file is 270
+megabytes.
+

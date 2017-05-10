@@ -1,0 +1,12 @@
+When releasing code, write news items for SBML.org and FreshMeat.
+
+When installing EPD 6.0.0 on Windows I had to select "Install only for
+me" instead of "Install for all users."
+
+I had to make the file .matplotlib/matplotlibrc to use the wx backend
+for matplotlib.
+
+Old:
+
+I installed ipython on Mac OS X with:
+easy_install ipython

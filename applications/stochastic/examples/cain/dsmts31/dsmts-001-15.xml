@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cain version="1.5">
+  <listOfModels>
+    <model id="BirthDeath15" name="Birth-death model (001), variant 01">
+      <listOfParameters>
+        <parameter expression="0.11" id="Mu"/>
+        <parameter expression="0.1" id="Lambda"/>
+      </listOfParameters>
+      <listOfCompartments>
+        <compartment expression="1" id="Cell"/>
+      </listOfCompartments>
+      <listOfSpecies>
+        <species compartment="Cell" initialAmount="100" id="X"/>
+      </listOfSpecies>
+      <listOfReactions>
+        <reaction propensity="Lambda*(X/2)/0.5" massAction="false" id="Birth">
+          <listOfReactants>
+            <speciesReference species="X"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference stoichiometry="2" species="X"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="Mu*X" massAction="false" id="Death">
+          <listOfReactants>
+            <speciesReference species="X"/>
+          </listOfReactants>
+        </reaction>
+      </listOfReactions>
+    </model>
+  </listOfModels>
+  <listOfMethods>
+    <method equilibrationTime="0.0" startTime="0.0" recordingTime="50.0" id="Reference" category="5" numberOfBins="32" multiplicity="4" method="0" timeDependence="0" numberOfFrames="51" options="0"/>
+    <method equilibrationTime="0.0" startTime="0.0" recordingTime="50.0" id="TimeSeries" category="0" numberOfBins="32" multiplicity="4" method="0" timeDependence="0" numberOfFrames="51" options="0"/>
+  </listOfMethods>
+  <listOfOutput>
+    <statisticsFrames model="BirthDeath15" method="Reference">
+      <frameTimes>
+        0.0 1.0 2.0 3.0 4.0 5.0 6.0 7.0 8.0 9.0 10.0 11.0 12.0 13.0 14.0 15.0 16.0 17.0 18.0 19.0 20.0 21.0 22.0 23.0 24.0 25.0 26.0 27.0 28.0 29.0 30.0 31.0 32.0 33.0 34.0 35.0 36.0 37.0 38.0 39.0 40.0 41.0 42.0 43.0 44.0 45.0 46.0 47.0 48.0 49.0 50.0
+      </frameTimes>
+      <recordedSpecies>
+        0
+      </recordedSpecies>
+      <statistics>
+        100.0 0.0 99.004980000000003 4.5483399999999996 98.019869999999997 6.3843100000000002 97.044550000000001 7.7608100000000002 96.078940000000003 8.8945799999999995 95.12294 9.8703199999999995 94.176450000000003 10.73185 93.239379999999997 11.505420000000001 92.311629999999994 12.20829 91.393119999999996 12.852550000000001 90.483739999999997 13.44708 89.583410000000001 13.99865 88.692040000000006 14.512560000000001 87.809539999999998 14.993069999999999 86.935820000000007 15.44365 86.070800000000006 15.86721 85.214380000000006 16.266190000000002 84.366479999999996 16.642669999999999 83.527019999999993 16.998449999999998 82.695909999999998 17.335090000000001 81.873080000000002 17.653970000000001 81.058419999999998 17.956299999999999 80.25188 18.24316 79.453360000000004 18.515529999999998 78.662790000000001 18.774270000000001 77.880080000000007 19.02018 77.105159999999998 19.253969999999999 76.337950000000006 19.476279999999999 75.578370000000007 19.687729999999998 74.826359999999994 19.888860000000001 74.081819999999993 20.080179999999999 73.344700000000003 20.262160000000002 72.614900000000006 20.43524 71.89237 20.599810000000002 71.177030000000002 20.756250000000001 70.468810000000005 20.90493 69.767629999999997 21.046150000000001 69.073430000000002 21.180250000000001 68.386139999999997 21.307500000000001 67.705690000000004 21.428180000000001 67.031999999999996 21.542549999999999 66.365030000000004 21.650849999999998 65.704679999999996 21.753299999999999 65.050910000000002 21.85014 64.403639999999996 21.941569999999999 63.762819999999998 22.02777 63.128360000000001 22.10895 62.500230000000002 22.185269999999999 61.878340000000001 22.256910000000001 61.262639999999998 22.32403 60.65307 22.386769999999999
+      </statistics>
+    </statisticsFrames>
+  </listOfOutput>
+  <random seed="2147483648">
+  </random>
+</cain>

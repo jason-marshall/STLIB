@@ -1,0 +1,13 @@
+Octree.mesh ../data/uniform_random.5.ascii 4 0.01 >> Octree.random.best_leaf_size.timings
+Octree.mesh ../data/uniform_random.5.ascii 4 0.012599 >> Octree.random.best_leaf_size.timings
+Octree.mesh ../data/uniform_random.5.ascii 4 0.01587 >> Octree.random.best_leaf_size.timings
+Octree.mesh ../data/uniform_random.5.ascii 8 0.02 >> Octree.random.best_leaf_size.timings
+Octree.mesh ../data/uniform_random.5.ascii 16 0.025198>> Octree.random.best_leaf_size.timings
+Octree.mesh ../data/uniform_random.5.ascii 16 0.031748 >> Octree.random.best_leaf_size.timings
+Octree.mesh ../data/uniform_random.5.ascii 16 0.04 >> Octree.random.best_leaf_size.timings
+Octree.mesh ../data/uniform_random.5.ascii 16 0.0503968 >> Octree.random.best_leaf_size.timings
+Octree.mesh ../data/uniform_random.5.ascii 16 0.063496 >> Octree.random.best_leaf_size.timings
+Octree.mesh ../data/uniform_random.5.ascii 32 0.08 >> Octree.random.best_leaf_size.timings
+Octree.mesh ../data/uniform_random.5.ascii 32 0.10079 >> Octree.random.best_leaf_size.timings
+Octree.mesh ../data/uniform_random.5.ascii 64 0.12699 >> Octree.random.best_leaf_size.timings
+Octree.mesh ../data/uniform_random.5.ascii 64 0.16 >> Octree.random.best_leaf_size.timings

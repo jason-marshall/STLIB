@@ -1,0 +1,36 @@
+
+<html>
+<head>
+<title>Trigger Events Editor</title>
+</head>
+<body>
+<h1>Trigger Events Editor</h1>
+
+<p align="center">
+<img src="TriggerEventsEditor.png">
+</p>
+
+<p>
+Trigger events fire when the trigger predicate changes value from false
+to true. This predicate is a Python expression that
+may involve species amounts, compartment sizes,
+parameter values, and the time. The triggers for each of these events
+are checked following the firing of any reaction of the execution of
+any event, and also before recording the state at a frame. The following
+are examples of trigger predicates.
+</p>
+
+<pre>
+x &gt; 10
+x &lt;= 5 and t &gt; 10</pre>
+
+<p>
+If the delay is nonzero, then this value indicates the time that will 
+elapse between the triggering and the execution of the event. Leaving this
+field blank indicates a zero delay. The <tt>TT</tt> field stands for 
+Trigger Time. If it is checked, then the assignments will be evaluated
+at the trigger time instead of the execution time.
+</p>
+
+</body>
+</html>

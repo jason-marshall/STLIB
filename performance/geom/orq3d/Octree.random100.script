@@ -1,0 +1,5 @@
+Octree.mesh ../data/uniform_random.3.ascii 16 0.232079 >> Octree.random100.timings
+Octree.mesh ../data/uniform_random.4.ascii 16 0.107722 >> Octree.random100.timings
+Octree.mesh ../data/uniform_random.5.ascii 16 0.05 >> Octree.random100.timings
+Octree.mesh ../data/uniform_random.6.ascii 16 0.0232079 >> Octree.random100.timings
+#Octree.mesh ../data/uniform_random.7.ascii 16 0.0107722 >> Octree.random100.timings

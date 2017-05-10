@@ -1,0 +1,3 @@
+The directory contains programs for making tesselations of spheres of
+unit radius.  "sphere" make triangle face sets.  "tri2index.py"
+converts these to indexed triangle face sets.

@@ -1,0 +1,16 @@
+Grid size = 100 x 100
+Edge weight ratio = 10
+time = 0.016532
+distance[5050] = 274
+Grid size = 200 x 200
+Edge weight ratio = 10
+time = 0.077361
+distance[20100] = 576
+Grid size = 400 x 400
+Edge weight ratio = 10
+time = 0.349166
+distance[80200] = 1117
+Grid size = 800 x 800
+Edge weight ratio = 10
+time = 1.82171
+distance[320400] = 2259

@@ -1,0 +1,93 @@
+# -*- Makefile -*-
+
+# This makefile contains definitions and rules that are common to all 
+# makefiles in "time" sub-directories.  This file is included in makefiles
+# in these directories.  The variables CXXINCLUDE and SOURCES should be 
+# defined before inclusion.
+
+CXX = g++
+CXXFLAGS += $(CXXINCLUDE)
+
+ifeq ($(CXX),g++)
+CXXFLAGS += -O3 -Wall -ansi -pedantic
+#CXXFLAGS += -g -DSTLIB_DEBUG -Wall -ansi -pedantic
+endif
+
+ifeq ($(CXX),icc)
+# Display errors and warning but not remarks.
+CXXFLAGS = -fast -strict_ansi
+endif
+
+
+DEPENDENCIES = $(SOURCES:.cc=.d)
+TARGETS = $(SOURCES:.cc=.exe)
+RUN = $(SOURCES:.cc=.run)
+
+.SUFFIXES:
+.SUFFIXES: .cc .d .o .exe .run
+
+# The default target.  Compile the timing code.
+all: $(TARGETS)
+
+clean: 
+	$(RM) *.o *.d *~ core* *.stackdump
+
+distclean: 
+	$(MAKE) clean 
+	$(RM) $(TARGETS) $(DEPENDENCIES)
+
+again: 
+	$(MAKE) distclean 
+	$(MAKE) 
+
+run: $(RUN)
+
+# Implicit rules.
+
+.cc.d: 
+	$(CXX) -MM $(CXXINCLUDE) $< > $@.$$$$; \
+  sed 's,\($*\)\.o[ :]*,\1.o $@ : ,g' < $@.$$$$ > $@; \
+  $(RM) $@.$$$$
+
+ifneq ($(MAKECMDGOALS),clean)
+ifneq ($(MAKECMDGOALS),distclean)
+-include $(DEPENDENCIES)
+endif
+endif
+
+.cc.o: 
+	$(CXX) $(CXXFLAGS) -c $< 
+
+.o.exe:
+	$(CXX) $(LDFLAGS) -o $@ $<
+
+.exe.run:
+	./$<
+
+#	if ./$< >/dev/null; \
+#          then echo "Success"; else echo "Failure"; fi
+
+# $Log$
+# Revision 1.4  2006/07/26 00:11:09  sean
+# Updated debugging macros.
+#
+# Revision 1.3  2006/07/07 23:08:58  sean
+# Improved portability.
+#
+# Revision 1.2  2006/06/03 21:58:07  sean
+# Minor changes.
+#
+# Revision 1.1.1.1  2005/09/15 20:00:30  sean
+# Original
+#
+# Revision 1.2  2005/06/29 22:45:18  parasim
+# Added commented-out debugging flags.
+#
+# Revision 1.1.1.1  2005/02/01 23:48:48  sean
+# Original import.
+#
+# Revision 1.1  2004/12/02 05:33:55  sean
+# Original.
+#
+
+# End of file.

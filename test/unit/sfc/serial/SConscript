@@ -1,0 +1,30 @@
+# -*- python -*-
+
+import sys
+sys.path.append('../..')
+from env import serial
+
+# Compile.
+sources = Glob('*.cc')
+for source in sources:
+    serial.Program(source)
+
+# Run.
+targets = [str(x).split('.')[0] for x in sources]
+for x in targets:
+    serial.Run(source=x)
+
+Import('errors')
+errors.append(Glob('*.err'))
+
+# Old method with single executable.
+if False:
+    # Compile.
+    sources = Glob('*.cc')
+    for source in sources:
+        serial.Object(source)
+    # Link.
+    target = 'sfc'
+    serial.Program(target, Glob('*.o'))
+    # Run
+    serial.Run(source=target)

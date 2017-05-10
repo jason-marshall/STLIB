@@ -1,0 +1,55 @@
+
+<html>
+<head>
+<title>Cain XML File Format</title>
+</head>
+<body>
+<h1>Cain XML File Format</h1>
+
+<p>
+Cain files store the models, methods, simulation output, and random number
+states. Below is the overall structure of a Cain file. The required elements
+are shown in black; the optional elements are colored grey.
+</p>
+
+<pre>  &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+  &lt;cain version=&quot;Number&quot;&gt;<font color="#777777">
+    &lt;listOfModels&gt;
+      <em>One or more</em> &lt;model&gt; <em>elements.</em>
+    &lt;/listOfModels&gt;
+    &lt;listOfMethods&gt;
+      <em>One or more</em> &lt;method&gt; <em>elements.</em>
+    &lt;/listOfMethods&gt;
+    &lt;listOfOutput&gt;
+      <em>One or more output elements.</em>
+    &lt;/listOfOutput&gt;
+    &lt;random&gt;
+      <em>Zero or more</em> &lt;stateMT19937&gt; <em>elements.</em>
+    &lt;/random&gt;</font>
+  &lt;/cain&gt;</pre>
+
+<p>
+In the next few sections we will describe each of the top-level elements.
+Each element attribute has one of the following formats:
+<ul>
+  <li> An <b>Identifier</b> is a string that starts with an underscore
+  or a letter and is composed entirely of underscores, letters and digits. 
+  See the <a href="UserSpecies.htm">Species Editor</a> section for details.
+  <li> A <b>String</b> is an arbitrary string (sequence of characters). These
+  are used for descriptive names.
+  <li> <b>Boolean</b> is either &quot;true&quot; or &quot;false&quot;.
+  <li> <b>Integer</b> is a 32-bit unsigned integer.
+  <li> <b>Number</b> is a floating-point number.
+  <li> <b>PythonExpression</b> is a Python expression. If you use functions
+  from the math package, don't use the &quot;math.&quot; qualification,
+  i.e. write &quot;floor(exp(5))&quot; instead of
+  &quot;math.floor(math.exp(5))&quot;. 
+  See the discussion of initial amounts in the
+  <a href="UserSpecies.htm">Species Editor</a> section for more information.
+  <li> <b>C++Expression</b> is a C++ expression.
+  See the <a href="UserReactions.htm">Reaction Editor</a> section for details.
+</ul>
+</p>
+
+</body>
+</html>

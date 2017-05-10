@@ -1,0 +1,32 @@
+# -*- python -*-
+
+import sys
+import re
+sys.path.append('..')
+import env
+
+# Compile.
+sources = Glob('*.cc')
+for source in sources:
+    env.serial.Program(source)
+
+Import('useCuda')
+if useCuda:
+    cudaSources = Glob('*.cu')
+    for source in cudaSources:
+        source = str(source)
+        obj = re.sub('.cu', '.o', source)
+        # CONTINUE: Dependencies are not correctly calculated for CUDA files,
+        # so we have to rebuild them every time.
+        #env.cudart.Program([AlwaysBuild(env.cuda.CudaObject(obj, source))])
+        env.cudart.Program([env.cuda.CudaObject(obj, source)])
+else:
+    cudaSources = []
+
+# Run.
+targets = [str(x).split('.')[0] for x in sources + cudaSources]
+for x in targets:
+    env.serial.Run(source=x)
+
+Import('errors')
+errors.append(Glob('*.err'))

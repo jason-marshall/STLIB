@@ -1,0 +1,170 @@
+(************** Content-type: application/mathematica **************
+
+                    Mathematica-Compatible Notebook
+
+This notebook can be used with any Mathematica-compatible
+application, such as Mathematica, MathReader or Publicon. The data
+for the notebook starts with the line containing stars above.
+
+To get the notebook into a Mathematica-compatible application, do
+one of the following:
+
+* Save the data starting with the line of stars above into a file
+  with a name ending in .nb, then open the file inside the
+  application;
+
+* Copy the data starting with the line of stars above to the
+  clipboard, then use the Paste menu command inside the application.
+
+Data for notebooks contains only printable 7-bit ASCII and can be
+sent directly in email or through ftp in text mode.  Newlines can be
+CR, LF or CRLF (Unix, Macintosh or MS-DOS style).
+
+NOTE: If you modify the data for this notebook not in a Mathematica-
+compatible application, you must delete the line below containing
+the word CacheID, otherwise Mathematica-compatible applications may
+try to use invalid cache data.
+
+For more information on notebooks and Mathematica-compatible 
+applications, contact Wolfram Research:
+  web: http://www.wolfram.com
+  email: info@wolfram.com
+  phone: +1-217-398-0700 (U.S.)
+
+Notebook reader applications are available free of charge from 
+Wolfram Research.
+*******************************************************************)
+
+(*CacheID: 232*)
+
+
+(*NotebookFileLineBreakTest
+NotebookFileLineBreakTest*)
+(*NotebookOptionsPosition[      5943,        128]*)
+(*NotebookOutlinePosition[      6593,        151]*)
+(*  CellTagsIndexPosition[      6549,        147]*)
+(*WindowFrame->Normal*)
+
+
+
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["orq_city.nb", "Title"],
+
+Cell["Save as orq_city.eps.", "Text"],
+
+Cell[BoxData[
+    \(\(Show[
+        Graphics3D[
+          Join[\[IndentingNewLine]{\[IndentingNewLine]Cuboid[{1, 2, 3}, {2, 
+                  3, 5}], \[IndentingNewLine]Polygon[{{1, 2, 0}, {2, 2, 
+                    0}, {2, 3, 0}, {1, 3, 
+                    0}}], \[IndentingNewLine]Polygon[{{1, 0, 3}, {2, 0, 
+                    3}, {2, 0, 5}, {1, 0, 
+                    5}}], \[IndentingNewLine]Polygon[{{0, 2, 3}, {0, 3, 
+                    3}, {0, 3, 5}, {0, 2, 5}}], \[IndentingNewLine]Line[{{1, 
+                    2, 0}, {1, 2, 3}}], \[IndentingNewLine]Line[{{2, 2, 
+                    0}, {2, 2, 3}}], \[IndentingNewLine]Line[{{2, 3, 0}, {2, 
+                    3, 3}}], \[IndentingNewLine]Line[{{1, 3, 0}, {1, 3, 
+                    3}}], \[IndentingNewLine]Line[{{1, 0, 3}, {1, 2, 
+                    3}}], \[IndentingNewLine]Line[{{2, 0, 3}, {2, 2, 
+                    3}}], \[IndentingNewLine]Line[{{2, 0, 5}, {2, 2, 
+                    5}}], \[IndentingNewLine]Line[{{1, 0, 5}, {1, 2, 
+                    5}}], \[IndentingNewLine]Line[{{0, 2, 3}, {1, 2, 
+                    3}}], \[IndentingNewLine]Line[{{0, 3, 3}, {1, 3, 
+                    3}}], \[IndentingNewLine]Line[{{0, 3, 5}, {1, 3, 
+                    5}}], \[IndentingNewLine]Line[{{0, 2, 5}, {1, 2, 
+                    5}}]\[IndentingNewLine]}, \[IndentingNewLine]{\
+\[IndentingNewLine]Line[{{0, 0, 0}, {4, 0, 0}, {4, 5, 0}, {0, 5, 0}, {0, 0, 
+                    0}}], \[IndentingNewLine]Line[{{0, 0, 0}, {0, 0, 6}}], 
+              Line[{{4, 0, 0}, {4, 0, 6}}], Line[{{0, 5, 0}, {0, 5, 6}}], 
+              Line[{{4, 5, 0}, {4, 5, 6}}], 
+              Line[{{0, 0, 6}, {4, 0, 6}, {4, 5, 6}, {0, 5, 6}, {0, 0, 
+                    6}}]\[IndentingNewLine]}, \[IndentingNewLine]{\
+\[IndentingNewLine]Text["\<Longitude\>", {2, 5.5, 
+                  6.5}], \[IndentingNewLine]Text["\<Latitude\>", {\(-1\), 
+                  2.5, 6.5}], \[IndentingNewLine]Text["\<Population\>", \
+{\(-1.5\), \(-1\), 3}]\[IndentingNewLine]}, \[IndentingNewLine]{PointSize[
+                0.03]}, \[IndentingNewLine]Table[
+              Point[{4\ Random[], 5  Random[], 
+                  6  Random[]}], \
+{50}]\[IndentingNewLine]]\[IndentingNewLine]], Boxed \[Rule] False, 
+        Axes \[Rule] False, Ticks \[Rule] None, 
+        PlotRange \[Rule] {{0 - 4, 4}, {0, 5}, {0, 6}}];\)\)], "Input"],
+
+Cell["Obsolete.", "Text"],
+
+Cell[BoxData[
+    \(\(Show[
+        Graphics3D[
+          Join[\[IndentingNewLine]{\[IndentingNewLine]Cuboid[{1, 2, 3}, {2, 
+                  3, 5}], \[IndentingNewLine]Polygon[{{1, 2, 0}, {2, 2, 
+                    0}, {2, 3, 0}, {1, 3, 
+                    0}}], \[IndentingNewLine]Polygon[{{1, 0, 3}, {2, 0, 
+                    3}, {2, 0, 5}, {1, 0, 
+                    5}}], \[IndentingNewLine]Polygon[{{0, 2, 3}, {0, 3, 
+                    3}, {0, 3, 5}, {0, 2, 5}}], \[IndentingNewLine]Line[{{1, 
+                    2, 0}, {1, 2, 3}}], \[IndentingNewLine]Line[{{2, 2, 
+                    0}, {2, 2, 3}}], \[IndentingNewLine]Line[{{2, 3, 0}, {2, 
+                    3, 3}}], \[IndentingNewLine]Line[{{1, 3, 0}, {1, 3, 
+                    3}}], \[IndentingNewLine]Line[{{1, 0, 3}, {1, 2, 
+                    3}}], \[IndentingNewLine]Line[{{2, 0, 3}, {2, 2, 
+                    3}}], \[IndentingNewLine]Line[{{2, 0, 5}, {2, 2, 
+                    5}}], \[IndentingNewLine]Line[{{1, 0, 5}, {1, 2, 
+                    5}}], \[IndentingNewLine]Line[{{0, 2, 3}, {1, 2, 
+                    3}}], \[IndentingNewLine]Line[{{0, 3, 3}, {1, 3, 
+                    3}}], \[IndentingNewLine]Line[{{0, 3, 5}, {1, 3, 
+                    5}}], \[IndentingNewLine]Line[{{0, 2, 5}, {1, 2, 
+                    5}}]\[IndentingNewLine]}, \[IndentingNewLine]{PointSize[
+                0.03]}, \[IndentingNewLine]Table[
+              Point[{4\ Random[], 5  Random[], 
+                  6  Random[]}], \
+{50}]\[IndentingNewLine]]\[IndentingNewLine]], Axes \[Rule] True, 
+        AxesLabel \[Rule] {"\<long\>", "\<lat\>", "\<pop\>"}, 
+        Ticks \[Rule] None, 
+        PlotRange \[Rule] {{0, 4}, {0, 5}, {0, 6}}];\)\)], "Input"]
+}, Open  ]]
+},
+FrontEndVersion->"4.1 for X",
+ScreenRectangle->{{0, 1280}, {0, 1024}},
+WindowSize->{651, 779},
+WindowMargins->{{Automatic, 11}, {Automatic, 35}},
+Magnification->1.5
+]
+
+(*******************************************************************
+Cached data follows.  If you edit this Notebook file directly, not
+using Mathematica, you must remove the line containing CacheID at
+the top of  the file.  The cache data will then be recreated when
+you save this file from within Mathematica.
+*******************************************************************)
+
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+
+(*NotebookFileOutline
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[1727, 52, 28, 0, 166, "Title"],
+Cell[1758, 54, 37, 0, 46, "Text"],
+Cell[1798, 56, 2370, 37, 1028, "Input"],
+Cell[4171, 95, 25, 0, 46, "Text"],
+Cell[4199, 97, 1728, 28, 729, "Input"]
+}, Open  ]]
+}
+]
+*)
+
+
+
+(*******************************************************************
+End of Mathematica Notebook file.
+*******************************************************************)
+

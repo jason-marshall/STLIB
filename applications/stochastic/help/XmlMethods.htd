@@ -1,0 +1,74 @@
+<html>
+<head>
+<title>Methods</title>
+</head>
+<body>
+<h1>Methods</h1>
+
+<p>
+A solver is described with four indices which specify: time
+dependence, category, method, and options. The
+mapping from these fourindices to the name of a command line solver is defined
+in <code>state/simulationMethods.py</code>. The <i>time dependence</i>
+indicates whether the solver
+may simulate time homogeneous or time inhomogeneous models.
+Time inhomogeneous models have reaction propensity functions that have
+explicit time dependence. The <i>category</i> indicates what kind of
+output the solver produces. There are seven possibilities:
+<ul>
+  <li> Time series data that is recorded at uniformly-spaced intervals.
+  <li> Time series data that records every reaction event.
+  <li> Time series data for deterministic solvers, which is also recorded
+  at uniformly-spaced intervals.
+  <li> Histograms for recording the transient behavior of the species
+  populations. These record the state at uniformly-spaced intervals in time.
+  <li> Histograms for recording the steady state behavior of the species
+  populations.
+  <li> Statistics for recording the transient behavior of the species
+  populations. These record the mean and standard deviation at
+  uniformly-spaced intervals in time. The two statistics categories
+  are used only for importing externally-generated solutions.
+  <li> Statistics for recording the steady state behavior of the species
+  populations.
+</ul>
+Next is the
+simulation <i>method</i>: direct, next reaction, tau-leaping, etc. Most methods
+have a number of <i>options</i>. For instance, with tau-leaping you may choose
+to use adaptive step size or a fixed step size.
+</p>
+
+<p>
+Below are the attributes for the method element. The identifier as
+well as the indices describing the time dependence, category, method,
+and options and mandatory. The rest of the attributes are optional.
+</p>
+
+<pre>  &lt;method id=&quot;Identifier&quot; timeDependence=&quot;Integer&quot; category=&quot;Integer&quot;
+   method=&quot;Integer&quot; options=&quot;Integer&quot; <font color="#777777">startTime=&quot;Number&quot; equilibrationTime=&quot;Number&quot;
+   recordingTime=&quot;Number&quot; maximumSteps=&quot;Integer&quot; numberOfFrames=&quot;Integer&quot;
+   numberOfBins=&quot;Integer&quot; multiplicity=&quot;Integer&quot; solverParameter=&quot;Number&quot;</font>/&gt;</pre>
+
+<p>
+The starting time is of course when the simulation begins. The
+equilibration time is how long the simulation is advanced before
+recording the solution. The recording time is the length of time that
+the simulation is advanced while recording the solution.
+If a maximum number of steps is specified, then the solver will abort
+if this limit is exceeded.
+For solvers that record data at
+uniformly-spaced intervals, the number of frames defines the frame times.
+For solvers that generate histograms
+one needs to specify the number of bins. The solvers dynamically adjust the
+bin width to maintain this constant number of bins.
+For histogram output one may also specify the histogram
+multiplicity. A higher multiplicity allows one to more accurately
+assess the error in the empirical probablity distributions for the
+species populations. The default multiplicity is four.
+Some solvers require
+a parameter value. For example tau-leaping with an adaptive step size needs
+an error tolerance. Which solvers require a parameter is
+indicated in <code>state/simulationMethods.py</code>.
+</p>
+
+</body>
+</html>

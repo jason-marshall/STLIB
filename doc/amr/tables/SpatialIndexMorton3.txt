@@ -1,0 +1,33 @@
+<table border = "1">
+<tr> <th> Number of levels <th> 4 <th> 8 <th> 12 <th> 16 <th> 20
+<tr> <th> Set
+<td> 31
+<td> 54
+<td> 80
+<td> 117
+<td> 111
+<tr> <th> Parent
+<td> 42
+<td> 65
+<td> 89
+<td> 129
+<td> 117
+<tr> <th> Child
+<td> 43
+<td> 65
+<td> 91
+<td> 128
+<td> 119
+<tr> <th> Next
+<td> 42
+<td> 68
+<td> 84
+<td> 115
+<td> 99
+<tr> <th> Neighbor
+<td> 31
+<td> 54
+<td> 81
+<td> 121
+<td> 108
+</table>

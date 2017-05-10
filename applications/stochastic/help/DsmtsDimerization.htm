@@ -1,0 +1,167 @@
+
+<html>
+<head>
+<title>Dimerization</title>
+</head>
+<body>
+<h1>Dimerization</h1>
+
+<p>
+The dimerisation process has two species <em>P</em> and <em>P2</em>
+with initial amounts of 100 and 0, respectively.
+There are two reactions which both have mass-action kinetics: 
+dimerization <em>2P &rarr; P2</em> and dissociation
+<em>P2 &rarr; 2P</em>, which have rate parameters of
+<em>k1 = 0.001</em> and <em>k2 = 0.01</em>, respectively.
+</p>
+
+<!------------------------------------------------------------------------>
+<h2>dsmts-003-01</h2>
+
+<p>
+Use the open button <img src="fileopen.png">&nbsp; in the tool
+bar to import the file
+<tt>examples/sbml/dsmts31/dsmts-003-01.xml</tt>. The model is imported 
+correctly and the reactions are recognized as having 
+mass-action kinetics.
+Open the file <tt>examples/cain/dsmts31/dsmts-003-01.xml</tt>.
+Below are plots of the mean and standard deviation of the species 
+populations calculated from 10,000 trajectories.
+</p>
+
+<p>
+<img src="DsmtsDimerization01Mean.jpg">
+</p>
+
+<p>
+<img src="DsmtsDimerization01StdDev.jpg">
+</p>
+
+
+
+<!------------------------------------------------------------------------>
+<h2>dsmts-003-02</h2>
+
+<p>
+This model is the same as dsmts-003-01, except that the initial amount
+of <em>P</em> is 1000, and the rate parameters are <em>k1</em>=0.0002
+and <em>k2</em>=0.004.
+</p>
+
+<p>
+<img src="DsmtsDimerization02Mean.jpg">
+</p>
+
+<p>
+<img src="DsmtsDimerization02StdDev.jpg">
+</p>
+
+
+<!------------------------------------------------------------------------>
+<h2>dsmts-003-03</h2>
+
+<p>
+This model is the same as dsmts-003-01, except that there is an event
+at time 25 with the assignments <em>P</em> = 100 and
+<em>P2</em> = 0. Since Cain does
+not import events from SBML files, we need to enter the event in the
+time events editor. We generate 100 trajectories and plot the mean
+and standard deviation of the populations below.
+</p>
+
+<p>
+<img src="DsmtsDimerization03Mean.jpg">
+</p>
+
+<p>
+<img src="DsmtsDimerization03StdDev.jpg">
+</p>
+
+
+<!------------------------------------------------------------------------>
+<h2>dsmts-003-04</h2>
+
+<p>
+This model is the same as dsmts-003-01, except that there is an event
+that is triggered when the amount of P2 exceeds 30. This event
+performs the assignments <em>P</em> = 100 and <em>P2</em> = 0.
+For this model we must add an event in the trigger events editor.
+We generate 100 trajectories and plot the mean
+and standard deviation of the populations below.
+</p>
+
+<p>
+<img src="DsmtsDimerization04Mean.jpg">
+</p>
+
+<p>
+<img src="DsmtsDimerization04StdDev.jpg">
+</p>
+
+<p>
+Because of the trigger events, it is difficult to discern the actual
+behavior of the proces from a plot of the mean and standard deviation of the
+populations. We clear the output and generate 10 trajectories, which
+are plotted below.
+</p>
+
+<p>
+<img src="DsmtsDimerization04Trajectories.jpg">
+</p>
+
+
+<!------------------------------------------------------------------------>
+<h2>dsmts-003-05</h2>
+
+<p>
+This model is the same as dsmts-003-01, except that <em>P</em> has
+been removed from the system using the conservation law
+<em>P = 100 - 2 P2</em>. The reaction propensities are correctly
+imported. However, if you define a method and launch a simulation with
+the compile-and-launch button, you will get the following error:
+&quot;P2 is used in the propensity function for a stochastic model, but
+is not a reactant. Add P2 as both a reactant and a product.&quot;
+</p>
+
+<p>
+The problem is that Cain uses the lists of reactants and products to
+determine under what circumstances it must recompute the reaction
+propensities. The solution is to replace the reaction
+<em>0 &rarr; P2</em> with an equivalent reaction
+<em>P2 &rarr; 2 P2</em>. We generate 10,000 trajectories and plot the
+mean and standard deviation of the populations below.
+</p>
+
+
+<p>
+<img src="DsmtsDimerization05Mean.jpg">
+</p>
+
+<p>
+<img src="DsmtsDimerization05StdDev.jpg">
+</p>
+
+
+<!------------------------------------------------------------------------>
+<h2>dsmts-003-06</h2>
+
+<p>
+This model is the same as dsmts-003-05, except that the rate law
+is written differently. The rate law is imported correctly, but
+we need to change the dimerization reaction to 
+<em>P2 &rarr; 2 P2</em>.
+</p>
+
+
+<!------------------------------------------------------------------------>
+<h2>dsmts-003-07</h2>
+
+<p>
+This model is the same as dsmts-003-06, except that the rate law
+is written differently.
+</p>
+
+
+
+</body>
+</html>

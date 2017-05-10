@@ -1,0 +1,7 @@
+../../CellArray.exe ../../../../../../data/geom/orq/chair.01.ascii 2 2 2 2 >> CellArray.txt
+../../CellArray.exe ../../../../../../data/geom/orq/chair.02.ascii 2 2 2 2 >> CellArray.txt
+../../CellArray.exe ../../../../../../data/geom/orq/chair.04.ascii 2 2 2 2 >> CellArray.txt
+../../CellArray.exe ../../../../../../data/geom/orq/chair.08.ascii 2 2 2 2 >> CellArray.txt
+../../CellArray.exe ../../../../../../data/geom/orq/chair.16.ascii 2 2 2 2 >> CellArray.txt
+#../../CellArray.exe ../../../../../../data/geom/orq/chair.32.ascii 2 2 2 2 >> CellArray.txt
+#../../CellArray.exe ../../../../../../data/geom/orq/chair.64.ascii 2 2 2 2 >> CellArray.txt

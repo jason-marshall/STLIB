@@ -1,0 +1,14 @@
+# -*- python -*-
+
+import sys
+sys.path.append('..')
+from doxygen import doxygen
+
+doxygen.Doxyfile('Doxyfile', ['../main.cfg', 'local.cfg'])
+target = '../html/concurrent/index.html'
+Default([target])
+sources = Glob('../../stlib/concurrent/*.h') \
+          + Glob('../../stlib/concurrent/*/*.h') \
+          + ['../ads/ads.tag', '../container/container.tag']
+doxygen.Doxygen([target, 'concurrent.tag'], ['Doxyfile'] + sources)
+Clean(target, ['../html/concurrent', 'concurrent.tag'])

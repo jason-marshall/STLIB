@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<VTKFile type="ImageData">
+<ImageData WholeExtent="0 0 0 0 0 0" Origin="0 0 0" Spacing="1 1 1">
+<Piece Extent="0 0 0 0 0 0">
+<PointData>
+<DataArray type="Float32" format="ascii">
+1
+
+</DataArray>
+</PointData>
+</Piece>
+</ImageData>
+</VTKFile>

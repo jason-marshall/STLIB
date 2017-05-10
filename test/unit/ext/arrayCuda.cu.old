@@ -1,0 +1,493 @@
+// -*- C++ -*-
+
+#include "ext/array.h"
+#include "cuda/check.h"
+#include "cuda/limits.h"
+
+#include <cassert>
+
+#ifndef __CUDA_ARCH__
+#include <sstream>
+#endif
+
+__device__
+__host__
+std::size_t
+sizeOfArrayFloat3() {
+   return sizeof(std::tr1::array<float, 3>);
+}
+
+__device__
+bool
+aggregate() {
+   std::tr1::array<float, 3> a = {{2, 3, 5}};
+   if (! (a[0] == 2 && a[1] == 3 && a[2] == 5)) {
+      return false;
+   }
+   if (sizeOfArrayFloat3() != 3 * sizeof(float)) {
+      return false;
+   }
+   return true;
+}
+
+
+__global__
+void
+test(bool* result) {
+   bool r = true;
+   r = r && aggregate();
+   *result = r;
+}
+
+
+int
+main() {
+   //---------------------------------------------------------------------------
+   // CUDA
+   {
+      bool result;
+      bool* resultDev;
+      CUDA_CHECK(cudaMalloc((void**)&resultDev, sizeof(bool)));
+      test<<<1, 1>>>(resultDev);
+      CUDA_CHECK(cudaMemcpy(&result, resultDev, sizeof(bool),
+                            cudaMemcpyDeviceToHost));
+      assert(result);
+   }
+   //---------------------------------------------------------------------------
+   // Size.
+#ifndef __CUDA_ARCH__
+   std::cout << "Size of <int,1> = " << sizeof(std::tr1::array<int, 1>)
+             << '\n'
+             << "Size of <int,2> = " << sizeof(std::tr1::array<int, 2>)
+             << '\n'
+             << "Size of <float,3> = " << sizeOfArrayFloat3()
+             << '\n';
+#endif
+   //---------------------------------------------------------------------------
+   // Aggregate initializer.
+   {
+      std::tr1::array<int, 3> a = {{}};
+      assert(a[0] == 0 && a[1] == 0 && a[2] == 0);
+   }
+   {
+      std::tr1::array<int, 3> a = {{0}};
+      assert(a[0] == 0 && a[1] == 0 && a[2] == 0);
+   }
+   {
+      std::tr1::array<int, 3> a = {{2}};
+      assert(a[0] == 2 && a[1] == 0 && a[2] == 0);
+   }
+   {
+      int a[3] = {2};
+      assert(a[0] == 2 && a[1] == 0 && a[2] == 0);
+   }
+   //---------------------------------------------------------------------------
+   // Array Assignment Operators with a Scalar Operand.
+   {
+      std::tr1::array<int, 3> a = {{2, 3, 5}};
+      // +=
+      {
+         std::tr1::array<int, 3> b = a;
+         b += 1;
+         for (std::size_t n = 0; n != b.size(); ++n) {
+            assert(b[n] == a[n] + 1);
+         }
+      }
+      // -=
+      {
+         std::tr1::array<int, 3> b = a;
+         b -= 1;
+         for (std::size_t n = 0; n != b.size(); ++n) {
+            assert(b[n] == a[n] - 1);
+         }
+      }
+      // *=
+      {
+         std::tr1::array<int, 3> b = a;
+         b *= 2;
+         for (std::size_t n = 0; n != b.size(); ++n) {
+            assert(b[n] == a[n] * 2);
+         }
+      }
+      // /=
+      {
+         std::tr1::array<int, 3> b = a;
+         b /= 2;
+         for (std::size_t n = 0; n != b.size(); ++n) {
+            assert(b[n] == a[n] / 2);
+         }
+      }
+      // %=
+      {
+         std::tr1::array<int, 3> b = a;
+         b %= 2;
+         for (std::size_t n = 0; n != b.size(); ++n) {
+            assert(b[n] == a[n] % 2);
+         }
+      }
+      // <<=
+      {
+         std::tr1::array<int, 3> b = a;
+         b <<= 1;
+         for (std::size_t n = 0; n != b.size(); ++n) {
+            assert(b[n] == a[n] << 1);
+         }
+      }
+      // >>=
+      {
+         std::tr1::array<int, 3> b = a;
+         b >>= 1;
+         for (std::size_t n = 0; n != b.size(); ++n) {
+            assert(b[n] == a[n] >> 1);
+         }
+      }
+   }
+
+   //---------------------------------------------------------------------------
+   // Array Assignment Operators with a Array Operand.
+   {
+      std::tr1::array<int, 3> a = {{2, 3, 5}};
+      std::tr1::array<int, 3> b = {{1, 2, 3}};
+      // +=
+      {
+         std::tr1::array<int, 3> c = a;
+         c += b;
+         for (std::size_t n = 0; n != c.size(); ++n) {
+            assert(c[n] == a[n] + b[n]);
+         }
+      }
+      // -=
+      {
+         std::tr1::array<int, 3> c = a;
+         c -= b;
+         for (std::size_t n = 0; n != c.size(); ++n) {
+            assert(c[n] == a[n] - b[n]);
+         }
+      }
+      // *=
+      {
+         std::tr1::array<int, 3> c = a;
+         c *= b;
+         for (std::size_t n = 0; n != c.size(); ++n) {
+            assert(c[n] == a[n] * b[n]);
+         }
+      }
+      // /=
+      {
+         std::tr1::array<int, 3> c = a;
+         c /= b;
+         for (std::size_t n = 0; n != c.size(); ++n) {
+            assert(c[n] == a[n] / b[n]);
+         }
+      }
+      // %=
+      {
+         std::tr1::array<int, 3> c = a;
+         c %= b;
+         for (std::size_t n = 0; n != c.size(); ++n) {
+            assert(c[n] == a[n] % b[n]);
+         }
+      }
+      // <<=
+      {
+         std::tr1::array<int, 3> c = a;
+         c <<= b;
+         for (std::size_t n = 0; n != c.size(); ++n) {
+            assert(c[n] == a[n] << b[n]);
+         }
+      }
+      // >>=
+      {
+         std::tr1::array<int, 3> c = a;
+         c >>= b;
+         for (std::size_t n = 0; n != c.size(); ++n) {
+            assert(c[n] == a[n] >> b[n]);
+         }
+      }
+   }
+
+   //---------------------------------------------------------------------------
+   // Binary Operators
+   {
+      // Array-scalar.
+      {
+         // int, unsigned
+         const std::tr1::array<int, 1> a = {{1}};
+         const unsigned b = 2;
+         std::tr1::array<unsigned, 1> c;
+         c = a + b;
+         assert(c[0] == a[0] + b);
+         c = a - b;
+         assert(c[0] == a[0] - b);
+         c = a * b;
+         assert(c[0] == a[0] * b);
+         c = a / b;
+         assert(c[0] == a[0] / b);
+         c = a % b;
+         assert(c[0] == a[0] % b);
+      }
+      {
+         // int, unsigned
+         const std::tr1::array<int, 1> a = {{1}};
+         const unsigned b = 2;
+         std::tr1::array<int, 1> c;
+         c = ext::convert_array<int>(a + b);
+         assert(c[0] == int(a[0] + b));
+         c = ext::convert_array<int>(a - b);
+         assert(c[0] == int(a[0] - b));
+         c = ext::convert_array<int>(a * b);
+         assert(c[0] == int(a[0] * b));
+         c = ext::convert_array<int>(a / b);
+         assert(c[0] == int(a[0] / b));
+         c = ext::convert_array<int>(a % b);
+         assert(c[0] == int(a[0] % b));
+      }
+      {
+         // int, double
+         const std::tr1::array<int, 1> a = {{1}};
+         const double b = 2;
+         std::tr1::array<double, 1> c;
+         c = a + b;
+         assert(c[0] == a[0] + b);
+         c = a - b;
+         assert(c[0] == a[0] - b);
+         c = a * b;
+         assert(c[0] == a[0] * b);
+         c = a / b;
+         assert(c[0] == a[0] / b);
+      }
+      {
+         // double, int
+         const std::tr1::array<double, 1> a = {{1}};
+         const int b = 2;
+         std::tr1::array<double, 1> c;
+         c = a + b;
+         assert(c[0] == a[0] + b);
+         c = a - b;
+         assert(c[0] == a[0] - b);
+         c = a * b;
+         assert(c[0] == a[0] * b);
+         c = a / b;
+         assert(c[0] == a[0] / b);
+      }
+      // Scalar-array.
+      {
+         // int, unsigned
+         const int a = 2;
+         const std::tr1::array<unsigned, 1> b = {{1}};
+         std::tr1::array<unsigned, 1> c;
+         c = a + b;
+         assert(c[0] == a + b[0]);
+         c = a - b;
+         assert(c[0] == a - b[0]);
+         c = a * b;
+         assert(c[0] == a * b[0]);
+         c = a / b;
+         assert(c[0] == a / b[0]);
+         c = a % b;
+         assert(c[0] == a % b[0]);
+      }
+      // Array-array.
+      {
+         // int, unsigned
+         const std::tr1::array<int, 1> a = {{2}};
+         const std::tr1::array<unsigned, 1> b = {{1}};
+         std::tr1::array<unsigned, 1> c;
+         c = a + b;
+         assert(c[0] == a[0] + b[0]);
+         c = a - b;
+         assert(c[0] == a[0] - b[0]);
+         c = a * b;
+         assert(c[0] == a[0] * b[0]);
+         c = a / b;
+         assert(c[0] == a[0] / b[0]);
+         c = a % b;
+         assert(c[0] == a[0] % b[0]);
+      }
+
+#if 0
+      char c;
+      unsigned char h;
+      signed char a;
+      int i;
+      unsigned j;
+      long l;
+      unsigned long m;
+      std::cout
+            << "char = " << typeid(char).name() << '\n'
+      << "signed char = " << typeid(signed char).name() << '\n'
+      << "unsigned char = " << typeid(unsigned char).name() << '\n'
+      << "short = " << typeid(short).name() << '\n'
+      << "unsigned short = " << typeid(unsigned short).name() << '\n'
+      << "int = " << typeid(int).name() << '\n'
+      << "unsigned int = " << typeid(unsigned int).name() << '\n'
+      << "long = " << typeid(long).name() << '\n'
+      << "unsigned long = " << typeid(unsigned long).name() << '\n'
+      << "float = " << typeid(float).name() << '\n'
+      << "double = " << typeid(double).name() << '\n' << '\n'
+
+      << typeid(c).name() << "+" << typeid(h).name() << "="
+      << typeid(c + h).name() << '\n'
+      << typeid(c).name() << "+" << typeid(a).name() << "="
+      << typeid(c + a).name() << '\n'
+      << typeid(h).name() << "+" << typeid(a).name() << "="
+      << typeid(h + a).name() << '\n'
+
+      << typeid(i).name() << "+" << typeid(i).name() << "="
+      << typeid(i + i).name() << '\n'
+      << typeid(i).name() << "+" << typeid(j).name() << "="
+      << typeid(i + j).name() << '\n'
+      << typeid(i).name() << "+" << typeid(l).name() << "="
+      << typeid(i + l).name() << '\n'
+      << typeid(i).name() << "+" << typeid(m).name() << "="
+      << typeid(i + m).name() << '\n';
+#endif
+   }
+
+   //---------------------------------------------------------------------------
+   // File I/O.
+#ifndef __CUDA_ARCH__
+   {
+      std::tr1::array<int, 3> a = {{2, 3, 5}};
+      std::ostringstream out;
+      out << a;
+      std::tr1::array<int, 3> b;
+      std::istringstream in(out.str());
+      in >> b;
+      assert(a == b);
+   }
+   {
+      std::tr1::array<int, 3> a = {{2, 3, 5}};
+      std::ostringstream out;
+      write(a, out);
+      std::tr1::array<int, 3> b;
+      std::istringstream in(out.str());
+      read(&b, in);
+      assert(a == b);
+   }
+#endif
+
+   //---------------------------------------------------------------------------
+   // Make an array.
+   {
+      // ext::convert_array
+      {
+         std::tr1::array<char, 1> x = {{2}};
+         std::tr1::array<int, 1> y = {{2}};
+         assert(ext::convert_array<int>(x) == y);
+      }
+      {
+         std::tr1::array<char, 1> x = {{2}};
+         std::tr1::array<char, 1> y = {{2}};
+         assert(ext::convert_array<char>(x) == y);
+      }
+
+      // filled_array
+      {
+         std::tr1::array<int, 1> x = {{2}};
+         assert((ext::filled_array<std::tr1::array<int, 1> >(2) == x));
+      }
+      {
+         std::tr1::array<int, 2> x = {{2, 2}};
+         assert((ext::filled_array<std::tr1::array<int, 2> >(2) == x));
+      }
+      {
+         std::tr1::array<int, 3> x = {{2, 2, 2}};
+         assert((ext::filled_array<std::tr1::array<int, 3> >(2) == x));
+      }
+
+      // copy_array
+      {
+         int data[] = {2};
+         std::tr1::array<int, 1> x = {{2}};
+         assert((ext::copy_array<std::tr1::array<int, 1> >(data) == x));
+      }
+      {
+         int data[] = {2, 3};
+         std::tr1::array<int, 2> x = {{2, 3}};
+         assert((ext::copy_array<std::tr1::array<int, 2> >(data) == x));
+      }
+      {
+         int data[] = {2, 3, 5};
+         std::tr1::array<int, 3> x = {{2, 3, 5}};
+         assert((ext::copy_array<std::tr1::array<int, 3> >(data) == x));
+      }
+
+      // make_array
+      {
+         std::tr1::array<int, 1> x = {{2}};
+         assert(ext::make_array(2) == x);
+      }
+      {
+         std::tr1::array<int, 2> x = {{2, 3}};
+         assert(ext::make_array(2, 3) == x);
+      }
+      {
+         std::tr1::array<int, 3> x = {{2, 3, 5}};
+         assert(ext::make_array(2, 3, 5) == x);
+      }
+      {
+         std::tr1::array<int, 4> x = {{2, 3, 5, 7}};
+         assert(ext::make_array(2, 3, 5, 7) == x);
+      }
+   }
+
+   //---------------------------------------------------------------------------
+   // Array Mathematical Functions
+   {
+      const std::tr1::array<int, 3> a = {{2, 3, 5}};
+      assert(sum(a) == 10);
+      assert(product(a) == 30);
+      assert(min(a) == 2);
+      assert(max(a) == 5);
+      const std::tr1::array<int, 3> b = {{7, 11 , 13}};
+      assert(min(a, b) == a);
+      assert(max(a, b) == b);
+      assert(dot(a, b) == 112);
+      {
+         const std::tr1::array<int, 3> r = {{ -16, 9, 1}};
+         assert(cross(a, b) == r);
+      }
+      {
+         std::tr1::array<int, 3> c;
+         cross(a, b, &c);
+         const std::tr1::array<int, 3> r = {{ -16, 9, 1}};
+         assert(c == r);
+      }
+      const std::tr1::array<int, 3> c = {{17, 19, 23}};
+      assert(tripleProduct(a, b, c) == -78);
+   }
+   {
+      const std::tr1::array<int, 2> a = {{2, 3}};
+      const std::tr1::array<int, 2> b = {{5, 7}};
+      assert(discriminant(a, b) == 2 * 7 - 3 * 5);
+   }
+   {
+      std::tr1::array<double, 2> a = {{3, 4}};
+      assert(squaredMagnitude(a) == 25.);
+      assert(std::abs(magnitude(a) - 5.) <
+             5. * std::numeric_limits<double>::epsilon());
+      normalize(&a);
+      assert(std::abs(magnitude(a) - 1.) <
+      std::numeric_limits<double>::epsilon());
+   }
+   {
+      std::tr1::array<double, 2> a = {{1., -1.}};
+      negateElements(&a);
+      assert(a == ext::make_array(-1., 1.));
+   }
+   {
+      std::tr1::array<bool, 2> a = {{false, true}};
+      negateElements(&a);
+      assert(a == ext::make_array(true, false));
+   }
+   {
+      const std::tr1::array<double, 2> a = {{1, 2}};
+      const std::tr1::array<double, 2> b = {{4, 6}};
+      assert(squaredDistance(a, b) == 25.);
+      assert(std::abs(euclideanDistance(a, b) - 5.) <
+      5. * std::numeric_limits<double>::epsilon());
+   }
+
+   return 0;
+}

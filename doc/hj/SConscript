@@ -1,0 +1,15 @@
+# -*- python -*-
+
+import sys
+sys.path.append('..')
+from doxygen import doxygen
+
+doxygen.Doxyfile('Doxyfile', ['../main.cfg', 'local.cfg'])
+target = '../html/hj/index.html'
+Default([target])
+sources = Glob('../../stlib/hj/*.h') + Glob('../../examples/hj/*.h') \
+          + Glob('../../performance/hj/*.h') \
+          + ['../ads/ads.tag', '../container/container.tag', '../geom/geom.tag',
+             '../shortest_paths/shortest_paths.tag']
+doxygen.Doxygen([target, 'hj.tag'], ['Doxyfile'] + sources)
+Clean(target, ['../html/hj', 'hj.tag'])

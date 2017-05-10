@@ -1,0 +1,6 @@
+KDTree.mesh ../data/uniform_random.5.ascii 2 0.05 >> KDTree.random.leaf_size.timings
+KDTree.mesh ../data/uniform_random.5.ascii 4 0.05 >> KDTree.random.leaf_size.timings
+KDTree.mesh ../data/uniform_random.5.ascii 8 0.05 >> KDTree.random.leaf_size.timings
+KDTree.mesh ../data/uniform_random.5.ascii 16 0.05 >> KDTree.random.leaf_size.timings
+KDTree.mesh ../data/uniform_random.5.ascii 32 0.05 >> KDTree.random.leaf_size.timings
+KDTree.mesh ../data/uniform_random.5.ascii 64 0.05 >> KDTree.random.leaf_size.timings

@@ -1,0 +1,12 @@
+[seanm@marlin31 mpi]$ mpirun -np 256 mergeSorted 1000
+Meaningless result = 2146319451
+total time = 0.0249245 seconds.
+time per element = 97.3614 nanoseconds.
+[seanm@marlin31 mpi]$ mpirun -np 256 mergeSorted 10000
+Meaningless result = 2147483531
+total time = 0.0556131 seconds.
+time per element = 21.7239 nanoseconds.
+[seanm@marlin31 mpi]$ mpirun -np 256 mergeSorted 100000
+Meaningless result = 2147483531
+total time = 0.391601 seconds.
+time per element = 15.2969 nanoseconds.

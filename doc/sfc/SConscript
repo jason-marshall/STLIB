@@ -1,0 +1,14 @@
+# -*- python -*-
+
+import sys
+sys.path.append('..')
+from doxygen import doxygen
+
+doxygen.Doxyfile('Doxyfile', ['../main.cfg', 'local.cfg'])
+target = '../html/sfc/index.html'
+Default([target])
+sources = Glob('../../stlib/sfc/*.h') + Glob('../../stlib/sfc/*.md') \
+    + ['../ads/ads.tag', '../container/container.tag', '../geom/geom.tag',
+       '../ext/ext.tag', '../numerical/numerical.tag']
+doxygen.Doxygen([target, 'sfc.tag'], ['Doxyfile'] + sources)
+Clean(target, ['../html/sfc', 'sfc.tag'])

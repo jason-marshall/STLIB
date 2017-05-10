@@ -1,0 +1,15 @@
+# -*- python -*-
+
+import sys
+sys.path.append('..')
+from doxygen import doxygen
+
+doxygen.Doxyfile('Doxyfile', ['../main.cfg', 'local.cfg'])
+target = '../html/cpt/index.html'
+Default([target])
+sources = Glob('../../stlib/cpt/*.h') + Glob('../../stlib/cpt/*.ipp') \
+          + Glob('../../examples/cpt/*.cc') \
+          + ['../ads/ads.tag', '../container/container.tag', '../geom/geom.tag',
+             '../ext/ext.tag']
+doxygen.Doxygen([target, 'cpt.tag'], ['Doxyfile'] + sources)
+Clean(target, ['../html/cpt', 'cpt.tag'])

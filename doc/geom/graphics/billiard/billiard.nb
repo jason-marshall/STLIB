@@ -1,0 +1,125 @@
+(* Content-type: application/mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 7.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       145,          7]
+NotebookDataLength[      4268,        116]
+NotebookOptionsPosition[      3779,         96]
+NotebookOutlinePosition[      4138,        112]
+CellTagsIndexPosition[      4095,        109]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+  "SetDirectory", "[", 
+   "\"\<Development/stlib/doxygen/geom/graphics/billiard\>\"", "]"}], 
+  ";"}]], "Input",
+ CellChangeTimes->{{3.448754551215485*^9, 3.448754580289076*^9}, 
+   3.448756955630274*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Graphics3D", "[", 
+   RowBox[{
+    RowBox[{"<<", "\"\<triangles.dat\>\""}], ",", 
+    RowBox[{"Boxed", "\[Rule]", "False"}]}], "]"}], ";"}]], "Input",
+ CellChangeTimes->{{3.44875470900703*^9, 3.448754719464118*^9}, {
+   3.448756772633403*^9, 3.448756776182959*^9}, {3.4487586287145844`*^9, 
+   3.448758632792674*^9}, 3.44875867369775*^9, {3.448991547921771*^9, 
+   3.448991574634931*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Export", "[", 
+   RowBox[{"\"\<EnterpriseTriangles.gif\>\"", ",", "%", ",", 
+    RowBox[{"\"\<TransparentColor\>\"", "\[Rule]", "White"}]}], "]"}], 
+  ";"}]], "Input",
+ CellChangeTimes->{{3.448758648352502*^9, 3.4487586766730556`*^9}, {
+  3.448759265150091*^9, 3.448759267109475*^9}, {3.448759428797722*^9, 
+  3.4487594413551826`*^9}, {3.448760236588614*^9, 3.4487602641874123`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Export", "[", 
+   RowBox[{"\"\<EnterpriseTriangles.jpg\>\"", ",", "%", ",", 
+    RowBox[{"CompressionLevel", "\[Rule]", "0"}], ",", 
+    RowBox[{"ImageSize", "\[Rule]", "2400"}]}], "]"}], ";"}]], "Input",
+ CellChangeTimes->{{3.448758648352502*^9, 3.4487586766730556`*^9}, {
+   3.448759265150091*^9, 3.448759267109475*^9}, {3.448759428797722*^9, 
+   3.4487594413551826`*^9}, {3.448760236588614*^9, 3.4487602641874123`*^9}, {
+   3.448991584240178*^9, 3.448991609769764*^9}, 3.448992837728043*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Graphics3D", "[", 
+   RowBox[{
+    RowBox[{"<<", "\"\<spheres.dat\>\""}], ",", 
+    RowBox[{"Boxed", "\[Rule]", "False"}]}], "]"}], ";"}]], "Input",
+ CellChangeTimes->{{3.44875470900703*^9, 3.448754719464118*^9}, {
+   3.448756772633403*^9, 3.448756776182959*^9}, {3.448758515135365*^9, 
+   3.4487585259966707`*^9}, 3.448758645645172*^9, 3.448758680608851*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Export", "[", 
+   RowBox[{"\"\<EnterpriseSpheres.gif\>\"", ",", "%", ",", 
+    RowBox[{"\"\<TransparentColor\>\"", "\[Rule]", "White"}]}], "]"}], 
+  ";"}]], "Input",
+ CellChangeTimes->{{3.448758648352502*^9, 3.4487586766730556`*^9}, {
+  3.448759265150091*^9, 3.448759267109475*^9}, {3.448759428797722*^9, 
+  3.4487594413551826`*^9}, {3.448760236588614*^9, 3.4487602641874123`*^9}, {
+  3.4487603114851503`*^9, 3.448760315251194*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Export", "[", 
+   RowBox[{"\"\<EnterpriseSpheres.jpg\>\"", ",", "%", ",", 
+    RowBox[{"CompressionLevel", "\[Rule]", "0"}], ",", 
+    RowBox[{"ImageSize", "\[Rule]", "2400"}]}], "]"}], ";"}]], "Input",
+ CellChangeTimes->{{3.448758648352502*^9, 3.4487586766730556`*^9}, {
+  3.448759265150091*^9, 3.448759267109475*^9}, {3.448759428797722*^9, 
+  3.4487594413551826`*^9}, {3.448760236588614*^9, 3.4487602641874123`*^9}, {
+  3.4487603114851503`*^9, 3.448760315251194*^9}, {3.448991629106539*^9, 
+  3.448991640730088*^9}, {3.448991757687821*^9, 3.448991757951448*^9}, {
+  3.44899186322657*^9, 3.448991863600815*^9}, {3.448991895482757*^9, 
+  3.44899190267328*^9}, {3.448992742851543*^9, 3.448992744817178*^9}}]
+},
+WindowSize->{640, 750},
+WindowMargins->{{4, Automatic}, {Automatic, 4}},
+ShowSelection->True,
+FrontEndVersion->"7.0 for Mac OS X x86 (32-bit) (November 10, 2008)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[545, 20, 240, 7, 27, "Input"],
+Cell[788, 29, 423, 9, 27, "Input"],
+Cell[1214, 40, 418, 8, 27, "Input"],
+Cell[1635, 50, 529, 9, 43, "Input"],
+Cell[2167, 61, 394, 8, 27, "Input"],
+Cell[2564, 71, 467, 9, 27, "Input"],
+Cell[3034, 82, 741, 12, 27, "Input"]
+}
+]
+*)
+
+(* End of internal cache information *)

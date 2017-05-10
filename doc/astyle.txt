@@ -1,0 +1,36 @@
+# Use two spaces for indented blocks.
+--indent=spaces=2
+
+# Attach brackets to their pre-block statements.
+--brackets=attach
+
+# if (condition) {
+#    ...
+# }
+# else {
+#    ...
+# }
+--break-closing-brackets
+
+# Insert space padding around operators. 
+# Sometimes this mistakes a reference for a bitwise & (example below),
+# but it usually does the correct thing.
+# operator=(const MultiArray & other) {
+# This option is disabled because it puts extra spaces in template
+# declarations. Astyle erroneously interprets "<" as an operator in
+# "template<typename T>" and changes it to "template < typename T >".
+#--pad-oper
+
+# Remove extra space padding around parentheses on the inside and outside.
+--unpad-paren
+
+# Insert space padding after paren headers only (e.g. 'if', 'for',
+# 'while'...).
+--pad-header
+
+# This deletes any spaces between * or & and its type, although it doesn't
+# fix lines like this one: std::vector<Coord> * derivatives
+--align-pointer=type
+
+# Don't save a copy of the original file.
+--suffix=none

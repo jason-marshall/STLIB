@@ -1,0 +1,126 @@
+<html>
+<head>
+<title>Tables</title>
+</head>
+<body>
+<h1>Tables</h1>
+
+<p>
+Open the file <tt>examples/cain/CaoPetzold2006_Schlogl.xml</tt> and
+select the &quot;Schlogl&quot; model and the &quot;Time Series&quot;
+method. Select all of the species and reactions in the recorder panel
+and then generate 10 trajectories. As we saw in the previous section,
+the steady state distribution of species populations is
+bi-modal. Below we reproduce a plot of the trajectories.
+</p>
+
+<p align="center">
+<img src="VisualizationTablesSchloglTimeSeriesPlot.jpg">
+</p>
+
+<p>
+We can view the populations or reaction counts in a table. Click on
+the table button <img src="x-office-spreadsheet.png">&nbsp; to bring
+up a choice dialog shown below.
+</p>
+
+<p align="center">
+<img src="VisualizationTablesSchloglTimeSeriesTableChoice.jpg">
+</p>
+
+<p>
+Choosing to display a table with species populations will bring up
+another choice dialog (shown below) where we can select the
+information to display. 
+</p>
+
+<p align="center">
+<img src="VisualizationTablesSchloglTimeSeriesTableSpeciesChoice.jpg">
+</p>
+
+<p>
+We select the &quot;Statistics for all frames&quot; option. This table
+is shown below. The row headers number the frames. The columns show
+the time, population mean, and population standard deviation. Because
+the populations develop into a bi-modal distribution, the standard
+deviation becomes relatively large as time advances.
+</p>
+
+<p align="center">
+<img src="VisualizationTablesSchloglTimeSeriesTableSpeciesStatistics.jpg">
+</p>
+
+<p>
+Now we will quantitatively study how the trajectories separate into
+a bi-modal distribution.
+Select the &quot;Histograms Transient&quot; method, which records
+the populations in histograms
+at 6 frames, and generate 10,000 trajectories. The plot from the
+previous section, which shows the probability distributions at each of
+frames (excluding the initial condition), is reproduced below.
+</p>
+
+<p align="center">
+<!--Saved as PNG. Reduced from 8 to 6 inches and saved as JPG.-->
+<img src="VisualizationPlottingHistogramsSchloglNonzero.jpg">
+</p>
+
+<p>
+We can also view the histogram information in a table. With the
+histogram output selected in the simulation output panel, click on the 
+table button <img src="x-office-spreadsheet.png">&nbsp; to bring
+up the following choice dialog. 
+</p>
+
+<p align="center">
+<img src="VisualizationTablesSchloglHistogramsTransientTableChoice.jpg">
+</p>
+
+<p>
+First we display the estimated error in the probability distributions.
+The estimated error in the first histogram is zero. This is because
+the first histogram is recorded at time <i>t = 0</i> where the initial
+condition fixes the population at <i>X = 250</i>. The rest of the
+distributions have reasonably low errors. This indicates that 10,000
+trajectories is adequate for our choice of histograms with 32 bins. (If
+we desired higher resolution histograms we would need to generate a
+greater number of trajectories.)
+</p>
+
+<p align="center">
+<img src="VisualizationTablesSchloglHistogramsTransientError.jpg">
+</p>
+
+<p>
+Next we display the mean and standard deviation of the species
+population. For this system these statistics are not particularly
+useful because the distribution is bi-modal.
+</p>
+
+<p align="center">
+<img src="VisualizationTablesSchloglHistogramsTransientMean.jpg">
+</p>
+
+<p>
+Finally we choose to display the histogram bin values. This brings up
+the following dialog to choose a species and frame.
+</p>
+
+<p align="center">
+<img src="VisualizationTablesSchloglHistogramsTransientBinsChoice.jpg">
+</p>
+
+<p>
+We choose the final frame <i>t = 10</i>, which is shown below.
+The bin width for the histogram is 32. From the table below we see
+that the mode of the lower part of the distribution is the bin [64..96) and
+the mode of the upper part is the bin [544..576).
+</p>
+
+<p align="center">
+<img src="VisualizationTablesSchloglHistogramsTransientBins.jpg">
+</p>
+
+
+</body>
+</html>

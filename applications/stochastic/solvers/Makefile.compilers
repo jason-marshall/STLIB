@@ -1,0 +1,150 @@
+# -*- Makefile -*-
+
+# This makefile contains compiler-specific definitions.
+
+#CXXFLAGS += -pg
+#LINKERFLAGS += -pg
+
+CXX = g++
+CXXFLAGS += $(CXXINCLUDE)
+
+# Architecture.
+ifdef UNIVERSAL
+CXXFLAGS += -arch i386 -arch x86_64
+endif
+
+ifeq ($(CXX),g++)
+# 32 or 64-bit.
+ifeq ($(BITS),32)
+CXXFLAGS += -m32
+LINKERFLAGS += -m32
+endif
+ifeq ($(BITS),64)
+CXXFLAGS += -m64
+LINKERFLAGS += -m64
+endif
+ifdef DEBUG
+CXXFLAGS += -g -DSTLIB_DEBUG
+else
+# Optimization
+# No difference
+#CXXFLAGS += -fno-rtti
+# Not as fast as the full list.
+#CXXFLAGS += -fast
+# Little difference.
+#CXXFLAGS += -freorder-blocks -fsched-interblock
+# Improves performance by 3 or 4%. Should I use it?
+#CXXFLAGS += -ffast-math
+# Increase the inline limit from 600 to 6000.
+CXXFLAGS += -finline-limit=6000
+#CXXFLAGS += -finline-limit=100
+CXXFLAGS += -O3 -funroll-loops -fstrict-aliasing -Wstrict-aliasing
+#CXXFLAGS += -O1 -fno-inline -funroll-loops -fstrict-aliasing -Wstrict-aliasing
+#CXXFLAGS += -O3 -fno-inline -funroll-loops -fstrict-aliasing
+#CXXFLAGS += -O3 -march=prescott -mtune=prescott -mfpmath=sse -msse3
+#CXXFLAGS += -fast
+endif
+# Language.
+CXXFLAGS += -ansi -Wall
+# Commented out for Eigen.
+#CXXFLAGS += -pedantic
+endif
+
+ifeq ($(CXX),g++-4.2)
+# 32 or 64-bit.
+ifeq ($(BITS),32)
+CXXFLAGS += -m32
+LINKERFLAGS += -m32
+endif
+ifeq ($(BITS),64)
+CXXFLAGS += -m64
+LINKERFLAGS += -m64
+endif
+# Optimization
+CXXFLAGS += -finline-limit=6000
+CXXFLAGS += -O3 -funroll-loops -fstrict-aliasing -Wstrict-aliasing
+# Language.
+CXXFLAGS += -ansi -pedantic -Wall
+ifdef OPENMP
+CXXFLAGS += -fopenmp
+endif
+endif
+
+ifeq ($(CXX),g++-dp-4.2)
+# 32 or 64-bit.
+ifeq ($(BITS),32)
+CXXFLAGS += -m32
+LINKERFLAGS += -m32
+endif
+ifeq ($(BITS),64)
+CXXFLAGS += -m64
+LINKERFLAGS += -m64
+endif
+# Optimization
+CXXFLAGS += -O3 -funroll-loops -fstrict-aliasing
+#CXXFLAGS += -O3 -march=prescott -mtune=prescott -mfpmath=sse -msse3
+# Language.
+CXXFLAGS += -ansi -pedantic -Wall
+ifdef OPENMP
+CXXFLAGS += -fopenmp
+LINKERFLAGS += -lgomp
+CXXINCLUDE += -I/opt/local/include/gcc42
+endif
+endif
+
+ifeq ($(CXX),g++-mp-4.3)
+# 32 or 64-bit.
+ifeq ($(BITS),32)
+CXXFLAGS += -m32
+LINKERFLAGS += -m32
+endif
+ifeq ($(BITS),64)
+CXXFLAGS += -m64
+LINKERFLAGS += -m64
+endif
+# Optimization
+CXXFLAGS += -O3 -funroll-loops -fstrict-aliasing
+# Language.
+CXXFLAGS += -ansi -pedantic -Wall
+ifdef OPENMP
+CXXFLAGS += -fopenmp
+endif
+endif
+
+# IBM XL compiler.
+ifeq ($(CXX),xlC)
+# CONTINUE: Switch to 64-bit.
+# Optimization flags.
+CXXFLAGS += -qcache=auto -O3 -qstrict -qstrict_induction -qinline -qmaxmem=8192 -qansialias -qhot -qunroll=yes
+# I don't use RTTI in the code.
+#CXXFLAGS += -qrtti
+# CONTINUE: Can I detect the architecture?
+# Flags for Datastar.
+#CXXFLAGS += -qarch=pwr4 -qtune=pwr4 
+# Flags for uP.
+#CXXFLAGS += -qarch=pwr5 -qtune=pwr5
+endif
+
+# Intel compiler.
+ifeq ($(CXX),icc)
+# CONTINUE: Switch to 64-bit.
+CXXFLAGS += -O3 -Zp16 -ip -ansi_alias
+CXXFLAGS += -strict_ansi
+endif
+
+# PathScale compiler.
+ifeq ($(CXX),pathCC)
+# CONTINUE: Switch to 64-bit.
+CXXFLAGS += -O3 -INLINE:aggressive=ON -OPT:alias=typed
+CXXFLAGS += -ansi
+endif
+
+# PGI compiler.
+ifeq ($(CXX),pgCC)
+# CONTINUE: Switch to 64-bit.
+CXXFLAGS += -O3 -fastsse -Minline
+ifdef OPENMP
+CXXFLAGS += -mp
+LINKERFLAGS += -lpgmp -lpgthread
+endif
+endif

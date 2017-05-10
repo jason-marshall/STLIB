@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbml xmlns="http://www.sbml.org/sbml/level2" level="2" version="1">
+  <model id="lacOperon" name="lac-Operon model">
+    <listOfUnitDefinitions>
+      <unitDefinition id="substance">
+        <listOfUnits>
+          <unit kind="item" multiplier="1" offset="0"/>
+        </listOfUnits>
+      </unitDefinition>
+    </listOfUnitDefinitions>
+    <listOfCompartments>
+      <compartment id="Cell" size="1e-15"/>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species id="Idna" compartment="Cell" initialAmount="1" hasOnlySubstanceUnits="true"/>
+      <species id="Irna" compartment="Cell" initialAmount="0" hasOnlySubstanceUnits="true"/>
+      <species id="I" compartment="Cell" initialAmount="50" hasOnlySubstanceUnits="true"/>
+      <species id="Op" compartment="Cell" initialAmount="1" hasOnlySubstanceUnits="true"/>
+      <species id="Rnap" compartment="Cell" initialAmount="100" hasOnlySubstanceUnits="true"/>
+      <species id="Rna" compartment="Cell" initialAmount="0" hasOnlySubstanceUnits="true"/>
+      <species id="Z" compartment="Cell" initialAmount="0" hasOnlySubstanceUnits="true"/>
+      <species id="Lactose" compartment="Cell" initialAmount="20" hasOnlySubstanceUnits="true"/>
+      <species id="ILactose" compartment="Cell" initialAmount="0" hasOnlySubstanceUnits="true"/>
+      <species id="IOp" compartment="Cell" initialAmount="0" hasOnlySubstanceUnits="true"/>
+      <species id="RnapOp" compartment="Cell" initialAmount="0" hasOnlySubstanceUnits="true"/>
+    </listOfSpecies>
+    <listOfReactions>
+      <reaction id="InhibitorTranscription" reversible="false">
+        <listOfReactants>
+          <speciesReference species="Idna"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Idna"/>
+          <speciesReference species="Irna"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> c1 </ci>
+              <ci> Idna </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="c1" value="0.02"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id="InhibitorTranslation" reversible="false">
+        <listOfReactants>
+          <speciesReference species="Irna"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Irna"/>
+          <speciesReference species="I"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> c2 </ci>
+              <ci> Irna </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="c2" value="0.1"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id="LactoseInhibitorBinding" reversible="false">
+        <listOfReactants>
+          <speciesReference species="I"/>
+          <speciesReference species="Lactose"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="ILactose"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> c3 </ci>
+              <ci> I </ci>
+              <ci> Lactose </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="c3" value="0.005"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id="LactoseInhibitorDissociation" reversible="false">
+        <listOfReactants>
+          <speciesReference species="ILactose"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="I"/>
+          <speciesReference species="Lactose"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> c4 </ci>
+              <ci> ILactose </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="c4" value="0.1"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id="InhibitorBinding" reversible="false">
+        <listOfReactants>
+          <speciesReference species="I"/>
+          <speciesReference species="Op"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="IOp"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> c5 </ci>
+              <ci> I </ci>
+              <ci> Op </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="c5" value="1"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id="InhibitorDissociation" reversible="false">
+        <listOfReactants>
+          <speciesReference species="IOp"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="I"/>
+          <speciesReference species="Op"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> c6 </ci>
+              <ci> IOp </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="c6" value="0.01"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id="RnapBinding" reversible="false">
+        <listOfReactants>
+          <speciesReference species="Op"/>
+          <speciesReference species="Rnap"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="RnapOp"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> c7 </ci>
+              <ci> Op </ci>
+              <ci> Rnap </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="c7" value="0.1"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id="RnapDissociation" reversible="false">
+        <listOfReactants>
+          <speciesReference species="RnapOp"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Op"/>
+          <speciesReference species="Rnap"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> c8 </ci>
+              <ci> RnapOp </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="c8" value="0.01"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id="Transcription" reversible="false">
+        <listOfReactants>
+          <speciesReference species="RnapOp"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Op"/>
+          <speciesReference species="Rnap"/>
+          <speciesReference species="Rna"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> c9 </ci>
+              <ci> RnapOp </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="c9" value="0.03"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id="Translation" reversible="false">
+        <listOfReactants>
+          <speciesReference species="Rna"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Rna"/>
+          <speciesReference species="Z"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> c10 </ci>
+              <ci> Rna </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="c10" value="0.1"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id="Conversion" reversible="false">
+        <listOfReactants>
+          <speciesReference species="Lactose"/>
+          <speciesReference species="Z"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Z"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> c11 </ci>
+              <ci> Lactose </ci>
+              <ci> Z </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="c11" value="1e-05"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id="InhibitorRnaDegradation" reversible="false">
+        <listOfReactants>
+          <speciesReference species="Irna"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> c12 </ci>
+              <ci> Irna </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="c12" value="0.01"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id="InhibitorDegradation" reversible="false">
+        <listOfReactants>
+          <speciesReference species="I"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> c13 </ci>
+              <ci> I </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="c13" value="0.002"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id="LactoseInhibitorDegradation" reversible="false">
+        <listOfReactants>
+          <speciesReference species="ILactose"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Lactose"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> c13 </ci>
+              <ci> ILactose </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="c13" value="0.002"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id="RnaDegradation" reversible="false">
+        <listOfReactants>
+          <speciesReference species="Rna"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> c14 </ci>
+              <ci> Rna </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="c14" value="0.01"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id="ZDegradation" reversible="false">
+        <listOfReactants>
+          <speciesReference species="Z"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> c15 </ci>
+              <ci> Z </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="c15" value="0.001"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+    </listOfReactions>
+    <listOfEvents>
+      <event id="Perturbation">
+        <trigger>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <geq/>
+              <csymbol encoding="text" definitionURL="http://www.sbml.org/sbml/symbols/time"> t </csymbol>
+              <cn type="integer"> 20000 </cn>
+            </apply>
+          </math>
+        </trigger>
+        <listOfEventAssignments>
+          <eventAssignment variable="Lactose">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">
+              <apply>
+                <plus/>
+                <ci> Lactose </ci>
+                <cn type="integer"> 10000 </cn>
+              </apply>
+            </math>
+          </eventAssignment>
+        </listOfEventAssignments>
+      </event>
+    </listOfEvents>
+  </model>
+</sbml>
+

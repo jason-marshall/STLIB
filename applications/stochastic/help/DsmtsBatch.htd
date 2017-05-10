@@ -1,0 +1,74 @@
+<html>
+<head>
+<title>Batch Immigration-Death</title>
+</head>
+<body>
+<h1>Batch Immigration-Death</h1>
+
+<!------------------------------------------------------------------------>
+<h2>dsmts-004-01</h2>
+
+<p>
+This model has a single species <em>X</em> and has two reactions with
+mass-action kinetics.
+The batch immigration reaction is <em>0 &rarr; 5 X</em> with rate 
+parameter Alpha = 1. The death reaction is <em>X &rarr; 0</em> with 
+rate parameter Mu = 0.2.
+Use the open button <img src="fileopen.png">&nbsp; in the tool bar
+to import the file
+<tt>examples/sbml/dsmts31/dsmts-004-01.xml</tt>. The model is imported 
+correctly and the reactions are recognized as having 
+mass-action kinetics. 
+Below is the plot of the mean and standard deviation of the species 
+population calculated from 10,000 trajectories.
+</p>
+
+<p>
+<img src="DsmtsBatch01Mean.jpg">
+</p>
+
+<p>
+<img src="DsmtsBatch01StdDev.jpg">
+</p>
+
+
+<!------------------------------------------------------------------------>
+<h2>dsmts-004-02</h2>
+
+<p>
+This model is the same as dsmts-004-01, except that the immigration 
+reaction is <em>0 &rarr; 10 X</em> and the rate parameter Mu is
+changed to 0.4.
+</p>
+
+<p>
+<img src="DsmtsBatch02Mean.jpg">
+</p>
+
+<p>
+<img src="DsmtsBatch02StdDev.jpg">
+</p>
+
+
+
+<!------------------------------------------------------------------------>
+<h2>dsmts-004-03</h2>
+
+<p>
+This model is the same as dsmts-004-01, except that the immigration 
+reaction is <em>0 &rarr; 100 X</em> and the rate parameter Mu is
+changed to 4.
+</p>
+
+<p>
+<img src="DsmtsBatch03Mean.jpg">
+</p>
+
+<p>
+<img src="DsmtsBatch03StdDev.jpg">
+</p>
+
+
+
+</body>
+</html>

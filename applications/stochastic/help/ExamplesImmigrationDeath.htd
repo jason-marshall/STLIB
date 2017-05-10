@@ -1,0 +1,86 @@
+<html>
+<head>
+<title>Immigration-Death</title>
+</head>
+<body>
+<h1>Immigration-Death</h1>
+
+<p>
+Consider a system with a single species <em>X</em> and two reactions:
+immigration and death. The immigration reaction is 0&rarr;<em>X</em>
+with a unit propensity factor. The death reaction is <em>X</em>&rarr;0
+and has propensity factor 0.1. Since both reactions use mass-action kinetic
+laws, the propensities are 1 and 0.1 <em>X</em>, respectively.
+Open the file <tt>examples/cain/ImmigrationDeath.xml</tt>. Select the
+&quot;ImmigrationDeath&quot; model and the &quot;Direct&quot; method
+and then generate 10 trajectories. Below is a plot of these trajectories.
+</p>
+
+<p align="center">
+<img src="ExamplesImmigrationDeathTimeSeriesDirect.jpg">
+</p>
+
+<p>
+The analogous deterministic process is <em>X</em>' = 1 - 0.1<em>X</em>.
+We numerically solve this equation by selecting &quot;ODE&quot; in the
+list of methods and generating a single trajectory. The solution is
+shown below.
+</p>
+
+<p align="center">
+<img src="ExamplesImmigrationDeathTimeSeriesDeterministic.jpg">
+</p>
+
+<p>
+Note that both the stochastic model and the deterministic model have a
+steady state behavior. For the latter the solution approaches a
+stationary point as time increases. We can determine
+the steady state solution algebraically by setting <em>X</em>'
+to zero and solving
+for <em>X</em>, which yields <em>X</em> = 10.
+</p>
+
+<p>
+The stochastic system does not have the same kind of steady state solution
+as the continuous model. At steady state, there is a probability
+distribution for the population of <em>X</em>.
+To determine this distribution we will record the state in a time
+averaged histogram. First select &quot;ImmigrationDeath10&quot;
+from the model list, for which the initial population has been set to 10.
+Then select &quot;SteadyState&quot; from the list of methods.
+From the simulation parameters in the method editor you can see that
+the system is allowed to equilibrate for 100 seconds and then the
+state is recorded for 10,000 seconds. Generate 10 trajectories and
+then plot the resulting empirical probability distribution using
+the histograms tab of the plot configuration window. The result is
+shown below.
+</p>
+
+<p align="center">
+<img src="ExamplesImmigrationDeathSteadyState.jpg">
+</p>
+
+<p>
+From the plot we can see that the distribution is close to a normal
+distribution and is centered near
+<em>X = 10</em>.  We can obtain statistics on the distribution by
+clicking the table button <img src="x-office-spreadsheet.png">&nbsp;
+and selecting the &quot;Mean and standard deviation&quot; option.
+From this we see that the mean is 9.96 and that the standard deviation
+is 3.20.
+</p>
+
+<p>
+Next one might consider the accuracy of the empirical probability distribution
+for the steady state solution. Since the solution is recorded
+in multiple histograms, we can estimate the error in the combined
+result. Click the table
+button <img src="x-office-spreadsheet.png">&nbsp; and select
+&quot;Estimated error.&quot; The result depends upon the stream of random
+number used, I got an estimated error of 0.0071. This indicates that the
+histogram is fairly accurate and captures the typical behavior of the system.
+We could obtain a more accurate answer by generating more trajectories.
+</p>
+
+</body>
+</html>

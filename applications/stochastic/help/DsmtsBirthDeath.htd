@@ -1,0 +1,498 @@
+<html>
+<head>
+<title>Birth-Death</title>
+</head>
+<body>
+<h1>Birth-Death</h1>
+
+<p>
+The models in this section deal with the birth-death process, which is 
+comprised of the birth reaction <em>X &rarr; 2X</em> and the death
+reaction <em>X &rarr; 0</em>.
+</p>
+
+<!------------------------------------------------------------------------>
+<h2>dsmts-001-01</h2>
+
+<p>
+<b>Importing SBML.</b><br>
+Use the file open button <img src="fileopen.png">&nbsp; in the tool
+bar to import the file
+<tt>examples/sbml/dsmts31/dsmts-001-01.xml</tt>. 
+One other thing to note is that the SBML model does not specify a size
+for the Cell compartment. However, Cain requires that compartments
+have a defined size, so it was given the default, unit size.
+</p>
+
+<p>
+<b>Reference solutions.</b><br>
+Now open the Cain file 
+<tt>examples/cain/dsmts31/dsmts-001-01.xml</tt>. First select 
+<tt>Reference</tt> in the methods list. Note that the output type
+is <tt>Statistics, Transient Behavior</tt>. The methods that store
+only statistics (and not trajectories or histograms) are used for
+storing solutions that have been generated outside of Cain.
+The reference (analytical) solution from the DSMTS has been imported.
+In the simulation output panel, click the plot button to bring up the
+plot configuration window. At the top of this window select the
+&quot;Statistics&quot; tab. In the plot configuration window shown
+below we have specified plotting the mean with the standard
+deviation shown as error bars.
+</p>
+
+<p>
+<img src="DsmtsBirthDeath01StatisticsConfiguration.png">
+</p>
+
+<p>
+The resulting plot of the analytical solution is shown below.
+</p>
+
+<p>
+<img src="DsmtsBirthDeath01Reference.jpg">
+</p>
+
+<p>
+The reference solutions from the DSMTS have been imported in all of
+the examples in this directory. Now we will show how to import such a
+solution. First select <tt>TimeSeries</tt> in the methods list. As we
+will import a solution to compare with it, clone the method with the
+clone button <img src="editcopy.png">. Then rename the clone method
+from &quot;TimeSeries1&quot; to &quot;Ref&quot;. In the method editor
+change the category (the second pull-down list) from
+&quot;Time Series, Uniform&quot; to &quot;Statistics, Transient
+Behavior&quot;. In the launcher panel note that only the import
+button <img src="fileopen.png">&nbsp; is enabled. Click this button
+to import the solution. Select the file <tt>dsmts-001-01.txt</tt>,
+which is a text file that contains the means and standard
+deviations. Each line in the file contains the data for one time frame.
+(You can examine the file with your favorite text editor.) Now the
+result appears in the simulation output panel. You can plot the
+solution, examine it in a table, or use it for analysis of other
+solutions. Since the solution was already imported before, you can
+now delete your output and the method that you created.
+</p>
+
+<p>
+<b>Generating trajectories.</b><br>
+Now select the 
+<tt>TimeSeries</tt> method in the methods list. It uses the direct method
+and records the state at the times [0, 1, ..., 50]. Specify that
+10,000 trajectories should be generated in the launcher panel.
+Then start the simulation by clicking the launch button
+<img src="launch.png">.
+</p>
+
+<p>
+Return to the plot configuration window. (Click the plot button in
+the simulation output panel if you closed it.)
+At the top of the window select the &quot;Time Series&quot; tab.
+Note that the &quot;BithDeath01, TimeSeries&quot; output is selected
+in the pull-down menu. In the radio button groups
+select <tt>Species</tt> and <tt>Mean</tt>.
+Uncheck the <tt>Legend</tt> button since there is only one species. Fill in an 
+appropriate title and axes labels. The resulting configuration window
+is shown below.
+</p>
+
+<p>
+<img src="DsmtsBirthDeath01PlotConfiguration.png">
+</p>
+
+<p>
+Below is the plot of the empirical mean and standard deviation of the species 
+population.
+</p>
+
+<p>
+<img src="DsmtsBirthDeath01MeanStdDev.jpg">
+</p>
+
+
+<p>
+<b>Comparing empirical and reference solutions.</b><br>
+Below we plot the empirical
+and analytical means and standard deviation of the population. The
+empirical solutions are plotted with a dotted line and circles. The
+reference solutions are plotted with a solid line. First we plot
+the empirical solution using the &quot;Time Series&quot; tab of
+the plot configuration window. Then we add the plot of the reference
+solution by using the &quot;Plot&quot; button in the
+&quot;Statistics&quot; tab. (See the
+<a href="VisualizationSignificance.htm">Significance Testing</a>
+section for detailed instructions on how to produce the plots.)
+</p>
+
+<p>
+<img src="DsmtsBirthDeath01MeanEmpiricalReference.jpg">
+</p>
+
+<p>
+<img src="DsmtsBirthDeath01StdDevEmpiricalReference.jpg">
+</p>
+
+<p>
+From the plots above we see that the empirical solution appears to
+agree with the reference solution. Now we use
+<a href="http://en.wikipedia.org/wiki/Student's_t-test">Student's
+t-test</a> to test the null hypotheses that the empirical means are
+equal to the analytical means. The test yields a
+<a href="http://en.wikipedia.org/wiki/P-value">p-value</a> that
+is the probability of obtaining a test statistics that is at least
+as extreme as the observed result, assuming that the null hypothesis
+is true. See the
+<a href="VisualizationSignificance.htm">Significance Testing</a>
+section for more information.
+</p>
+
+<p>
+Click the p-value button <img src="pValue.png">&nbsp; in the
+simulation output panel to open the p-value analysis window shown below.
+In the left column select the &quot;BirthDeath01, TimeSeries&quot;
+output. In the right column select the reference solution. Click the
+&quot;Calculate&quot; button to compute the p-value for all of the
+species and all of the frames. The row headers list the frame times.
+The column headers list the species.
+</p>
+
+<p>
+<img src="DsmtsBirthDeath01PValueAnalysis.png">
+</p>
+
+<p>
+Click the &quot;Plot&quot; button to show a plot of p-value versus
+frame number. We see that the p-values are consistent with a
+correct stochastic simulation method.
+</p>
+
+<p>
+<img src="DsmtsBirthDeath01PValue.jpg">
+</p>
+
+<p>
+<b>Histogram of species population.</b><br>
+Next we will study the distribution of species populations at t = 50.
+Select the <tt>Histogram</tt> method in the methods list panel. Note
+that we record a single frame at the end of the simulation. Launch
+a simulation to generate 10,000 trajectories. Select the 
+<tt>Histograms</tt> tab in the plot configuration window. Select the
+<tt>Filled</tt> field in the table. Uncheck the <tt>Legend</tt> button.
+Fill in an appropriate title and axes labels. The resulting plot 
+configuration window is shown below.
+</p>
+
+<p>
+<img src="DsmtsBirthDeath01HistogramConfiguration.png">
+</p>
+
+<p>
+Below is the distribution of species populations at time t = 50.
+</p>
+
+<p>
+<img src="DsmtsBirthDeath01Histogram.jpg">
+</p>
+
+
+<!------------------------------------------------------------------------>
+<h2>dsmts-001-02</h2>
+
+
+<p>
+This model is the same as the one before, except that the rate parameters
+Lambda and Mu are declared local to the reactions. Cain does not have 
+local parameters, so they are left undefined. After importing 
+<tt>examples/sbml/dsmts31/dsmts-001-02.xml</tt>, one needs to define 
+Lambda and Mu in the parameters editor panel.
+Because of the local parameters, the reactions are not recognized as having 
+mass-action kinetics.
+</p>
+
+<p>
+<img src="DsmtsBirthDeath02CustomReactions.png">
+</p>
+
+<p>
+In order to use the mass-action solvers, we need to edit the reactions
+to reflect this.
+</p>
+
+<p>
+<img src="DsmtsBirthDeath02MassActionReactions.png">
+</p>
+
+<p>
+Open <tt>examples/cain/dsmts31/dsmts-001-02.xml</tt> to see the result.
+</p>
+
+
+<!------------------------------------------------------------------------>
+<h2>dsmts-001-03</h2>
+
+
+<p>
+This model is the same as dsmts-001-01, except that the rate parameters
+Lambda and Mu have values 1 and 1.1, respectively. The population
+decays more rapidly than before.
+</p>
+
+<p>
+<img src="DsmtsBirthDeath03Mean.jpg">
+</p>
+
+<p>
+<img src="DsmtsBirthDeath03StdDev.jpg">
+</p>
+
+<!------------------------------------------------------------------------>
+<h2>dsmts-001-04</h2>
+
+
+<p>
+This model is the same as dsmts-001-01, except that the initial population
+of <em>X</em> is 10. Below are plots of the mean and standard deviation
+of the population. As before, we compare the empirical solution
+using 10,000 trajectories with the analytical solution.
+</p>
+
+<p>
+<img src="DsmtsBirthDeath04Mean.jpg">
+</p>
+
+<p>
+<img src="DsmtsBirthDeath04StdDev.jpg">
+</p>
+
+<p>
+Note that because the population is small, stochastic effects are very
+noticable. Open <tt>examples/cain/dsmts31/dsmts-001-04.xml</tt>
+and select <tt>AllReactions</tt> in the methods list panel.
+This method uses a solver that records every reaction event. 
+(In general, it is only feasible to use such solvers when the total number of
+reaction events is small. This is typically the case when the species 
+populations are small.) Generate 
+five trajectories and plot the result. Below we see that the trajectories
+have quite different behaviors.
+</p>
+
+<p>
+<img src="DsmtsBirthDeath04AllReactions.jpg">
+</p>
+
+
+<!------------------------------------------------------------------------>
+<h2>dsmts-001-05</h2>
+
+<p>
+This model is the same as dsmts-001-01, except that the initial population
+of <em>X</em> is 10,000. Below is a plot of the mean and standard deviation
+of the population. Note that the standard deviation is relatively smaller
+than before. Since the initial population is higher, there are more 
+reaction events in each trajectory. Thus we generated only 1,000 trajectories
+in analyzing the mean population.
+</p>
+
+<p>
+<img src="DsmtsBirthDeath05Mean.jpg">
+</p>
+
+<p>
+<img src="DsmtsBirthDeath05StdDev.jpg">
+</p>
+
+<p>
+Now because the population is larger, stochastic effects are less 
+important. Open <tt>examples/cain/dsmts31/dsmts-001-05.xml</tt>
+and select <tt>TimeSeries</tt> in the methods list panel.
+Generate five trajectories and plot the result. Below we see that
+the trajectories are distinct, but have similar behavior.
+</p>
+
+<p>
+<img src="DsmtsBirthDeath05Trajectories.jpg">
+</p>
+
+
+<!------------------------------------------------------------------------>
+<h2>dsmts-001-06</h2>
+
+<p>
+In this model death reaction <em>X &rarr; 0</em> is replaced by 
+<em>X &rarr;</em> Sink. Sink is declared to be boundary condition, i.e.
+the <tt>boundaryCondition</tt> attribute in the <tt>species</tt> element
+is true. Thus, despite the reaction <em>X &rarr;</em> Sink, the value 
+of Sink remains 0. Cain does not support boundary conditions. So one 
+must either make Sink a parameter, or change the reaction so that 
+the amount of Sink is constant.
+</p>
+
+<p>
+Open <tt>examples/cain/dsmts31/dsmts-001-06.xml</tt>,
+and select <tt>TimeSeries</tt> in the methods list panel.
+Generate a single trajectory and plot the result. Below appears that the
+Sink species has not been plotted. It has been in fact been plotted, but 
+the line coincides with the bottom frame of the plotting window. One may use
+the toolbar in the plotting window to pan or zoom in order to see the Sink
+line.
+</p>
+
+<p>
+<img src="DsmtsBirthDeath06Default.jpg">
+</p>
+
+<p>
+One may also change the axes limits in the plot configuration window.
+Enter &quot;-5&quot; for the lower bound in the 
+<tt>Y axis limits</tt> field. The resulting plot is shown below.
+</p>
+
+<p>
+<img src="DsmtsBirthDeath06Limits.jpg">
+</p>
+
+
+<!------------------------------------------------------------------------>
+<h2>dsmts-001-07</h2>
+
+<p>
+This model is the same as dsmts-001-06, except that Sink is not a boundary
+condition. Now there are two reacting species. We generate 10,000 trajectories
+and plot the mean and standard deviation. The empirical solutions are
+shown with dotted lines and markers. The reference solutions are shown
+with solid lines.
+</p>
+
+<p>
+<img src="DsmtsBirthDeath07Mean.jpg">
+</p>
+
+<p>
+<img src="DsmtsBirthDeath07StdDev.jpg">
+</p>
+
+
+<!------------------------------------------------------------------------>
+<h2>dsmts-001-08</h2>
+
+<p>
+This model is the same as dsmts-001-01, except that the Cell compartment
+has size 1. This has no effect on the simulation results.
+</p>
+
+
+<!------------------------------------------------------------------------>
+<h2>dsmts-001-09</h2>
+
+<p>
+This model is the same as dsmts-001-01, except that the Cell compartment
+has size 2. Again, this has no effect on the simulation results because
+the species amounts are measured in substance units.
+</p>
+
+
+<!------------------------------------------------------------------------>
+<h2>dsmts-001-10</h2>
+
+<p>
+This model is the same as dsmts-001-01, except that the Cell compartment
+has size 1. Also, the species are measured in concentration units, not substance
+units. Ordinarily Cain would not correctly interpret the initial amounts
+because it assumes that they are given in substance units. However, 
+in this case the result is correct because the compartment has unit size.
+</p>
+
+
+<!------------------------------------------------------------------------>
+<h2>dsmts-001-11</h2>
+
+<p>
+This model is the same as dsmts-001-10, except that the Cell compartment
+has size 2. Since the species are measured in concentration units,
+Cain does not correctly calculate the initial amounts. One must enter
+the correct initial amount of 200 for <em>X</em> in the species editor.
+</p>
+
+
+<!------------------------------------------------------------------------>
+<h2>dsmts-001-12</h2>
+
+<p>
+This model is the same as dsmts-001-01, except that the rate law for
+the birth reaction is written <tt>Lambda*X*0.5*2</tt>. Cain recognizes
+this as a mass-action rate law with propensity factor <tt>Lambda</tt>.
+</p>
+
+<!------------------------------------------------------------------------>
+<h2>dsmts-001-13</h2>
+
+<p>
+This model is the same as dsmts-001-01, except that Lambda has the 
+value 0.2 and the rate law for
+the birth reaction is written <tt>Lambda*X*0.5</tt>.
+This is recognized as a mass-action rate law with propensity factor
+<tt>0.5*Lambda</tt>.
+</p>
+
+
+<!------------------------------------------------------------------------>
+<h2>dsmts-001-14</h2>
+
+<p>
+This model is the same as dsmts-001-01, except that the rate law for
+the birth reaction is written <tt>Lambda*X/2/0.5</tt>.
+This is recognized as a mass-action rate law with propensity factor
+<tt>Lambda</tt>.
+</p>
+
+
+<!------------------------------------------------------------------------>
+<h2>dsmts-001-15</h2>
+
+<p>
+This model is the same as dsmts-001-01, except that the rate law for
+the birth reaction is written <tt>Lambda*(X/2)/0.5</tt>.
+This is recognized as a mass-action rate law with propensity factor
+<tt>Lambda</tt>.
+</p>
+
+
+<!------------------------------------------------------------------------>
+<h2>dsmts-001-16</h2>
+
+<p>
+This model is the same as dsmts-001-01, except that the rate law for
+the birth reaction is written <tt>Lambda*X/(2/2)</tt>.
+This is recognized as a mass-action rate law with propensity factor
+<tt>Lambda</tt>.
+</p>
+
+
+<!------------------------------------------------------------------------>
+<h2>dsmts-001-17</h2>
+
+<p>
+This model is the same as dsmts-001-08, except that the unit compartment
+volume is explicitly included in the rate laws. One may use
+compartment sizes in the same way that one uses parameter values.
+</p>
+
+
+<!------------------------------------------------------------------------>
+<h2>dsmts-001-18</h2>
+
+<p>
+This model is the same as dsmts-001-17, except that the compartment
+volume is 0.5.
+</p>
+
+<!------------------------------------------------------------------------>
+<h2>dsmts-001-19</h2>
+
+<p>
+This model is the same as dsmts-001-01, except that there is an assignment
+rule that defines a new species <em>y = 2 X</em>. Cain does not support
+assignment rules.
+</p>
+
+</body>
+</html>

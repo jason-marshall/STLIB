@@ -1,0 +1,6 @@
+Octree.mesh ../data/uniform_random.5.ascii 2 0.05 >> Octree.random.leaf_size.timings
+Octree.mesh ../data/uniform_random.5.ascii 4 0.05 >> Octree.random.leaf_size.timings
+Octree.mesh ../data/uniform_random.5.ascii 8 0.05 >> Octree.random.leaf_size.timings
+Octree.mesh ../data/uniform_random.5.ascii 16 0.05 >> Octree.random.leaf_size.timings
+Octree.mesh ../data/uniform_random.5.ascii 32 0.05 >> Octree.random.leaf_size.timings
+Octree.mesh ../data/uniform_random.5.ascii 64 0.05 >> Octree.random.leaf_size.timings

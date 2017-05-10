@@ -1,0 +1,5 @@
+../time/GraphDijkstra.dense 100 10 > ../results/GraphDijkstra.dense.10
+../time/GraphDijkstra.dense 200 10 >> ../results/GraphDijkstra.dense.10
+../time/GraphDijkstra.dense 400 10 >> ../results/GraphDijkstra.dense.10
+../time/GraphDijkstra.dense 800 10 >> ../results/GraphDijkstra.dense.10
+../time/GraphDijkstra.dense 1600 10 >> ../results/GraphDijkstra.dense.10

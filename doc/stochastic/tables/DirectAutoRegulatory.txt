@@ -1,0 +1,82 @@
+<table border = "1" rules = "all">
+<tr> <th> Species <th>  <th> 5 <th> 50 <th> 500 <th> 5,000 <th> 50,000 
+<tr> <th> Reactions <th>  <th> 8 <th> 80 <th> 800 <th> 8,000 <th> 80,000 
+<tr> <th> Algorithm <th> Option <th> <th> <th> <th> <th>
+<tr bgcolor="#CFFFFF"> <th rowspan="4"> Linear Search
+<td> Delayed update
+<td> 101
+<td> 264
+<td> 1859
+<td> 17145
+<td> 168455
+<tr bgcolor="#CFFFFF">
+<td> Immediate update
+<td> 109
+<td> 163
+<td> 780
+<td> 6572
+<td> 63113
+<tr bgcolor="#CFFFFF">
+<td> Complete sort
+<td> 107
+<td> 197
+<td> 976
+<td> 7443
+<td> 22862
+<tr bgcolor="#CFFFFF">
+<td> Bubble sort
+<td> 110
+<td> 205
+<td> 1001
+<td> 7420
+<td> 25872
+<tr bgcolor="#CFCFFF"> <th rowspan="3"> 2-D Search
+<td> Default
+<td> 122
+<td> 146
+<td> 226
+<td> 359
+<td> 1312
+<tr bgcolor="#CFCFFF">
+<td> Complete sort
+<td> 115
+<td> 148
+<td> 247
+<td> 402
+<td> 1566
+<tr bgcolor="#CFCFFF">
+<td> Bubble sort
+<td> 124
+<td> 149
+<td> 220
+<td> 328
+<td> 1674
+<tr bgcolor="#FFCFFF"> <th rowspan="3"> Binary Search
+<td> Complete CDF
+<td> 105
+<td> 219
+<td> 1196
+<td> 10378
+<td> 103209
+<tr bgcolor="#FFCFFF">
+<td> Complete CDF, sorted
+<td> 114
+<td> 202
+<td> 835
+<td> 3825
+<td> 30273
+<tr bgcolor="#FFCFFF">
+<td> Partial, recursive CDF
+<td> 232
+<td> 328
+<td> 433
+<td> 552
+<td> 1314
+<tr bgcolor="#FFCFCF"> <th rowspan="1"> Rejection
+<td> Composition
+<td> 325
+<td> 370
+<td> 438
+<td> 482
+<td> 1209
+</table>

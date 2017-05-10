@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cain version="1.2">
+  <listOfModels>
+    <model id="RedMMKineticsStoch" name="Reduced M-M Kinetics (stochastic)">
+      <listOfSpecies>
+        <species initialAmount="301" id="S"/>
+        <species initialAmount="0" id="P"/>
+      </listOfSpecies>
+      <listOfReactions>
+        <reaction propensity="0.00166*S*((120-301)+S+P)" massAction="false" id="Binding">
+          <listOfReactants>
+            <speciesReference species="S"/>
+          </listOfReactants>
+        </reaction>
+        <reaction propensity="0.0001*(301-(S+P))" massAction="false" id="Dissociation">
+          <listOfProducts>
+            <speciesReference species="S"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="0.1*(301-(S+P))" massAction="false" id="Conversion">
+          <listOfProducts>
+            <speciesReference species="P"/>
+          </listOfProducts>
+        </reaction>
+      </listOfReactions>
+    </model>
+  </listOfModels>
+  <listOfMethods>
+    <method category="0" numberOfBins="32" multiplicity="4" equilibrationTime="0.0" id="Direct" method="0" timeDependence="0" startTime="0.0" recordingTime="50.0" numberOfFrames="101" options="0"/>
+  </listOfMethods>
+  <random seed="2147483648">
+  </random>
+</cain>

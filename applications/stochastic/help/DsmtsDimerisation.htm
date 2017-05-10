@@ -1,0 +1,60 @@
+
+<html>
+<head>
+<title>Dimerisation</title>
+</head>
+<body>
+<h1>Dimerisation</h1>
+
+<p>
+The dimerisation process has two species <em>P</em> and <em>P2</em>
+with initial amounts of 100 and 0, respectively.
+There are two reactions which both have mass-action kinetics: 
+<em>2P &rarr; P2</em> and <em>P2 &rarr; 2P</em>
+and two reactions
+</p>
+
+<!------------------------------------------------------------------------>
+<h2>dsmts-002-01</h2>
+
+<p>
+The immigration and death reactions have mass-action kinetic 
+laws with rate parameters Alpha = 1 and Mu = 0.1, respectively.
+Use <tt>File&rarr;Import SBML</tt> to import the file
+<tt>examples/sbml/dsmts31/dsmts-001-01.xml</tt>. The model is imported 
+correctly, however the reactions are not recognized as having 
+mass-action kinetics. Edit the reactions to reflect this.
+Add a method in the methods list. In the methods editor select
+<tt>Time Homogeneous</tt> and <tt>Time Series, Uniform</tt> with 
+the default solver and options. Set the recording time to 50 and 
+the number of frames to 51. To see the result of these modifications
+open the file <tt>examples/cain/dsmts31/dsmts-002-01.xml</tt>.
+Below is the plot of the mean and standard deviation of the species 
+population calculated from 10,000 trajectories. (We have set the lower
+bound on the Y axis to 0 in the plot configuration window.)
+</p>
+
+<img src="DsmtsImmigrationDeath01MeanStdDev.jpg">
+
+
+<p>
+Note that this problem has a steady state solution. Select 
+<tt>SteadyState</tt> in the methods list panel. In calculating the steady
+state solution, we let the process equilibrate for 100 time units and
+then record the state for 100,000 time units. We generate four 
+trajectories and plot the steady state histogram, shown below.
+</p>
+
+<img src="DsmtsImmigrationDeath01SteadyState.jpg">
+
+<p>
+With the steady state output selected, click the table button 
+<img src="x-office-spreadsheet.png"> and then select
+<tt>Estimated Error</tt>. The estimated error in the probability
+distribution is 0.0045.
+</p>
+
+
+
+</body>
+</html>

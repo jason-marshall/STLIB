@@ -1,0 +1,350 @@
+<html>
+<head>
+<title>Birth-Death</title>
+</head>
+<body>
+<h1>Birth-Death</h1>
+
+<p>
+Consider the linear birth-death process presented in Section 1.3 of
+<a href="http://www.staff.ncl.ac.uk/d.j.wilkinson/smfsb/">Stochastic
+Modelling for Systems Biology</a>. The text introduces some differences
+between continuous, deterministic modelling and discrete, stochastic modelling.
+Let <em>X(t)</em> be the population of bacteria which reproduce at a rate
+of &lambda; and die at a rate of &mu;. The continuous model of this process
+is the differential equation
+</p>
+<p align="center">
+<em>
+X'(t) = (&lambda; - &mu;) X(t),
+X(0) = x<sub>0</sub>
+</em>
+</p>
+<p>
+which has the solution
+</p>
+<p align="center">
+<em>X(t) = x<sub>0</sub></em> e<sup>(&lambda; - &mu;)<em>t</em></sup>.
+</p>
+<p>
+We can numerically solve the continuous, deterministic model in Cain.
+Open the file <tt>examples/cain/BirthDeath.xml</tt> and select the
+<tt>Birth Death 0 1</tt> model, which has parameter values &lambda; = 0
+and &mu; = 1. In the method editor, select the <tt>Time
+Homogeneous</tt> and then the 
+<tt>Time Series, Deterministic</tt> categories with the default
+method (<tt>ODE, Integrate Reactions</tt>) and options 
+(<tt>Runge-Kutta, Cash-Karp</tt>). In the method list give this method
+an appropriate name, like &quot;Deterministic.&quot; 
+Check that the species <em>X</em>
+has been selected in the recorder panel. In the launcher panel set the
+number of trajectories to 1 and
+click the launch button <img src="launch.png">&nbsp;
+to generate the solution. You can visualize the solution by clicking the
+plot button <img src="plot.png">&nbsp; in the output list to bring up
+the plotting configuraton window (shown below).
+</p>
+
+<p align="center">
+<img src="ExamplesBirthDeathDeterministicSpeciesPlotWindow.png">
+</p>
+
+<p>
+Add axes labels as shown above and then click the plot button. 
+The population as a function of time is plotted below.
+</p>
+
+<p align="center">
+<img src="BirthDeath-0-1-ODE-Populations.jpg">
+</p>
+
+<p>
+The ordinary differential equation (ODE) integration method in Cain 
+actually solves a different formulation of the model than the population-based
+formulation above.
+for the method.)
+As the method name &quot;<tt>ODE, Integrate Reactions</tt>&quot;
+suggests, it integrates the reaction counts. Instead of combining the 
+effect of the two reactions to formulate the problem in terms of the
+species population <em>X</em>, the birth reaction <em>B</em> and the
+death reaction <em>D</em> are each represented.
+The birth-death process can be modelled with the following
+set of differential equations:
+</p>
+<p align="center">
+<em>
+B'(t) = &lambda; X(t), B(0) = 0<br>
+D'(t) = &mu; X(t), D(0) = 0<br>
+X'(t) = B'(t) - D'(t), X(0) = x<sub>0</sub>
+</em>
+</p>
+<p>
+It is perhaps instructive to translate the equations into plain English.
+<ul>
+<li> The birth rate is &lambda. We start counting the number of births
+  at the initial time <em>t = 0</em>.
+<li> The death rate is &mu. We start counting the number of deaths
+  at the initial time <em>t = 0</em>.
+<li> The rate of change is the population <em>X</em> is the difference
+  between the birth rate and the death rate. At the initial time
+  <em>t = 0</em>, the population is <em>x<sub>0</sub></em>.
+</ul>
+For &lambda; &ne; &mu; the system of equations has the solution
+</p>
+
+<p align="center">
+<em>B(t) = &lambda; x<sub>0</sub></em>
+(1 - e<sup>(&lambda; - &mu;)<em>t</em></sup>) / (&mu; - &lambda;)<br>
+<em>D(t) = &mu; x<sub>0</sub></em>
+(1 - e<sup>(&lambda; - &mu;)<em>t</em></sup>) / (&mu; - &lambda;)<br>
+<em>X(t) = x<sub>0</sub></em> e<sup>(&lambda; - &mu;)<em>t</em></sup>.
+</p>
+
+<p>
+While the population solutions are the same, the reaction-based
+formulation of the model carries more information than the
+population-based formulation. The population depends only
+on the difference &lambda; - &mu;. However, the reaction counts depend
+on the two parameters separately. For &lambda; = 0 and &mu; = 1
+no birth reactions occur.
+</p>
+
+<p>
+While the reaction counts are calculated, by default they are not
+recorded in the simulation output. Delete the solution
+that we generated previously by clicking the delete button
+<img src="cancel.png">&nbsp; in the simulation output panel.
+Then select the reactions tab in the recorder panel and select both
+the birth and death reactions. Now run the simulation again.
+In the plotting window select the <tt>Cumulative reactions</tt>
+radio button, move the legend to the upper left corner,
+and change the Y axes label to &quot;Reaction Counts.&quot;
+</p>
+
+<p align="center">
+<img src="ExamplesBirthDeathDeterministicReactionsPlotWindow.png">
+</p>
+
+<p> 
+Plotting will result in a figure like the one below.
+</p>
+
+<p align="center">
+<img src="BirthDeath-0-1-ODE-Reactions.jpg">
+</p>
+
+<p>
+For &lambda; = 10 and &mu; = 11, the population is the same, but the
+reaction counts differ. Below is a plot of the reaction counts for this case.
+</p>
+
+<p align="center">
+<img src="BirthDeath-10-11-ODE-Reactions.jpg">
+</p>
+
+<p>
+Now consider the discrete stochastic model, which has reaction
+propensities instead of deterministic reaction rates.
+This model is composed of the birth reaction 
+<em>X &rarr; 2 X</em> and the death reaction <em>X &rarr;</em> 0 which
+have propensities &lambda;<em>X</em> and &mu;<em>X</em>, respectively.
+First we will generate a trajectory that records all of the reactions.
+Select the <tt>Birth Death 0 1</tt> model. Then clone the 
+&quot;Deterministic&quot; method (with the clone button 
+<img src="editcopy.png">) and rename it &quot;DirectAll.&quot;
+For this method select the <tt>Time Homogeneous</tt> and 
+<tt>Time Series, All Reactions</tt> categories with the default method
+and options. Then generate a trajectory with
+the launch button. Below is a plot of the species
+populations. We see that the population changes by discrete amounts.
+</p>
+
+<p align="center">
+<img src="BirthDeath-0-1-1-DAR-Populations.jpg">
+</p>
+
+<p>
+Below we use Cain to reproduce the results in the text that demonstrate how
+increasing &lambda; + &mu; while holding &lambda; - &mu; = -1 increases the
+volatility in the system. For each test, we generate an ensemble of five
+trajectories and plot these populations along with the
+deterministic solution. Note that hitting the &quot;Plot&quot; button 
+in the plotting window adds to the current figure while 
+&quot;New plot&quot; creates a new figure. Also note that you can
+click on the grid elements and columns in the plotting window to 
+customize the appearance of the curves.
+</p>
+
+<p align="center">
+<img src="BirthDeath-0-1-DAR-ODE-Populations.jpg"><br>
+&lambda; = 0, &mu; = 1
+</p>
+
+<p align="center">
+<img src="BirthDeath-3-4-DAR-ODE-Populations.jpg"><br>
+&lambda; = 3, &mu; = 4
+</p>
+
+<p align="center">
+<img src="BirthDeath-7-8-DAR-ODE-Populations.jpg"><br>
+&lambda; = 7, &mu; = 8
+</p>
+
+<p align="center">
+<img src="BirthDeath-10-11-DAR-ODE-Populations.jpg"><br>
+&lambda; = 10, &mu; = 11
+</p>
+
+<p>
+For a simple problem like this we can store and visualize all of the
+reactions. However, for more complicated models (or longer running
+times) generating a suite of trajectories may involve billions of reaction
+events. Storing, and particularly plotting, that much data could be
+time consuming or just impossible on your computer. Thus instead of
+storing all of the reaction events, one typically
+stores snapshots of the populations and reaction counts at set points
+in time. Again clone the &quot;Deterministic&quot; method and rename 
+it to &quot;Direct.&quot; 
+For this method select the <tt>Time Homogeneous</tt> and 
+<tt>Time Series, Uniform</tt> categories with the default method
+and options. In the reactions tab of the recorder panel select 
+both reactions.
+For each test, we generate an ensemble of ten
+trajectories and plot the species populations and the cumulative
+reaction counts. Note that because we are only sampling the
+state, we don't see the same &quot;noisiness&quot; in the trajectories.
+</p>
+
+<p align="center">
+<img src="BirthDeath-0-1-Populations.jpg"><br>
+<img src="BirthDeath-0-1-Reactions.jpg"><br>
+&lambda; = 0, &mu; = 1
+</p>
+
+<p align="center">
+<img src="BirthDeath-3-4-Populations.jpg"><br>
+<img src="BirthDeath-3-4-Reactions.jpg"><br>
+&lambda; = 3, &mu; = 4
+</p>
+
+<p align="center">
+<img src="BirthDeath-7-8-Populations.jpg"><br>
+<img src="BirthDeath-7-8-Reactions.jpg"><br>
+&lambda; = 7, &mu; = 8
+</p>
+
+<p align="center">
+<img src="BirthDeath-10-11-Populations.jpg"><br>
+<img src="BirthDeath-10-11-Reactions.jpg"><br>
+&lambda; = 10, &mu; = 11
+</p>
+
+<p>
+In the plotting window you may choose between a number of
+visualization options. First you choose what to plot:
+<ul>
+  <li> <tt>Species</tt> - The species populations.
+  <li> <tt>Cumulative Reactions</tt> - The cumulative reaction counts.
+  <li> <tt>Binned Reactions</tt> - The reaction counts binned 
+    for each frame.
+</ul>
+Next you choose how to display the data: either plot the trajectories
+or plot their mean (and optionally their standard deviation).
+Thus there are six ways of generating a plot for a given simulation
+output. Below we show each of these for the
+birth-death model with &lambda; = 3 and &mu; = 4.
+</p>
+
+<p align="center">
+<img src="BirthDeath-3-4-PopulationStatistics.jpg"><br>
+Population Statistics
+</p>
+
+<p align="center">
+<img src="BirthDeath-3-4-PopulationTrajectories.jpg"><br>
+Population Trajectories
+</p>
+
+<p align="center">
+<img src="BirthDeath-3-4-BinnedReactionCountStatistics.jpg"><br>
+Binned Reaction Count Statistics
+</p>
+
+<p align="center">
+<img src="BirthDeath-3-4-BinnedReactionCountTrajectories.jpg"><br>
+Binned Reaction Count Trajectories
+</p>
+
+<p align="center">
+<img src="BirthDeath-3-4-CumulativeReactionCountStatistics.jpg"><br>
+Cumulative Reaction Count Statistics
+</p>
+
+<p align="center">
+<img src="BirthDeath-3-4-CumulativeReactionCountTrajectories.jpg"><br>
+Cumulative Reaction Count Trajectories
+</p>
+
+<p>
+After selecting the plotting method you can customize the appearance
+by editing the table that lists the species or reactions. See the
+<a href="VisualizationPlottingTimeSeries.htm">Plotting Time Series Data</a>
+section of the
+<a href="Visualization.htm">Visualization and Analysis</a> chapter
+for details.
+</p>
+
+<p>
+Consider how the value of &lambda; affects the population of X at time
+t = 2.5. From the plots above it appears that with increasing &lambda; there
+is greater variance in the population, and also a greater likelihood of
+extinction (X = 0). However, it is not possible to quantify these
+observations by looking at trajectory plots. Recording histograms of the state
+is the right tool for this. Once more clone the
+&quot;Deterministic&quot; method. This time rename the result
+&quot;Histogram.&quot; Select the <tt>Time Homogeneous</tt> and 
+<tt>Histograms, Transient Behavior</tt> categories with the default 
+solver method and options. Since we are only interested in the population at
+t = 2.5, we set the recording time to that value and set the number of frames
+to 1. We set the number of bins to 128 to obtain a high resolution
+histogram and launch a simulation with
+100,000 trajectories for each value of &lambda;. In the plotting
+window we switch to the histograms tab. When plotting histograms
+you choose the species and the frame (time). You can also choose colors
+and enter a title and axes labels if you like. The plot configuration
+window is shown below.
+</p>
+
+<p align="center">
+<img src="ExamplesBirthDeathPlotWindowHistograms.png">
+</p>
+
+<p>
+The histograms for each value of &lambda; are shown below. We see that for
+&lambda; = 0, the mode (most likely population) is 4, but for &lambda; =
+3, 7, or 10, the mode is 0. The likelihood of extinction increases with
+increasing &lambda;.
+</p>
+
+<p align="center">
+<img src="BirthDeath2.5Lambda0.jpg"><br>
+&lambda; = 0, &mu; = 1
+</p>
+
+<p align="center">
+<img src="BirthDeath2.5Lambda3.jpg"><br>
+&lambda; = 3, &mu; = 4
+</p>
+
+<p align="center">
+<img src="BirthDeath2.5Lambda7.jpg"><br>
+&lambda; = 7, &mu; = 8
+</p>
+
+<p align="center">
+<img src="BirthDeath2.5Lambda10.jpg"><br>
+&lambda; = 10, &mu; = 11
+</p>
+
+</body>
+</html>

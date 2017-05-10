@@ -1,0 +1,145 @@
+<html>
+<head>
+<title>Significance Testing</title>
+</head>
+<body>
+<h1>Significance Testing</h1>
+
+<p>
+Open the file <tt>examples/cain/ImmigrationDeath.xml</tt>. The
+immigration-death process has a single species <em>X</em> and two reactions:
+immigration and death. The immigration reaction is 0&rarr;<em>X</em>
+with a propensity factor <em>k<sub>1</sub> = 1</em>.
+The death reaction is <em>X</em>&rarr;0
+and has the propensity factor <em>k<sub>2</sub> = 0.1</em>.
+Since both reactions use mass-action kinetic
+laws, the propensities are <em>1</em> and <em>0.1 X</em>, respectively.
+</p>
+
+<p>
+The immigration-death model is presented in section 6.3.D of
+<a href="Bibliography.htm#gillespie1992">Markov Processes</a>.
+There it is called the payroll process; hiring and leaving corresponds to
+immigration and death. The text shows how to derive the mean and
+variance of the population by solving first order differential
+equations. These are listed below for a starting time of
+<em>t<sub>0</sub></em> and an initial population of <em>X<sub>0</sub></em>.
+</p>
+
+<p align="center">
+mean(<em>X</em>(<em>t</em>)) = <em>k</em><sub>1</sub>/<em>k</em><sub>2</sub> +
+(<em>X</em><sub>0</sub>-<em>k</em><sub>1</sub>/<em>k</em><sub>2</sub>)
+exp(-<em>k</em><sub>2</sub>(<em>t</em>-<em>t</em><sub>0</sub>))
+</p>
+
+<p align="center">
+var(<em>X</em>(<em>t</em>)) = (<em>k</em><sub>1</sub>/<em>k</em><sub>2</sub>)
+(1-exp(-<em>k</em><sub>2</sub>(<em>t</em>-<em>t</em><sub>0</sub>)))
+(1+(<em>k</em><sub>2</sub><em>X</em><sub>0</sub>/<em>k</em><sub>1</sub>)
+exp(-<em>k</em><sub>2</sub>(<em>t</em>-<em>t</em><sub>0</sub>)))
+</p>
+
+<p>
+The analytical solution for the transient behavior is associated with
+the &quot;Ref., Transient&quot; method. The steady state solution
+is associated with the &quot;Ref., Steady St.&quot; method.
+Note that the solutions are listed in the simulation output panel.
+Select the
+&quot;ImmigrationDeath&quot; model and the &quot;Direct&quot; method
+and then generate 10,000 trajectories.
+Now we will compare the empirical solution 
+and the reference solution.
+Click the plot button in the simulation output panel and then
+go to the &quot;Time
+Series&quot; tab in the plot configuration window. Unselect the
+&quot;Std Dev&quot; field in the grid by right clicking on the column
+header. Set the line style to &quot;dot&quot;, and the marker style
+to &quot;Circle&quot;. Match the face and edge color to the line color
+by left clicking on the column headers. (See the
+<a href="VisualizationPlottingTimeSeries.htm">Plotting Time Series Data</a>
+section for information on configuring plots.)
+Change the title to &quot;Immigration-Death, Mean&quot;.
+Then click the &quot;New plot button&quot; to
+plot the empirical mean. Then select the &quot;Statistics&quot; tab.
+Right click on the &quot;Std Dev&quot; field in the grid to turn off
+the plotting of the standard deviation as error bars. Clear
+the title and axes labels. Finally, click the plot button to show the
+reference solution (plotted with a solid line) along with the
+empirical solution. The result is shown below.
+</p>
+
+<p align="center">
+<img src="VisualizationImmigrationDeathMean.jpg">
+</p>
+
+<p>
+One may do the same for the standard deviation by selecting the
+&quot;Std. Dev.&quot; radio button and following the same procedure.
+The result is shown below.
+</p>
+
+
+<p align="center">
+<img src="VisualizationImmigrationDeathStdDev.jpg">
+</p>
+
+<p>
+From the plots above we see that the mean and standard deviation of
+empirical solution is very close to the analytical solution. While using
+&quot;eyeball norm&quot; is useful, it is better still to use 
+statistical tools to analyze the solutions. Specifically, we use
+the one-sample version of
+<a href="http://en.wikipedia.org/wiki/Student's_t-test">Student's
+t-test</a> to test the null hypotheses that the empirical means are
+equal to the analytical means. (We use the plural because we will
+apply the test for each time frame.) The test yields a
+<a href="http://en.wikipedia.org/wiki/P-value">p-value</a> that
+is the probability of obtaining a test statistics that is at least
+as extreme as the observed result, assuming that the null hypothesis
+is true. For instance, suppose that the
+empirical mean and analytical mean differ by an amount <em>d</em>.
+A p-value of 0.25 would mean that there is a 25% chance that the
+empirical mean would differ from the analytical mean by at least
+<em>d</em>. Put another way, if you generated many empirical
+solutions, using the same number of trajectories in each, you would
+expect about a quarter of them to differ by at least <em>d</em> from
+the analytical mean. This is, of course, assuming that the null
+hypothesis is true and two means are equal. A small p-value
+indicates that the null hypothesis is not true. For example, a p-value
+of 0.001 would mean that there is only a one in a thousand chance of
+observing an empirical mean that differs from the analytical mean
+by the calculated amount. In this context, this would lead us to
+suspect that the simulation method used to generate the empirical
+solution is incorrect. Of course, such an extreme difference is still
+possible with a correct method. If we were to repeat the experiment
+with another empirical solution and obtain another small p-value, we
+would confidently state that the method is incorrect.
+</p>
+
+<p>
+Click the p-value button <img src="pValue.png">&nbsp; in the
+simulation output panel to open the p-value analysis window shown below.
+In the left column select the &quot;ImmigrationDeath, Direct&quot;
+output. In the right column select the reference solution
+&quot;ImmigrationDeath, Ref., Transient&quot;. Click the
+&quot;Calculate&quot; button to compute the p-value for all of the
+species and all of the frames. The row headers list the frame times.
+The column headers list the species.
+</p>
+
+<p>
+<img src="VisualizationSignificancePValueAnalysis.png">
+</p>
+
+<p>
+Click the &quot;Plot&quot; button to show a plot of p-value versus
+frame number. We see that the p-values are consistent with a
+correct stochastic simulation method.
+</p>
+
+<p>
+<img src="VisualizationSignificancePValue.jpg">
+</p>
+
+</body>
+</html>

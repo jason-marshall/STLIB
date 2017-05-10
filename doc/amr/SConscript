@@ -1,0 +1,14 @@
+# -*- python -*-
+
+import sys
+sys.path.append('..')
+from doxygen import doxygen
+
+doxygen.Doxyfile('Doxyfile', ['../main.cfg', 'local.cfg'])
+target = '../html/amr/index.html'
+Default([target])
+sources = Glob('../../stlib/amr/*.h') \
+    + ['../ads/ads.tag', '../container/container.tag', '../geom/geom.tag',
+       '../ext/ext.tag', '../numerical/numerical.tag']
+doxygen.Doxygen([target, 'amr.tag'], ['Doxyfile'] + sources)
+Clean(target, ['../html/amr', 'amr.tag'])

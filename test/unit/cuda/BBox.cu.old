@@ -1,0 +1,324 @@
+// -*- C++ -*-
+
+#include "cuda/BBox.h"
+#include "cuda/check.h"
+
+#include <cassert>
+
+#ifndef __CUDA_ARCH__
+#include <sstream>
+#include <vector>
+#endif
+
+__device__
+bool
+constructor() {
+   geom::BBox<float, 3> a = {{{0, 0, 0}}, {{0, 0, 0}}};
+   if (! a.isValid()) {
+      return false;
+   }
+   a.invalidate();
+   if (a.isValid()) {
+      return false;
+   }
+   return true;
+}
+
+
+__global__
+void
+test(bool* result) {
+   bool r = true;
+   r &= constructor();
+   *result = r;
+}
+
+
+int
+main() {
+   //---------------------------------------------------------------------------
+   // CUDA
+   {
+      bool result;
+      bool* resultDev;
+      CUDA_CHECK(cudaMalloc((void**)&resultDev, sizeof(bool)));
+      test<<<1, 1>>>(resultDev);
+      CUDA_CHECK(cudaMemcpy(&result, resultDev, sizeof(bool),
+                            cudaMemcpyDeviceToHost));
+      assert(result);
+   }
+
+#ifndef __CUDA_ARCH__
+   {
+      // sizeof
+      std::cout << "sizeof(int) = " << sizeof(int) << '\n';
+      std::cout << "sizeof(geom::BBox<int, 3>) = "
+                << sizeof(geom::BBox<int, 3>) << '\n';
+      std::cout << "sizeof(double) = " << sizeof(double) << '\n';
+      std::cout << "sizeof(geom::BBox<double, 2>) = "
+                << sizeof(geom::BBox<double, 2>) << '\n';
+   }
+   {
+      // Default constructor
+      std::cout << "geom::BBox<int, 1>() = "
+                << geom::BBox<int, 1>() << '\n';
+      std::cout << "geom::BBox<double, 2>() = "
+                << geom::BBox<double, 2>() << '\n';
+   }
+#endif
+   {
+      typedef geom::BBox<int, 3> BBox;
+      typedef BBox::Point Point;
+
+      {
+         BBox x;
+         // one point
+         x = geom::bound(ext::make_array(1, 2, 3));
+         assert(x == geom::makeBBox(ext::make_array(1, 2, 3),
+                                    ext::make_array(1, 2, 3)));
+
+         // two point
+         x = geom::bound(ext::make_array(1, 2, 3), ext::make_array(-2, 2, 4));
+         assert(x == geom::makeBBox(ext::make_array(-2, 2, 3),
+                                    ext::make_array(1, 2, 4)));
+
+         // three
+         x = geom::bound(ext::make_array(1, 2, 3), ext::make_array(-2, 2, 4),
+                   ext::make_array(2, 5, -3));
+         assert(x == geom::makeBBox(ext::make_array(-2, 2, -3),
+                                    ext::make_array(2, 5, 4)));
+      }
+
+#ifndef __CUDA_ARCH__
+      // iterator constructor
+      std::vector<Point> v;
+      v.push_back(ext::make_array(1, 2, 3));
+      v.push_back(ext::make_array(-2, 2, 4));
+      v.push_back(ext::make_array(2, 5, -3));
+      {
+         BBox bv;
+         bv.bound(v.begin(), v.end());
+         assert(geom::makeBBox(ext::make_array(-2, 2, -3),
+                               ext::make_array(2, 5, 4))
+                == bv);
+      }
+#endif
+
+      // copy constructor
+      BBox b = {{{1, 2, 3}}, {{2, 3, 5}}};
+      {
+         BBox b2 = b;
+         assert(b2 == b);
+      }
+
+      // assignment operator
+      {
+         BBox b2;
+         b2 = b;
+         assert(b2 == b);
+      }
+
+      // accessors
+      assert(1 == b.lower[0] &&
+             2 == b.lower[1] &&
+             3 == b.lower[2] &&
+             2 == b.upper[0] &&
+             3 == b.upper[1] &&
+             5 == b.upper[2]);
+
+      assert(b.lower == (ext::make_array(1, 2, 3)));
+      assert(b.upper == (ext::make_array(2, 3, 5)));
+      assert(content(b) == 2);
+
+      // offset
+      {
+         BBox x = {{{1, 2, 3}}, {{2, 3, 5}}};
+         x.offset(0);
+         assert(x.lower == ext::make_array(1, 2, 3));
+         assert(x.upper == ext::make_array(2, 3, 5));
+         x.offset(1);
+         assert(x.lower == ext::make_array(0, 1, 2));
+         assert(x.upper == ext::make_array(3, 4, 6));
+         x.offset(-1);
+         assert(x.lower == ext::make_array(1, 2, 3));
+         assert(x.upper == ext::make_array(2, 3, 5));
+      }
+   }
+   {
+      // Dimension
+      assert((geom::BBox<int, 1>::Dimension) == 1);
+      assert((geom::BBox<int, 2>::Dimension) == 2);
+   }
+   {
+      // is_empty()
+
+      typedef geom::BBox<int, 1> BBox;
+      typedef BBox::Point Point;
+      Point pt0, pt1;
+      pt0[0] = 0;
+      pt1[0] = 1;
+      BBox a = {pt0, pt0};
+      assert(! a.isEmpty());
+
+      a.lower = pt1;
+      a.upper = pt0;
+      assert(a.isEmpty());
+
+      a.lower = pt0;
+      a.upper = pt1;
+      assert(! a.isEmpty());
+   }
+   {
+      // isEmpty()
+
+      typedef geom::BBox<int, 3> BBox;
+      typedef BBox::Point Point;
+      BBox b;
+
+      b.lower = ext::make_array(0, 0, 0);
+      b.upper = ext::make_array(0, 0, 0);
+      assert(! b.isEmpty());
+
+      b.lower = ext::make_array(1, 2, 3);
+      b.upper = ext::make_array(2, 3, 5);
+      assert(! b.isEmpty());
+
+      b.lower = ext::make_array(1, 0, 0);
+      b.upper = ext::make_array(0, 0, 0);
+      assert(b.isEmpty());
+
+      b.lower = ext::make_array(0, 1, 0);
+      b.upper = ext::make_array(0, 0, 0);
+      assert(b.isEmpty());
+
+      b.lower = ext::make_array(0, 0, 1);
+      b.upper = ext::make_array(0, 0, 0);
+      assert(b.isEmpty());
+   }
+   {
+      // is_in() for points
+      typedef geom::BBox<double, 3> BBox;
+      typedef BBox::Point Point;
+      BBox b = {{{1., 2., 3.}}, {{2., 3., 5.}}};
+      assert(b.isIn(ext::make_array(1., 2., 3.)));
+      assert(b.isIn(ext::make_array(2., 2., 3.)));
+      assert(b.isIn(ext::make_array(1., 3., 3.)));
+      assert(b.isIn(ext::make_array(1., 2., 5.)));
+      assert(b.isIn(ext::make_array(2., 3., 5.)));
+      assert(b.isIn(ext::make_array(1.5, 2., 3.)));
+      assert(b.isIn(ext::make_array(1.5, 2.5, 3.5)));
+      assert(!b.isIn(ext::make_array(-1., 2.5, 3.5)));
+      assert(!b.isIn(ext::make_array(1.5, 1., 3.5)));
+      assert(!b.isIn(ext::make_array(1.5, 4., 3.5)));
+      assert(!b.isIn(ext::make_array(1.5, 2.5, 5.5)));
+      assert(!b.isIn(ext::make_array(1.5, 2.5, 0.)));
+      assert(!b.isIn(ext::make_array(10., 20., 30.)));
+      assert(!b.isIn(ext::make_array(0., 0., 0.)));
+   }
+   {
+      // is_in() for BBox's
+      typedef geom::BBox<double, 3> BBox;
+      typedef BBox::Point Point;
+
+      BBox b = {{{1., 2., 3.}}, {{2., 3., 5.}}};
+
+      assert(b.isIn(geom::makeBBox(ext::make_array(1., 2., 3.),
+                             ext::make_array(2., 3., 5.))));
+      assert(b.isIn(geom::makeBBox(ext::make_array(1., 2., 3.),
+                             ext::make_array(1., 2., 3.))));
+      assert(b.isIn(geom::makeBBox(ext::make_array(1.5, 2., 3.),
+                             ext::make_array(2., 3., 5.))));
+      assert(b.isIn(geom::makeBBox(ext::make_array(1., 2.5, 3.),
+                             ext::make_array(2., 3., 5.))));
+      assert(b.isIn(geom::makeBBox(ext::make_array(1., 2., 3.5),
+                             ext::make_array(2., 3., 5.))));
+
+      assert(! b.isIn(geom::makeBBox(ext::make_array(0., 2., 3.),
+                               ext::make_array(2., 3., 5.))));
+      assert(! b.isIn(geom::makeBBox(ext::make_array(1., 1., 3.),
+                               ext::make_array(2., 3., 5.))));
+      assert(! b.isIn(geom::makeBBox(ext::make_array(1., 2., 2.),
+                               ext::make_array(2., 3., 5.))));
+      assert(! b.isIn(geom::makeBBox(ext::make_array(1., 2., 3.),
+                               ext::make_array(3., 3., 5.))));
+      assert(! b.isIn(geom::makeBBox(ext::make_array(1., 2., 3.),
+                               ext::make_array(2., 4., 5.))));
+      assert(! b.isIn(geom::makeBBox(ext::make_array(1., 2., 3.),
+                               ext::make_array(2., 3., 6.))));
+   }
+   {
+      // do_overlap
+
+      typedef geom::BBox<int, 1> BBox;
+      typedef BBox::Point Point;
+      Point a0 = {{0}}, a1 = {{1}}, b0 = {{2}}, b1 = {{3}};
+      assert(! doOverlap(geom::makeBBox(a0, a1), geom::makeBBox(b0, b1)));
+
+      a0[0] = 0;
+      a1[0] = 5;
+      b0[0] = 2;
+      b1[0] = 3;
+      assert(doOverlap(geom::makeBBox(a0, a1), geom::makeBBox(b0, b1)));
+
+      a0[0] = 0;
+      a1[0] = 5;
+      b0[0] = 2;
+      b1[0] = 8;
+      assert(doOverlap(geom::makeBBox(a0, a1), geom::makeBBox(b0, b1)));
+   }
+   {
+      // do_overlap
+
+      typedef geom::BBox<int, 3> BBox;
+      typedef BBox::Point Point;
+      assert(! doOverlap(geom::makeBBox(ext::make_array(0, 0, 0),
+                                  ext::make_array(1, 1, 1)),
+                         geom::makeBBox(ext::make_array(2, 2, 2),
+                                  ext::make_array(3, 3, 3))));
+
+      assert(doOverlap(geom::makeBBox(ext::make_array(1, 2, 3),
+                                ext::make_array(7, 8, 9)),
+                       geom::makeBBox(ext::make_array(3, 4, 5),
+                                ext::make_array(4, 5, 6))));
+
+      assert(doOverlap(geom::makeBBox(ext::make_array(1, 2, 3),
+                                ext::make_array(7, 8, 9)),
+                       geom::makeBBox(ext::make_array(3, 4, 5),
+                                ext::make_array(8, 9, 10))));
+
+   }
+   {
+      // squaredDistanceBetweenIntervals
+      assert(geom::squaredDistanceBetweenIntervals(0., 1., 3., 4.) == 4.);
+      assert(geom::squaredDistanceBetweenIntervals(2., 3., 3., 4.) == 0.);
+      assert(geom::squaredDistanceBetweenIntervals(2., 5., 3., 4.) == 0.);
+      assert(geom::squaredDistanceBetweenIntervals(4., 5., 3., 4.) == 0.);
+      assert(geom::squaredDistanceBetweenIntervals(6., 7., 3., 4.) == 4.);
+   }
+   {
+      // squaredDistance
+      typedef geom::BBox<double, 3> BBox;
+      assert(squaredDistance(geom::makeBBox(ext::make_array(0., 0., 0.),
+                                      ext::make_array(1., 1., 1.)),
+                             geom::makeBBox(ext::make_array(2., 2., 2.),
+                                      ext::make_array(3., 3., 3.))) == 3.);
+      assert(squaredDistance(geom::makeBBox(ext::make_array(0., 0., 0.),
+                                      ext::make_array(2., 1., 1.)),
+                             geom::makeBBox(ext::make_array(2., 2., 2.),
+                                      ext::make_array(3., 3., 3.))) == 2.);
+      assert(squaredDistance(geom::makeBBox(ext::make_array(0., 0., 0.),
+                                      ext::make_array(2., 2., 1.)),
+                             geom::makeBBox(ext::make_array(2., 2., 2.),
+                                      ext::make_array(3., 3., 3.))) == 1.);
+      assert(squaredDistance(geom::makeBBox(ext::make_array(0., 0., 0.),
+                                      ext::make_array(2., 2., 2.)),
+                             geom::makeBBox(ext::make_array(2., 2., 2.),
+                                      ext::make_array(3., 3., 3.))) == 0.);
+      assert(squaredDistance(geom::makeBBox(ext::make_array(0., 0., 0.),
+                                      ext::make_array(4., 4., 4.)),
+                             geom::makeBBox(ext::make_array(2., 2., 2.),
+                                      ext::make_array(3., 3., 3.))) == 0.);
+   }
+
+   return 0;
+}

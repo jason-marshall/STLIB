@@ -1,0 +1,344 @@
+(************** Content-type: application/mathematica **************
+
+                    Mathematica-Compatible Notebook
+
+This notebook can be used with any Mathematica-compatible
+application, such as Mathematica, MathReader or Publicon. The data
+for the notebook starts with the line containing stars above.
+
+To get the notebook into a Mathematica-compatible application, do
+one of the following:
+
+* Save the data starting with the line of stars above into a file
+  with a name ending in .nb, then open the file inside the
+  application;
+
+* Copy the data starting with the line of stars above to the
+  clipboard, then use the Paste menu command inside the application.
+
+Data for notebooks contains only printable 7-bit ASCII and can be
+sent directly in email or through ftp in text mode.  Newlines can be
+CR, LF or CRLF (Unix, Macintosh or MS-DOS style).
+
+NOTE: If you modify the data for this notebook not in a Mathematica-
+compatible application, you must delete the line below containing
+the word CacheID, otherwise Mathematica-compatible applications may
+try to use invalid cache data.
+
+For more information on notebooks and Mathematica-compatible 
+applications, contact Wolfram Research:
+  web: http://www.wolfram.com
+  email: info@wolfram.com
+  phone: +1-217-398-0700 (U.S.)
+
+Notebook reader applications are available free of charge from 
+Wolfram Research.
+*******************************************************************)
+
+(*CacheID: 232*)
+
+
+(*NotebookFileLineBreakTest
+NotebookFileLineBreakTest*)
+(*NotebookOptionsPosition[     10269,        268]*)
+(*NotebookOutlinePosition[     10917,        291]*)
+(*  CellTagsIndexPosition[     10873,        287]*)
+(*WindowFrame->Normal*)
+
+
+
+Notebook[{
+Cell[BoxData[
+    \(<< Graphics`Graphics`\)], "Input"],
+
+Cell[BoxData[
+    \(\(querySize = 
+        Table[\((1/2^n)\)^\((1/3)\), {n, 20, 1, \(-1\)}];\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(numRecords = 
+        Table[\((1/2^n)\) 10^6, {n, 20, 1, \(-1\)}];\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(sequentialScanTime = {0.121554, 0.121727, 0.12192, 0.122153, 
+          0.122506, 0.122906, 0.123479, 0.124272, 0.125274, 0.126746, 
+          0.128736, 0.13156, 0.135796, 0.142136, 0.15153, 0.165195, 0.183973, 
+          0.207252, 0.231349, 0.250511};\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(octreeTime[1] = {5.319*^-05, 4.909*^-05, 5.691*^-05, 8.174*^-05, 
+          0.00010084, 0.0001224, 0.00019949, 0.00031561, 0.00049611, 
+          0.00094734, 0.00176601, 0.00387981, 0.00619213, 0.0115311, 
+          0.0225863, 0.0428203, 0.0880304, 0.173545, 0.32071, 
+          0.594954};\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(octreeTime[2] = {4.889*^-05, 5.079*^-05, 5.745*^-05, 7.289*^-05, 
+          9.127*^-05, 0.00010947, 0.00016694, 0.00027317, 0.00039823, 
+          0.00076298, 0.00138497, 0.00243284, 0.00513571, 0.00864768, 
+          0.0164444, 0.0312498, 0.0603916, 0.11532, 0.22506, 
+          0.442943};\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(octreeTime[3] = {4.901*^-05, 4.866*^-05, 5.555*^-05, 6.548*^-05, 
+          7.741*^-05, 9.356*^-05, 0.00013815, 0.00019917, 0.00030406, 
+          0.00059605, 0.00105053, 0.00180274, 0.00351113, 0.0063315, 
+          0.0119951, 0.0225997, 0.0429505, 0.0822455, 0.159582, 
+          0.313675};\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(octreeTime[4] = {4.879*^-05, 4.834*^-05, 5.509*^-05, 6.551*^-05, 
+          7.673*^-05, 9.282*^-05, 0.00013698, 0.00019862, 0.00030215, 
+          0.00060653, 0.00103201, 0.00176478, 0.00342892, 0.00614438, 
+          0.0116639, 0.0219162, 0.0415438, 0.0795551, 0.154055, 
+          0.302661};\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(octreeTime[5] = {7.399*^-05, 7.665*^-05, 8.665*^-05, 0.00010304, 
+          0.00012132, 0.00014677, 0.00018681, 0.0002305, 0.00033019, 
+          0.00062184, 0.00101959, 0.00165692, 0.00326277, 0.00545305, 
+          0.0102191, 0.018911, 0.0358045, 0.0669325, 0.128599, 
+          0.247839};\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(octreeTime[6] = {8.724*^-05, 9.205*^-05, 0.00010416, 0.00012181, 
+          0.00014601, 0.00017595, 0.00021654, 0.00025449, 0.00036693, 
+          0.00067908, 0.00111749, 0.00173813, 0.0034138, 0.00539047, 
+          0.00996331, 0.0181181, 0.0341655, 0.0624427, 0.118788, 
+          0.224435};\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(\(Transpose[{querySize, numRecords, octreeTime[1], octreeTime[2], 
+              octreeTime[3], octreeTime[4], octreeTime[5], octreeTime[6], 
+              sequentialScanTime}] // N\) // TableForm\) // 
+      TextForm\)], "Input"],
+
+Cell[CellGroupData[{
+
+Cell["FullRange", "Section"],
+
+Cell[BoxData[
+    \(\(sequentialScanData = 
+        Transpose[{querySize, sequentialScanTime}];\)\)], "Input"],
+
+Cell[BoxData[
+    \(For[i = 1, 
+      i \[LessEqual] 
+        6, \(i++\), \[IndentingNewLine]\(octreeData[i] = 
+          Transpose[{querySize, 
+              octreeTime[i]}];\)\[IndentingNewLine]]\)], "Input"],
+
+Cell[BoxData[
+    \(\(octreePointPlot = 
+        LogLogListPlot[
+          Join[octreeData[1], octreeData[2], octreeData[3], octreeData[4], 
+            octreeData[5], 
+            octreeData[6]], \[IndentingNewLine]PlotStyle \[Rule] 
+            PointSize[
+              0.02], \[IndentingNewLine]Ticks \[Rule] {{0.01, 0.04, 0.16\ , 
+                0.64}, {0.0001, 0.001, 0.01, 0.1}}, 
+          TextStyle \[Rule] {FontSize \[Rule] 12}, 
+          PlotLabel -> "\<Execution Time\>"];\)\)], "Input"],
+
+Cell[BoxData[
+    \(For[i = 1, 
+      i \[LessEqual] 
+        6, \(i++\), \[IndentingNewLine]\(octreePlot[i] = 
+          LogLogListPlot[octreeData[i], PlotJoined \[Rule] True, 
+            PlotStyle \[Rule] Hue[i/6]];\)\[IndentingNewLine]]\)], "Input"],
+
+Cell[BoxData[
+    \(\(sequentialScanPlot = 
+        LogLogListPlot[sequentialScanData, PlotJoined \[Rule] True, 
+          PlotStyle \[Rule] Dashing[{0.02, 0.02}]];\)\)], "Input"],
+
+Cell["Save as OctreeRandomQuerySize.eps", "Text"],
+
+Cell[BoxData[
+    \(\(Show[octreePointPlot, octreePlot[1], octreePlot[2], octreePlot[3], 
+        octreePlot[4], octreePlot[5], octreePlot[6], 
+        sequentialScanPlot];\)\)], "Input"],
+
+Cell["Save as OctreeRandomQuerySizeLegend.eps", "Text"],
+
+Cell[BoxData[
+    \(\(Show[
+        Graphics[{\[IndentingNewLine]Thickness[0.2], \[IndentingNewLine]Hue[
+              6/6], \[IndentingNewLine]Line[{{0, 0}, {1, 
+                  0}}], \[IndentingNewLine]GrayLevel[
+              0], \[IndentingNewLine]Text["\<64\>", {2, 0}, {\(-1\), 
+                0}], \[IndentingNewLine]Hue[
+              5/6], \[IndentingNewLine]Line[{{0, 1}, {1, 
+                  1}}], \[IndentingNewLine]GrayLevel[
+              0], \[IndentingNewLine]Text["\<32\>", {2, 1}, {\(-1\), 
+                0}], \[IndentingNewLine]Hue[
+              4/6], \[IndentingNewLine]Line[{{0, 2}, {1, 
+                  2}}], \[IndentingNewLine]GrayLevel[
+              0], \[IndentingNewLine]Text["\<16\>", {2, 2}, {\(-1\), 
+                0}], \[IndentingNewLine]Hue[
+              3/6], \[IndentingNewLine]Line[{{0, 3}, {1, 
+                  3}}], \[IndentingNewLine]GrayLevel[
+              0], \[IndentingNewLine]Text["\<8\>", {2, 3}, {\(-1\), 
+                0}], \[IndentingNewLine]Hue[
+              2/6], \[IndentingNewLine]Line[{{0, 4}, {1, 
+                  4}}], \[IndentingNewLine]GrayLevel[
+              0], \[IndentingNewLine]Text["\<4\>", {2, 4}, {\(-1\), 
+                0}], \[IndentingNewLine]Hue[
+              1/6], \[IndentingNewLine]Line[{{0, 5}, {1, 
+                  5}}], \[IndentingNewLine]GrayLevel[
+              0], \[IndentingNewLine]Text["\<2\>", {2, 5}, {\(-1\), 
+                0}]\[IndentingNewLine]}], AspectRatio \[Rule] 2, 
+        ImageSize \[Rule] 50, 
+        PlotRange \[Rule] {{\(-1\), 5}, {\(-0.5\), 5.5}}, 
+        TextStyle \[Rule] {FontSize \[Rule] 12}];\)\)], "Input"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Lower Range", "Section"],
+
+Cell[BoxData[
+    \(For[i = 1, 
+      i \[LessEqual] 
+        6, \(i++\), \[IndentingNewLine]\(octreeData[i] = 
+          Transpose[{querySize[\([Range[1, 10]]\)], \(octreeTime[
+                  i]\)[\([Range[1, 
+                    10]]\)]}];\)\[IndentingNewLine]]\)], "Input"],
+
+Cell[BoxData[
+    \(\(octreePointPlot = 
+        LogLogListPlot[
+          Join[octreeData[1], octreeData[2], octreeData[3], octreeData[4], 
+            octreeData[5], 
+            octreeData[6]], \[IndentingNewLine]PlotStyle \[Rule] 
+            PointSize[0.02], 
+          Ticks \[Rule] {{0.01, 0.02, 0.04\ , 0.08}, {0.00005, 0.0002, 
+                0.0008}}, 
+          TextStyle \[Rule] {FontSize \[Rule] 12}];\)\)], "Input"],
+
+Cell[BoxData[
+    \(For[i = 1, 
+      i \[LessEqual] 
+        6, \(i++\), \[IndentingNewLine]\(octreePlot[i] = 
+          LogLogListPlot[octreeData[i], PlotJoined \[Rule] True, 
+            PlotStyle \[Rule] Hue[i/6]];\)\[IndentingNewLine]]\)], "Input"],
+
+Cell["Save as OctreeRandomQuerySizeSmall.eps", "Text"],
+
+Cell[BoxData[
+    \(\(Show[octreePointPlot, octreePlot[1], octreePlot[2], octreePlot[3], 
+        octreePlot[4], octreePlot[5], octreePlot[6]];\)\)], "Input"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["High Range", "Section"],
+
+Cell[BoxData[
+    \(For[i = 1, 
+      i \[LessEqual] 
+        6, \(i++\), \[IndentingNewLine]\(octreeData[i] = 
+          Transpose[{querySize[\([Range[11, 20]]\)], \(octreeTime[
+                  i]\)[\([Range[11, 
+                    20]]\)]}];\)\[IndentingNewLine]]\)], "Input"],
+
+Cell[BoxData[
+    \(\(octreePointPlot = 
+        LogLogListPlot[
+          Join[octreeData[1], octreeData[2], octreeData[3], octreeData[4], 
+            octreeData[5], 
+            octreeData[6]], \[IndentingNewLine]PlotStyle \[Rule] 
+            PointSize[0.02], 
+          Ticks \[Rule] {{0.16, 0.32, 0.64}, {0.001, 0.01, 0.1}}, 
+          TextStyle \[Rule] {FontSize \[Rule] 12}];\)\)], "Input"],
+
+Cell[BoxData[
+    \(For[i = 1, 
+      i \[LessEqual] 
+        6, \(i++\), \[IndentingNewLine]\(octreePlot[i] = 
+          LogLogListPlot[octreeData[i], PlotJoined \[Rule] True, 
+            PlotStyle \[Rule] Hue[i/6]];\)\[IndentingNewLine]]\)], "Input"],
+
+Cell["Save as OctreeRandomQuerySizeLarge.eps", "Text"],
+
+Cell[BoxData[
+    \(\(Show[octreePointPlot, octreePlot[1], octreePlot[2], octreePlot[3], 
+        octreePlot[4], octreePlot[5], octreePlot[6]];\)\)], "Input"]
+}, Open  ]]
+},
+FrontEndVersion->"4.1 for X",
+ScreenRectangle->{{0, 1280}, {0, 1024}},
+WindowSize->{673, 943},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+Magnification->1.5
+]
+
+(*******************************************************************
+Cached data follows.  If you edit this Notebook file directly, not
+using Mathematica, you must remove the line containing CacheID at
+the top of  the file.  The cache data will then be recreated when
+you save this file from within Mathematica.
+*******************************************************************)
+
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+
+(*NotebookFileOutline
+Notebook[{
+Cell[1705, 50, 54, 1, 39, "Input"],
+Cell[1762, 53, 107, 2, 39, "Input"],
+Cell[1872, 57, 103, 2, 39, "Input"],
+Cell[1978, 61, 289, 4, 154, "Input"],
+Cell[2270, 67, 326, 5, 154, "Input"],
+Cell[2599, 74, 327, 5, 154, "Input"],
+Cell[2929, 81, 329, 5, 154, "Input"],
+Cell[3261, 88, 330, 5, 154, "Input"],
+Cell[3594, 95, 328, 5, 154, "Input"],
+Cell[3925, 102, 330, 5, 154, "Input"],
+Cell[4258, 109, 252, 4, 131, "Input"],
+
+Cell[CellGroupData[{
+Cell[4535, 117, 28, 0, 87, "Section"],
+Cell[4566, 119, 110, 2, 62, "Input"],
+Cell[4679, 123, 210, 5, 96, "Input"],
+Cell[4892, 130, 500, 10, 96, "Input"],
+Cell[5395, 142, 253, 5, 96, "Input"],
+Cell[5651, 149, 179, 3, 54, "Input"],
+Cell[5833, 154, 49, 0, 57, "Text"],
+Cell[5885, 156, 187, 3, 54, "Input"],
+Cell[6075, 161, 55, 0, 57, "Text"],
+Cell[6133, 163, 1639, 29, 744, "Input"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[7809, 197, 30, 0, 90, "Section"],
+Cell[7842, 199, 279, 6, 96, "Input"],
+Cell[8124, 207, 430, 9, 69, "Input"],
+Cell[8557, 218, 253, 5, 96, "Input"],
+Cell[8813, 225, 54, 0, 57, "Text"],
+Cell[8870, 227, 158, 2, 54, "Input"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[9065, 234, 29, 0, 90, "Section"],
+Cell[9097, 236, 281, 6, 96, "Input"],
+Cell[9381, 244, 398, 8, 69, "Input"],
+Cell[9782, 254, 253, 5, 96, "Input"],
+Cell[10038, 261, 54, 0, 57, "Text"],
+Cell[10095, 263, 158, 2, 54, "Input"]
+}, Open  ]]
+}
+]
+*)
+
+
+
+(*******************************************************************
+End of Mathematica Notebook file.
+*******************************************************************)
+

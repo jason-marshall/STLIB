@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cain version="1.2">
+  <listOfModels>
+    <model id="Schlogl">
+      <listOfParameters>
+        <parameter expression="1e5" id="N1"/>
+        <parameter expression="1e-3" id="c3"/>
+        <parameter expression="1e-4" id="c2"/>
+        <parameter expression="3e-7" id="c1"/>
+        <parameter expression="2e5" id="N2"/>
+        <parameter expression="3.5" id="c4"/>
+      </listOfParameters>
+      <listOfSpecies>
+        <species initialAmount="250" id="X"/>
+      </listOfSpecies>
+      <listOfReactions>
+        <reaction propensity="c1*N1" massAction="true" id="R1">
+          <listOfReactants>
+            <speciesReference stoichiometry="2" species="X"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference stoichiometry="3" species="X"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="c2" massAction="true" id="R2">
+          <listOfReactants>
+            <speciesReference stoichiometry="3" species="X"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference stoichiometry="2" species="X"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="c3*N2" massAction="true" id="R3">
+          <listOfProducts>
+            <speciesReference species="X"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="c4" massAction="true" id="R4">
+          <listOfReactants>
+            <speciesReference species="X"/>
+          </listOfReactants>
+        </reaction>
+      </listOfReactions>
+    </model>
+  </listOfModels>
+  <listOfMethods>
+    <method category="0" numberOfBins="32" multiplicity="4" equilibrationTime="0.0" id="Time Series" method="0" timeDependence="0" startTime="0.0" recordingTime="10.0" numberOfFrames="101" options="0"/>
+    <method category="4" numberOfBins="32" multiplicity="4" equilibrationTime="100.0" id="Histograms Average" method="0" timeDependence="0" startTime="0.0" recordingTime="1000.0" numberOfFrames="5" options="0"/>
+    <method category="3" numberOfBins="32" multiplicity="4" equilibrationTime="0.0" id="Histograms Transient" method="0" timeDependence="0" startTime="0.0" recordingTime="10.0" numberOfFrames="6" options="0"/>
+  </listOfMethods>
+  <random seed="2147483648">
+  </random>
+</cain>

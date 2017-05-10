@@ -1,0 +1,91 @@
+[OPTIONS]
+Compatibility=1.1
+Full-text search=Yes
+Contents file=cain.hhc
+Compiled file=cain.chm
+Default Window=Help
+Default topic=Welcome.htm
+Charset=utf-8
+Index file=cain.hhk
+Title=Cain
+
+[WINDOWS]
+Help=,"cain.hhc","cain.hhk","Welcome.htm",,,,,,0x2420,,0x380e,,,,,0,,,
+
+[FILES]
+Welcome.htm
+Installation.htm
+InstallationMac.htm
+InstallationMicrosoft.htm
+InstallationLinux.htm
+InstallationRedHat-5.5.htm
+InstallationRedHat.htm
+InstallationFedora.htm
+InstallationUbuntu-10.htm
+InstallationUbuntu.htm
+User.htm
+UserQuick.htm
+UserModel.htm
+UserMethod.htm
+UserMethodEditor.htm
+UserRecorder.htm
+UserLauncher.htm
+UserSimulation.htm
+UserSpecies.htm
+UserReaction.htm
+UserCompartment.htm
+UserTimeEvents.htm
+UserTriggerEvents.htm
+UserParameter.htm
+UserTool.htm
+UserSolvers.htm
+UserMathematical.htm
+Examples.htm
+ExamplesBirthDeath.htm
+ExamplesImmigrationDeath.htm
+ExamplesLacOperon.htm
+Dsmts.htm
+DsmtsBirthDeath.htm
+DsmtsImmigrationDeath.htm
+DsmtsDimerization.htm
+DsmtsBatch.htm
+Simulation.htm
+SimulationDiscrete.htm
+SimulationDirect.htm
+SimulationFirst.htm
+SimulationNext.htm
+SimulationTau.htm
+SimulationDirectTime.htm
+SimulationHybrid.htm
+SimulationOde.htm
+Visualization.htm
+VisualizationPlottingTimeSeries.htm
+VisualizationPlottingHistograms.htm
+VisualizationTables.htm
+VisualizationHistogram.htm
+VisualizationSignificance.htm
+VisualizationExporting.htm
+Performance.htm
+PerformanceExact.htm
+Developer.htm
+DeveloperCommand.htm
+DeveloperFile.htm
+DeveloperDocumentation.htm
+Xml.htm
+XmlModels.htm
+XmlMethods.htm
+XmlOutput.htm
+XmlRandom.htm
+License.htm
+Faq.htm
+Links.htm
+Bibliography.htm
+Acknowledgments.htm
+KnownIssues.htm
+ToDo.htm
+
+[ALIAS]
+#include "cain_alias.h"
+
+[MAP]
+#include "cain_ids.h"

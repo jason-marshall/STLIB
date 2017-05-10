@@ -1,0 +1,113 @@
+(***********************************************************************
+
+                    Mathematica-Compatible Notebook
+
+This notebook can be used on any computer system with Mathematica 4.0,
+MathReader 4.0, or any compatible application. The data for the notebook 
+starts with the line containing stars above.
+
+To get the notebook into a Mathematica-compatible application, do one of 
+the following:
+
+* Save the data starting with the line of stars above into a file
+  with a name ending in .nb, then open the file inside the application;
+
+* Copy the data starting with the line of stars above to the
+  clipboard, then use the Paste menu command inside the application.
+
+Data for notebooks contains only printable 7-bit ASCII and can be
+sent directly in email or through ftp in text mode.  Newlines can be
+CR, LF or CRLF (Unix, Macintosh or MS-DOS style).
+
+NOTE: If you modify the data for this notebook not in a Mathematica-
+compatible application, you must delete the line below containing the 
+word CacheID, otherwise Mathematica-compatible applications may try to 
+use invalid cache data.
+
+For more information on notebooks and Mathematica-compatible 
+applications, contact Wolfram Research:
+  web: http://www.wolfram.com
+  email: info@wolfram.com
+  phone: +1-217-398-0700 (U.S.)
+
+Notebook reader applications are available free of charge from 
+Wolfram Research.
+***********************************************************************)
+
+(*CacheID: 232*)
+
+
+(*NotebookFileLineBreakTest
+NotebookFileLineBreakTest*)
+(*NotebookOptionsPosition[      3198,         75]*)
+(*NotebookOutlinePosition[      3857,         99]*)
+(*  CellTagsIndexPosition[      3813,         95]*)
+(*WindowFrame->Normal*)
+
+
+
+Notebook[{
+Cell[BoxData[
+    \(\(Show[
+        Graphics3D[{\[IndentingNewLine]Cuboid[{1, 2, 3}, {2, 3, 
+                5}], \[IndentingNewLine]Polygon[{{1, 2, 0}, {2, 2, 0}, {2, 3, 
+                  0}, {1, 3, 0}}], \[IndentingNewLine]Polygon[{{1, 0, 3}, {2, 
+                  0, 3}, {2, 0, 5}, {1, 0, 
+                  5}}], \[IndentingNewLine]Polygon[{{0, 2, 3}, {0, 3, 3}, {0, 
+                  3, 5}, {0, 2, 5}}], \[IndentingNewLine]Line[{{1, 2, 0}, {1, 
+                  2, 3}}], \[IndentingNewLine]Line[{{2, 2, 0}, {2, 2, 
+                  3}}], \[IndentingNewLine]Line[{{2, 3, 0}, {2, 3, 
+                  3}}], \[IndentingNewLine]Line[{{1, 3, 0}, {1, 3, 
+                  3}}], \[IndentingNewLine]Line[{{1, 0, 3}, {1, 2, 
+                  3}}], \[IndentingNewLine]Line[{{2, 0, 3}, {2, 2, 
+                  3}}], \[IndentingNewLine]Line[{{2, 0, 5}, {2, 2, 
+                  5}}], \[IndentingNewLine]Line[{{1, 0, 5}, {1, 2, 
+                  5}}], \[IndentingNewLine]Line[{{0, 2, 3}, {1, 2, 
+                  3}}], \[IndentingNewLine]Line[{{0, 3, 3}, {1, 3, 
+                  3}}], \[IndentingNewLine]Line[{{0, 3, 5}, {1, 3, 
+                  5}}], \[IndentingNewLine]Line[{{0, 2, 5}, {1, 2, 
+                  5}}]\[IndentingNewLine]}], Axes \[Rule] True, 
+        AxesLabel \[Rule] {"\<x\>", "\<y\>", "\<z\>"}, Ticks \[Rule] None, 
+        PlotRange \[Rule] {{0, 4}, {0, 5}, {0, 6}}];\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(Export["\<orq.jpg\>", %];\)\)], "Input"]
+},
+FrontEndVersion->"4.0 for X",
+ScreenRectangle->{{0, 1152}, {0, 864}},
+WindowSize->{651, 779},
+WindowMargins->{{202, Automatic}, {Automatic, 7}},
+Magnification->1.5
+]
+
+
+(***********************************************************************
+Cached data follows.  If you edit this Notebook file directly, not using
+Mathematica, you must remove the line containing CacheID at the top of 
+the file.  The cache data will then be recreated when you save this file 
+from within Mathematica.
+***********************************************************************)
+
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+
+(*NotebookFileOutline
+Notebook[{
+Cell[1717, 49, 1412, 21, 545, "Input"],
+Cell[3132, 72, 62, 1, 39, "Input"]
+}
+]
+*)
+
+
+
+
+(***********************************************************************
+End of Mathematica Notebook file.
+***********************************************************************)
+

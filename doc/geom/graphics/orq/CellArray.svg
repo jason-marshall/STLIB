@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Creator: fig2dev Version 3.2 Patchlevel 5 -->
+<!-- CreationDate: Sat Apr  5 12:59:56 2008 -->
+<!-- Magnification: 1.000 -->
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="6.6in"
+   height="2.0in"
+   viewBox="1188 1188 7899 2424"
+   id="svg2440"
+   sodipodi:version="0.32"
+   inkscape:version="0.46"
+   sodipodi:docname="CellArray.svg"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape">
+  <metadata
+     id="metadata2599">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs2597">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 90 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="594 : 90 : 1"
+       inkscape:persp3d-origin="297 : 60 : 1"
+       id="perspective2601" />
+  </defs>
+  <sodipodi:namedview
+     inkscape:window-height="1138"
+     inkscape:window-width="1707"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     guidetolerance="10.0"
+     gridtolerance="10.0"
+     objecttolerance="10.0"
+     borderopacity="1.0"
+     bordercolor="#666666"
+     pagecolor="#ffffff"
+     id="base"
+     showgrid="true"
+     inkscape:zoom="4"
+     inkscape:cx="294.5"
+     inkscape:cy="71.072393"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:current-layer="svg2440"
+     showguides="false"
+     inkscape:snap-global="false">
+    <inkscape:grid
+       type="xygrid"
+       id="grid3469" />
+  </sodipodi:namedview>
+  <circle
+     sodipodi:ry="50"
+     sodipodi:rx="50"
+     sodipodi:cy="1800"
+     sodipodi:cx="2400"
+     id="circle2528"
+     style="fill:#000000;stroke:#000000;stroke-width:7"
+     r="50"
+     cy="1800"
+     cx="2400" />
+  <circle
+     sodipodi:ry="50"
+     sodipodi:rx="50"
+     sodipodi:cy="1725"
+     sodipodi:cx="1650"
+     id="circle2530"
+     style="fill:#000000;stroke:#000000;stroke-width:7"
+     r="50"
+     cy="1725"
+     cx="1650" />
+  <circle
+     sodipodi:ry="50"
+     sodipodi:rx="50"
+     sodipodi:cy="2250"
+     sodipodi:cx="2025"
+     id="circle2532"
+     style="fill:#000000;stroke:#000000;stroke-width:7"
+     r="50"
+     cy="2250"
+     cx="2025" />
+  <circle
+     sodipodi:ry="50"
+     sodipodi:rx="50"
+     sodipodi:cy="2550"
+     sodipodi:cx="1650"
+     id="circle2534"
+     style="fill:#000000;stroke:#000000;stroke-width:7"
+     r="50"
+     cy="2550"
+     cx="1650" />
+  <circle
+     sodipodi:ry="50"
+     sodipodi:rx="50"
+     sodipodi:cy="2400"
+     sodipodi:cx="2700"
+     id="circle2536"
+     style="fill:#000000;stroke:#000000;stroke-width:7"
+     r="50"
+     cy="2400"
+     cx="2700" />
+  <circle
+     sodipodi:ry="50"
+     sodipodi:rx="50"
+     sodipodi:cy="1575"
+     sodipodi:cx="3000"
+     id="circle2538"
+     style="fill:#000000;stroke:#000000;stroke-width:7"
+     r="50"
+     cy="1575"
+     cx="3000" />
+  <circle
+     sodipodi:ry="50"
+     sodipodi:rx="50"
+     sodipodi:cy="1800"
+     sodipodi:cx="3225"
+     id="circle2540"
+     style="fill:#000000;stroke:#000000;stroke-width:7"
+     r="50"
+     cy="1800"
+     cx="3225" />
+  <circle
+     sodipodi:ry="50"
+     sodipodi:rx="50"
+     sodipodi:cy="3000"
+     sodipodi:cx="3075"
+     id="circle2542"
+     style="fill:#000000;stroke:#000000;stroke-width:7"
+     r="50"
+     cy="3000"
+     cx="3075" />
+  <circle
+     sodipodi:ry="50"
+     sodipodi:rx="50"
+     sodipodi:cy="2700"
+     sodipodi:cx="3225"
+     id="circle2544"
+     style="fill:#000000;stroke:#000000;stroke-width:7"
+     r="50"
+     cy="2700"
+     cx="3225" />
+  <circle
+     sodipodi:ry="50"
+     sodipodi:rx="50"
+     sodipodi:cy="3225"
+     sodipodi:cx="2250"
+     id="circle2546"
+     style="fill:#000000;stroke:#000000;stroke-width:7"
+     r="50"
+     cy="3225"
+     cx="2250" />
+  <circle
+     sodipodi:ry="50"
+     sodipodi:rx="50"
+     sodipodi:cy="1800"
+     sodipodi:cx="5100"
+     id="circle2548"
+     style="fill:#000000;stroke:#000000;stroke-width:7"
+     r="50"
+     cy="1800"
+     cx="5100" />
+  <circle
+     sodipodi:ry="50"
+     sodipodi:rx="50"
+     sodipodi:cy="1725"
+     sodipodi:cx="4350"
+     id="circle2550"
+     style="fill:#000000;stroke:#000000;stroke-width:7"
+     r="50"
+     cy="1725"
+     cx="4350" />
+  <circle
+     sodipodi:ry="50"
+     sodipodi:rx="50"
+     sodipodi:cy="2250"
+     sodipodi:cx="4725"
+     id="circle2552"
+     style="fill:#000000;stroke:#000000;stroke-width:7"
+     r="50"
+     cy="2250"
+     cx="4725" />
+  <circle
+     sodipodi:ry="50"
+     sodipodi:rx="50"
+     sodipodi:cy="2550"
+     sodipodi:cx="4350"
+     id="circle2554"
+     style="fill:#000000;stroke:#000000;stroke-width:7"
+     r="50"
+     cy="2550"
+     cx="4350" />
+  <circle
+     sodipodi:ry="50"
+     sodipodi:rx="50"
+     sodipodi:cy="2400"
+     sodipodi:cx="5400"
+     id="circle2556"
+     style="fill:#000000;stroke:#000000;stroke-width:7"
+     r="50"
+     cy="2400"
+     cx="5400" />
+  <circle
+     sodipodi:ry="50"
+     sodipodi:rx="50"
+     sodipodi:cy="1575"
+     sodipodi:cx="5700"
+     id="circle2558"
+     style="fill:#000000;stroke:#000000;stroke-width:7"
+     r="50"
+     cy="1575"
+     cx="5700" />
+  <circle
+     sodipodi:ry="50"
+     sodipodi:rx="50"
+     sodipodi:cy="1800"
+     sodipodi:cx="5925"
+     id="circle2560"
+     style="fill:#000000;stroke:#000000;stroke-width:7"
+     r="50"
+     cy="1800"
+     cx="5925" />
+  <circle
+     sodipodi:ry="50"
+     sodipodi:rx="50"
+     sodipodi:cy="3000"
+     sodipodi:cx="5775"
+     id="circle2562"
+     style="fill:#000000;stroke:#000000;stroke-width:7"
+     r="50"
+     cy="3000"
+     cx="5775" />
+  <circle
+     sodipodi:ry="50"
+     sodipodi:rx="50"
+     sodipodi:cy="2700"
+     sodipodi:cx="5925"
+     id="circle2564"
+     style="fill:#000000;stroke:#000000;stroke-width:7"
+     r="50"
+     cy="2700"
+     cx="5925" />
+  <circle
+     sodipodi:ry="50"
+     sodipodi:rx="50"
+     sodipodi:cy="3225"
+     sodipodi:cx="4950"
+     id="circle2566"
+     style="fill:#000000;stroke:#000000;stroke-width:7"
+     r="50"
+     cy="3225"
+     cx="4950" />
+  <polyline
+     id="polyline2568"
+     style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;fill:none"
+     points="1200,1200 3600,1200 3600,3600 1200,3600 1200,1200 " />
+  <rect
+     id="rect2570"
+     style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;fill:none"
+     rx="0"
+     height="2400"
+     width="2400"
+     y="1200"
+     x="3900" />
+  <polyline
+     id="polyline2572"
+     style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter"
+     points="5100,1200 5100,3600 "
+     transform="translate(242.4,-3.3666667)" />
+  <polyline
+     id="polyline2574"
+     style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter"
+     points="3900,2400 6300,2400 "
+     transform="translate(0,-232.3)" />
+  <polyline
+     id="polyline2576"
+     style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter"
+     points="4500,1200 4500,3600 "
+     transform="translate(-107.73333,0)" />
+  <polyline
+     id="polyline2578"
+     style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter"
+     points="5700,1200 5700,3600 "
+     transform="translate(124.56667,-3.3666667)" />
+  <polyline
+     id="polyline2580"
+     style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter"
+     points="3900,1800 6300,1800 "
+     transform="translate(-3.3666667,-111.1)" />
+  <polyline
+     id="polyline2582"
+     style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter"
+     points="3900,3000 6300,3000 "
+     transform="translate(3.3666667,114.46667)" />
+  <polyline
+     id="polyline3471"
+     style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter"
+     points="3900,3000 6300,3000 "
+     transform="translate(-2.9,-360.9667)" />
+  <polyline
+     id="polyline3473"
+     style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter"
+     points="4500,1200 4500,3600 "
+     transform="translate(378.26666,-3.3332526e-8)" />
+</svg>

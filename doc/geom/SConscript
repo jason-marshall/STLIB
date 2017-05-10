@@ -1,0 +1,15 @@
+# -*- python -*-
+
+import sys
+sys.path.append('..')
+from doxygen import doxygen
+
+doxygen.Doxyfile('Doxyfile', ['../main.cfg', 'local.cfg'])
+target = '../html/geom/index.html'
+Default([target])
+sources = Glob('../../stlib/geom/*.h') + Glob('../../stlib/geom/*/*.h') \
+          + Glob('../../stlib/geom/*/*/*.h') \
+          + ['../ads/ads.tag', '../container/container.tag', '../ext/ext.tag',
+             '../numerical/numerical.tag']
+doxygen.Doxygen([target, 'geom.tag'], ['Doxyfile'] + sources)
+Clean(target, ['../html/geom', 'geom.tag'])

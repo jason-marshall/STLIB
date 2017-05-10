@@ -1,0 +1,4 @@
+Meaningless result = 0.55296
+CLOCKS_PER_SEC = 100
+Generated 100000000 uniform random numbers in 5.23 seconds.
+Time per random number = 52.3 nanoseconds.

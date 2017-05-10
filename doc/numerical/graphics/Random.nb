@@ -1,0 +1,204 @@
+(************** Content-type: application/mathematica **************
+                     CreatedBy='Mathematica 5.2'
+
+                    Mathematica-Compatible Notebook
+
+This notebook can be used with any Mathematica-compatible
+application, such as Mathematica, MathReader or Publicon. The data
+for the notebook starts with the line containing stars above.
+
+To get the notebook into a Mathematica-compatible application, do
+one of the following:
+
+* Save the data starting with the line of stars above into a file
+  with a name ending in .nb, then open the file inside the
+  application;
+
+* Copy the data starting with the line of stars above to the
+  clipboard, then use the Paste menu command inside the application.
+
+Data for notebooks contains only printable 7-bit ASCII and can be
+sent directly in email or through ftp in text mode.  Newlines can be
+CR, LF or CRLF (Unix, Macintosh or MS-DOS style).
+
+NOTE: If you modify the data for this notebook not in a Mathematica-
+compatible application, you must delete the line below containing
+the word CacheID, otherwise Mathematica-compatible applications may
+try to use invalid cache data.
+
+For more information on notebooks and Mathematica-compatible 
+applications, contact Wolfram Research:
+  web: http://www.wolfram.com
+  email: info@wolfram.com
+  phone: +1-217-398-0700 (U.S.)
+
+Notebook reader applications are available free of charge from 
+Wolfram Research.
+*******************************************************************)
+
+(*CacheID: 232*)
+
+
+(*NotebookFileLineBreakTest
+NotebookFileLineBreakTest*)
+(*NotebookOptionsPosition[      5261,        146]*)
+(*NotebookOutlinePosition[      5945,        170]*)
+(*  CellTagsIndexPosition[      5901,        166]*)
+(*WindowFrame->Normal*)
+
+
+
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Random", "Title"],
+
+Cell[CellGroupData[{
+
+Cell["Exponential Distribution", "Section"],
+
+Cell[BoxData[
+    \(<< Graphics`Legend`\)], "Input"],
+
+Cell[BoxData[
+    \(pdf[\[Lambda]_, x_] := \[Lambda]\ Exp[\(-\[Lambda]\)\ x]\)], "Input"],
+
+Cell[BoxData[
+    \(cdf[\[Lambda]_, x_] := 1 - Exp[\(-\[Lambda]\)\ x]\)], "Input"],
+
+Cell[BoxData[{
+    \(\(p = 
+        Plot[{pdf[1, x], pdf[2, x], pdf[3, x]}, {x, 0, 4}, 
+          PlotRange \[Rule] All, 
+          PlotStyle \[Rule] {RGBColor[1, 0, 0], RGBColor[0, 1, 0], 
+              RGBColor[0, 0, 1]}, 
+          PlotLegend \[Rule] {"\<\[Lambda]=1\>", "\<\[Lambda]=2\>", "\<\
+\[Lambda]=3\>"}, LegendPosition \[Rule] {0, 0}, 
+          LegendSize \[Rule] {0.5, 0.5}];\)\), "\[IndentingNewLine]", 
+    \(\(Export["\<ExponentialPdf.jpg\>", p];\)\), "\[IndentingNewLine]", 
+    \(\(Export["\<ExponentialPdf.pdf\>", p];\)\)}], "Input"],
+
+Cell[BoxData[{
+    \(\(p = 
+        Plot[{cdf[1, x], cdf[2, x], cdf[3, x]}, {x, 0, 4}, 
+          PlotRange \[Rule] All, 
+          PlotStyle \[Rule] {RGBColor[1, 0, 0], RGBColor[0, 1, 0], 
+              RGBColor[0, 0, 1]}, 
+          PlotLegend \[Rule] {"\<\[Lambda]=1\>", "\<\[Lambda]=2\>", "\<\
+\[Lambda]=3\>"}, LegendPosition \[Rule] {0, \(-0.25\)}, 
+          LegendSize \[Rule] {0.5, 0.5}];\)\), "\[IndentingNewLine]", 
+    \(\(Export["\<ExponentialCdf.jpg\>", p];\)\), "\[IndentingNewLine]", 
+    \(\(Export["\<ExponentialCdf.pdf\>", p];\)\)}], "Input"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Poisson Distribution", "Section"],
+
+Cell[BoxData[
+    \(pdf[\[Mu]_, n_] := Exp[\(-\[Mu]\)] \[Mu]\^n/\(n!\)\)], "Input"],
+
+Cell[BoxData[
+    \(cdf[\[Mu]_, n_] := Gamma[n + 1, \[Mu]]/\(n!\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(pdfData[mean_] := 
+        Flatten[Table[{{n, pdf[mean, n]}, {n + 1, pdf[mean, n]}}, {n, 0, 
+              20}], 1];\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(cdfData[mean_] := 
+        Flatten[Table[{{n, cdf[mean, n]}, {n + 1, cdf[mean, n]}}, {n, 0, 
+              20}], 1];\)\)], "Input"],
+
+Cell[BoxData[{
+    \(\(means = {1, 5.5, 10};\)\), "\[IndentingNewLine]", 
+    \(\(colors = {RGBColor[1, 0, 0], RGBColor[0, 1, 0], 
+          RGBColor[0, 0, 1]};\)\), "\[IndentingNewLine]", 
+    \(For[i = 1, i \[LessEqual] 3, \(++i\), 
+      a[i] = ListPlot[Evaluate[pdfData[means[\([i]\)]]], 
+          PlotJoined \[Rule] True, PlotStyle \[Rule] colors[\([i]\)], 
+          PlotRange \[Rule] All]; \[IndentingNewLine]b[i] = 
+        ListPlot[Evaluate[pdfData[means[\([i]\)]]], 
+          PlotStyle \[Rule] {colors[\([i]\)], 
+              PointSize[0.01]}];]\), "\[IndentingNewLine]", 
+    \(\(c = 
+        Show[a[1], a[2], a[3], b[1], b[2], 
+          b[3]];\)\), "\[IndentingNewLine]", 
+    \(\(Export["\<PoissonPdf.pdf\>", c];\)\), "\[IndentingNewLine]", 
+    \(\(Export["\<PoissonPdf.jpg\>", c];\)\)}], "Input"],
+
+Cell[BoxData[{
+    \(For[i = 1, i \[LessEqual] 3, \(++i\), 
+      a[i] = ListPlot[Evaluate[cdfData[means[\([i]\)]]], 
+          PlotJoined \[Rule] True, PlotStyle \[Rule] colors[\([i]\)], 
+          PlotRange \[Rule] All]; \[IndentingNewLine]b[i] = 
+        ListPlot[Evaluate[cdfData[means[\([i]\)]]], 
+          PlotStyle \[Rule] {colors[\([i]\)], 
+              PointSize[0.01]}];]\), "\[IndentingNewLine]", 
+    \(\(c = 
+        Show[a[1], a[2], a[3], b[1], b[2], 
+          b[3]];\)\), "\[IndentingNewLine]", 
+    \(\(Export["\<PoissonCdf.pdf\>", c];\)\), "\[IndentingNewLine]", 
+    \(\(Export["\<PoissonCdf.jpg\>", c];\)\)}], "Input"]
+}, Open  ]]
+}, Open  ]]
+},
+FrontEndVersion->"5.2 for Microsoft Windows",
+ScreenRectangle->{{0, 1680}, {0, 963}},
+WindowSize->{822, 930},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+ShowSelection->True,
+Magnification->1.5
+]
+
+(*******************************************************************
+Cached data follows.  If you edit this Notebook file directly, not
+using Mathematica, you must remove the line containing CacheID at
+the top of  the file.  The cache data will then be recreated when
+you save this file from within Mathematica.
+*******************************************************************)
+
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+
+(*NotebookFileOutline
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[1776, 53, 23, 0, 141, "Title"],
+
+Cell[CellGroupData[{
+Cell[1824, 57, 43, 0, 109, "Section"],
+Cell[1870, 59, 52, 1, 42, "Input"],
+Cell[1925, 62, 89, 1, 42, "Input"],
+Cell[2017, 65, 82, 1, 42, "Input"],
+Cell[2102, 68, 552, 10, 198, "Input"],
+Cell[2657, 80, 560, 10, 198, "Input"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[3254, 95, 39, 0, 109, "Section"],
+Cell[3296, 97, 83, 1, 42, "Input"],
+Cell[3382, 100, 78, 1, 42, "Input"],
+Cell[3463, 103, 153, 3, 94, "Input"],
+Cell[3619, 108, 153, 3, 94, "Input"],
+Cell[3775, 113, 815, 15, 328, "Input"],
+Cell[4593, 130, 640, 12, 250, "Input"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+
+
+(*******************************************************************
+End of Mathematica Notebook file.
+*******************************************************************)
+

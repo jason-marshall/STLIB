@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cain version="1.5">
+  <listOfModels>
+    <model id="BirthDeath03" name="Birth-death model (001), variant 01">
+      <listOfParameters>
+        <parameter expression="1.1" id="Mu"/>
+        <parameter expression="1" id="Lambda"/>
+      </listOfParameters>
+      <listOfCompartments>
+        <compartment expression="1" id="Cell"/>
+      </listOfCompartments>
+      <listOfSpecies>
+        <species compartment="Cell" initialAmount="100" id="X"/>
+      </listOfSpecies>
+      <listOfReactions>
+        <reaction propensity="Lambda" massAction="true" id="Birth">
+          <listOfReactants>
+            <speciesReference species="X"/>
+          </listOfReactants>
+          <listOfProducts>
+            <speciesReference stoichiometry="2" species="X"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="Mu" massAction="true" id="Death">
+          <listOfReactants>
+            <speciesReference species="X"/>
+          </listOfReactants>
+        </reaction>
+      </listOfReactions>
+    </model>
+  </listOfModels>
+  <listOfMethods>
+    <method equilibrationTime="0.0" startTime="0.0" recordingTime="50.0" id="Reference" category="5" numberOfBins="32" multiplicity="4" method="0" timeDependence="0" numberOfFrames="51" options="0"/>
+    <method equilibrationTime="0.0" startTime="0.0" recordingTime="50.0" id="TimeSeries" category="0" numberOfBins="32" multiplicity="4" method="0" timeDependence="0" numberOfFrames="51" options="0"/>
+    <method equilibrationTime="0.0" startTime="0.0" recordingTime="50.0" id="Histogram" category="3" numberOfBins="32" multiplicity="4" method="0" timeDependence="0" numberOfFrames="1" options="0"/>
+  </listOfMethods>
+  <listOfOutput>
+    <statisticsFrames model="BirthDeath03" method="Reference">
+      <frameTimes>
+        0.0 1.0 2.0 3.0 4.0 5.0 6.0 7.0 8.0 9.0 10.0 11.0 12.0 13.0 14.0 15.0 16.0 17.0 18.0 19.0 20.0 21.0 22.0 23.0 24.0 25.0 26.0 27.0 28.0 29.0 30.0 31.0 32.0 33.0 34.0 35.0 36.0 37.0 38.0 39.0 40.0 41.0 42.0 43.0 44.0 45.0 46.0 47.0 48.0 49.0 50.0
+      </frameTimes>
+      <recordedSpecies>
+        0
+      </recordedSpecies>
+      <statistics>
+        100.0 0.0 90.483739999999997 13.44708 81.873080000000002 17.653970000000001 74.081819999999993 20.080179999999999 67.031999999999996 21.542549999999999 60.65307 22.386769999999999 54.881160000000001 22.803429999999999 49.658529999999999 22.91234 44.932899999999997 22.794910000000002 40.656970000000001 22.5093 36.787939999999999 22.098479999999999 33.287109999999998 21.59497 30.119420000000002 21.023800000000001 27.25318 20.40447 24.659700000000001 19.752279999999999 22.313020000000002 19.079319999999999 20.18965 18.39517 18.268350000000002 17.70739 16.529890000000002 17.021979999999999 14.956860000000001 16.343669999999999 13.533530000000001 15.67614 12.24564 15.02224 11.08032 14.38416 10.025880000000001 13.763529999999999 9.0717999999999996 13.1615 8.2085000000000008 12.578900000000001 7.4273600000000002 12.01623 6.7205500000000002 11.473739999999999 6.08101 10.951510000000001 5.5023200000000001 10.449439999999999 4.9787100000000004 9.9673200000000008 4.5049200000000003 9.5048200000000005 4.0762200000000002 9.0615299999999994 3.68832 8.6370100000000001 3.3373300000000001 8.2307299999999994 3.0197400000000001 7.8421599999999998 2.73237 7.4707400000000002 2.47235 7.1158799999999998 2.2370800000000002 6.7770000000000001 2.0241899999999999 6.4534900000000004 1.8315600000000001 6.1447799999999999 1.65727 5.8502900000000002 1.49956 5.56942 1.35686 5.3016399999999999 1.22773 5.0463699999999996 1.1109 4.8030999999999997 1.00518 4.5712900000000003 0.90952999999999995 4.3504399999999999 0.82296999999999998 4.1400800000000002 0.74465999999999999 3.9397199999999999 0.67379 3.74891
+      </statistics>
+    </statisticsFrames>
+  </listOfOutput>
+  <random seed="2147483648">
+  </random>
+</cain>

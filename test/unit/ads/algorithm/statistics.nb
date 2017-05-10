@@ -1,0 +1,304 @@
+(************** Content-type: application/mathematica **************
+                     CreatedBy='Mathematica 5.2'
+
+                    Mathematica-Compatible Notebook
+
+This notebook can be used with any Mathematica-compatible
+application, such as Mathematica, MathReader or Publicon. The data
+for the notebook starts with the line containing stars above.
+
+To get the notebook into a Mathematica-compatible application, do
+one of the following:
+
+* Save the data starting with the line of stars above into a file
+  with a name ending in .nb, then open the file inside the
+  application;
+
+* Copy the data starting with the line of stars above to the
+  clipboard, then use the Paste menu command inside the application.
+
+Data for notebooks contains only printable 7-bit ASCII and can be
+sent directly in email or through ftp in text mode.  Newlines can be
+CR, LF or CRLF (Unix, Macintosh or MS-DOS style).
+
+NOTE: If you modify the data for this notebook not in a Mathematica-
+compatible application, you must delete the line below containing
+the word CacheID, otherwise Mathematica-compatible applications may
+try to use invalid cache data.
+
+For more information on notebooks and Mathematica-compatible 
+applications, contact Wolfram Research:
+  web: http://www.wolfram.com
+  email: info@wolfram.com
+  phone: +1-217-398-0700 (U.S.)
+
+Notebook reader applications are available free of charge from 
+Wolfram Research.
+*******************************************************************)
+
+(*CacheID: 232*)
+
+
+(*NotebookFileLineBreakTest
+NotebookFileLineBreakTest*)
+(*NotebookOptionsPosition[      4416,        193]*)
+(*NotebookOutlinePosition[      5100,        217]*)
+(*  CellTagsIndexPosition[      5056,        213]*)
+(*WindowFrame->Normal*)
+
+
+
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Data for statistics.cc", "Title"],
+
+Cell[CellGroupData[{
+
+Cell["0..9", "Section"],
+
+Cell[BoxData[
+    \(\(data = Table[i, {i, 0, 9}];\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(size = Length[data];\)\)], "Input"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(mean = Mean[data]\)], "Input"],
+
+Cell[BoxData[
+    \(9\/2\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(variance = Variance[data]\)], "Input"],
+
+Cell[BoxData[
+    \(55\/6\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(\[Sigma] = \@variance\)], "Input"],
+
+Cell[BoxData[
+    \(\@\(55\/6\)\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(absoluteDeviation = \(1\/size\) 
+        Sum[Abs[data[\([i]\)] - mean], {i, 1, size}]\)], "Input"],
+
+Cell[BoxData[
+    \(5\/2\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(skew = \(1\/\(size\ \[Sigma]\^3\)\) 
+        Sum[\((data[\([i]\)] - mean)\)\^3, {i, 1, size}]\)], "Input"],
+
+Cell[BoxData[
+    \(0\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(curtosis = \(1\/\(size\ \[Sigma]\^4\)\) 
+        Sum[\((data[\([i]\)] - mean)\)\^4, {i, 1, size}]\)], "Input"],
+
+Cell[BoxData[
+    \(7911\/5500\)], "Output"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["1e0..1e9", "Section"],
+
+Cell[BoxData[
+    \(\(data = Table[10\^i, {i, 0, 9}];\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(size = Length[data];\)\)], "Input"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(mean = Mean[data]\)], "Input"],
+
+Cell[BoxData[
+    \(1111111111\/10\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(variance = Variance[data]\)], "Input"],
+
+Cell[BoxData[
+    \(985160244446938521\/10\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(\[Sigma] = \@variance\)], "Input"],
+
+Cell[BoxData[
+    \(3\ \@\(109462249382993169\/10\)\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(absoluteDeviation = \(1\/size\) 
+        Sum[Abs[data[\([i]\)] - mean], {i, 1, size}]\)], "Input"],
+
+Cell[BoxData[
+    \(8888888889\/50\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(skew = \(1\/\(size\ \[Sigma]\^3\)\) 
+        Sum[\((data[\([i]\)] - mean)\)\^3, {i, 1, size}]\)], "Input"],
+
+Cell[BoxData[
+    \(\((704545423434655506\ \@\(6\/182437082304988615\))\)/
+      1806127115\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(curtosis = \(1\/\(size\ \[Sigma]\^4\)\) 
+        Sum[\((data[\([i]\)] - mean)\)\^4, {i, 1, size}]\)], "Input"],
+
+Cell[BoxData[
+    \(653377539998302031538196281\/101386018810008196097783300\)], "Output"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+FrontEndVersion->"5.2 for Microsoft Windows",
+ScreenRectangle->{{0, 1680}, {0, 963}},
+WindowSize->{819, 929},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+ShowSelection->True,
+Magnification->1.5
+]
+
+(*******************************************************************
+Cached data follows.  If you edit this Notebook file directly, not
+using Mathematica, you must remove the line containing CacheID at
+the top of  the file.  The cache data will then be recreated when
+you save this file from within Mathematica.
+*******************************************************************)
+
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+
+(*NotebookFileOutline
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[1776, 53, 39, 0, 141, "Title"],
+
+Cell[CellGroupData[{
+Cell[1840, 57, 23, 0, 109, "Section"],
+Cell[1866, 59, 64, 1, 42, "Input"],
+Cell[1933, 62, 57, 1, 42, "Input"],
+
+Cell[CellGroupData[{
+Cell[2015, 67, 50, 1, 42, "Input"],
+Cell[2068, 70, 38, 1, 57, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[2143, 76, 58, 1, 42, "Input"],
+Cell[2204, 79, 39, 1, 57, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[2280, 85, 54, 1, 47, "Input"],
+Cell[2337, 88, 45, 1, 74, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[2419, 94, 118, 2, 94, "Input"],
+Cell[2540, 98, 38, 1, 57, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[2615, 104, 126, 2, 66, "Input"],
+Cell[2744, 108, 35, 1, 41, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[2816, 114, 130, 2, 66, "Input"],
+Cell[2949, 118, 44, 1, 57, "Output"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[3042, 125, 27, 0, 109, "Section"],
+Cell[3072, 127, 68, 1, 43, "Input"],
+Cell[3143, 130, 57, 1, 42, "Input"],
+
+Cell[CellGroupData[{
+Cell[3225, 135, 50, 1, 42, "Input"],
+Cell[3278, 138, 48, 1, 57, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[3363, 144, 58, 1, 42, "Input"],
+Cell[3424, 147, 56, 1, 57, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[3517, 153, 54, 1, 47, "Input"],
+Cell[3574, 156, 65, 1, 74, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[3676, 162, 118, 2, 94, "Input"],
+Cell[3797, 166, 48, 1, 57, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[3882, 172, 126, 2, 66, "Input"],
+Cell[4011, 176, 105, 2, 77, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[4153, 183, 130, 2, 66, "Input"],
+Cell[4286, 187, 90, 1, 57, "Output"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+
+
+(*******************************************************************
+End of Mathematica Notebook file.
+*******************************************************************)
+

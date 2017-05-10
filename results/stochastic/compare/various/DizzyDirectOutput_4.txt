@@ -1,0 +1,10 @@
+warning:  there is a problem with class file "apple.applescript.AppleScriptEngine"
+warning:  there is a problem with class file "apple.applescript.AppleScriptEngineFactory$1"
+warning:  there is a problem with class file "apple.applescript.AppleScriptEngineFactory"
+# time, S1, S10, S11, S12, S13, S14, S15, S16, S17, S18, S19, S2, S20, S21, S22, S23, S24, S25, S26, S27, S28, S3, S4, S5, S6, S7, S8, S9
+0, 0, 3413.000, 29.00000, 584.0000, 1.000000, 22.00000, 0, 1.714400E5, 9150.000, 2280.000, 6.000000, 0, 596.0000, 0, 13.00000, 3.000000, 3.000000, 7.000000, 0, 260.0000, 0, 0, 0, 1.000000, 4.645670E6, 1324.000, 80.00000, 16.00000
+50.00000, 0, 3435.000, 27.00000, 562.0000, 3.000000, 6.000000, 3.000000, 1.726990E5, 7891.000, 1484.000, 30.00000, 0, 1185.000, 5.000000, 14.00000, 2.000000, 2.000000, 10.00000, 2.000000, 312.0000, 0, 0, 15.00000, 0, 4.645649E6, 1332.000, 102.0000, 7.000000
+
+real 30.93
+user 30.53
+sys 0.21

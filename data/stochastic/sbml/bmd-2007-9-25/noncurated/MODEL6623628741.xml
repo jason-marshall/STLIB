@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbml xmlns="http://www.sbml.org/sbml/level2" level="2" version="1">
+  <model metaid="_411983" id="Kolomeisky2003_myosin">
+    <notes>
+      <body xmlns="http://www.w3.org/1999/xhtml"><p>This model originates from BioModels Database: A Database of Annotated Published Models. It is copyright (c) 2005-2007 The BioModels Team.<br /> For more information see the <a href="http://www.ebi.ac.uk/biomodels/legal.html">terms of use</a>.</p></body>
+    </notes>
+    <annotation>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" >
+<rdf:Description rdf:about="#_411983">
+<dcterms:created rdf:parseType="Resource">
+<dcterms:W3CDTF>2006-09-29T23:36:52</dcterms:W3CDTF>
+</dcterms:created>
+<dcterms:modified rdf:parseType="Resource">
+<dcterms:W3CDTF>2006-09-29T23:36:52</dcterms:W3CDTF>
+</dcterms:modified>
+<bqmodel:is>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.ebi.ac.uk/biomodels/#MODEL6623628741"/>
+</rdf:Bag>
+</bqmodel:is>
+<bqmodel:isDescribedBy>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.pubmed.gov/#12609867"/>
+</rdf:Bag>
+</bqmodel:isDescribedBy>
+</rdf:Description>
+</rdf:RDF>
+</annotation>
+
+    <listOfCompartments>
+      <compartment metaid="_411998" id="compartment" size="1"/>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species metaid="_412018" id="S0" compartment="compartment" initialAmount="1"/>
+      <species metaid="_412038" id="ATP" compartment="compartment" initialAmount="20" boundaryCondition="true"/>
+      <species metaid="_412058" id="S1" compartment="compartment" initialAmount="0"/>
+      <species metaid="_412078" id="Pi" compartment="compartment" initialAmount="0"/>
+      <species metaid="_412098" id="ADP" compartment="compartment" initialAmount="0"/>
+      <species metaid="_412118" id="Force" compartment="compartment" initialAmount="0" boundaryCondition="true"/>
+      <species metaid="_412138" id="d1" compartment="compartment" initialAmount="0"/>
+      <species metaid="_412158" id="d2" compartment="compartment" initialAmount="0"/>
+      <species metaid="_412177" id="d3" compartment="compartment" initialAmount="0"/>
+      <species metaid="_412178" id="d4" compartment="compartment" initialAmount="0"/>
+    </listOfSpecies>
+    <listOfReactions>
+      <reaction metaid="_412197" id="Fw_1st_step" reversible="false">
+        <listOfReactants>
+          <speciesReference species="S0"/>
+          <speciesReference species="ATP"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="S1"/>
+          <speciesReference species="Pi"/>
+          <speciesReference species="d1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="Force"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> k_1 </ci>
+              <ci> S0 </ci>
+              <ci> ATP </ci>
+              <apply>
+                <exp/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> th_1 </ci>
+                    <ci> Force </ci>
+                    <ci> d_1 </ci>
+                  </apply>
+                  <ci> kT_1 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="k_1" value="0.7"/>
+            <parameter id="th_1" value="-0.01"/>
+            <parameter id="d_1" value="36"/>
+            <parameter id="kT_1" value="4.1164"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="_412198" id="Fw_2nd_step" reversible="false">
+        <listOfReactants>
+          <speciesReference species="S1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="S0"/>
+          <speciesReference species="ADP"/>
+          <speciesReference species="d2"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="Force"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> k_2 </ci>
+              <ci> S1 </ci>
+              <apply>
+                <exp/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> th_2 </ci>
+                    <ci> Force </ci>
+                    <ci> d_2 </ci>
+                  </apply>
+                  <ci> kT_2 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="k_2" value="12"/>
+            <parameter id="th_2" value="0.045"/>
+            <parameter id="d_2" value="36"/>
+            <parameter id="kT_2" value="4.1164"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="_412218" id="Bw_1st_step" reversible="false">
+        <listOfReactants>
+          <speciesReference species="S0"/>
+          <speciesReference species="ATP"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="S1"/>
+          <speciesReference species="Pi"/>
+          <speciesReference species="d3"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="Force"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> k_3 </ci>
+              <ci> S0 </ci>
+              <ci> ATP </ci>
+              <apply>
+                <exp/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> th_3 </ci>
+                    <ci> Force </ci>
+                    <ci> d_3 </ci>
+                  </apply>
+                  <ci> kT_3 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="k_3" value="5e-06"/>
+            <parameter id="th_3" value="0.58"/>
+            <parameter id="d_3" value="36"/>
+            <parameter id="kT_3" value="4.1164"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="_412237" id="Bw_2nd_step" reversible="false">
+        <listOfReactants>
+          <speciesReference species="S1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="S0"/>
+          <speciesReference species="ADP"/>
+          <speciesReference species="d4"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="Force"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> k_4 </ci>
+              <ci> S1 </ci>
+              <apply>
+                <exp/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> th_4 </ci>
+                    <ci> Force </ci>
+                    <ci> d_4 </ci>
+                  </apply>
+                  <ci> kT_4 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="k_4" value="6e-06"/>
+            <parameter id="th_4" value="0.385"/>
+            <parameter id="d_4" value="36"/>
+            <parameter id="kT_4" value="4.1164"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+    </listOfReactions>
+  </model>
+</sbml>

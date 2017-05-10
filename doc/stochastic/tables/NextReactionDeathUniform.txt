@@ -1,0 +1,161 @@
+<table border = "1" rules = "all">
+<tr> <th> Species <th> <th> 4 <th> 8 <th> 16 <th> 32 <th> 64 <th> 128 <th> 256 <th> 1,024 <th> 4,096 <th> 16,384 <th> 65,536
+<tr> <th> Reactions <th> <th> 4 <th> 8 <th> 16 <th> 32 <th> 64 <th> 128 <th> 256 <th> 1,024 <th> 4,096 <th> 16,384 <th> 65,536
+<tr> <th> Method <th> Option <th> <th> <th> <th> <th> <th> <th> <th> <th> <th> <th>
+<tr bgcolor="white"> <th rowspan="2"> Linear Search
+<td> 
+<td> 64
+<td> 72
+<td> 97
+<td> 151
+<td> 268
+<td> 493
+<td> 957
+<td> 3729
+<td> 14756
+<td> 59068
+<td> 236536
+<tr bgcolor="white">
+<td> Unrolled
+<td> 82
+<td> 90
+<td> 102
+<td> 119
+<td> 157
+<td> 227
+<td> 371
+<td> 1227
+<td> 4507
+<td> 17691
+<td> 69903
+<tr bgcolor="aliceblue"> <th rowspan="4"> Partition
+<td> Fixed size
+<td> 100
+<td> 107
+<td> 125
+<td> 166
+<td> 201
+<td> 246
+<td> 309
+<td> 516
+<td> 933
+<td> 1842
+<td> 4135
+<tr bgcolor="aliceblue">
+<td> Size adaptive
+<td> 82
+<td> 101
+<td> 95
+<td> 99
+<td> 107
+<td> 117
+<td> 131
+<td> 178
+<td> 281
+<td> 533
+<td> 1329
+<tr bgcolor="aliceblue">
+<td> Cost adaptive
+<td> 93
+<td> 106
+<td> 110
+<td> 119
+<td> 134
+<td> 145
+<td> 168
+<td> 232
+<td> 340
+<td> 583
+<td> 1334
+<tr bgcolor="aliceblue">
+<td> Propensities
+<td> 97
+<td> 102
+<td> 107
+<td> 117
+<td> 131
+<td> 147
+<td> 176
+<td> 275
+<td> 465
+<td> 935
+<td> 2058
+<tr bgcolor="white"> <th rowspan="2"> Binary Heap
+<td> Pointer
+<td> 100
+<td> 108
+<td> 109
+<td> 115
+<td> 123
+<td> 131
+<td> 150
+<td> 181
+<td> 245
+<td> 425
+<td> 1214
+<tr bgcolor="white">
+<td> Pair
+<td> 80
+<td> 91
+<td> 95
+<td> 104
+<td> 125
+<td> 122
+<td> 134
+<td> 175
+<td> 232
+<td> 430
+<td> 1070
+<tr bgcolor="aliceblue"> <th rowspan="4"> Hashing
+<td> Chaining
+<td> 96
+<td> 103
+<td> 101
+<td> 105
+<td> 106
+<td> 107
+<td> 112
+<td> 126
+<td> 147
+<td> 173
+<td> 492
+<tr bgcolor="aliceblue">
+<td> Chaining vector
+<td> 108
+<td> 114
+<td> 117
+<td> 118
+<td> 119
+<td> 124
+<td> 129
+<td> 142
+<td> 163
+<td> 206
+<td> 591
+<tr bgcolor="aliceblue">
+<td> Chaining generic vector
+<td> 124
+<td> 134
+<td> 133
+<td> 142
+<td> 143
+<td> 147
+<td> 154
+<td> 173
+<td> 198
+<td> 245
+<td> 630
+<tr bgcolor="aliceblue">
+<td> Chaining generic list
+<td> 204
+<td> 211
+<td> 213
+<td> 213
+<td> 215
+<td> 221
+<td> 230
+<td> 252
+<td> 291
+<td> 373
+<td> 801
+</table>

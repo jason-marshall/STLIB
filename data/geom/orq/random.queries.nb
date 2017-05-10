@@ -1,0 +1,125 @@
+(************** Content-type: application/mathematica **************
+
+                    Mathematica-Compatible Notebook
+
+This notebook can be used with any Mathematica-compatible
+application, such as Mathematica, MathReader or Publicon. The data
+for the notebook starts with the line containing stars above.
+
+To get the notebook into a Mathematica-compatible application, do
+one of the following:
+
+* Save the data starting with the line of stars above into a file
+  with a name ending in .nb, then open the file inside the
+  application;
+
+* Copy the data starting with the line of stars above to the
+  clipboard, then use the Paste menu command inside the application.
+
+Data for notebooks contains only printable 7-bit ASCII and can be
+sent directly in email or through ftp in text mode.  Newlines can be
+CR, LF or CRLF (Unix, Macintosh or MS-DOS style).
+
+NOTE: If you modify the data for this notebook not in a Mathematica-
+compatible application, you must delete the line below containing
+the word CacheID, otherwise Mathematica-compatible applications may
+try to use invalid cache data.
+
+For more information on notebooks and Mathematica-compatible 
+applications, contact Wolfram Research:
+  web: http://www.wolfram.com
+  email: info@wolfram.com
+  phone: +1-217-398-0700 (U.S.)
+
+Notebook reader applications are available free of charge from 
+Wolfram Research.
+*******************************************************************)
+
+(*CacheID: 232*)
+
+
+(*NotebookFileLineBreakTest
+NotebookFileLineBreakTest*)
+(*NotebookOptionsPosition[      3430,         89]*)
+(*NotebookOutlinePosition[      4060,        111]*)
+(*  CellTagsIndexPosition[      4016,        107]*)
+(*WindowFrame->Normal*)
+
+
+
+Notebook[{
+Cell[BoxData[
+    \(\(offsets = 
+        Flatten[Table[{x, y, z}, {x, \(-1\), 1, 2/3}, {y, \(-1\), 1, 
+              2/3}, {z, \(-1\), 1, 2/3}], 2];\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(offsets = Table[Random[Real, {\(-1\), 1}], {100}, {3}];\)\)], "Input"],
+
+Cell[BoxData[{
+    \(\(stream = 
+        OpenWrite["\<random.queries\>"];\)\), "\[IndentingNewLine]", 
+    \(\(Write[stream, 20];\)\), "\[IndentingNewLine]", 
+    \(\(Write[stream, 100];\)\), "\[IndentingNewLine]", 
+    \(\(For[n = 20, 
+        n > 0, \(n--\), \[IndentingNewLine]querySize = \((1.0/2^n)\)^\((1/
+                3)\); \[IndentingNewLine]lower = {0.5 - querySize/2, 
+            0.5 - querySize/2, 
+            0.5 - querySize/2}; \[IndentingNewLine]upper = {0.5 + 
+              querySize/2, 0.5 + querySize/2, 
+            0.5 + querySize/2}; \[IndentingNewLine]For[m = 1, 
+          m \[LessEqual] 100, \(m++\), \[IndentingNewLine]start = 
+            lower + offsets[\([m]\)]*\((1 - querySize)\)/
+                  4; \[IndentingNewLine]stop = 
+            upper + offsets[\([m]\)]*\((1 - querySize)\)/
+                  4; \[IndentingNewLine]For[i = 1, 
+            i \[LessEqual] 
+              3, \(i++\), \[IndentingNewLine]\(WriteString[stream, 
+                ToString[
+                  start[\([1]\)]], "\< \>"];\)\[IndentingNewLine]]; \
+\[IndentingNewLine]For[i = 1, 
+            i \[LessEqual] 
+              3, \(i++\), \[IndentingNewLine]\(WriteString[stream, 
+                ToString[
+                  stop[\([1]\)]], "\< \>"];\)\[IndentingNewLine]]; \
+\[IndentingNewLine]WriteString[
+            stream, "\<\n\>"]\[IndentingNewLine]]\[IndentingNewLine]];\)\), "\
+\[IndentingNewLine]", 
+    \(\(Close[stream];\)\)}], "Input"]
+},
+FrontEndVersion->"4.1 for X",
+ScreenRectangle->{{0, 1280}, {0, 1024}},
+WindowSize->{747, 600},
+WindowMargins->{{27, Automatic}, {Automatic, 85}}
+]
+
+(*******************************************************************
+Cached data follows.  If you edit this Notebook file directly, not
+using Mathematica, you must remove the line containing CacheID at
+the top of  the file.  The cache data will then be recreated when
+you save this file from within Mathematica.
+*******************************************************************)
+
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+
+(*NotebookFileOutline
+Notebook[{
+Cell[1705, 50, 163, 3, 27, "Input"],
+Cell[1871, 55, 92, 1, 27, "Input"],
+Cell[1966, 58, 1460, 29, 331, "Input"]
+}
+]
+*)
+
+
+
+(*******************************************************************
+End of Mathematica Notebook file.
+*******************************************************************)
+

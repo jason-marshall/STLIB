@@ -1,0 +1,13 @@
+CellXYBinarySearchZ.mesh ../data/uniform_random.5.ascii 0.045 0.045 0.01
+CellXYBinarySearchZ.mesh ../data/uniform_random.5.ascii 0.045 0.045 0.012599
+CellXYBinarySearchZ.mesh ../data/uniform_random.5.ascii 0.045 0.045 0.01587
+CellXYBinarySearchZ.mesh ../data/uniform_random.5.ascii 0.045 0.045 0.02
+CellXYBinarySearchZ.mesh ../data/uniform_random.5.ascii 0.0475 0.0475 0.025198
+CellXYBinarySearchZ.mesh ../data/uniform_random.5.ascii 0.0475 0.0475 0.031748
+CellXYBinarySearchZ.mesh ../data/uniform_random.5.ascii 0.045 0.045 0.04
+CellXYBinarySearchZ.mesh ../data/uniform_random.5.ascii 0.0475 0.0475 0.0503968
+CellXYBinarySearchZ.mesh ../data/uniform_random.5.ascii 0.0475 0.0475 0.063496
+CellXYBinarySearchZ.mesh ../data/uniform_random.5.ascii 0.0475 0.0475 0.08
+CellXYBinarySearchZ.mesh ../data/uniform_random.5.ascii 0.045 0.045 0.10079
+CellXYBinarySearchZ.mesh ../data/uniform_random.5.ascii 0.045 0.045 0.12699
+CellXYBinarySearchZ.mesh ../data/uniform_random.5.ascii 0.045 0.045 0.16

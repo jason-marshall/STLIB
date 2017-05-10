@@ -1,0 +1,81 @@
+# -*- Makefile -*-
+
+# This makefile contains definitions and rules that are common to all 
+# makefiles in the source code sub-directories.  This file is included in 
+# makefiles in these directories.  The variable RELATIVE_PATH should be 
+# defined before inclusion, this is the path relative to this location.  
+# If the test code writes output, TEST_OUTPUT can be defined to clean up 
+# those files.
+
+# Add the location of the stlib.  You may need to edit this value.
+CXXINCLUDE += -I$(RELATIVE_PATH)/../src
+
+# You probably won't need to edit below here.
+
+# The default compiler.  Override by setting with MPICXX=...
+MPICXX = mpic++
+CXX = g++
+CXXFLAGS += $(CXXINCLUDE)
+# Activate all debugging code. 
+CXXFLAGS += -DSTLIB_DEBUG
+
+ifeq ($(OPENMP),yes)
+CXXFLAGS += -fopenmp
+LINKERFLAGS += -lgomp
+#CXXINCLUDE += -I/opt/local/include/gcc42
+endif
+
+#CXXFLAGS += -m64
+
+SOURCES = $(wildcard *.cc)
+DEPENDENCIES = $(SOURCES:.cc=.d)
+TARGETS = $(SOURCES:.cc=.exe)
+TESTS = $(SOURCES:.cc=.run)
+
+CXXLINKER = $(MPICXX)
+#CXXLINKERFLAGS = -m64
+
+.SUFFIXES:
+.SUFFIXES: .cc .d .o .exe .run
+
+# The default target.  Compile the test code.
+all: $(TARGETS)
+
+clean: 
+	$(RM) *.o *.d *~ core* *.stackdump $(TEST_OUTPUT)
+
+distclean: 
+	$(MAKE) clean 
+	$(RM) $(TARGETS)
+
+again:
+	$(MAKE) distclean 
+	$(MAKE) 
+
+run: $(TESTS)
+
+# Implicit rules.
+
+# Using -MM causes warnings.
+.cc.d:
+	$(MPICXX) -M $(CXXINCLUDE) $< > $@.$$$$; \
+  sed 's,\($*\)\.o[ :]*,\1.o $@ : ,g' < $@.$$$$ > $@; \
+  $(RM) $@.$$$$
+
+ifneq ($(MAKECMDGOALS),clean)
+ifneq ($(MAKECMDGOALS),distclean)
+-include $(DEPENDENCIES)
+endif
+endif
+
+.cc.o: 
+	$(MPICXX) $(CXXFLAGS) -c $< 
+
+.o.exe:
+	$(CXXLINKER) $(CXXLINKERFLAGS) -o $@ $< $(MPILIB)
+
+.exe.run:
+	@if mpirun -np 2 ./$< >/dev/null; \
+          then echo "Success with $<"; else echo "Failure with $<"; fi
+
+# End of file.

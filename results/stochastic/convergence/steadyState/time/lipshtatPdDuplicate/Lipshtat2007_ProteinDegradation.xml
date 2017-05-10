@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cain version="1.1">
+  <listOfModels>
+    <model id="PD10">
+      <listOfSpecies>
+        <species initialAmount="0" id="X_1"/>
+        <species initialAmount="0" id="X_2"/>
+        <species initialAmount="0" id="X_3"/>
+        <species initialAmount="0" id="X_4"/>
+        <species initialAmount="0" id="X_5"/>
+        <species initialAmount="0" id="X_6"/>
+        <species initialAmount="0" id="X_7"/>
+        <species initialAmount="0" id="X_8"/>
+        <species initialAmount="0" id="X_9"/>
+        <species initialAmount="0" id="X_10"/>
+      </listOfSpecies>
+      <listOfReactions>
+        <reaction propensity="5" massAction="true" id="Production_1">
+          <listOfProducts>
+            <speciesReference species="X_1"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="2" massAction="true" id="Degradation_1">
+          <listOfReactants>
+            <speciesReference species="X_1"/>
+          </listOfReactants>
+        </reaction>
+        <reaction propensity="4" massAction="true" id="Dimerization_1">
+          <listOfReactants>
+            <speciesReference stoichiometry="2" species="X_1"/>
+          </listOfReactants>
+        </reaction>
+        <reaction propensity="5" massAction="true" id="Production_2">
+          <listOfProducts>
+            <speciesReference species="X_2"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="2" massAction="true" id="Degradation_2">
+          <listOfReactants>
+            <speciesReference species="X_2"/>
+          </listOfReactants>
+        </reaction>
+        <reaction propensity="4" massAction="true" id="Dimerization_2">
+          <listOfReactants>
+            <speciesReference stoichiometry="2" species="X_2"/>
+          </listOfReactants>
+        </reaction>
+        <reaction propensity="5" massAction="true" id="Production_3">
+          <listOfProducts>
+            <speciesReference species="X_3"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="2" massAction="true" id="Degradation_3">
+          <listOfReactants>
+            <speciesReference species="X_3"/>
+          </listOfReactants>
+        </reaction>
+        <reaction propensity="4" massAction="true" id="Dimerization_3">
+          <listOfReactants>
+            <speciesReference stoichiometry="2" species="X_3"/>
+          </listOfReactants>
+        </reaction>
+        <reaction propensity="5" massAction="true" id="Production_4">
+          <listOfProducts>
+            <speciesReference species="X_4"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="2" massAction="true" id="Degradation_4">
+          <listOfReactants>
+            <speciesReference species="X_4"/>
+          </listOfReactants>
+        </reaction>
+        <reaction propensity="4" massAction="true" id="Dimerization_4">
+          <listOfReactants>
+            <speciesReference stoichiometry="2" species="X_4"/>
+          </listOfReactants>
+        </reaction>
+        <reaction propensity="5" massAction="true" id="Production_5">
+          <listOfProducts>
+            <speciesReference species="X_5"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="2" massAction="true" id="Degradation_5">
+          <listOfReactants>
+            <speciesReference species="X_5"/>
+          </listOfReactants>
+        </reaction>
+        <reaction propensity="4" massAction="true" id="Dimerization_5">
+          <listOfReactants>
+            <speciesReference stoichiometry="2" species="X_5"/>
+          </listOfReactants>
+        </reaction>
+        <reaction propensity="5" massAction="true" id="Production_6">
+          <listOfProducts>
+            <speciesReference species="X_6"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="2" massAction="true" id="Degradation_6">
+          <listOfReactants>
+            <speciesReference species="X_6"/>
+          </listOfReactants>
+        </reaction>
+        <reaction propensity="4" massAction="true" id="Dimerization_6">
+          <listOfReactants>
+            <speciesReference stoichiometry="2" species="X_6"/>
+          </listOfReactants>
+        </reaction>
+        <reaction propensity="5" massAction="true" id="Production_7">
+          <listOfProducts>
+            <speciesReference species="X_7"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="2" massAction="true" id="Degradation_7">
+          <listOfReactants>
+            <speciesReference species="X_7"/>
+          </listOfReactants>
+        </reaction>
+        <reaction propensity="4" massAction="true" id="Dimerization_7">
+          <listOfReactants>
+            <speciesReference stoichiometry="2" species="X_7"/>
+          </listOfReactants>
+        </reaction>
+        <reaction propensity="5" massAction="true" id="Production_8">
+          <listOfProducts>
+            <speciesReference species="X_8"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="2" massAction="true" id="Degradation_8">
+          <listOfReactants>
+            <speciesReference species="X_8"/>
+          </listOfReactants>
+        </reaction>
+        <reaction propensity="4" massAction="true" id="Dimerization_8">
+          <listOfReactants>
+            <speciesReference stoichiometry="2" species="X_8"/>
+          </listOfReactants>
+        </reaction>
+        <reaction propensity="5" massAction="true" id="Production_9">
+          <listOfProducts>
+            <speciesReference species="X_9"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="2" massAction="true" id="Degradation_9">
+          <listOfReactants>
+            <speciesReference species="X_9"/>
+          </listOfReactants>
+        </reaction>
+        <reaction propensity="4" massAction="true" id="Dimerization_9">
+          <listOfReactants>
+            <speciesReference stoichiometry="2" species="X_9"/>
+          </listOfReactants>
+        </reaction>
+        <reaction propensity="5" massAction="true" id="Production_10">
+          <listOfProducts>
+            <speciesReference species="X_10"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="2" massAction="true" id="Degradation_10">
+          <listOfReactants>
+            <speciesReference species="X_10"/>
+          </listOfReactants>
+        </reaction>
+        <reaction propensity="4" massAction="true" id="Dimerization_10">
+          <listOfReactants>
+            <speciesReference stoichiometry="2" species="X_10"/>
+          </listOfReactants>
+        </reaction>
+      </listOfReactions>
+    </model>
+    <model id="PD">
+      <listOfSpecies>
+        <species initialAmount="0" id="X"/>
+      </listOfSpecies>
+      <listOfReactions>
+        <reaction propensity="5" massAction="true" id="Production">
+          <listOfProducts>
+            <speciesReference species="X"/>
+          </listOfProducts>
+        </reaction>
+        <reaction propensity="2" massAction="true" id="Degradation">
+          <listOfReactants>
+            <speciesReference species="X"/>
+          </listOfReactants>
+        </reaction>
+        <reaction propensity="4" massAction="true" id="Dimerization">
+          <listOfReactants>
+            <speciesReference stoichiometry="2" species="X"/>
+          </listOfReactants>
+        </reaction>
+      </listOfReactions>
+    </model>
+  </listOfModels>
+  <listOfMethods>
+    <method category="4" solverParameter="10.0" numberOfBins="32" equilibrationTime="10.0" id="ElapsedTime" method="0" timeDependence="0" startTime="0.0" recordingTime="150.0" numberOfFrames="11" options="0"/>
+  </listOfMethods>
+  <random seed="0">
+  </random>
+</cain>

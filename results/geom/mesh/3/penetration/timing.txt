@@ -1,0 +1,6 @@
+The solid mesh has 510 vertices and 2259 simplices.
+There are 1000000 points.
+Reporting penetrations...
+done.
+Reporting penetrations took 0.64561 seconds.
+Number of penetrations = 4068

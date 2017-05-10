@@ -1,0 +1,363 @@
+
+<html>
+<head>
+<title>File Formats</title>
+</head>
+<body>
+<h1>File Formats</h1>
+
+<p>
+<b>XML</b><br>
+Cain stores models, methods, simulation output, and random number state
+in an XML format. See the <a href="Xml.htm">Cain XML File Format</a>
+section for the specification.
+</p>
+
+<p>
+<b>SBML</b><br>
+Cain can import and export SBML models. However, it has limited ability
+to parse kinetic laws; complicated expressions may not parsed. In this case
+you have to enter the propensity function in the Reaction Editor.
+If the SBML model has reversible reactions, they will each be split into
+two irreversible reactions. (The stochastic simulation algorithms only work
+for irreversible reactions.) You will need to correct the propensity
+functions. Also, only mass action
+kinetic laws can be exported to SBML. Other kinetic laws are omitted.
+</p>
+
+
+<p>
+<b>Input for solvers.</b><br>
+For batch processing, you can export a text file for input to one of the
+solvers. The solver inputs describe the model, the simulation method,
+the random number state, and number of trajectories to generate.
+The different categories of solvers require slightly different inputs.
+However, the input for each of the solvers starts with the following:
+</p>
+<pre>&lt;should print information&gt;
+&lt;number of species&gt;
+&lt;number of reactions&gt;
+&lt;list of initial amounts&gt;
+&lt;packed reactions&gt;
+&lt;list of propensity factors&gt;
+&lt;number of species to record&gt;
+&lt;list of species to record&gt;
+&lt;number of reactions to record&gt;
+&lt;list of reactions to record&gt;
+&lt;maximum allowed steps&gt;
+&lt;number of solver parameters&gt;
+&lt;list of solver parameters&gt;
+&lt;starting time&gt;</pre>
+
+<p>
+To make the text processing easier and to make the files easier to read,
+each term in brackets occupies a single line. Note the following about
+the input fields:
+<ul>
+  <li>
+  The first line indicates whether the solvers should print information
+  about the method in the first line of its output. When running jobs
+  interactively the value of this field is 0 and the first line of
+  output is blank. When generating batch jobs, the value of this field is 1.
+  Then the solver writes a Python dictionary whose elements describe
+  the method on the first of output. This dictionary allows Cain to perform
+  consistency checks when importing simulation output. It may also be useful
+  for users in identifying what model and method was in a simulation.
+  <li>
+  For each reaction in
+  packed reactions, the reactants are listed followed by the products.
+  The format for a reaction with <em>R</em> reactants and <em>P</em>
+  products is:
+  <pre>&lt;number of reactants&gt; &lt;index1&gt; &lt;stoichiometry1&gt; ... &lt;indexR&gt; &lt;stoichiometryR&gt;
+&lt;number of products&gt; &lt;index1&gt; &lt;stoichiometry1&gt; ... &lt;indexP&gt; &lt;stoichiometryP&gt;</pre>
+  An empty set of reactants or products is indicated with a single zero.
+  <li>
+  A value of zero indicates there is no limit on the maximum allowed steps.
+  (More precisely, the limit is
+  <tt>std::numeric_limits&lt;std::size_t&gt;::max()</tt>.)
+</ul>
+</p>
+
+<p>
+Below are a couple examples of packed reactions:
+<ul>
+  <li>
+  0 &rarr; X: 0 1 0 1<br>
+  <li>
+  X &rarr; 0 : 1 0 1 0<br>
+  <li>
+  X &rarr; Y : 1 0 1 1 1 1<br>
+  <li>
+  X &rarr; 2 X : 1 0 1 1 0 2<br>
+  <li>
+  X &rarr; Y, Y &rarr; X, Y &rarr; Z : 1 0 1 1 1 1 1 1 1 1 0 1 1 1 1 1 2 1
+</ul>
+</p>
+
+<p>
+Next comes solver-specific data. 
+There are four kinds of data that the various solvers generate:
+<ul>
+  <li> <b>Time series data recorded at specified frames (points in time).</b>
+  One specifies the frames with the following:
+<pre>&lt;number of frames&gt;
+&lt;list of frame times&gt;</pre>
+  <li> <b>Time series data in which every reaction event is recorded.</b>
+  For this one specifies the equilibration time (the amount of time to run the
+  simulation prior to recording) and the recording time.
+<pre>&lt;equilibration time&gt;
+&lt;recording time&gt;</pre>
+  <li> <b>Histograms that record the state at specified frames.</b>
+  These are used to study the transient behavior of a system. In this case one
+  specifies the frames as well as the number of bins in the histograms.
+<pre>&lt;number of frames&gt;
+&lt;list of frame times&gt;
+&lt;number of bins in histograms&gt;
+&lt;histogram multiplicity&gt;</pre>
+  <li> <b>Histograms that record the time-averaged species populations.</b>
+  These are used to study the steady state behavior of a system. Here one
+  specifies the equilibration time, the recording time, and the number of bins
+  in the histograms.
+<pre>&lt;equilibration time&gt;
+&lt;recording time&gt;
+&lt;number of bins in histograms&gt;
+&lt;histogram multiplicity&gt;</pre>
+</ul>
+</p>
+
+<p>
+Finally, one specifies the initial state of the Mersenne twister and the
+number of trajectories to generate.
+</p>
+
+<pre>&lt;list of MT 19937 state&gt;
+for each task:
+  &lt;number of trajectories&gt;</pre>
+
+<p>
+The state of the Mersenne Twister 19937 is a list of 624, 32-bit unsigned
+integers followed by an array index that specifies the current position
+in the list. Thus the state is defined with 625 integers. When a solver is
+run in batch mode, the total number of trajectories is given on a single line.
+When Cain is driving the solvers, it repeatedly directs the solver to generate
+a small number of trajectories. In this way the GUI application can track the
+progress of the simulation and also manage multiple solver processes.
+</p>
+
+<p>
+In Cain the solvers are grouped into five categories. Below we consider
+the specifics of the input data for each one.
+<ul>
+  <li> <b>Time Series, Uniform</b><br>
+  These solvers generate time series data recorded at specified frames.
+  spaced time series data, one specifies the times at which to record
+  the state. Like all of the other stochastic methods, these solvers
+  use the Mersenne Twister state to initialize the random number
+  generator. The final input field is the number of trajectories to
+  generate.
+  <ul>
+    <li> <b>Direct, Next Reaction, or First Reaction</b><br>
+    These exact methods do not have any solver parameters.
+   <li> <b>Tau-Leaping or Hybrid Direct/Tau-Leaping</b><br>
+    These approximate methods have one solver parameter, either an allowed
+    error or a step size.
+  </ul>
+  <li> <b>Time Series, All Reactions</b><br>
+  The direct method is used when recording every reaction event.
+  There are no solver parameters.
+  <li> <b>Time Series, Deterministic</b><br>
+  These solvers use ODE integration to generate time series data recorded at
+  specified frames. Note that these deterministic solvers do not use random
+  numbers. The input file has a blank line instead of the Mersenne Twister
+  state.
+  <li> <b>Histograms, Transient Behavior</b><br>
+  These solvers record the state in histograms at specified time frames.
+  All of the solvers use exact methods; there are no solver parameters.
+  <li> <b>Histograms, Steady State</b><br>
+  These solvers record the time-averaged species populations in histograms.
+  Again, all of the solvers use exact methods so there are no solver parameters.
+</ul>
+</p>
+
+<p>
+Consider the following simple problem with one species and two reactions:
+immigration 0 &rarr; X and death X &rarr; 0. Let the propensity
+factors be 1 and 0.1, respectively. Let the initial population
+of X be 10. We wish to use the direct method to simulate the process.
+We let the system equilibrate for 100 seconds and then record the species
+population and reaction counts for 20 seconds. We set the number of frames
+to 11. Enter this model in Cain, set the number of trajectories to
+2, and export it as a batch job with
+the file name <tt>input.txt</tt>. To do this,
+click the disk icon <img src="filesave.png">&nbsp; in the Launcher
+panel. Below is the resulting data file (with most of the Mersenne Twister
+state omitted.)
+</p>
+
+<pre>1
+1
+2
+10
+0 1 0 1 1 0 1 0
+1.0 0.10000000000000001
+1
+0
+2
+0 1
+0
+0
+
+0.0
+11
+100.0 102.0 104.0 106.0 108.0 110.0 112.0 114.0 116.0 118.0 120.0
+1499117434 2949980591 ... 4162027047 3277342478 449
+2</pre>
+
+<p>
+<b>Solver output.</b><br>
+The different categories of solvers produce different output. Each
+produce an information line that is either a blank line or a Python
+dictionary that contains information about the method. If present, the
+dictionary may be used to check consistency. This check is unecessary
+when Cain is running simulations interactively, but is useful when
+importing the results of batch jobs. When doing the latter the user
+selects a model and method and then specifies files than contain
+simulation output. By using the dictionary Cain can check that the
+specified files actually correspond to the selected model and method.
+</p>
+<p>
+Each format is specified below.
+<ul>
+  <li> <b>Time series data recorded at specified frames.</b><br>
+  Times series data is reported for each of the tasks that the solver
+  was given. (A task is defined by the
+  number of trajectories to generate.) The Mersenne Twister state at the
+  beginning of each trajectory is reported. This means that each trajectory
+  is reproducible. In the case of strange behavior or an error, one could
+  try to diagnose the issue. If the simulation of the trajectory is successful,
+  a blank line is written. The following two lines list
+  the species populations and reaction counts. If not 
+  an error message is printed. At the end of each task
+  (set of trajectories) the Mersenne twister state is printed. This state
+  can then be used for the initial state of subsequent simulations.
+  Note that for deterministic solvers the Mersenne twister state is not
+  reported. Instead a blank line is written.
+<pre>&lt;dictionary of information&gt;
+for each task:
+  &lt;number of trajectories&gt;
+  for each trajectory:
+    &lt;list of initial MT 19937 state&gt;
+    if successful:
+      &lt;blank line&gt;
+      &lt;list of populations&gt;
+      &lt;list of reaction counts&gt;
+    else:
+      &lt;error message&gt;
+  &lt;list of final MT 19937 state&gt;</pre>
+  <li> <b>Time series data in which every reaction event is recorded.</b><br>
+  Note that recording the species populations at each reaction event
+  would be wasteful. Instead we record only the index of the reaction
+  and the time of the reaction. This is much more efficient than
+  recording the <em>N</em> species populations and <em>M</em> reaction
+  counts. The drawback of this approach is that that one must then use
+  the list of reaction indices and times to compute the state.  
+  For each trajectory one lists the initial
+  populations (because the equilibration time may be nonzero), the
+  list of reaction indices, and the list of reaction times.
+<pre>&lt;dictionary of information&gt;
+for each task:
+  &lt;number of trajectories&gt;
+  for each trajectory:
+    &lt;list of initial MT 19937 state&gt;
+    if successful:
+      &lt;blank line&gt;
+      &lt;list of initial amounts&gt;
+      &lt;list of reaction indices&gt;
+      &lt;list of reaction times&gt;
+   else:
+      &lt;error message&gt;
+&lt;list of final MT 19937 state&gt;</pre>
+  <li> <b>Histograms that record the state at specified frames.</b><br>
+  The output first lists the
+  number of trajectories in each task. These are written so that Cain
+  can interact with the solver.  Note that the trajectories from
+  all tasks are combined to form a single set of trajectories. This
+  means that if the simulation of any trajectory fails then the set of
+  tasks fail. (This is a good thing. If the simulation of a trajectory
+  were to fail then the statistics collected over only the 
+  successful simulations would be incorrect.) Along with the histograms,
+  statistical information about the populations are recorded. 
+  Specifically, the cardinality, sum of the weights, mean and variance
+  are recorded. (Actually, the summed
+  second centered moment &Sigma;(<em>x</em> - &mu;)<sup>2</sup> is reported.
+  This quantity may be used to compute the variance.)
+  Note that
+  histograms are recorded in two parts. This lets one estimate the
+  error in the solution. By computing the distance between the two
+  halves one can get an indication of the distance between the
+  combined result and a converged solution.
+<pre>for each task:
+  &lt;number of trajectories in task&gt;
+&lt;dictionary of information&gt;
+if successful:
+  &lt;blank line&gt;
+  &lt;total number of trajectories&gt;
+  &lt;histogram multiplicity&gt;
+  for each frame:
+    for each recorded species:
+      &lt;cardinality&gt;
+      &lt;sumOfWeights&gt;
+      &lt;mean&gt;
+      &lt;summed second centered moment&gt;
+      &lt;lower bound&gt;
+      &lt;bin width&gt;
+      for each histogram:
+        &lt;list of weighted probabilities&gt;
+else:
+  &lt;error message&gt;
+&lt;list of final MT 19937 state&gt;</pre>
+  <li> <b>Histograms that record the time-averaged species populations.</b>
+<pre>for each task:
+  &lt;number of trajectories in task&gt;
+&lt;dictionary of information&gt;
+if successful:
+  &lt;blank line&gt;
+  &lt;total number of trajectories&gt;
+  &lt;histogram multiplicity&gt;
+  for each recorded species:
+    &lt;cardinality&gt;
+    &lt;sumOfWeights&gt;
+    &lt;mean&gt;
+    &lt;summed second centered moment&gt;
+    &lt;lower bound&gt;
+    &lt;bin width&gt;
+    for each histogram:
+      &lt;list of weighted probabilities&gt;
+else:
+  &lt;error message&gt;
+&lt;list of final MT 19937 state&gt;</pre>
+</ul>
+</p>
+
+<p>
+We can use the input file that we exported above to generate two trajectories
+with the direct method.
+<pre>./solvers/HomogeneousDirect2DSearch.exe &lt;input.txt &gt;output.txt</pre>
+The contents of the output file are shown below. The first line is blank.
+Again most of the Mersenne Twister state is omitted.
+<pre>
+2
+1499117434 2949980591 ... 4162027047 3277342478 449
+
+15 13 10 10 11 8 7 8 9 10 9 
+102 97 105 102 106 106 108 108 112 111 113 115 115 118 116 118 119 120 121 121 122 123 
+78190480 1101697099 ... 623132007 3059824252 322
+
+9 11 10 9 13 15 11 9 14 12 9 
+93 94 97 96 97 97 99 100 104 101 108 103 109 108 109 110 114 110 116 114 117 118 
+3440222609 2495225278 ... 3271950001 217431822 171
+</pre>
+</p>
+
+</body>
+</html>

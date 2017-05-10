@@ -1,0 +1,33 @@
+A second, finer level of concurrency can be achieved within the simulation
+algorithms themselves.  There has been limited work in this area.  A marine
+host-parasite system is studied in \cite{langlais2003}.  As described above,
+they use message passing (with MPI) to distribute and
+gather statistics from a suite of simulations.  However, they also use 
+threading (with OpenMPI) to speed up a computationally expensive portion 
+of the algorithm.  
+
+In \cite{ridwan2004} a parallel implementation of Gillespie's direct
+method for SSA is presented.  They use domain decomposition and 
+synchronization with message passing.  Because the domain decomposition
+modifies the assumptions of Gillespie's algorithm, their concurrent
+algorithm is approximate (unlike the exact sequential algorithm).
+
+In the tau-leaping algorithm, one could use both threading and message 
+passing to improve the performance of a single simulation.  Threading 
+(shared-memory concurrency) could be used to distribute work in 
+computationally expensive loops.  Message passing can be used in 
+distributing the reactions of a simulation among a set of processors.
+(One would consider distributing the reactions only for large problems.)
+These approaches may be used separately or together.  Most previous
+work on concurrent algorithms for stochastic simulation has focused
+on distributing large suites of simulations.  There has been little 
+work on exploiting concurrency in a single simulation.
+
+
+
+
+langlais2003
+M. Langais, G. Latu, J. Roman, P. Silan.
+"Performance analysis and qualitative results of an efficient parallel 
+stochastic simulator for a marine host-parasite system."
+Concurrency and Computation-Practice and Experience 15 (11-12): 1133-1150 SEP 2003 

@@ -1,0 +1,59 @@
+Num MPI processes = 1
+OpenMP num threads = 4
+
+_Dimension = 3, numParticles = 100000
+
+Initial extents = 1 1 1 
+Initial lengths = 1 1 1 
+Code range = 0 1
+
+Lower corner = 0 0 0 
+Lengths = 1 1 1 
+Cell lengths = 0.0526316 0.0526316 0.0526316 
+Num levels = 5
+Cell extents = 19 19 19 
+Num cells capacity = 32768
+
+Starting imbalance = 0
+Partition count = 1
+Reorder count = 13
+Repair count = 1000
+
+Time totals:
+,Reorder,Partition,Distribute,ExPattern,Exchange,Neighbors
+Average,0.670902,0.000795,0.417031,0.333919,0.005613,5.03368
+Min,0.670902,0.000795,0.417031,0.333919,0.005613,5.03368
+Max,0.670902,0.000795,0.417031,0.333919,0.005613,5.03368
+
+Count totals:
+,MinCellLength,MaxCellLength,Occupancy,DistCount,NeighborsSend,NeighborsRecv,ExCount
+Average,0.0526316,0.0526316,14.5794,0,0,0,0
+Min,0.0526316,0.0526316,14.5794,0,0,0,0
+Max,0.0526316,0.0526316,14.5794,0,0,0,0
+
+Time per operation:
+,Reorder,Partition,Distribute,ExPattern,Neighbors
+Average,0.0516078,0.000795,0.417031,0.0238514,0.359548
+Min,0.0516078,0.000795,0.417031,0.0238514,0.359548
+Max,0.0516078,0.000795,0.417031,0.0238514,0.359548
+
+Per step:
+,ExPost,ExWait,NeighborsSend,NeighborsRecv,ExCount
+Average,2.7952e-06,2.81219e-06,0,0,0
+Min,2.7952e-06,2.81219e-06,0,0,0
+Max,2.7952e-06,2.81219e-06,0,0,0
+
+Memory Usage:
+,used,capacity
+particles,3200000,3200000
+codes,800008,800008
+potentialNeighbors,48811000,48840200
+lookupTable,229840,229840
+processCellLists,16,16
+particleSendBuffers,8,8
+
+Simulation costs:
+,MoveParticles,CountNeighbors
+2.26624,42.6854
+
+Interactions per particle per step = 30.0141

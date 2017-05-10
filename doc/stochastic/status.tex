@@ -1,0 +1,292 @@
+\documentclass{article}
+
+\begin{document}
+
+\paragraph{Introduction.}
+We have begun work on developing concurrent algorithms for
+$\tau$-leaping.  We will exploit concurrency in the method without
+modifying it.  Thus the the concurrent implementations will give
+exactly the same results as the sequential algorithm.  We intend to
+use a hybrid threading/message passing approach using OpenMP and MPI.
+This should enable us to effectively utilize both multi-processor
+computers and clusters of computers.  Based on the problem and the
+machine available, one will be able to select whether to use
+threading, message passing, or both.  We have currently only
+implemented the message passing portion.
+
+
+\paragraph{Sequential Algorithm.}
+Consider the $\tau$-leaping method presented in \cite{cao2006}.
+% "Efficient step size selection for the tau-leaping simulation method."
+For ease of exposition we will cover the new 
+$\tau$-selection procedure without the modified
+(non-negative) Poisson $\tau$-leaping.  The concurrent algorithm 
+that accomodates the non-negative $\tau$-leaping is analogous.
+
+Below is the pseudo-code for one step of the algorithm.  In the first block
+we compute the propensity functions.  Next we compute $\mu$ and 
+$\sigma^2$.  In the third block we determine the $\tau$ leap.
+Finally, we update the state by firing the reactions and advancing the time.
+(To obtain simpler formulas, we treat the state change vectors as if they
+were dense arrays.)
+
+\begin{tabbing}
+11\=22\=33\=\kill\\
+for j in [0..M):\\
+\>a[j] = computePropensityFunction(x, j)\\
+\\
+$\mu$ = $\sigma^2$ = 0\\
+for j in [0..M):\\
+\>for i in [0..N):\\
+\>\>$\mu$[i] += v[j][i] * a[j]\\
+\>\>$\sigma^2$[i] += $\mathrm{v[j][i]}^2$ * a[j]\\
+\\
+$\tau$ = $\infty$\\
+for i in [0..N):\\
+\>numerator = max($\epsilon$ * x[i] / computeG(x, i), 1)\\
+\>temp = min(numerator / $|\mu[i]|$, $\mathrm{numerator}^2$ / $\sigma^2$[i])\\
+\>$\tau$ = min($\tau$, temp)\\
+\\
+for j in [0..M):\\
+\>p = computePoisson(a[i] * $\tau$)\\
+\>for i in [0..N):\\
+\>\>x[i] += v[j][i] * p\\
+t += $\tau$
+\end{tabbing}
+
+
+\paragraph{Threading.}
+Each of the loops in the $\tau$-leaping algorithm are amenable to threaded
+(shared-memory) concurrency.  In this way one can distribute the work among
+the available processors.  Of course this approach will produce greater 
+speed-ups for larger problems.  For problems with small numbers of species
+and reactions, the cost of spawning the threads would outweigh the benefits
+of concurrent computation.
+
+
+\paragraph{Message passing.}
+We consider a concurrent, message-passing, algorithm on 
+$P$ processes.  We will distribute the $M$ reactions over the processes.
+This yields a simple distribution of the data and a simple communication 
+strategy.  (There is less to be gained in attempting to distribute the 
+$N$ species.  They are coupled due to the reactions, so distributing would
+be more difficult and the communication cost would be higher.)  
+
+In short, we distribute the reaction data and duplicate the species data.
+To compute species data, each process computes the contribution from its 
+set of reactions and then communicates with the other processes to 
+accumulate the results.  Let 
+$0 = p_0 \leq p_1 \leq \cdots \leq p_{P-1} \leq p_P = M$ be a partition of
+the $M$ reactions.  Assume the partition divides the reactions into groups
+of size approximately $M / P$.  If the computational costs associated with
+each reaction were roughly equal, this approach would be sufficient to 
+effectively distribute the computational load.  If this were not the case,
+one would consider the different computational costs per reaction in
+partitioning them.
+
+For our partition, the process with rank $r \in [0..P)$ holds 
+the data for reactions in the range $[p_r..p_{r+1})$.
+Specifically, the propensity functions a and the state change vectors v
+are distributed.  All other variables are duplicated.
+
+In the computation of $\mu$ and $\sigma^2$, each process computes the 
+contribution from its set of reactions.  Following this, the arrays must
+be summed across all processes to obtain the contribution from all reactions.
+Likewise, in computing the state change each process computes the 
+contribution from its set of reactions and then sums across the processes.
+
+% Including the psuedo-code for the concurrent algorithm probably takes
+% up too much space.  You probably won't want to include this in the proposal.
+% I have put this at the end of the document.
+
+
+In the concurrent algorithm, the cost of the most expensive parts of
+the sequential computation (namely $\mu$, $\sigma^2$ and x) are all
+reduced by a factor of $P$.  This is an ideal reduction in the amount
+of computation each process must perform.  However, the concurrent
+algorithm does have the additional communication cost.  There are two
+instances during a time step that variables are accumulated over the
+processes.  For most architectures, this is implemented in MPI with
+the recursive-doubling algorithm \cite{vandevelde}.
+% Concurrent Scientific Computing.
+Hence communication costs are proportional to $\log P$.
+
+
+\paragraph{Timings.}
+We have tested the concurrent, message-passing algorithm on Caltech's
+Shared Heterogeneous Cluster (SHC).  It consists of 86 Opteron
+dual-core, dual-processor nodes, connected via Voltaire's Infiniband
+and an Extreme Networks BlackDiamond 8810 switch.  While the hybrid
+(threading and message passing) approach should be suitable for moderate
+sized problems, the message-passing algorithm is only suitable for 
+large problems.  
+
+Consider the decaying-dimerizing reaction set presented in 
+\cite{gillespie2001},
+% Approximate accelerated stochastic simulation of chemically reacting systems.
+which has three species and four reactions.
+To obtain a problem that is suitable for testing the concurrent 
+algorithm, we simply duplicate the reactions and species by a factor of 2500.
+Below we compare the execution times of the sequential and 
+concurrent algorithm.  To give a sense of the efficiency, we indicate the
+execution times for a program with perfect scalability.
+
+\[
+\begin{array}{|l|llllll|}
+\hline %---------------------------------------------------------------------
+\mathrm{\bf{Processors}} &
+\mathrm{sequential} &
+1 &
+2 &
+4 &
+8 &
+16 \\
+\hline %---------------------------------------------------------------------
+\mathrm{\bf{Execution\ time\ (sec)}} &
+21.73 &
+22.58 &
+13.64 &
+10.21 &
+8.79 &
+8.75 \\
+\hline %---------------------------------------------------------------------
+\mathrm{\bf{Perfect\ scalability\ time}} &
+  &
+22.58 &
+11.29 &
+5.65 &
+2.82 &
+1.41 \\
+\hline %---------------------------------------------------------------------
+\end{array}
+\]
+
+This preliminary test shows limited speed-up.  For the SHC architecture, 
+one would want to use threaded concurrency within a node (four processors)
+and message passing between the nodes.  
+
+
+
+%===========================================================================
+\begin{thebibliography}{10}
+
+\bibitem{cao2006}
+Yang Cao, Daniel T. Gillespie, and Linda R. Petzold.
+\newblock {\em Efficient step size selection for the tau-leaping simulation method}.
+\newblock {\em J. Chemical Physics}, Vol. 124, No. 4, 2006.
+
+\bibitem{gillespie2001}
+Daniel T. Gillespie
+\newblock {\em Approximate accelerated stochastic simulation of chemically reacting systems}. 
+\newblock {\em J. Chemical Physics}, Vol. 115, No. 4, 1716--1733, 2001.
+
+\bibitem{langlais2003}
+M. Langais, G. Latu, J. Roman, P. Silan.
+\newblock {\em Performance analysis and qualitative results of an efficient 
+parallel stochastic simulator for a marine host-parasite system}.
+\newblock {\em Concurrency and Computation-Practice and Experience}, 
+15 (11-12): 1133--1150 SEP 2003. 
+
+\bibitem{mpi}
+William Gropp, Ewing Lusk, Athony Skjellum
+\newblock {\em Using MPI: Portable Parallel Programming with the Message-Passing Interface}. 
+\newblock {\em The MIT Press}, 1999.
+
+\bibitem{vandevelde}
+Eric F. Van de Velde
+\newblock {\em Concurrent Scientific Computing}. 
+\newblock {\em Springer Verlag}, 1994.
+
+\end{thebibliography}
+
+
+
+\end{document}
+
+
+
+
+%---------------------------------------------------------------------------
+% Begin concurrent psuedo-code.
+The pseudo-code for one step of the concurrent algorithm in process $r$ 
+is shown below.  We use the MPI function Allreduce() \cite{mpi} 
+to sum and find the minimum across the 
+processes.  Note that the concurrent algorithm is little different than the
+sequential one.  The loops over $[0..M)$ are replaced by loops over
+$[p_r..p_{r+1})$.  We have added an integer array to calculate 
+the change in the populations.
+
+\begin{tabbing}
+11\=22\=33\=\kill\\
+for j in $[p_r..p_{r+1})$:\\
+\>a[j] = computePropensityFunction(x, j)\\
+\\
+$\mu$ = $\sigma^2$ = 0\\
+for j in $[p_r..p_{r+1})$:\\
+\>for i in [0..N):\\
+\>\>$\mu$[i] += v[j][i] * a[j]\\
+\>\>$\sigma^2$[i] += $\mathrm{v[j][i]}^2$ * a[j]\\
+communicator.Allreduce(MPI::IN\_PLACE, $\mu$, N, MPI::DOUBLE, MPI::SUM)\\
+communicator.Allreduce(MPI::IN\_PLACE, $\sigma^2$, N, MPI::DOUBLE, MPI::SUM)\\
+\\
+$\tau$ = $\infty$\\
+for i in [0..N):\\
+\>numerator = max($\epsilon$ * x[i] / computeG(x, i), 1)\\
+\>temp = min(numerator / $|\mu[i]|$, $\mathrm{numerator}^2$ / $\sigma^2$[i])\\
+\>$\tau$ = min($\tau$, temp)\\
+\\
+change = 0\\
+for j in $[p_r..p_{r+1})$:\\
+\>p = computePoisson(a[i] * $\tau$)\\
+\>for i in [0..N):\\
+\>\>change[i] += v[j][i] * p\\
+communicator.Allreduce(MPI::IN\_PLACE, change, N, MPI::INT, MPI::SUM)\\
+x += change\\
+t += $\tau$
+\end{tabbing}
+% End concurrent psuedo-code.
+%---------------------------------------------------------------------------
+
+
+
+The concurrent algorithm is particularly well suited to problems in which 
+there are many more reactions than species.  This is because it distributes the 
+reaction data and duplicates the species data.
+Consider a problem with 100 species in
+which there are reactions for converting each species to every other species.
+Below we show timings for this ``all-to-all'' problem.
+
+\[
+\begin{array}{|llllllll|}
+\hline %---------------------------------------------------------------------
+\mathrm{\bf{Processors}} &
+\mathrm{sequential} &
+1 &
+2 &
+4 &
+8 &
+16 &
+32 \\
+\hline %---------------------------------------------------------------------
+\mathrm{\bf{Execution\ time\ (sec)}} &
+15.36 &
+17.25 &
+8.59 &
+2.92 &
+1.94 &
+1.58 &
+1.70 \\
+\hline %---------------------------------------------------------------------
+\mathrm{\bf{Perfect\ scalability\ time}} &
+  &
+17.25 &
+8.63 &
+4.31 &
+2.16 &
+1.08 &
+0.54 \\
+\hline %---------------------------------------------------------------------
+\end{array}
+\]
+
+End of file.

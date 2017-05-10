@@ -1,0 +1,54 @@
+<html>
+<head>
+<title>Tips and Tricks</title>
+<link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+
+<body>
+<h1 align=center>Tips and Tricks</h1>
+
+<a href="index.html">Back</a>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h2>Text Substitition</h2>
+
+<p>
+You can use sed to perform text substitution in files. Suppose you
+want to change the string &quot;old&quot; to &quot;new&quot; in all
+the header files in a directory. You can accomplish this with the
+following command in a bash shell.
+</p>
+<pre>
+for x in $(ls *.h); do sed 's/old/new/g' $x >t; mv t $x; done
+</pre>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h2>Debugging MPI Applications</h2>
+
+<p>
+Below is the command for attaching gdb to the processes. For a
+concrete example, we use four processes for the program.
+</p>
+<pre>
+mpirun -np 4 xterm -e gdb ./program
+</pre>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h2>SSH on Mac OS X</h2>
+
+<p>
+Use the following command to add your passphrase to your keychain.
+</p>
+<pre>
+ssh-add -K
+</pre>
+
+
+</body>
+<hr>
+<address>
+<a href="https://bitbucket.org/seanmauch/stlib">https://bitbucket.org/seanmauch/stlib</a>
+/ at(seanmauch, dot(me, com))
+</address>
+</html>
+

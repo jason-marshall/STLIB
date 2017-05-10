@@ -1,0 +1,53 @@
+<html>
+<head>
+<title>Time Events Editor</title>
+</head>
+<body>
+<h1>Time Events Editor</h1>
+
+<p align="center">
+<img src="TimeEventsEditor.png">
+</p>
+
+<p>
+The identifier and name for a time event are analogous to those for a
+species. By default the name field is hidden.
+The <tt>Times</tt> field is a list of times at which the event fires.
+(One may enter a single number if the event fires only once.) One may use
+Python expressions to generate the list of times. The following expressions 
+are equivalent:
+</p>
+<pre>
+[0, 1, 2, 3, 4]
+range(5)
+[i for i in range(5)]</pre>
+
+<p>
+Now for a more complicated example. Suppose you want to fire an event
+every tenth of a second between times <i>t=3</i> and <i>t=4</i> inclusive.
+The appropriate list follows.
+</p>
+<pre>
+[3+0.1*i for i in range(11)]</pre>
+
+<p>
+The assignments for an event are a sequence of single assignments, 
+separated by semicolons. The syntax for a single assignment is
+<tt>identifier = expression</tt>. The identifier must be a species,
+compartment, or parameter identifier. The assignment sets the amount
+of the species, the size of the compartment, or the value of
+the parameter, respectively. The right hand side is a Python
+expression that may involve
+species amounts, compartment sizes, parameter values, and time
+(denoted with the variable <i>t</i>).
+The following are valid assignments:
+</p>
+
+<pre>
+x = 7
+x = x+1
+x = 2*x; y = 0.1*t
+</pre>
+
+</body>
+</html>

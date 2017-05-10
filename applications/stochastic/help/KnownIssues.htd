@@ -1,0 +1,23 @@
+<html>
+<head>
+<title>Known Issues</title>
+</head>
+<body>
+<h1>Known Issues</h1>
+
+<p>
+The status bar at the bottom of the main window does not work correctly on
+OS X, so the tool tips are not displayed. This is a known issue with
+wxPython.
+</p>
+
+<!--CONTINUE
+<p>
+Version 2.8.9.2 of wxPython may not correctly display tables in the
+documentation. I would recommend using version 2.8.9.1. You can also view the
+PDF version (available as a download) for the correct output.
+</p>
+-->
+
+</body>
+</html>

@@ -1,0 +1,6 @@
+<table border = "1" rules = "all">
+<tr> <th> Grid Size <th> 10 <th> 100 <th> 1000 <th> 10000 <th> 100000 <th> 1000000 
+<tr> <th> Linear <td> 4.9 <td> 4.1 <td> 4.1 <td> 4.4 <td> 4.8 <td> 23.9 
+<tr> <th> Cubic <td> 14.4 <td> 13.0 <td> 13.0 <td> 13.3 <td> 13.6 <td> 44.0 
+<tr> <th> Cubic with Derivative <td> 15.9 <td> 15.5 <td> 15.5 <td> 16.3 <td> 17.2 <td> 49.9 
+</table>

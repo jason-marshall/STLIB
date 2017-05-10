@@ -1,0 +1,55 @@
+<html>
+<head>
+<title>Hybrid Direct/Tau-Leaping</title>
+</head>
+<body>
+<h1>Hybrid Direct/Tau-Leaping</h1>
+
+<p>
+The hybrid direct/tau-leaping method combines the direct method and the
+tau-leaping method. It is more accurate than tau-leaping for problems that
+have species with small populations. For some problems it is also faster
+than tau-leaping. Recall that tau-leaping is only efficient if many reactions
+firing during a time step. This hybrid method divides the reactions into two
+groups: volatile/slow and stable. We use the direct method to simulate
+the reactions in the volatile/slow group and tau-leaping to simulate
+the stable reactions.
+</p>
+
+<p>
+Like regular tau-leaping, one specifies an accuracy
+goal with the allowed error &epsilon;. One assumes that the expected value of
+the reaction propensities is constant during a time step. The time step is
+chosen so that the expected relative change in any propensity is less than
+&epsilon;. A reaction is volatile if firing it a single time would produce
+a relative change of more than &epsilon; in any of its reactants.
+Consider these examples with &epsilon; = 0.1:
+The reaction X &rarr; Y is volatile if x &lt; 10.
+The reaction X + Y &rarr; Z is volatile if either x &lt; 10 or y &lt; 10.
+The reaction 2 X &rarr; Y is volatile if x &lt; 20.
+</p>
+
+<p>
+Reactions that are &quot;slow&quot; are also simulated with the direct
+method. A reaction is classified as slow if it would fire few times during
+a time step. The threshold for few times is 0.1. During a time step one
+first computes the tau-leaping step &tau;. Then any reactions in the stable
+group that have become volatile or slow are moved to the volatile/slow group.
+</p>
+
+<p>
+To take a step with the hybrid method we determine a
+time step &tau; for the stable reactions and generate a unit exponential
+deviate <em>e</em> for the volatile/slow reactions.
+Let &sigma; be the sum of the PMF for the discrete deviate generator.
+If <em>e</em> &leq; &sigma; &tau;, we reduce the time step to
+<em>e</em>/&sigma; and take a tau-leaping step as well as fire a volatile/slow
+reaction. Otherwise we reduce <em>e</em> by &sigma; &tau; and save this value
+for the next step, update the PMF with the integrated propensities, and
+take a tau-leaping step. To integrate the propensities one can use
+the forward Euler method, the midpoint method, or the fourth order
+Runge-Kutta method.
+</p>
+
+</body>
+</html>

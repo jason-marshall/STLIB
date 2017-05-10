@@ -1,0 +1,87 @@
+<html>
+<head>
+<title>Source Lines of Code</title>
+<link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+
+<body>
+<h1 align=center>Source Lines of Code</h1>
+
+<a href="index.html">Back</a>
+
+<p>
+I generated source lines of code statistics using David A. Wheeler's
+'SLOCCount'. Here are the SLOC counts for the src directory that
+contains the source code as C++ header files.
+</p>
+
+<pre>
+SLOC	Directory	SLOC-by-Language (Sorted)
+17556   geom            cpp=14228,ansic=3328
+15491   ads             cpp=14460,ansic=1031
+13621   numerical       cpp=12492,ansic=1129
+7427    stochastic      cpp=7239,ansic=188
+7124    container       cpp=7066,ansic=58
+3272    ext             cpp=3047,ansic=225
+2889    levelSet        ansic=1466,cpp=992,python=431
+2567    amr             cpp=2367,ansic=200
+2146    hj              cpp=1862,ansic=284
+1895    sfc             cpp=1751,ansic=144
+1774    simd            ansic=1719,cpp=55
+1686    particle        cpp=1634,ansic=52
+1478    shortest_paths  cpp=1471,ansic=7
+1357    cuda            ansic=1329,cpp=28
+1164    cpt             cpp=1164
+767     mst             cpp=529,ansic=238
+589     elc             cpp=580,ansic=9
+582     concurrent      cpp=503,ansic=79
+446     contact         cpp=438,ansic=8
+439     duptm           cpp=321,ansic=118
+309     mpi             ansic=309
+234     surfaceArea     cpp=199,ansic=35
+196     lorg            cpp=150,ansic=46
+
+
+Totals grouped by language (dominant language first):
+cpp:          72576 (85.37%)
+ansic:        12002 (14.12%)
+python:         431 (0.51%)
+
+
+
+
+Total Physical Source Lines of Code (SLOC)                = 85,009
+Development Effort Estimate, Person-Years (Person-Months) = 21.23 (254.77)
+ (Basic COCOMO model, Person-Months = 2.4 * (KSLOC**1.05))
+Schedule Estimate, Years (Months)                         = 1.71 (20.52)
+ (Basic COCOMO model, Months = 2.5 * (person-months**0.38))
+Estimated Average Number of Developers (Effort/Schedule)  = 12.41
+Total Estimated Cost to Develop                           = $ 2,868,004
+ (average salary = $56,286/year, overhead = 2.40).
+</pre>
+
+<p>
+There is also a significant amount of C++ code used for example programs,
+performance analysis programs,
+and unit tests. Here is the combined data for the <code>test</code>
+and <code>examples</code> directories.
+</p>
+<pre>
+Total Physical Source Lines of Code (SLOC)                = 109,010
+Development Effort Estimate, Person-Years (Person-Months) = 27.57 (330.79)
+ (Basic COCOMO model, Person-Months = 2.4 * (KSLOC**1.05))
+Schedule Estimate, Years (Months)                         = 1.89 (22.67)
+ (Basic COCOMO model, Months = 2.5 * (person-months**0.38))
+Estimated Average Number of Developers (Effort/Schedule)  = 14.59
+Total Estimated Cost to Develop                           = $ 3,723,757
+ (average salary = $56,286/year, overhead = 2.40).
+</pre>
+
+</body>
+<hr>
+<address>
+<a href="https://bitbucket.org/seanmauch/stlib">https://bitbucket.org/seanmauch/stlib</a>
+/ at(seanmauch, dot(me, com))
+</address>
+</html>
+

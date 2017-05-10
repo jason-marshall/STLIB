@@ -1,0 +1,68 @@
+<table border = "1" rules = "all">
+<tr> <th> <th> <th> Species <th> 1 <th> 1 <th> 12 <th> 16 <th> 28
+<tr> <th> <th> <th> Reactions <th> 2 <th> 4 <th> 11 <th> 23 <th> 61
+<tr> <th> Method <th> Algorithm <th> Option <th> <th> <th> <th> <th>
+<tr bgcolor="#CFFFFF"> <td> Direct <td> Linear search
+<td> Complete sort
+<td> 66
+<td> 91
+<td> 91
+<td> 180
+<td> 246
+<tr bgcolor="#CFFFFF"> <td> Direct <td> 2-D search
+<td> Default
+<td> 78
+<td> 106
+<td> 102
+<td> 171
+<td> 202
+<tr bgcolor="#CFFFFF"> <td> Direct <td> Binary search
+<td> Partial, recursive CDF
+<td> 95
+<td> 176
+<td> 212
+<td> 429
+<td> 558
+<tr bgcolor="#CFFFFF"> <td> Direct <td> Rejection
+<td> Composition
+<td> 214
+<td> 281
+<td> 428
+<td> 888
+<td> 746
+<tr bgcolor="#CFCFFF"> <td> First reaction <td> Linear search
+<td> Absolute time
+<td> 62
+<td> 114
+<td> 88
+<td> 215
+<td> 334
+<tr bgcolor="#FFCFFF"> <td> Next reaction <td> Linear search
+<td> Unrolled
+<td> 58
+<td> 100
+<td> 91
+<td> 190
+<td> 302
+<tr bgcolor="#FFCFFF"> <td> Next reaction <td> Partition
+<td> Cost adaptive
+<td> 62
+<td> 108
+<td> 101
+<td> 126
+<td> 283
+<tr bgcolor="#FFCFFF"> <td> Next reaction <td> Binary heap
+<td> Pair
+<td> 64
+<td> 133
+<td> 117
+<td> 237
+<td> 366
+<tr bgcolor="#FFCFFF"> <td> Next reaction <td> Hashing
+<td> Chaining
+<td> 80
+<td> 131
+<td> 132
+<td> 209
+<td> 302
+</table>

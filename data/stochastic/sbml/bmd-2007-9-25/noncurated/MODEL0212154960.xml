@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbml xmlns="http://www.sbml.org/sbml/level2" level="2" version="1">
+  <model metaid="_294577" id="MDCKII_Transport" name="Bartholome2007_MDCKII">
+    <notes>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+<p>SBML model exported from PottersWheel on 2007-09-19 15:35:47.</p>
+<p>This model originates from BioModels Database: A Database of Annotated Published Models. It is copyright (c) 2005-2007 The BioModels Team.<br></br> For more information see the <a href="http://www.ebi.ac.uk/biomodels/legal.html">terms of use</a>.</p>
+</body>
+    </notes>
+    <annotation>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" >
+<rdf:Description rdf:about="#_294577">
+<dcterms:created rdf:parseType="Resource">
+<dcterms:W3CDTF>2007-09-19T17:44:55</dcterms:W3CDTF>
+</dcterms:created>
+<dcterms:modified rdf:parseType="Resource">
+<dcterms:W3CDTF>2007-09-20T00:02:35</dcterms:W3CDTF>
+</dcterms:modified>
+<bqmodel:is>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.ebi.ac.uk/biomodels/#MODEL0212154960"/>
+</rdf:Bag>
+</bqmodel:is>
+<bqmodel:isDescribedBy>
+<rdf:Bag>
+<rdf:li rdf:resource="http://www.pubmed.gov/#17548463"/>
+</rdf:Bag>
+</bqmodel:isDescribedBy>
+</rdf:Description>
+</rdf:RDF>
+</annotation>
+
+    <listOfCompartments>
+      <compartment metaid="_294597" id="cell" name="cell" size="1"/>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species metaid="_294617" id="x1" compartment="cell" initialConcentration="0.6"/>
+      <species metaid="_294637" id="x2" compartment="cell" initialConcentration="0"/>
+      <species metaid="_294657" id="x3" compartment="cell" initialConcentration="0"/>
+      <species metaid="_294677" id="x4" compartment="cell" initialConcentration="0"/>
+      <species metaid="_294697" id="x5" compartment="cell" initialConcentration="0"/>
+    </listOfSpecies>
+    <listOfParameters>
+      <parameter id="p1" value="0.0089"/>
+      <parameter id="p2" value="0.098"/>
+      <parameter id="p3" value="0.0013"/>
+      <parameter id="p4" value="0.06"/>
+      <parameter id="p5" value="0.0091"/>
+      <parameter id="p6" value="6.4e-05"/>
+      <parameter id="p7" value="0.04"/>
+      <parameter id="p8" value="1000"/>
+      <parameter id="p9" value="0.01"/>
+      <parameter id="p10" value="1.6"/>
+      <parameter id="p11" value="1000"/>
+      <parameter id="p12" value="0.00023"/>
+      <parameter id="Vap" value="1.5"/>
+      <parameter id="Vbl" value="1"/>
+    </listOfParameters>
+    <listOfReactions>
+      <reaction metaid="_294717" id="reaction_1" reversible="false">
+        <listOfReactants>
+          <speciesReference species="x1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="x2"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> p1 </ci>
+              <ci> x1 </ci>
+              <ci> cell </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="_294737" id="reaction_2" reversible="false">
+        <listOfReactants>
+          <speciesReference species="x3"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="x5"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> p2 </ci>
+              <ci> x3 </ci>
+              <ci> cell </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="_294757" id="reaction_3" reversible="false">
+        <listOfReactants>
+          <speciesReference species="x1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="x3"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> p3 </ci>
+              <ci> x1 </ci>
+              <ci> cell </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="_294777" id="reaction_4" reversible="false">
+        <listOfReactants>
+          <speciesReference species="x3"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="x1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> p4 </ci>
+              <ci> x3 </ci>
+              <ci> cell </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="_294797" id="reaction_5" reversible="false">
+        <listOfReactants>
+          <speciesReference species="x3"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="x5"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> p5 </ci>
+              <ci> x3 </ci>
+              <ci> cell </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="_294817" id="reaction_6" reversible="false">
+        <listOfReactants>
+          <speciesReference species="x1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="x2"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> p6 </ci>
+              <ci> p8 </ci>
+              <ci> x1 </ci>
+              <ci> cell </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="_294837" id="reaction_7" reversible="false">
+        <listOfReactants>
+          <speciesReference species="x2"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="x1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> p7 </ci>
+              <ci> x2 </ci>
+              <ci> cell </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="_294857" id="reaction_8" reversible="false">
+        <listOfReactants>
+          <speciesReference species="x3"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="x4"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> p9 </ci>
+              <ci> p11 </ci>
+              <ci> x3 </ci>
+              <ci> cell </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="_294877" id="reaction_9" reversible="false">
+        <listOfReactants>
+          <speciesReference species="x4"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="x3"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> p10 </ci>
+              <ci> x4 </ci>
+              <ci> cell </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="_294897" id="reaction_10" reversible="false">
+        <listOfReactants>
+          <speciesReference species="x1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="x5"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> p12 </ci>
+              <apply>
+                <minus/>
+                <apply>
+                  <divide/>
+                  <ci> x1 </ci>
+                  <ci> Vbl </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <ci> x5 </ci>
+                  <ci> Vap </ci>
+                </apply>
+              </apply>
+              <ci> cell </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+    </listOfReactions>
+  </model>
+</sbml>

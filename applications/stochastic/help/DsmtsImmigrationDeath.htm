@@ -1,0 +1,182 @@
+
+<html>
+<head>
+<title>Immigration-Death</title>
+</head>
+<body>
+<h1>Immigration-Death</h1>
+
+<p>
+The models in this section deal with the immigration-death process, which is 
+comprised of the immigration reaction <em>0 &rarr; X</em> and the death
+reaction <em>X &rarr; 0</em>. 
+</p>
+
+<!------------------------------------------------------------------------>
+<h2>dsmts-002-01</h2>
+
+<p>
+The immigration and death reactions have mass-action kinetic 
+laws with rate parameters Alpha = 1 and Mu = 0.1, respectively.
+Use the open button <img src="fileopen.png">&nbsp; in the tool bar
+to import the file
+<tt>examples/sbml/dsmts31/dsmts-002-01.xml</tt>. The model is imported 
+correctly and the rate laws are recognized as having 
+mass-action kinetics. 
+Add a method in the methods list. In the methods editor select
+<tt>Time Homogeneous</tt> and <tt>Time Series, Uniform</tt> with 
+the default solver and options. Set the recording time to 50 and 
+the number of frames to 51. To see the result of these modifications
+open the file <tt>examples/cain/dsmts31/dsmts-002-01.xml</tt>.
+Below are the plots of the mean and standard deviation of the species 
+population calculated from 10,000 trajectories.
+</p>
+
+<p>
+<img src="DsmtsImmigrationDeath01Mean.jpg">
+</p>
+
+<p>
+<img src="DsmtsImmigrationDeath01StdDev.jpg">
+</p>
+
+
+<p>
+Note that this problem has a steady state solution. Select 
+<tt>SteadyState</tt> in the methods list panel. In calculating the steady
+state solution, we let the process equilibrate for 100 time units and
+then record the state for 100,000 time units. We generate four 
+trajectories and plot the steady state histogram, shown below.
+</p>
+
+<p>
+<img src="DsmtsImmigrationDeath01SteadyState.jpg">
+</p>
+
+<p>
+With the steady state output selected, click the table button 
+<img src="x-office-spreadsheet.png">&nbsp; and then select
+<tt>Estimated Error</tt>. The estimated error in the probability
+distribution is 0.0045.
+</p>
+
+
+<!------------------------------------------------------------------------>
+<h2>dsmts-002-02</h2>
+
+<p>
+For this model, the value of the Alpha is changed to 10. Below are plots
+of the mean and standard deviation of the species population.
+</p>
+
+<p>
+<img src="DsmtsImmigrationDeath02Mean.jpg">
+</p>
+
+<p>
+<img src="DsmtsImmigrationDeath02StdDev.jpg">
+</p>
+
+
+<!------------------------------------------------------------------------>
+<h2>dsmts-002-03</h2>
+
+<p>
+This model is the same as <tt>dsmts-002-02</tt>, except that the global
+parameter Alpha = 10 is overridden by the local parameter Alpha = 5.
+Cain does not support overriding global parameters. You will need to
+change the value of Alpha in the parameters editor.
+</p>
+
+
+<!------------------------------------------------------------------------>
+<h2>dsmts-002-04</h2>
+
+<p>
+This model is the same as <tt>dsmts-002-02</tt>, except that 
+Alpha = 1,000. This increases the reaction rates and makes the simulation
+more expensive. Thus we only generate 1,000 trajectories in calculating
+the mean and standard deviation of the species populations.
+</p>
+
+<p>
+<img src="DsmtsImmigrationDeath04Mean.jpg">
+</p>
+
+<p>
+<img src="DsmtsImmigrationDeath04StdDev.jpg">
+</p>
+
+
+<!------------------------------------------------------------------------>
+<h2>dsmts-002-05</h2>
+
+<p>
+This model is the same as <tt>dsmts-002-02</tt>, except that there are 
+two additional species Source and Sink, which are both boundary conditions.
+Cain does not support boundary conditions.
+</p>
+
+
+<!------------------------------------------------------------------------>
+<h2>dsmts-002-06</h2>
+
+<p>
+This model is the same as <tt>dsmts-002-05</tt>, except that Sink is 
+not a boundary condition.
+</p>
+
+
+<!------------------------------------------------------------------------>
+<h2>dsmts-002-07</h2>
+
+<p>
+This model is the same as <tt>dsmts-002-05</tt>, except that Sink is 
+a constant boundary condition.
+</p>
+
+
+<!------------------------------------------------------------------------>
+<h2>dsmts-002-08</h2>
+
+<p>
+This model tests parameter loading, which is not supported in Cain.
+</p>
+
+
+<!------------------------------------------------------------------------>
+<h2>dsmts-002-09</h2>
+
+<p>
+This model is the same as <tt>dsmts-002-01</tt>, except that an event is 
+triggered at time 25 which sets the value of <em>X</em> to 50. Although
+Cain supports events, it will not parse events in SBML files. Thus one
+must enter the events in either the time events editor or the trigger
+events panel.
+Open the file <tt>examples/cain/dsmts31/dsmts-002-09.xml</tt> to see 
+how to enter the appropriate time event. For models that utilize events,
+we must use solvers in the <tt>Use Events</tt> category, which are much
+slower than the other solvers. Thus we only generate 100 trajectories 
+to calculate the mean and standard deviation plotted below.
+</p>
+
+<p>
+<img src="DsmtsImmigrationDeath09Mean.jpg">
+</p>
+
+<p>
+<img src="DsmtsImmigrationDeath09StdDev.jpg">
+</p>
+
+
+<!------------------------------------------------------------------------>
+<h2>dsmts-002-10</h2>
+
+<p>
+This model is the same as <tt>dsmts-002-09</tt>, except that the event is 
+triggered at time 22.5 and <em>X</em> is assigned the value 20.
+</p>
+
+
+</body>
+</html>
